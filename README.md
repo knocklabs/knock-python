@@ -65,3 +65,19 @@ client.notify(
   }
 )
 ```
+
+### Signing JWTs
+
+You can use the `pyjwt` package to [sign JWTs easily](https://pyjwt.readthedocs.io/en/stable/usage.html#encoding-decoding-tokens-with-rs256-rsa).
+You will need to generate an environment specific signing key, which you can find in the Knock dashboard.
+
+If you're using a signing token you will need to pass this to your client to perform authentication.
+You can read more about [clientside authentication here](https://docs.knock.app/client-integration/authenticating-users).
+
+```python
+from jwt
+import os
+
+private_key = os.getenv("KNOCK_SIGNING_KEY")
+encoded = jwt.encode({"sub": "jhammond"}, private_key, algorithm="RS256")
+```

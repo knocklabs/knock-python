@@ -14,8 +14,7 @@ setuptools.setup(
     version=version,
     python_requires='>=2.7.16, <4',
     install_requires=[
-        'requests',
-        'importlib-metadata ~= 1.0 ; python_version < "3.8"'
+        'requests'
     ],
     extras_require={
         'dev': [

@@ -66,6 +66,19 @@ client.notify(
 )
 ```
 
+### Canceling notifies
+
+```python
+from knockapi import Knock
+client = Knock(api_key="sk_12345")
+
+client.cancel_notify(
+  name="dinosaurs-loose",
+  cancelation_key=alert.id,
+  recipients=["jhammond", "agrant", "imalcolm", "esattler"],
+)
+```
+
 ### Signing JWTs
 
 You can use the `pyjwt` package to [sign JWTs easily](https://pyjwt.readthedocs.io/en/stable/usage.html#encoding-decoding-tokens-with-rs256-rsa).

@@ -43,7 +43,7 @@ class Knock(Connection):
         from .resources import User
         return User(self)
 
-    def notify(self, name, actor, recipients, data={}):
+    def notify(self, name, actor, recipients, data={}, cancelation_key=None):
         """
         Triggers a notification workflow.
 
@@ -52,6 +52,7 @@ class Knock(Connection):
             actor (str): The ID of the actor performing this action.
             recipients (array): An array of user IDs of who should be notified.
             data (dict): Any data to be passed to the notify call.
+            cancelation_key (str): A key used to cancel this notify.
 
         Returns:
             dict: Response from Knock.
@@ -60,6 +61,26 @@ class Knock(Connection):
             'name': name,
             'actor': actor,
             'recipients': recipients,
-            'data': data
+            'data': data,
+            'cancelation_key': cancelation_key
         }
         return self.request("post", "/notify", payload=params)
+
+    def cancel_notify(self, name, cancelation_key, recipients=None):
+        """
+        Cancels an in-flight notify call.
+
+        Args:
+            name (str): The name of the notification to invoke.
+            cancelation_key (str): The key to identify the notify.
+            recipients (array): An array of user IDs for recipients to cancel (can be omitted).
+
+        Returns:
+            dict: Response from Knock.
+        """
+        params = {
+            'name': name,
+            'recipients': recipients,
+            'cancelation_key': cancelation_key
+        }
+        return self.request("post", "/notify/cancel", payload=params)

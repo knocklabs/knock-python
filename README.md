@@ -75,7 +75,7 @@ client = Knock(api_key="sk_12345")
 
 client.workflows.cancel(
   key="dinosaurs-loose",
-  cancelation_key=alert.id,
+  cancellation_key=alert.id,
   recipients=["jhammond", "agrant", "imalcolm", "esattler"],
 )
 ```

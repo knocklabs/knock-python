@@ -106,7 +106,7 @@ If you're using a signing token you will need to pass this to your client to per
 You can read more about [clientside authentication here](https://docs.knock.app/client-integration/authenticating-users).
 
 ```python
-from jwt
+import jwt
 import os
 
 private_key = os.getenv("KNOCK_SIGNING_KEY")

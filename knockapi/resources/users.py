@@ -28,3 +28,16 @@ class User(Service):
         """
         endpoint = '/users/{}'.format(id)
         return self.client.request('put', endpoint, payload=data)
+
+    def delete(self, id):
+        """
+        Delets the given user.
+
+        Args:
+            id (str): The users ID
+
+        Returns:
+            dict: User response from Knock.
+        """
+        endpoint = '/users/{}'.format(id)
+        return self.client.request('delete', endpoint)

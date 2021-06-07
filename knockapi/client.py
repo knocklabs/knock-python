@@ -1,6 +1,6 @@
 import requests
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
 class Connection(object):
@@ -43,23 +43,29 @@ class Knock(Connection):
         from .resources import User
         return User(self)
 
-    def notify(self, name, actor, recipients, data={}):
+    @property
+    def workflows(self):
+        from .resources import Workflows
+        return Workflows(self)
+
+    @property
+    def preferences(self):
+        from .resources import Preferences
+        return Preferences(self)
+
+    def notify(self, key, actor, recipients, data={}, cancellation_key=None):
         """
-        Triggers a notification workflow.
+        Triggers a workflow.
 
         Args:
-            name (str): The name of the notification to invoke.
+            key (str): The key of the workflow to invoke.
             actor (str): The ID of the actor performing this action.
             recipients (array): An array of user IDs of who should be notified.
             data (dict): Any data to be passed to the notify call.
+            cancellation_key (str): A key used to cancel this workflow.
 
         Returns:
             dict: Response from Knock.
         """
-        params = {
-            'name': name,
-            'actor': actor,
-            'recipients': recipients,
-            'data': data
-        }
-        return self.request("post", "/notify", payload=params)
+        # Note: this is essentially a delegated method
+        return self.workflows.trigger(key, actor, recipients, data=data, cancellation_key=cancellation_key)

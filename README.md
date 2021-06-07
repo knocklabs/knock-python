@@ -56,14 +56,45 @@ from knockapi import Knock
 client = Knock(api_key="sk_12345")
 
 client.notify(
-  name="dinosaurs-loose",
+  key="dinosaurs-loose",
   actor="dnedry",
   recipients=["jhammond", "agrant", "imalcolm", "esattler"],
+  cancellation_key=alert.id,
   data={
     "type": "trex",
     "priority": 1
   }
 )
+```
+
+### Canceling notifies
+
+```python
+from knockapi import Knock
+client = Knock(api_key="sk_12345")
+
+client.workflows.cancel(
+  key="dinosaurs-loose",
+  cancellation_key=alert.id,
+  recipients=["jhammond", "agrant", "imalcolm", "esattler"],
+)
+```
+
+### User preferences
+
+```python
+from knockapi import Knock
+client = Knock(api_key="sk_12345")
+
+# Replaces the preferences for the user
+client.preferences.update(
+  user_id="jhammond",
+  channel_types={'email': True},
+  workflows={'dinosaurs-loose': False}
+)
+
+# Retrieve the current preferences
+client.preferences.get(user_id="jhammond")
 ```
 
 ### Signing JWTs

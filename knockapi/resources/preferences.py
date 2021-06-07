@@ -138,7 +138,9 @@ class Preferences(Service):
         endpoint = '/users/{}/preferences/{}/workflows/{}'.format(
             user_id, preference_set_id, key)
 
-        return self.client.request('put', endpoint, payload={'subscribed': setting})
+        params = setting if type(setting) is dict else {'subscribed': setting}
+
+        return self.client.request('put', endpoint, payload=params)
 
     def set_categories(self, user_id, preferences, options={}):
         """
@@ -177,4 +179,6 @@ class Preferences(Service):
         endpoint = '/users/{}/preferences/{}/categories/{}'.format(
             user_id, preference_set_id, key)
 
-        return self.client.request('put', endpoint, payload={'subscribed': setting})
+        params = setting if type(setting) is dict else {'subscribed': setting}
+
+        return self.client.request('put', endpoint, payload=params)

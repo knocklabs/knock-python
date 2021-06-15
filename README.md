@@ -60,6 +60,7 @@ client.notify(
   actor="dnedry",
   recipients=["jhammond", "agrant", "imalcolm", "esattler"],
   cancellation_key=alert.id,
+  tenant="jurassic-park",
   data={
     "type": "trex",
     "priority": 1
@@ -103,7 +104,7 @@ You can use the `pyjwt` package to [sign JWTs easily](https://pyjwt.readthedocs.
 You will need to generate an environment specific signing key, which you can find in the Knock dashboard.
 
 If you're using a signing token you will need to pass this to your client to perform authentication.
-You can read more about [clientside authentication here](https://docs.knock.app/client-integration/authenticating-users).
+You can read more about [client-side authentication here](https://docs.knock.app/client-integration/authenticating-users).
 
 ```python
 import jwt

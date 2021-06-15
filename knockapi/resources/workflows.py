@@ -2,7 +2,7 @@ from .service import Service
 
 
 class Workflows(Service):
-    def trigger(self, key, actor, recipients, data={}, cancellation_key=None):
+    def trigger(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
         """
         Triggers a workflow.
 
@@ -11,6 +11,8 @@ class Workflows(Service):
             actor (str): The ID of the actor performing this action.
             recipients (array): An array of user IDs of who should be notified.
             data (dict): Any data to be passed to the notify call.
+            tenant (str): An optional identifier for the tenant object that the notifications
+            belong to.
             cancellation_key (str): A key used to cancel this notify.
 
         Returns:
@@ -22,7 +24,8 @@ class Workflows(Service):
             'actor': actor,
             'recipients': recipients,
             'data': data,
-            'cancellation_key': cancellation_key
+            'cancellation_key': cancellation_key,
+            'tenant': tenant
         }
 
         return self.request("post", endpoint, payload=params)

@@ -53,7 +53,7 @@ class Knock(Connection):
         from .resources import Preferences
         return Preferences(self)
 
-    def notify(self, key, actor, recipients, data={}, cancellation_key=None):
+    def notify(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
         """
         Triggers a workflow.
 
@@ -62,10 +62,11 @@ class Knock(Connection):
             actor (str): The ID of the actor performing this action.
             recipients (array): An array of user IDs of who should be notified.
             data (dict): Any data to be passed to the notify call.
+            tenant (str): An optional identifier for the tenant object that the notifications
             cancellation_key (str): A key used to cancel this workflow.
 
         Returns:
             dict: Response from Knock.
         """
         # Note: this is essentially a delegated method
-        return self.workflows.trigger(key, actor, recipients, data=data, cancellation_key=cancellation_key)
+        return self.workflows.trigger(key, actor, recipients, data=data, cancellation_key=cancellation_key, tenant=tenant)

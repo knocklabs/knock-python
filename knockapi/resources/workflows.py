@@ -28,7 +28,7 @@ class Workflows(Service):
             'tenant': tenant
         }
 
-        return self.request("post", endpoint, payload=params)
+        return self.client.request("post", endpoint, payload=params)
 
     def cancel(self, key, cancellation_key, recipients=None):
         """
@@ -49,4 +49,4 @@ class Workflows(Service):
             'cancellation_key': cancellation_key
         }
 
-        return self.request("post", endpoint, payload=params)
+        return self.client.request("post", endpoint, payload=params)

@@ -66,6 +66,25 @@ client.notify(
     "priority": 1
   }
 )
+
+```
+### Getting and setting channel data
+
+```python
+from knockapi import Knock
+client = Knock(api_key="sk_12345")
+
+# Set channel data for an APNS
+client.users.set_channel_data(
+  id="jhammond",
+  channel_id=KNOCK_APNS_CHANNEL_ID,
+  channel_data={
+    "tokens": [apns_token]
+  }
+)
+
+# Get channel data for the APNS channel
+client.users.get_channel_data(id="jhammond", channel_id=KNOCK_APNS_CHANNEL_ID)
 ```
 
 ### Canceling notifies

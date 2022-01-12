@@ -8,8 +8,8 @@ class Workflows(Service):
 
         Args:
             key (str): The key of the workflow to invoke.
-            actor (str): The ID of the actor performing this action.
-            recipients (array): An array of user IDs of who should be notified.
+            actor (str or dict): A recipient reference of who performed the action.
+            recipients (array): An array of recipient identifiers of who/what should be notified.
             data (dict): Any data to be passed to the notify call.
             tenant (str): An optional identifier for the tenant object that the notifications
             belong to.
@@ -37,7 +37,7 @@ class Workflows(Service):
         Args:
             key (str): The workflow to cancel.
             cancellation_key (str): The key to identify the workflow.
-            recipients (array): An array of user IDs for recipients to cancel (can be omitted).
+            recipients (array): An array of recipient identifiers of who/what should be notified (can be omitted).
 
         Returns:
             dict: Response from Knock.

@@ -186,6 +186,32 @@ class User(Service):
         }
 
         return self.client.request('put', endpoint, payload=params)
+    
+    def bulk_set_preferences(self, user_ids=[], preferences={}, options={}):
+        """
+        Bulk sets the preference set for the users given
+
+        Args:
+            user_ids (array): The users ids to apply the preferences to
+            preferences (dict): The preferences to apply for the users
+            options (dict): A dictionary of options
+
+        Returns:
+            dict: BulkOperation response from Knock.
+        """
+        endpoint = '/users/bulk/preferences'
+        preference_set_id = options.get('preference_set', default_set_id)
+
+        # Maybe set the default preference set id if it's not already set
+        if 'id' not in preferences:
+            preferences['id'] = preference_set_id
+
+        params = {
+            'preferences': preferences,
+            'user_ids': user_ids,
+        }
+
+        return self.client.request('put', endpoint, payload=params)
 
     def set_channel_types_preferences(self, user_id, preferences, options={}):
         """

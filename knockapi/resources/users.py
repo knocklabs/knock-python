@@ -73,7 +73,7 @@ class User(Service):
         Returns
             dict: BulkOperation response from Knock.
         """
-        endpoint = '/users/bulk/identify'
+        endpoint = '/users/bulk/delete'
         data = {'user_ids': user_ids}
         return self.client.request('post', endpoint, payload=data)
 

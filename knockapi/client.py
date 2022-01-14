@@ -53,6 +53,17 @@ class Knock(Connection):
         from .resources import Preferences
         return Preferences(self)
 
+    @property
+    def objects(self):
+        from .resources import Objects
+        return Objects(self)
+
+    @property
+    def bulk_operations(self):
+        from .resources import BulkOperations
+        return BulkOperations(self)
+
+    # Defined at the top level here for convienience
     def notify(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
         """
         Triggers a workflow.

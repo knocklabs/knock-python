@@ -68,6 +68,7 @@ client.notify(
 )
 
 ```
+
 ### Getting and setting channel data
 
 ```python
@@ -107,14 +108,14 @@ from knockapi import Knock
 client = Knock(api_key="sk_12345")
 
 # Replaces the preferences for the user
-client.preferences.update(
+client.users.set_preferences(
   user_id="jhammond",
   channel_types={'email': True},
   workflows={'dinosaurs-loose': False}
 )
 
 # Retrieve the current preferences
-client.preferences.get(user_id="jhammond")
+client.users.get_preferences(user_id="jhammond")
 ```
 
 ### Signing JWTs

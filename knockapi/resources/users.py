@@ -95,7 +95,7 @@ class User(Service):
 
     def merge(self, user_id, from_user_id):
         """
-        Gets a feed for the given user
+        Merges the user specified with `from_user_id` into the user specified with `user_id`.
 
         Args:
             user_id (str): The ID of the user to merge into

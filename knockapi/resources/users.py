@@ -3,9 +3,11 @@ from warnings import warn
 
 default_set_id = "default"
 
+
 class User(Service):
     def get_user(self, id):
-        warn("This method is deprecated. Use User.get instead.", DeprecationWarning, stacklevel=2)
+        warn("This method is deprecated. Use User.get instead.",
+             DeprecationWarning, stacklevel=2)
         return self.get(id)
 
     def get(self, id):
@@ -20,7 +22,6 @@ class User(Service):
         """
         endpoint = '/users/{}'.format(id)
         return self.client.request('get', endpoint)
-
 
     def identify(self, id, data={}):
         """
@@ -62,7 +63,7 @@ class User(Service):
         """
         endpoint = '/users/{}'.format(id)
         return self.client.request('delete', endpoint)
-        
+
     def bulk_delete(self, user_ids):
         """
         Bulk deletes up to 100 users.
@@ -77,7 +78,7 @@ class User(Service):
         data = {'user_ids': user_ids}
         return self.client.request('post', endpoint, payload=data)
 
-    def get_feed(self, user_id, channel_id, options = None):
+    def get_feed(self, user_id, channel_id, options=None):
         """
         Gets a feed for the given user
 
@@ -91,6 +92,21 @@ class User(Service):
         """
         endpoint = '/users/{}/feeds/{}'.format(user_id, channel_id)
         return self.client.request('get', endpoint, payload=options)
+
+    def merge(self, user_id, from_user_id):
+        """
+        Merges the user specified with `from_user_id` into the user specified with `user_id`.
+
+        Args:
+            user_id (str): The ID of the user to merge into
+            from_user_id (str): The ID of the user to merge from
+
+        Returns
+            dict: A Knock User response
+        """
+        endpoint = '/users/{}/merge'.format(user_id)
+        data = {'from_user_id': from_user_id}
+        return self.client.request('post', endpoint, payload=data)
 
     ##
     # Channel data
@@ -186,7 +202,7 @@ class User(Service):
         }
 
         return self.client.request('put', endpoint, payload=params)
-    
+
     def bulk_set_preferences(self, user_ids=[], preferences={}, options={}):
         """
         Bulk sets the preference set for the users given

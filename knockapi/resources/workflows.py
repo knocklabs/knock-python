@@ -8,7 +8,7 @@ class Workflows(Service):
 
         Args:
             key (str): The key of the workflow to invoke.
-            actor (str or dict): A recipient reference of who performed the action.
+            actor (str or dict): An optional reference for who/what performed the action.
             recipients (array): An array of recipient identifiers of who/what should be notified.
             data (dict): Any data to be passed to the notify call.
             tenant (str): An optional identifier for the tenant object that the notifications

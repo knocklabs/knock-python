@@ -23,8 +23,13 @@ class Connection(object):
             headers=self.headers,
         )
 
+        # If we got a successful response, then attempt to deserialize as JSON
         if r.ok:
-            return r.json()
+            try:
+                return r.json()
+            except ValueError:
+                return None
+
         return r.raise_for_status()
 
 

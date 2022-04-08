@@ -1,4 +1,5 @@
 import requests
+from json.decoder import JSONDecodeError
 
 __version__ = '0.4.2'
 
@@ -27,7 +28,7 @@ class Connection(object):
         if r.ok:
             try:
                 return r.json()
-            except ValueError:
+            except JSONDecodeError:
                 return None
 
         return r.raise_for_status()

@@ -69,6 +69,11 @@ class Knock(Connection):
         from .resources import BulkOperations
         return BulkOperations(self)
 
+    @property
+    def messages(self):
+        from .resources import Messages
+        return Messages(self)
+
     # Defined at the top level here for convienience
     def notify(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
         """

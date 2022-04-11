@@ -20,6 +20,7 @@ class Connection(object):
         r = requests.request(
             method,
             url,
+            params=payload,
             json=payload,
             headers=self.headers,
         )

@@ -1,6 +1,19 @@
 from .service import Service
 
 class Messages(Service):
+    def list(self, options=None):
+        """
+        Gets a paginated list of Message records
+
+        Args:
+            options (dict): An optional set of filtering options to pass to the query
+
+        Returns:
+            dict: a paginated list of Message records
+        """
+        endpoint = '/messages'
+        return self.client.request('get', endpoint, payload=options)
+
     def get(self, id):
         """
         Get a message by its id

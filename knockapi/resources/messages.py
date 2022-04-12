@@ -1,7 +1,5 @@
 from .service import Service
 
-default_set_id = "default"
-
 class Messages(Service):
     def get(self, id):
         """

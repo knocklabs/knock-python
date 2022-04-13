@@ -84,7 +84,7 @@ class Objects(Service):
 
     def get_channel_data(self, collection, id, channel_id):
         """
-        Get user's channel data for the given channel id.
+        Get object's channel data for the given channel id.
 
         Args:
             collection (str): The collection the object belongs to
@@ -99,7 +99,7 @@ class Objects(Service):
 
     def set_channel_data(self, collection, id, channel_id, channel_data):
         """
-        Upserts user's channel data for the given channel id.
+        Upserts object's channel data for the given channel id.
 
         Args:
             collection (str): The collection the object belongs to
@@ -112,3 +112,22 @@ class Objects(Service):
         """
         endpoint = '/objects/{}/{}/channel_data/{}'.format(collection, id, channel_id)
         return self.client.request('put', endpoint, payload={'data': channel_data})
+
+    ##
+    # Messages
+    ##
+
+    def get_messages(self, collection, id, options=None):
+        """
+        Get object's messages
+
+        Args:
+            collection (str): The collection the object belongs to
+            id (str): The id of the object in the collection
+            options (dict): An optional set of filtering options to pass to the query
+
+        Returns:
+            dict: Paginated Message response.
+        """
+        endpoint = '/objects/{}/{}/messages'.format(collection, id)
+        return self.client.request('get', endpoint, payload=options)

@@ -20,6 +20,7 @@ class Connection(object):
         r = requests.request(
             method,
             url,
+            params=payload,
             json=payload,
             headers=self.headers,
         )
@@ -68,6 +69,11 @@ class Knock(Connection):
     def bulk_operations(self):
         from .resources import BulkOperations
         return BulkOperations(self)
+
+    @property
+    def messages(self):
+        from .resources import Messages
+        return Messages(self)
 
     # Defined at the top level here for convienience
     def notify(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):

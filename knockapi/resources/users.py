@@ -349,3 +349,21 @@ class User(Service):
         params = setting if type(setting) is dict else {'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)
+
+    ##
+    # Messages
+    ##
+
+    def get_messages(self, id, options=None):
+        """
+        Get user's messages
+
+        Args:
+            id (str): The user ID
+            options (dict): An optional set of filtering options to pass to the query
+
+        Returns:
+            dict: Paginated Message response.
+        """
+        endpoint = '/users/{}/messages'.format(id)
+        return self.client.request('get', endpoint, payload=options)

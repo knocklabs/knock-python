@@ -319,7 +319,7 @@ class User(Service):
             options (dict): A dictionary of options
 
         Returns:
-            dict: User response from Knock.
+            dict: PreferenceSet response from Knock.
         """
         preference_set_id = options.get('preference_set', default_set_id)
 
@@ -339,7 +339,7 @@ class User(Service):
             options (dict): A dictionary of options
 
         Returns:
-            dict: User response from Knock.
+            dict: PreferenceSet response from Knock.
         """
         preference_set_id = options.get('preference_set', default_set_id)
 

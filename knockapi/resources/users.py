@@ -141,6 +141,20 @@ class User(Service):
         endpoint = '/users/{}/channel_data/{}'.format(id, channel_id)
         return self.client.request('put', endpoint, payload={'data': channel_data})
 
+    def unset_channel_data(self, id, channel_id):
+        """
+        Unsets the user's channel data for the given channel id.
+
+        Args:
+            id (str): The user ID
+            channel_id (str): Target channel ID
+
+        Returns:
+            None: no response
+        """
+        endpoint = '/users/{}/channel_data/{}'.format(id, channel_id)
+        return self.client.request('delete', endpoint)
+
     ##
     # Preferences
     ##

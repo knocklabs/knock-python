@@ -141,6 +141,20 @@ class User(Service):
         endpoint = '/users/{}/channel_data/{}'.format(id, channel_id)
         return self.client.request('put', endpoint, payload={'data': channel_data})
 
+    def unset_channel_data(self, id, channel_id):
+        """
+        Unsets the user's channel data for the given channel id.
+
+        Args:
+            id (str): The user ID
+            channel_id (str): Target channel ID
+
+        Returns:
+            None: no response
+        """
+        endpoint = '/users/{}/channel_data/{}'.format(id, channel_id)
+        return self.client.request('delete', endpoint)
+
     ##
     # Preferences
     ##
@@ -319,7 +333,7 @@ class User(Service):
             options (dict): A dictionary of options
 
         Returns:
-            dict: User response from Knock.
+            dict: PreferenceSet response from Knock.
         """
         preference_set_id = options.get('preference_set', default_set_id)
 
@@ -339,7 +353,7 @@ class User(Service):
             options (dict): A dictionary of options
 
         Returns:
-            dict: User response from Knock.
+            dict: PreferenceSet response from Knock.
         """
         preference_set_id = options.get('preference_set', default_set_id)
 

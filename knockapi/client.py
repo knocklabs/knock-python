@@ -82,11 +82,18 @@ class Knock(Connection):
 
         Args:
             key (str): The key of the workflow to invoke.
-            actor (str or dict): An optional reference for who/what performed the action.
-            recipients (array): An array of recipient identifiers of who/what should be notified.
+
+            actor (str | dict[str, Any]): An optional reference for who/what performed the action. This can be A) a user
+            id, B) an object reference, or C) a dictionary with data to identify a user or object.
+
+            recipients (list[str | dict[str, Any]]): A list of recipients that should be notified. This can be a list of
+            A) user ids, B) object references, C) dictionaries with data to identify a user or object, or D) a
+            combination thereof.
+
             data (dict): Any data to be passed to the notify call.
-            tenant (str): An optional identifier for the tenant object that the notifications
-            belong to.
+
+            tenant (str): An optional identifier for the tenant object that the notifications belong to.
+
             cancellation_key (str): A key used to cancel this notify.
 
         Returns:

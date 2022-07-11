@@ -113,7 +113,9 @@ class Objects(Service):
         """
         endpoint = '/objects/{}/{}/channel_data/{}'.format(
             collection, id, channel_id)
-        return self.client.request('put', endpoint, payload={'data': channel_data})
+        return self.client.request(
+            'put', endpoint, payload={
+                'data': channel_data})
 
     def unset_channel_data(self, collection, id, channel_id):
         """
@@ -187,7 +189,14 @@ class Objects(Service):
 
         return self.client.request('get', endpoint)
 
-    def set_preferences(self, collection, id, channel_types=None, categories=None, workflows=None, options={}):
+    def set_preferences(
+            self,
+            collection,
+            id,
+            channel_types=None,
+            categories=None,
+            workflows=None,
+            options={}):
         """
         Sets the preference set
 
@@ -215,7 +224,8 @@ class Objects(Service):
 
         return self.client.request('put', endpoint, payload=params)
 
-    def set_channel_types_preferences(self, collection, id, preferences, options={}):
+    def set_channel_types_preferences(
+            self, collection, id, preferences, options={}):
         """
         Sets the channel type preferences
 
@@ -235,7 +245,13 @@ class Objects(Service):
 
         return self.client.request('put', endpoint, payload=preferences)
 
-    def set_channel_type_preferences(self, collection, id, channel_type, setting, options={}):
+    def set_channel_type_preferences(
+            self,
+            collection,
+            id,
+            channel_type,
+            setting,
+            options={}):
         """
         Sets the channel type preference
 
@@ -243,7 +259,7 @@ class Objects(Service):
             collection (str): The collection the object belongs to
             id (str): The id of the object in the collection
             channel_type (str): The channel_type to set
-            setting (boolean): The preference setting 
+            setting (boolean): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -254,9 +270,16 @@ class Objects(Service):
         endpoint = '/objects/{}/{}/preferences/{}/channel_types/{}'.format(
             collection, id, preference_set_id, channel_type)
 
-        return self.client.request('put', endpoint, payload={'subscribed': setting})
+        return self.client.request(
+            'put', endpoint, payload={
+                'subscribed': setting})
 
-    def set_workflows_preferences(self, collection, id, preferences, options={}):
+    def set_workflows_preferences(
+            self,
+            collection,
+            id,
+            preferences,
+            options={}):
         """
         Sets the workflow preferences
 
@@ -276,7 +299,13 @@ class Objects(Service):
 
         return self.client.request('put', endpoint, payload=preferences)
 
-    def set_workflow_preferences(self, collection, id, key, setting, options={}):
+    def set_workflow_preferences(
+            self,
+            collection,
+            id,
+            key,
+            setting,
+            options={}):
         """
         Sets the workflow preferences
 
@@ -284,7 +313,7 @@ class Objects(Service):
             collection (str): The collection the object belongs to
             id (str): The id of the object in the collection
             key (str): The workflow key
-            setting (boolean or dict): The preference setting 
+            setting (boolean or dict): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -295,11 +324,17 @@ class Objects(Service):
         endpoint = '/objects/{}/{}/preferences/{}/workflows/{}'.format(
             collection, id, preference_set_id, key)
 
-        params = setting if type(setting) is dict else {'subscribed': setting}
+        params = setting if isinstance(setting, dict) else {
+            'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)
 
-    def set_categories_preferences(self, collection, id, preferences, options={}):
+    def set_categories_preferences(
+            self,
+            collection,
+            id,
+            preferences,
+            options={}):
         """
         Sets the categories preferences
 
@@ -319,7 +354,13 @@ class Objects(Service):
 
         return self.client.request('put', endpoint, payload=preferences)
 
-    def set_category_preferences(self, collection, id, key, setting, options={}):
+    def set_category_preferences(
+            self,
+            collection,
+            id,
+            key,
+            setting,
+            options={}):
         """
         Sets the category preferences
 
@@ -327,7 +368,7 @@ class Objects(Service):
             collection (str): The collection the object belongs to
             id (str): The id of the object in the collection
             key (str): The category key
-            setting (boolean or dict): The preference setting 
+            setting (boolean or dict): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -338,6 +379,7 @@ class Objects(Service):
         endpoint = '/objects/{}/{}/preferences/{}/categories/{}'.format(
             collection, id, preference_set_id, key)
 
-        params = setting if type(setting) is dict else {'subscribed': setting}
+        params = setting if isinstance(setting, dict) else {
+            'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)

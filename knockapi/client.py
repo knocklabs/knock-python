@@ -66,6 +66,11 @@ class Knock(Connection):
         return Objects(self)
 
     @property
+    def tenants(self):
+        from .resources import Tenants
+        return Tenants(self)
+
+    @property
     def bulk_operations(self):
         from .resources import BulkOperations
         return BulkOperations(self)
@@ -76,7 +81,14 @@ class Knock(Connection):
         return Messages(self)
 
     # Defined at the top level here for convienience
-    def notify(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
+    def notify(
+            self,
+            key,
+            actor,
+            recipients,
+            data={},
+            cancellation_key=None,
+            tenant=None):
         """
         Triggers a workflow.
 
@@ -92,7 +104,7 @@ class Knock(Connection):
 
             data (dict): Any data to be passed to the notify call.
 
-            tenant (str): An optional identifier for the tenant object that the notifications belong to.
+            tenant (str): An optional identifier for the tenant that the notifications belong to.
 
             cancellation_key (str): A key used to cancel this notify.
 
@@ -100,4 +112,10 @@ class Knock(Connection):
             dict: Response from Knock.
         """
         # Note: this is essentially a delegated method
-        return self.workflows.trigger(key, actor, recipients, data=data, cancellation_key=cancellation_key, tenant=tenant)
+        return self.workflows.trigger(
+            key,
+            actor,
+            recipients,
+            data=data,
+            cancellation_key=cancellation_key,
+            tenant=tenant)

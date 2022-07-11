@@ -139,7 +139,9 @@ class User(Service):
             dict: Channel data from Knock.
         """
         endpoint = '/users/{}/channel_data/{}'.format(id, channel_id)
-        return self.client.request('put', endpoint, payload={'data': channel_data})
+        return self.client.request(
+            'put', endpoint, payload={
+                'data': channel_data})
 
     def unset_channel_data(self, id, channel_id):
         """
@@ -190,7 +192,13 @@ class User(Service):
 
         return self.client.request('get', endpoint)
 
-    def set_preferences(self, user_id, channel_types=None, categories=None, workflows=None, options={}):
+    def set_preferences(
+            self,
+            user_id,
+            channel_types=None,
+            categories=None,
+            workflows=None,
+            options={}):
         """
         Sets the preference set for the user
 
@@ -262,14 +270,19 @@ class User(Service):
 
         return self.client.request('put', endpoint, payload=preferences)
 
-    def set_channel_type_preferences(self, user_id, channel_type, setting, options={}):
+    def set_channel_type_preferences(
+            self,
+            user_id,
+            channel_type,
+            setting,
+            options={}):
         """
         Sets the channel type preference for the user
 
         Args:
             user_id (str): The users ID
             channel_type (str): The channel_type to set
-            setting (boolean): The preference setting 
+            setting (boolean): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -280,7 +293,9 @@ class User(Service):
         endpoint = '/users/{}/preferences/{}/channel_types/{}'.format(
             user_id, preference_set_id, channel_type)
 
-        return self.client.request('put', endpoint, payload={'subscribed': setting})
+        return self.client.request(
+            'put', endpoint, payload={
+                'subscribed': setting})
 
     def set_workflows_preferences(self, user_id, preferences, options={}):
         """
@@ -308,7 +323,7 @@ class User(Service):
         Args:
             user_id (str): The users ID
             key (str): The workflow key
-            setting (boolean or dict): The preference setting 
+            setting (boolean or dict): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -319,7 +334,8 @@ class User(Service):
         endpoint = '/users/{}/preferences/{}/workflows/{}'.format(
             user_id, preference_set_id, key)
 
-        params = setting if type(setting) is dict else {'subscribed': setting}
+        params = setting if isinstance(setting, dict) else {
+            'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)
 
@@ -349,7 +365,7 @@ class User(Service):
         Args:
             user_id (str): The users ID
             key (str): The category key
-            setting (boolean or dict): The preference setting 
+            setting (boolean or dict): The preference setting
             options (dict): A dictionary of options
 
         Returns:
@@ -360,7 +376,8 @@ class User(Service):
         endpoint = '/users/{}/preferences/{}/categories/{}'.format(
             user_id, preference_set_id, key)
 
-        params = setting if type(setting) is dict else {'subscribed': setting}
+        params = setting if isinstance(setting, dict) else {
+            'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)
 

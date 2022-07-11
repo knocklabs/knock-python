@@ -2,7 +2,14 @@ from .service import Service
 
 
 class Workflows(Service):
-    def trigger(self, key, actor, recipients, data={}, cancellation_key=None, tenant=None):
+    def trigger(
+            self,
+            key,
+            actor,
+            recipients,
+            data={},
+            cancellation_key=None,
+            tenant=None):
         """
         Triggers a workflow.
 

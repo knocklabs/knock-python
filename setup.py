@@ -1,8 +1,4 @@
-import sys
-import os
 import setuptools
-
-from setuptools.command.install import install
 
 version = '0.4.6'
 

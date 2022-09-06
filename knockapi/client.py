@@ -80,13 +80,13 @@ class Knock(Connection):
         from .resources import Messages
         return Messages(self)
 
-    # Defined at the top level here for convienience
+    # Defined at the top level here for convenience
     def notify(
             self,
             key,
-            actor,
             recipients,
             data={},
+            actor=None,
             cancellation_key=None,
             tenant=None):
         """
@@ -113,9 +113,9 @@ class Knock(Connection):
         """
         # Note: this is essentially a delegated method
         return self.workflows.trigger(
-            key,
-            actor,
-            recipients,
+            key=key,
+            recipients=recipients,
             data=data,
+            actor=actor,
             cancellation_key=cancellation_key,
             tenant=tenant)

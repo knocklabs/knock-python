@@ -5,9 +5,9 @@ class Workflows(Service):
     def trigger(
             self,
             key,
-            actor,
             recipients,
             data={},
+            actor=None,
             cancellation_key=None,
             tenant=None):
         """

@@ -1,3 +1,4 @@
+import json
 from .service import Service
 
 default_set_id = "default"
@@ -150,6 +151,10 @@ class Objects(Service):
             dict: Paginated Message response.
         """
         endpoint = '/objects/{}/{}/messages'.format(collection, id)
+
+        if options and options['trigger_data']:
+            options['trigger_data'] = json.dumps(options['trigger_data'])
+
         return self.client.request('get', endpoint, payload=options)
 
     ##

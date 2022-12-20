@@ -1,3 +1,4 @@
+import json
 from .service import Service
 from warnings import warn
 
@@ -91,6 +92,10 @@ class User(Service):
             dict: A Knock feed response
         """
         endpoint = '/users/{}/feeds/{}'.format(user_id, channel_id)
+
+        if options and options['trigger_data']:
+            options['trigger_data'] = json.dumps(options['trigger_data'])
+
         return self.client.request('get', endpoint, payload=options)
 
     def merge(self, user_id, from_user_id):

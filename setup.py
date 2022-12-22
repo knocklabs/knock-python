@@ -1,6 +1,6 @@
 import setuptools
 
-version = '0.5.0'
+version = '0.5.1'
 
 with open("README.md", "r") as f:
     long_description = f.read()

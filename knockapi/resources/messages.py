@@ -1,5 +1,5 @@
+import json
 from .service import Service
-
 
 class Messages(Service):
     def list(self, options=None):
@@ -13,6 +13,10 @@ class Messages(Service):
             dict: a paginated list of Message records
         """
         endpoint = '/messages'
+
+        if options and options['trigger_data']:
+            options['trigger_data'] = json.dumps(options['trigger_data'])
+
         return self.client.request('get', endpoint, payload=options)
 
     def get(self, id):
@@ -52,6 +56,10 @@ class Messages(Service):
             dict: paginated Activity response from Knock.
         """
         endpoint = '/messages/{}/activities'.format(id)
+
+        if options and options['trigger_data']:
+            options['trigger_data'] = json.dumps(options['trigger_data'])
+
         return self.client.request('get', endpoint, options)
 
     def get_events(self, id, options=None):

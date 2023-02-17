@@ -20,8 +20,8 @@ class Connection(object):
         r = requests.request(
             method,
             url,
-            params=payload,
-            json=payload,
+            params=payload if method == 'get' else None,
+            json=payload if method != 'get' else None,
             headers=self.headers,
         )
 

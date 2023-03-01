@@ -103,6 +103,7 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
+.idea
 
 # Pipenv
 Pipfile

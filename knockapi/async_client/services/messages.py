@@ -1,8 +1,11 @@
 import json
-from .service import Service
+
+from knockapi.core.Service import Service
+
 
 class Messages(Service):
-    def list(self, options=None):
+
+    async def list(self, options=None):
         """
         Gets a paginated list of Message records
 
@@ -17,60 +20,60 @@ class Messages(Service):
         if options and options['trigger_data']:
             options['trigger_data'] = json.dumps(options['trigger_data'])
 
-        return self.client.request('get', endpoint, payload=options)
+        return await self.client.connection.request('get', endpoint, payload=options)
 
-    def get(self, id):
+    async def get(self, message_id):
         """
         Get a message by its id
 
         Args:
-            id: The message ID
+            message_id: The message ID
 
         Returns:
             dict: Message response from Knock.
         """
-        endpoint = '/messages/{}'.format(id)
-        return self.client.request('get', endpoint)
+        endpoint = f'/messages/{message_id}'
+        return await self.client.connection.request('get', endpoint)
 
-    def get_content(self, id):
+    async def get_content(self, message_id):
         """
         Get a message's content by its id
 
         Args:
-            id: The message ID
+            message_id: The message ID
 
         Returns:
             dict: MessageContent response from Knock.
         """
-        endpoint = '/messages/{}/content'.format(id)
-        return self.client.request('get', endpoint)
+        endpoint = f'/messages/{message_id}/content'
+        return await self.client.connection.request('get', endpoint)
 
-    def get_activities(self, id, options=None):
+    async def get_activities(self, message_id, options=None):
         """
         Get a message's activities by its id
 
         Args:
-            id: The message ID
+            message_id: The message ID
 
         Returns:
             dict: paginated Activity response from Knock.
         """
-        endpoint = '/messages/{}/activities'.format(id)
+        endpoint = f'/messages/{message_id}/activities'
 
         if options and options['trigger_data']:
             options['trigger_data'] = json.dumps(options['trigger_data'])
 
-        return self.client.request('get', endpoint, options)
+        return await self.client.connection.request('get', endpoint, options)
 
-    def get_events(self, id, options=None):
+    async def get_events(self, message_id, options=None):
         """
         Get a message's events by its id
 
         Args:
-            id: The message ID
+            message_id: The message ID
 
         Returns:
             dict: paginated Event response from Knock.
         """
-        endpoint = '/messages/{}/events'.format(id)
-        return self.client.request('get', endpoint, options)
+        endpoint = f'/messages/{message_id}/events'
+        return await self.client.connection.request('get', endpoint, options)

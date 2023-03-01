@@ -118,7 +118,22 @@ client.users.set_preferences(
 client.users.get_preferences(user_id="jhammond")
 ```
 
-### Signing JWTs
+## AsyncIO Usage
+The library utilises the [unasync](https://github.com/python-trio/unasync) library to provide full AsyncIO support, you just need to import the AsyncKnock client.
+```python
+import asyncio
+from knockapi import AsyncKnock
+
+client = AsyncKnock(api_key="sk_12345")
+
+async def example_coroutine():
+    messages = await client.messages.list()
+    print(messages)
+
+asyncio.run(example_coroutine())
+```
+
+## Signing JWTs
 
 You can use the `pyjwt` package to [sign JWTs easily](https://pyjwt.readthedocs.io/en/stable/usage.html#encoding-decoding-tokens-with-rs256-rsa).
 You will need to generate an environment specific signing key, which you can find in the Knock dashboard.

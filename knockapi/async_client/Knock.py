@@ -1,94 +1,62 @@
-import requests
-from json.decoder import JSONDecodeError
-
-__version__ = '0.5.2'
-
-
-class Connection(object):
-    def __init__(self, api_key, host='https://api.knock.app'):
-        self.api_key = api_key
-        self.host = host
-        self.client_version = __version__
-        self.headers = {
-            'Authorization': 'Bearer {}'.format(self.api_key),
-            'User-Agent': 'Knock Python - {}'.format(self.client_version)
-        }
-
-    def request(self, method, endpoint, payload=None):
-        url = '{}/v1{}'.format(self.host, endpoint)
-
-        r = requests.request(
-            method,
-            url,
-            params=payload if method == 'get' else None,
-            json=payload if method != 'get' else None,
-            headers=self.headers,
-        )
-
-        # If we got a successful response, then attempt to deserialize as JSON
-        if r.ok:
-            try:
-                return r.json()
-            except JSONDecodeError:
-                return None
-
-        return r.raise_for_status()
+from knockapi import __version__
+from knockapi.core import AsyncConnection
+from knockapi.async_client.services import User, Workflows, Preferences, Objects, Tenants, BulkOperations, Messages
 
 
-class Knock(Connection):
+class Knock(object):
     """Client to access the Knock features."""
-    @property
-    def _auth(self):
-        return self.api_key
 
-    @property
-    def _version(self):
-        return __version__
+    def __init__(
+        self,
+        api_key: str,
+        api_host: str = 'https://api.knock.app',
+        read_timeout: int = 300
+    ):
+        self.connection = AsyncConnection(
+            api_key,
+            api_host,
+            __version__,
+            read_timeout
+        )
 
     @property
     def users(self):
-        from .resources import User
         return User(self)
 
     @property
     def workflows(self):
-        from .resources import Workflows
         return Workflows(self)
 
     @property
     def preferences(self):
-        from .resources import Preferences
         return Preferences(self)
 
     @property
     def objects(self):
-        from .resources import Objects
         return Objects(self)
 
     @property
     def tenants(self):
-        from .resources import Tenants
         return Tenants(self)
 
     @property
     def bulk_operations(self):
-        from .resources import BulkOperations
         return BulkOperations(self)
 
     @property
     def messages(self):
-        from .resources import Messages
         return Messages(self)
 
     # Defined at the top level here for convenience
-    def notify(
-            self,
-            key,
-            recipients,
-            data={},
-            actor=None,
-            cancellation_key=None,
-            tenant=None):
+    async def notify(
+        self,
+        key,
+        recipients,
+        data={},
+        actor=None,
+        cancellation_key=None,
+        tenant=None
+    ):
         """
         Triggers a workflow.
 
@@ -112,10 +80,11 @@ class Knock(Connection):
             dict: Response from Knock.
         """
         # Note: this is essentially a delegated method
-        return self.workflows.trigger(
+        return await self.workflows.trigger(
             key=key,
             recipients=recipients,
             data=data,
             actor=actor,
             cancellation_key=cancellation_key,
-            tenant=tenant)
+            tenant=tenant
+        )

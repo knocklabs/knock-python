@@ -1,15 +1,9 @@
-from .service import Service
+from knockapi.core.Service import Service
 
 
 class Workflows(Service):
-    def trigger(
-            self,
-            key,
-            recipients,
-            data={},
-            actor=None,
-            cancellation_key=None,
-            tenant=None):
+
+    async def trigger(self, key, recipients, data={}, actor=None, cancellation_key=None, tenant=None):
         """
         Triggers a workflow.
 
@@ -32,7 +26,7 @@ class Workflows(Service):
         Returns:
             dict: Response from Knock.
         """
-        endpoint = '/workflows/{}/trigger'.format(key)
+        endpoint = f'/workflows/{key}/trigger'
 
         params = {
             'actor': actor,
@@ -42,9 +36,9 @@ class Workflows(Service):
             'tenant': tenant
         }
 
-        return self.client.request("post", endpoint, payload=params)
+        return await self.client.connection.request("post", endpoint, payload=params)
 
-    def cancel(self, key, cancellation_key, recipients=None):
+    async def cancel(self, key, cancellation_key, recipients=None):
         """
         Cancels an in-flight workflow.
 
@@ -56,11 +50,11 @@ class Workflows(Service):
         Returns:
             dict: Response from Knock.
         """
-        endpoint = '/workflows/{}/cancel'.format(key)
+        endpoint = f'/workflows/{key}/cancel'
 
         params = {
             'recipients': recipients,
             'cancellation_key': cancellation_key
         }
 
-        return self.client.request("post", endpoint, payload=params)
+        return await self.client.connection.request("post", endpoint, payload=params)

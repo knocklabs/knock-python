@@ -103,8 +103,12 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
+.idea
 
 # Pipenv
 Pipfile
 Pipfile.lock
 .vscode/launch.json
+
+# Unasync
+knockapi/sync_client

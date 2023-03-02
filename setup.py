@@ -1,6 +1,7 @@
 import setuptools
+import unasync
 
-version = '0.5.2'
+version = '0.6.0'
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -8,9 +9,11 @@ with open("README.md", "r") as f:
 setuptools.setup(
     name='knockapi',
     version=version,
-    python_requires='>=2.7.16, <4',
+    python_requires='>=3.6, <4',
     install_requires=[
-        'requests'
+        'requests',
+        'aiohttp',
+        'unasync'
     ],
     extras_require={
         'dev': [
@@ -38,5 +41,13 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     author='Knock Labs, Inc.',
     author_email='support@knock.app',
-    license='MIT'
+    license='MIT',
+    cmdclass={"build_py": unasync.cmdclass_build_py(
+        rules=[
+            unasync.Rule("knockapi/async_client", "knockapi/sync_client", additional_replacements={
+                "AsyncConnection": "Connection",
+                "async_client": "sync_client",
+            })
+        ]
+    )},
 )

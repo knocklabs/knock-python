@@ -26,21 +26,20 @@ class AsyncConnection(object):
         )
 
     async def request(self, method, endpoint, payload=None):
-        async with self.session as client:
-            url = '{}/v1{}'.format(self.host, endpoint)
+        url = '{}/v1{}'.format(self.host, endpoint)
 
-            r = await client.request(
-                method,
-                url,
-                params=payload if method == 'get' else None,
-                json=payload if method != 'get' else None
-            )
+        r = await self.session.request(
+            method,
+            url,
+            params=payload if method == 'get' else None,
+            json=payload if method != 'get' else None
+        )
 
-            async with r:
+        async with r:
 
-                # If we got a successful response, then attempt to deserialize as JSON
-                if r.ok:
-                    try:
-                        return await r.json()
-                    except JSONDecodeError:
-                        return None
+            # If we got a successful response, then attempt to deserialize as JSON
+            if r.ok:
+                try:
+                    return await r.json()
+                except JSONDecodeError:
+                    return None

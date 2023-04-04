@@ -14,15 +14,19 @@ class Connection(object):
             'User-Agent': 'Knock Python - {}'.format(self.client_version)
         }
 
-    def request(self, method, endpoint, payload=None):
+    def request(self, method, endpoint, payload=None, options={}):
         url = '{}/v1{}'.format(self.host, endpoint)
+
+        extra_headers = {}
+        if (method in ["post", "put"]) and options.get('idempotency_key') != None:
+            extra_headers['Idempotency-Key'] = options.get('idempotency_key')
 
         r = requests.request(
             method,
             url,
             params=payload if method == 'get' else None,
             json=payload if method != 'get' else None,
-            headers=self.headers,
+            headers={**self.headers, **extra_headers}
         )
 
         # If we got a successful response, then attempt to deserialize as JSON
@@ -88,7 +92,8 @@ class Knock(Connection):
             data={},
             actor=None,
             cancellation_key=None,
-            tenant=None):
+            tenant=None,
+            options={}):
         """
         Triggers a workflow.
 
@@ -108,6 +113,10 @@ class Knock(Connection):
 
             cancellation_key (str): A key used to cancel this notify.
 
+            options (dict): An optional dictionary of options to pass to the request.
+            Can include:
+            - idempotency_key (str): An optional key that, if passed, will ensure that the same call is not made twice.
+
         Returns:
             dict: Response from Knock.
         """
@@ -118,4 +127,5 @@ class Knock(Connection):
             data=data,
             actor=actor,
             cancellation_key=cancellation_key,
-            tenant=tenant)
+            tenant=tenant,
+            options=options)

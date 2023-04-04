@@ -9,7 +9,8 @@ class Workflows(Service):
             data={},
             actor=None,
             cancellation_key=None,
-            tenant=None):
+            tenant=None,
+            options={}):
         """
         Triggers a workflow.
 
@@ -29,6 +30,10 @@ class Workflows(Service):
 
             cancellation_key (str): A key used to cancel this notify.
 
+            options (dict): An optional dictionary of options to pass to the request.
+            Can include:
+            - idempotency_key (str): An optional key that, if passed, will ensure that the same call is not made twice.
+
         Returns:
             dict: Response from Knock.
         """
@@ -42,7 +47,7 @@ class Workflows(Service):
             'tenant': tenant
         }
 
-        return self.client.request("post", endpoint, payload=params)
+        return self.client.request("post", endpoint, payload=params, options=options)
 
     def cancel(self, key, cancellation_key, recipients=None):
         """

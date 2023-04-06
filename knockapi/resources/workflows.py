@@ -30,7 +30,7 @@ class Workflows(Service):
 
             cancellation_key (str): A key used to cancel this notify.
 
-            options (dict): An optional dictionary of options to pass to the request.
+            options (dict): A dictionary of options to pass to the request (optional).
             Can include:
             - idempotency_key (str): An optional key that, if passed, will ensure that the same call is not made twice.
 

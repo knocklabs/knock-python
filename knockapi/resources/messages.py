@@ -1,6 +1,7 @@
 import json
 from .service import Service
 
+
 class Messages(Service):
     def list(self, options=None):
         """

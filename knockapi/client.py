@@ -18,7 +18,7 @@ class Connection(object):
         url = '{}/v1{}'.format(self.host, endpoint)
 
         extra_headers = {}
-        if (method in ["post", "put"]) and options.get('idempotency_key') != None:
+        if (method in ["post", "put"]) and options.get('idempotency_key') is not None:
             extra_headers['Idempotency-Key'] = options.get('idempotency_key')
 
         r = requests.request(

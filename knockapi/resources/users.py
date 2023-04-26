@@ -93,7 +93,7 @@ class User(Service):
         """
         endpoint = '/users/{}/feeds/{}'.format(user_id, channel_id)
 
-        if options and options['trigger_data']:
+        if options and options.get('trigger_data'):
             options['trigger_data'] = json.dumps(options['trigger_data'])
 
         return self.client.request('get', endpoint, payload=options)

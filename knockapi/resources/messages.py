@@ -15,7 +15,7 @@ class Messages(Service):
         """
         endpoint = '/messages'
 
-        if options and options['trigger_data']:
+        if options and options.get('trigger_data'):
             options['trigger_data'] = json.dumps(options['trigger_data'])
 
         return self.client.request('get', endpoint, payload=options)
@@ -58,7 +58,7 @@ class Messages(Service):
         """
         endpoint = '/messages/{}/activities'.format(id)
 
-        if options and options['trigger_data']:
+        if options and options.get('trigger_data'):
             options['trigger_data'] = json.dumps(options['trigger_data'])
 
         return self.client.request('get', endpoint, options)

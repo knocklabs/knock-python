@@ -1,3 +1,4 @@
+import datetime
 from .service import Service
 
 
@@ -76,6 +77,7 @@ class Workflows(Service):
             recipients,
             repeats,
             data={},
+            scheduled_at=datetime.datetime.now(),
             actor=None,
             tenant=None):
         """
@@ -93,6 +95,8 @@ class Workflows(Service):
 
             data (dict): Any data to be passed to the scheduled trigger call.
 
+            scheduled_at (datetime): Date when the schedule must start
+
             tenant (str): An optional identifier for the tenant object that the notifications belong to.
 
         Returns:
@@ -106,7 +110,8 @@ class Workflows(Service):
             'repeats': repeats,
             'actor': actor,
             'data': data,
-            'tenant': tenant
+            'tenant': tenant,
+            'scheduled_at': scheduled_at.isoformat()
         }
 
         return self.client.request("post", endpoint, payload=params)

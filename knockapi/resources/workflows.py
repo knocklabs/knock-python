@@ -100,7 +100,7 @@ class Workflows(Service):
             tenant (str): An optional identifier for the tenant object that the notifications belong to.
 
         Returns:
-            dict: list of created schedules
+            list[dict]: list of created schedules
         """
         endpoint = '/schedules'
 
@@ -129,7 +129,7 @@ class Workflows(Service):
             schedule_attrs (dict): Schedule attributes to be updated, these can be: repeats, actor, data and tenant.
 
         Returns:
-            dict: list of updated schedules
+            list[dict]: list of updated schedules
         """
         endpoint = '/schedules'
 
@@ -173,7 +173,7 @@ class Workflows(Service):
             schedule_ids (list[str]): the ids of the schedules to be updated (max 100)
 
         Returns:
-            dict: list of updated schedules
+            list[dict]: list of updated schedules
         """
         endpoint = '/schedules'
 

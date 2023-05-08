@@ -163,7 +163,7 @@ class Objects(Service):
 
     def get_schedules(self, collection, id, options=None):
         """
-        Get objects's schedules
+        Get an objects's schedules
 
         Args:
             collection (str): The collection the object belongs to

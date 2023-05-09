@@ -403,3 +403,25 @@ class User(Service):
         """
         endpoint = '/users/{}/messages'.format(id)
         return self.client.request('get', endpoint, payload=options)
+
+    ##
+    # Schedules
+    ##
+
+    def get_schedules(self, id, options=None):
+        """
+        Get user's schedules
+
+        Args:
+            id (str): The user ID
+            options (dict): An optional set of filtering options to pass to the query. These are:
+                - page_size: specify size of the page to be returned by the api. (max limit: 50)
+                - after:  after cursor for pagination
+                - before: before cursor for pagination
+                - tenant: tenant_id to filter schedules with
+
+        Returns:
+            dict: Paginated Schedule response.
+        """
+        endpoint = '/users/{}/schedules'.format(id)
+        return self.client.request('get', endpoint, payload=options)

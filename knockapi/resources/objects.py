@@ -19,6 +19,23 @@ class Objects(Service):
         endpoint = '/objects/{}/{}'.format(collection, id)
         return self.client.request('get', endpoint)
 
+    def list(self, collection, options={}):
+        """
+        Returns objects in collection for the provided environment
+
+        Args:
+            collection (str): The collection the object belongs to
+            options (dict): An optional set of filtering options to pass to the query. These are:
+                - page_size: specify size of the page to be returned by the api. (max limit: 50)
+                - after:  after cursor for pagination
+                - before: before cursor for pagination
+
+        Returns:
+            dict: Paginated Knock Object response.
+        """
+        endpoint = '/objects/{}'.format(collection)
+        return self.client.request('get', endpoint, payload=options)
+
     # NOTE: This is `set_object` as `set` is a reserved keyword
     def set_object(self, collection, id, data={}):
         """

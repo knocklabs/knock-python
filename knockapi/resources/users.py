@@ -24,6 +24,22 @@ class User(Service):
         endpoint = '/users/{}'.format(id)
         return self.client.request('get', endpoint)
 
+    def list(self, options={}):
+        """
+        List users for the environment
+
+        Args:
+            options (dict): An optional set of filtering options to pass to the query. These are:
+                - page_size: specify size of the page to be returned by the api. (max limit: 50)
+                - after:  after cursor for pagination
+                - before: before cursor for pagination
+
+        Returns:
+            dict: Paginated User response.
+        """
+        endpoint = '/users'
+        return self.client.request('get', endpoint, payload=options)
+
     def identify(self, id, data={}):
         """
         Identify a user, upserting them

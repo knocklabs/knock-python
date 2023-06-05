@@ -428,3 +428,78 @@ class Objects(Service):
             'subscribed': setting}
 
         return self.client.request('put', endpoint, payload=params)
+
+    ##
+    # Subscriptions
+    ##
+
+    def list_subscriptions(self, collection, id, options={}):
+        """
+        Returns subscriptions for an object
+
+        Args:
+            collection (str): The collection the object belongs to
+            id (str): The id of the object
+            options (dict): An optional set of filtering options to pass to the query. These are:
+                - page_size: specify size of the page to be returned by the api. (max limit: 50)
+                - after:  after cursor for pagination
+                - before: before cursor for pagination
+
+        Returns:
+            dict: Paginated Subscription response.
+        """
+        endpoint = '/objects/{}/{}/subscriptions'.format(collection, id)
+        return self.client.request('get', endpoint, payload=options)
+
+    def get_subscriptions(self, collection, id, options={}):
+        """
+        Returns subscriptions for an object as a recipient
+
+        Args:
+            collection (str): The collection the object belongs to
+            id (str): The id of the object
+            options (dict): An optional set of filtering options to pass to the query. These are:
+                - page_size: specify size of the page to be returned by the api. (max limit: 50)
+                - after:  after cursor for pagination
+                - before: before cursor for pagination
+
+        Returns:
+            dict: Paginated Subscription response.
+        """
+
+        options['mode'] = 'recipient'
+        endpoint = '/objects/{}/{}/subscriptions'.format(collection, id)
+        return self.client.request('get', endpoint, payload=options)
+
+    def add_subscriptions(self, collection, id, recipients, properties={}):
+        """
+        Creates or update subscription for recipients to Object
+
+        Args:
+            collection (str): The collection the object belongs to
+            id (str): The id of the object
+            recipients(list): List of recipients to be subscribed to object
+            properties (dict): Properties to be set on the subscription
+
+        Returns:
+            list: List of Subscription response.
+        """
+
+        endpoint = '/objects/{}/{}/subscriptions'.format(collection, id)
+        return self.client.request('post', endpoint, payload={'recipients': recipients, 'properties': properties})
+
+    def delete_subscriptions(self, collection, id, recipients):
+        """
+        Delete subscription to object for recipients
+
+        Args:
+            collection (str): The collection the object belongs to
+            id (str): The id of the object
+            recipients(list): List of recipients for subscriptions to be deleted
+
+        Returns:
+            list: List of Subscription response.
+        """
+
+        endpoint = '/objects/{}/{}/subscriptions'.format(collection, id)
+        return self.client.request('delete', endpoint, payload={'recipients': recipients})

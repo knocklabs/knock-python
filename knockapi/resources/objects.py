@@ -488,6 +488,22 @@ class Objects(Service):
         endpoint = '/objects/{}/{}/subscriptions'.format(collection, id)
         return self.client.request('post', endpoint, payload={'recipients': recipients, 'properties': properties})
 
+    def bulk_add_subscriptions(self, collection, subscriptions):
+        """
+        Creates a bulk operation to add subscriptions for a set recipients to a
+        set of objects within the given collection.
+
+        Args:
+            collection (str): The collection the objects belong to
+            subscriptions(list): The set of subscriptions to create
+
+        Returns:
+            dict: BulkOperation from Knock
+        """
+
+        endpoint = '/object/{}/bulk/subscriptions/add'.format(collection)
+        return self.client.request('post', endpoint, payload={'subscriptions': subscriptions})
+
     def delete_subscriptions(self, collection, id, recipients):
         """
         Delete subscription to object for recipients

@@ -27,7 +27,8 @@ class Workflows(Service):
 
             data (dict): Any data to be passed to the notify call.
 
-            tenant (str): An optional identifier for the tenant object that the notifications belong to.
+            tenant (str | dict[str, Any]): An optional reference for the tenant that the notifications belong to. This can be A) a tenant
+            id, B) an object reference without the collection, or C) a dictionary with data to identify a tenant.
 
             cancellation_key (str): A key used to cancel this notify.
 
@@ -97,7 +98,8 @@ class Workflows(Service):
 
             scheduled_at (datetime): Date when the schedule must start
 
-            tenant (str): An optional identifier for the tenant object that the notifications belong to.
+            tenant (str | dict[str, Any]): An optional reference for the tenant that the notifications belong to. This can be A) a tenant
+            id, B) an object reference without the collection, or C) a dictionary with data to identify a tenant.
 
         Returns:
             list[dict]: list of created schedules

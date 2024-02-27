@@ -1,5 +1,12 @@
 import requests
-from json.decoder import JSONDecodeError
+
+try:
+    from requests.exceptions import JSONDecodeError
+except ImportError:
+    try:
+        from simplejson import JSONDecodeError
+    except ImportError:
+        from json.decoder import JSONDecodeError
 
 __version__ = '0.5.8'
 

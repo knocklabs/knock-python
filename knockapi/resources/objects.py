@@ -453,8 +453,8 @@ class Objects(Service):
 
     def get_subscriptions(self, collection, id, options={}):
         """
-        Returns subscriptions for an object as a recipient
-
+        Returns all of the active subscriptions that the specified object is subscribed to (not the subscribers of the object)
+        
         Args:
             collection (str): The collection the object belongs to
             id (str): The id of the object

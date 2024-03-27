@@ -444,6 +444,7 @@ class Objects(Service):
                 - page_size: specify size of the page to be returned by the api. (max limit: 50)
                 - after:  after cursor for pagination
                 - before: before cursor for pagination
+                - recipients: list of recipient identifiers to filter subscribers of the object
 
         Returns:
             dict: Paginated Subscription response.

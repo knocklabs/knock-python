@@ -55,7 +55,7 @@ client.users.get_user(id="jhammond")
 from knockapi import Knock
 client = Knock(api_key="sk_12345")
 
-client.notify(
+client.workflows.trigger(
   key="dinosaurs-loose",
   actor="dnedry",
   recipients=["jhammond", "agrant", "imalcolm", "esattler"],

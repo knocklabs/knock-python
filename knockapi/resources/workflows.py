@@ -75,9 +75,9 @@ class Workflows(Service):
             self,
             key,
             recipients,
-            repeats,
+            repeats=None,
+            scheduled_at=None,
             data={},
-            scheduled_at=datetime.datetime.now(),
             actor=None,
             tenant=None):
         """
@@ -140,7 +140,7 @@ class Workflows(Service):
     def list_schedules(
             self,
             key,
-            options = {}):
+            options={}):
         """
         List workflow schedules
 

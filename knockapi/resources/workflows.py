@@ -76,7 +76,7 @@ class Workflows(Service):
             self,
             key,
             recipients,
-            repeats=None,
+            repeats=[],
             scheduled_at=None,
             data={},
             actor=None,

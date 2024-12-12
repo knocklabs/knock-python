@@ -121,3 +121,16 @@ class Messages(Service):
         """
         endpoint = '/messages/{}/events'.format(id)
         return self.client.request('get', endpoint, options)
+
+    def get_delivery_logs(self, id, options=None):
+        """
+        Get a message's delivery logs by its id
+
+        Args:
+            id: The message ID
+
+        Returns:
+            dict: paginated MessageDeliveryLog response from Knock.
+        """
+        endpoint = '/messages/{}/delivery_logs'.format(id)
+        return self.client.request('get', endpoint, options)

@@ -130,7 +130,7 @@ class Messages(Service):
             id: The message ID
 
         Returns:
-            dict: paginated Delivery Log response from Knock.
+            dict: paginated MessageDeliveryLog response from Knock.
         """
         endpoint = '/messages/{}/delivery_logs'.format(id)
         return self.client.request('get', endpoint, options)

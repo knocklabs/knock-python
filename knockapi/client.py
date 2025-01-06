@@ -1,7 +1,7 @@
 import requests
 from json.decoder import JSONDecodeError
 
-__version__ = '0.5.10'
+__version__ = '0.5.11'
 
 
 class Connection(object):

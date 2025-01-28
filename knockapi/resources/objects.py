@@ -502,7 +502,7 @@ class Objects(Service):
             dict: BulkOperation from Knock
         """
 
-        endpoint = '/object/{}/bulk/subscriptions/add'.format(collection)
+        endpoint = '/objects/{}/bulk/subscriptions/add'.format(collection)
         return self.client.request('post', endpoint, payload={'subscriptions': subscriptions})
 
     def delete_subscriptions(self, collection, id, recipients):

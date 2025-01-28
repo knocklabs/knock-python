@@ -80,7 +80,8 @@ class Workflows(Service):
             scheduled_at=None,
             data={},
             actor=None,
-            tenant=None):
+            tenant=None,
+            ending_at=None):
         """
         Creates schedules for recipients.
 
@@ -96,10 +97,13 @@ class Workflows(Service):
 
             data (dict): Any data to be passed to the scheduled trigger call.
 
-            scheduled_at (datetime): Date when the schedule must start
+            scheduled_at (datetime): Date when the schedule must start.
 
             tenant (str | dict[str, Any]): An optional reference for the tenant that the notifications belong to. This can be A) a tenant
             id, B) an object reference without the collection, or C) a dictionary with data to identify a tenant.
+
+            ending_at (datetime, optional): The date when the schedule should end. For recurring schedules,
+            no further executions will occur after this time.
 
         Returns:
             list[dict]: list of created schedules
@@ -112,9 +116,14 @@ class Workflows(Service):
             'repeats': repeats,
             'actor': actor,
             'data': data,
-            'tenant': tenant,
-            'scheduled_at': scheduled_at.isoformat()
+            'tenant': tenant
         }
+
+        if scheduled_at:
+            params['scheduled_at'] = scheduled_at.isoformat()
+            
+        if ending_at:
+            params['ending_at'] = ending_at.isoformat()
 
         return self.client.request("post", endpoint, payload=params)
 
@@ -128,12 +137,21 @@ class Workflows(Service):
         Args:
             schedule_ids (list[str]): the ids of the schedules to be updated (max 100)
 
-            schedule_attrs (dict): Schedule attributes to be updated, these can be: repeats, actor, data and tenant.
+            schedule_attrs (dict): Schedule attributes to be updated. These can include:
+                - repeats: Schedule repeat configuration
+                - actor: Who/what performed the action
+                - data: Any data to be passed to the scheduled trigger
+                - tenant: The tenant that the notifications belong to
+                - ending_at (datetime): The date when the schedule should end
 
         Returns:
             list[dict]: list of updated schedules
         """
         endpoint = '/schedules'
+
+        # Convert ending_at to ISO format if present
+        if 'ending_at' in schedule_attrs and schedule_attrs['ending_at']:
+            schedule_attrs['ending_at'] = schedule_attrs['ending_at'].isoformat()
 
         schedule_attrs['schedule_ids'] = schedule_ids
 

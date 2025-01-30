@@ -30,12 +30,14 @@ class Connection(object):
             timeout=self.timeout,
         )
 
-        # If we got a successful response, then attempt to deserialize as JSON
+        # If we got a successful response, check for content before attempting to deserialize as JSON
         if r.ok:
-            try:
-                return r.json()
-            except JSONDecodeError:
-                return None
+            if r.content and len(r.content) > 0:
+                try:
+                    return r.json()
+                except JSONDecodeError:
+                    return None
+            return None
 
         return r.raise_for_status()
 

@@ -1,13 +1,12 @@
 import setuptools
-
-version = '0.5.8'
+from knockapi._version import __version__
 
 with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
     name='knockapi',
-    version=version,
+    version=__version__,
     python_requires='>=2.7.16, <4',
     install_requires=[
         'requests'

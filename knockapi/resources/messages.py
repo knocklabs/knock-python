@@ -33,6 +33,52 @@ class Messages(Service):
         endpoint = '/messages/{}'.format(id)
         return self.client.request('get', endpoint)
 
+    def set_status(self, id, status):
+        """
+        Set a specific status on a message
+
+        Args:
+            id: The message ID
+            status: One of `seen`, `read`, `interacted`, or `archived`
+
+        Returns:
+            dict: Updated Message response from Knock
+        """
+
+        endpoint = '/messages/{}/{}'.format(id, status)
+        return self.client.request('put', endpoint)
+
+    def unset_status(self, id, status):
+        """
+        Unset a specific status on a message
+
+        Args:
+            id: The message ID
+            status: One of `seen`, `read`, `interacted`, or `archived`
+
+        Returns:
+            dict: Updated Message response from Knock
+        """
+
+        endpoint = '/messages/{}/{}'.format(id, status)
+        return self.client.request('delete', endpoint)
+
+    def batch_set_status(self, message_ids, status):
+        """
+        Batch update status for multiple messages
+
+        Args:
+            message_ids: List of message IDs to update
+            status: One of `seen`, `read`, `interacted`, `archived` or `unseen`, `unread`, `unarchived`
+
+        Returns:
+            dict: BulkOperation from Knock
+        """
+        data={'message_ids': message_ids}
+        endpoint = '/messages/batch/{}'.format(status)
+        return self.client.request('post', endpoint, payload=data)
+
+
     def get_content(self, id):
         """
         Get a message's content by its id
@@ -74,4 +120,17 @@ class Messages(Service):
             dict: paginated Event response from Knock.
         """
         endpoint = '/messages/{}/events'.format(id)
+        return self.client.request('get', endpoint, options)
+
+    def get_delivery_logs(self, id, options=None):
+        """
+        Get a message's delivery logs by its id
+
+        Args:
+            id: The message ID
+
+        Returns:
+            dict: paginated MessageDeliveryLog response from Knock.
+        """
+        endpoint = '/messages/{}/delivery_logs'.format(id)
         return self.client.request('get', endpoint, options)

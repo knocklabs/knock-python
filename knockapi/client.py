@@ -8,11 +8,10 @@ except ImportError:
     except ImportError:
         from json.decoder import JSONDecodeError
 
-__version__ = '0.5.8'
-
+from ._version import __version__
 
 class Connection(object):
-    def __init__(self, api_key, host='https://api.knock.app'):
+    def __init__(self, api_key, host='https://api.knock.app', timeout=None):
         self.api_key = api_key
         self.host = host
         self.client_version = __version__
@@ -20,6 +19,7 @@ class Connection(object):
             'Authorization': 'Bearer {}'.format(self.api_key),
             'User-Agent': 'Knock Python - {}'.format(self.client_version)
         }
+        self.timeout = timeout
 
     def request(self, method, endpoint, payload=None, options={}):
         url = '{}/v1{}'.format(self.host, endpoint)
@@ -33,15 +33,18 @@ class Connection(object):
             url,
             params=payload if method == 'get' else None,
             json=payload if method != 'get' else None,
-            headers={**self.headers, **extra_headers}
+            headers={**self.headers, **extra_headers},
+            timeout=self.timeout,
         )
 
-        # If we got a successful response, then attempt to deserialize as JSON
+        # If we got a successful response, check for content before attempting to deserialize as JSON
         if r.ok:
-            try:
-                return r.json()
-            except JSONDecodeError:
-                return None
+            if r.content and len(r.content) > 0:
+                try:
+                    return r.json()
+                except JSONDecodeError:
+                    return None
+            return None
 
         return r.raise_for_status()
 

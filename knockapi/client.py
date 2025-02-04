@@ -1,4 +1,5 @@
 import requests
+from knockapi.__about__ import __version__
 
 try:
     from requests.exceptions import JSONDecodeError

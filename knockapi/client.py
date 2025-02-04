@@ -1,6 +1,6 @@
 import requests
 from json.decoder import JSONDecodeError
-from ._version import __version__
+from knockapi.__about__ import __version__
 
 
 class Connection(object):

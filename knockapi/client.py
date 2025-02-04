@@ -9,7 +9,6 @@ except ImportError:
     except ImportError:
         from json.decoder import JSONDecodeError
 
-from ._version import __version__
 
 class Connection(object):
     def __init__(self, api_key, host='https://api.knock.app', timeout=None):

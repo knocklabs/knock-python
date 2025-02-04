@@ -1,7 +1,15 @@
 import requests
-from json.decoder import JSONDecodeError
 from knockapi.__about__ import __version__
 
+try:
+    from requests.exceptions import JSONDecodeError
+except ImportError:
+    try:
+        from simplejson import JSONDecodeError
+    except ImportError:
+        from json.decoder import JSONDecodeError
+
+from ._version import __version__
 
 class Connection(object):
     def __init__(self, api_key, host='https://api.knock.app', timeout=None):

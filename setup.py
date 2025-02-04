@@ -20,9 +20,11 @@ setuptools.setup(
     name='knockapi',
     version=about['__version__'],
     python_requires='>=2.7.16, <4',
-    install_requires=read_requirements("requirements.txt"),
+    install_requires=[
+        'requests',
+    ],
     extras_require={
-        "dev": read_requirements("requirements-dev.txt"),
+        "dev": ['flake8', 'pytest', 'bump2version'],
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -42,8 +44,12 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/knocklabs/knock-python',
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=[
+        "tests*",
+    ]),
     author='Knock Labs, Inc.',
     author_email='support@knock.app',
-    license='MIT'
+    license='MIT',
+    zip_safe=False,
+
 )

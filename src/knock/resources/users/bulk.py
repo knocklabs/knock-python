@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ...types.users import bulk_delete_params, bulk_identify_params, bulk_set_preferences_params
 from ..._base_client import make_request_options
-from ...types.users.bulk_delete_response import BulkDeleteResponse
-from ...types.users.bulk_identify_response import BulkIdentifyResponse
-from ...types.users.bulk_set_preferences_response import BulkSetPreferencesResponse
+from ...types.bulk_operation import BulkOperation
 from ...types.shared_params.preference_set_request import PreferenceSetRequest
 from ...types.shared_params.inline_identify_user_request import InlineIdentifyUserRequest
 
@@ -61,7 +59,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete users
 
@@ -86,7 +84,7 @@ class BulkResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"query_user_ids": query_user_ids}, bulk_delete_params.BulkDeleteParams),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     def identify(
@@ -99,7 +97,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkIdentifyResponse:
+    ) -> BulkOperation:
         """
         Bulk identifies users
 
@@ -118,7 +116,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkIdentifyResponse,
+            cast_to=BulkOperation,
         )
 
     def set_preferences(
@@ -132,7 +130,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetPreferencesResponse:
+    ) -> BulkOperation:
         """
         Bulk set preferences
 
@@ -159,7 +157,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetPreferencesResponse,
+            cast_to=BulkOperation,
         )
 
 
@@ -194,7 +192,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete users
 
@@ -221,7 +219,7 @@ class AsyncBulkResource(AsyncAPIResource):
                     {"query_user_ids": query_user_ids}, bulk_delete_params.BulkDeleteParams
                 ),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     async def identify(
@@ -234,7 +232,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkIdentifyResponse:
+    ) -> BulkOperation:
         """
         Bulk identifies users
 
@@ -253,7 +251,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkIdentifyResponse,
+            cast_to=BulkOperation,
         )
 
     async def set_preferences(
@@ -267,7 +265,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetPreferencesResponse:
+    ) -> BulkOperation:
         """
         Bulk set preferences
 
@@ -294,7 +292,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetPreferencesResponse,
+            cast_to=BulkOperation,
         )
 
 

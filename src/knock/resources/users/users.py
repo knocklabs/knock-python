@@ -50,12 +50,12 @@ from ..._response import (
 )
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.message import Message
 from ...types.shared.user import User
 from ...types.shared.schedule import Schedule
 from ...types.shared.channel_data import ChannelData
 from ...types.shared.subscription import Subscription
 from ...types.shared.preference_set import PreferenceSet
-from ...types.user_list_messages_response import UserListMessagesResponse
 from ...types.user_list_preferences_response import UserListPreferencesResponse
 from ...types.shared_params.inline_channel_data_request import InlineChannelDataRequest
 from ...types.shared_params.preference_set_channel_types import PreferenceSetChannelTypes
@@ -361,7 +361,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[UserListMessagesResponse]:
+    ) -> SyncEntriesCursor[Message]:
         """
         List messages
 
@@ -404,7 +404,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
             f"/v1/users/{user_id}/messages",
-            page=SyncEntriesCursor[UserListMessagesResponse],
+            page=SyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -429,7 +429,7 @@ class UsersResource(SyncAPIResource):
                     user_list_messages_params.UserListMessagesParams,
                 ),
             ),
-            model=UserListMessagesResponse,
+            model=Message,
         )
 
     def list_preferences(
@@ -1052,7 +1052,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[UserListMessagesResponse, AsyncEntriesCursor[UserListMessagesResponse]]:
+    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
         """
         List messages
 
@@ -1095,7 +1095,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
             f"/v1/users/{user_id}/messages",
-            page=AsyncEntriesCursor[UserListMessagesResponse],
+            page=AsyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1120,7 +1120,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_messages_params.UserListMessagesParams,
                 ),
             ),
-            model=UserListMessagesResponse,
+            model=Message,
         )
 
     async def list_preferences(

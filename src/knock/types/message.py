@@ -8,14 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = [
-    "MessageUnarchiveResponse",
-    "Actor",
-    "ActorObjectReference",
-    "Recipient",
-    "RecipientObjectReference",
-    "Source",
-]
+__all__ = ["Message", "Actor", "ActorObjectReference", "Recipient", "RecipientObjectReference", "Source"]
 
 
 class ActorObjectReference(BaseModel):
@@ -53,7 +46,7 @@ class Source(BaseModel):
     """The source version ID"""
 
 
-class MessageUnarchiveResponse(BaseModel):
+class Message(BaseModel):
     id: Optional[str] = None
     """The message ID"""
 

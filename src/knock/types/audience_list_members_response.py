@@ -1,27 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .shared.user import User
+from .audience_member import AudienceMember
 
-__all__ = ["AudienceListMembersResponse", "Entry", "PageInfo"]
-
-
-class Entry(BaseModel):
-    api_typename: str = FieldInfo(alias="__typename")
-
-    added_at: datetime
-
-    user: User
-    """A user object"""
-
-    user_id: str
-
-    tenant: Optional[str] = None
+__all__ = ["AudienceListMembersResponse", "PageInfo"]
 
 
 class PageInfo(BaseModel):
@@ -35,7 +21,7 @@ class PageInfo(BaseModel):
 
 
 class AudienceListMembersResponse(BaseModel):
-    entries: List[Entry]
+    entries: List[AudienceMember]
 
     page_info: PageInfo
     """The information about a paginated result"""

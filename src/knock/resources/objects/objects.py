@@ -42,12 +42,12 @@ from ..._response import (
 )
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.message import Message
 from ...types.shared.object import Object
 from ...types.shared.schedule import Schedule
 from ...types.shared.channel_data import ChannelData
 from ...types.shared.subscription import Subscription
 from ...types.shared.preference_set import PreferenceSet
-from ...types.object_list_messages_response import ObjectListMessagesResponse
 from ...types.shared_params.recipient_request import RecipientRequest
 from ...types.object_list_preferences_response import ObjectListPreferencesResponse
 from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
@@ -411,7 +411,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[ObjectListMessagesResponse]:
+    ) -> SyncEntriesCursor[Message]:
         """
         List messages
 
@@ -456,7 +456,7 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/v1/objects/{collection}/{id}/messages",
-            page=SyncEntriesCursor[ObjectListMessagesResponse],
+            page=SyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -481,7 +481,7 @@ class ObjectsResource(SyncAPIResource):
                     object_list_messages_params.ObjectListMessagesParams,
                 ),
             ),
-            model=ObjectListMessagesResponse,
+            model=Message,
         )
 
     def list_preferences(
@@ -1197,7 +1197,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ObjectListMessagesResponse, AsyncEntriesCursor[ObjectListMessagesResponse]]:
+    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
         """
         List messages
 
@@ -1242,7 +1242,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/v1/objects/{collection}/{id}/messages",
-            page=AsyncEntriesCursor[ObjectListMessagesResponse],
+            page=AsyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1267,7 +1267,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                     object_list_messages_params.ObjectListMessagesParams,
                 ),
             ),
-            model=ObjectListMessagesResponse,
+            model=Message,
         )
 
     async def list_preferences(

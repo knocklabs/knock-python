@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .shared.recipient import Recipient
 
-__all__ = ["MessageListActivitiesResponse"]
+__all__ = ["Activity"]
 
 
-class MessageListActivitiesResponse(BaseModel):
+class Activity(BaseModel):
     id: Optional[str] = None
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)

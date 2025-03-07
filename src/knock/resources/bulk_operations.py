@@ -14,7 +14,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.bulk_operation_get_response import BulkOperationGetResponse
+from ..types.bulk_operation import BulkOperation
 
 __all__ = ["BulkOperationsResource", "AsyncBulkOperationsResource"]
 
@@ -49,7 +49,7 @@ class BulkOperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkOperationGetResponse:
+    ) -> BulkOperation:
         """
         Retrieves a bulk operation (if it exists) and displays the current state of it.
 
@@ -69,7 +69,7 @@ class BulkOperationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkOperationGetResponse,
+            cast_to=BulkOperation,
         )
 
 
@@ -103,7 +103,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkOperationGetResponse:
+    ) -> BulkOperation:
         """
         Retrieves a bulk operation (if it exists) and displays the current state of it.
 
@@ -123,7 +123,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkOperationGetResponse,
+            cast_to=BulkOperation,
         )
 
 

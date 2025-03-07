@@ -9,7 +9,7 @@ import pytest
 
 from knock import Knock, AsyncKnock
 from knock.types import (
-    ObjectListMessagesResponse,
+    Message,
     ObjectListPreferencesResponse,
     ObjectAddSubscriptionsResponse,
     ObjectDeleteSubscriptionsResponse,
@@ -516,7 +516,7 @@ class TestObjects:
             id="project-123",
             collection="projects",
         )
-        assert_matches_type(SyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(SyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -540,7 +540,7 @@ class TestObjects:
             workflow_recipient_run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             workflow_run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(SyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(SyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -555,7 +555,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = response.parse()
-        assert_matches_type(SyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(SyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -570,7 +570,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = response.parse()
-            assert_matches_type(SyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+            assert_matches_type(SyncEntriesCursor[Message], object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1715,7 +1715,7 @@ class TestAsyncObjects:
             id="project-123",
             collection="projects",
         )
-        assert_matches_type(AsyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(AsyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1739,7 +1739,7 @@ class TestAsyncObjects:
             workflow_recipient_run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             workflow_run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(AsyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1754,7 +1754,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = await response.parse()
-        assert_matches_type(AsyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+        assert_matches_type(AsyncEntriesCursor[Message], object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1769,7 +1769,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = await response.parse()
-            assert_matches_type(AsyncEntriesCursor[ObjectListMessagesResponse], object_, path=["response"])
+            assert_matches_type(AsyncEntriesCursor[Message], object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

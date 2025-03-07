@@ -1,42 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from ..activity import Activity
 from ..shared.recipient import Recipient
 
 __all__ = [
     "FeedListItemsResponse",
-    "Activity",
     "Block",
     "BlockMessageInAppFeedContentBlock",
     "BlockMessageInAppFeedButtonSetBlock",
     "BlockMessageInAppFeedButtonSetBlockButton",
     "Source",
 ]
-
-
-class Activity(BaseModel):
-    id: Optional[str] = None
-
-    api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
-
-    actor: Optional[Recipient] = None
-    """A recipient, which is either a user or an object"""
-
-    data: Optional[Dict[str, object]] = None
-    """The data associated with the activity"""
-
-    inserted_at: Optional[datetime] = None
-
-    recipient: Optional[Recipient] = None
-    """A recipient, which is either a user or an object"""
-
-    updated_at: Optional[datetime] = None
 
 
 class BlockMessageInAppFeedContentBlock(BaseModel):

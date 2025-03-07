@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.channels import bulk_update_message_status_params
-from ...types.channels.bulk_update_message_status_response import BulkUpdateMessageStatusResponse
+from ...types.bulk_operation import BulkOperation
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -77,7 +77,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateMessageStatusResponse:
+    ) -> BulkOperation:
         """Bulk update messages for a specific channel.
 
         The channel is specified by the
@@ -118,7 +118,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkUpdateMessageStatusResponse,
+            cast_to=BulkOperation,
         )
 
 
@@ -171,7 +171,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateMessageStatusResponse:
+    ) -> BulkOperation:
         """Bulk update messages for a specific channel.
 
         The channel is specified by the
@@ -212,7 +212,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkUpdateMessageStatusResponse,
+            cast_to=BulkOperation,
         )
 
 

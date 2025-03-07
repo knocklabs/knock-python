@@ -21,10 +21,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.objects import bulk_set_params, bulk_delete_params, bulk_add_subscriptions_params
-from ...types.objects.bulk_set_response import BulkSetResponse
-from ...types.objects.bulk_delete_response import BulkDeleteResponse
+from ...types.bulk_operation import BulkOperation
 from ...types.shared_params.inline_object_request import InlineObjectRequest
-from ...types.objects.bulk_add_subscriptions_response import BulkAddSubscriptionsResponse
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -60,7 +58,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete objects
 
@@ -86,7 +84,7 @@ class BulkResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     def add_subscriptions(
@@ -100,7 +98,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkAddSubscriptionsResponse:
+    ) -> BulkOperation:
         """Add subscriptions for a set of objects in a single collection.
 
         If a subscription
@@ -125,7 +123,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkAddSubscriptionsResponse,
+            cast_to=BulkOperation,
         )
 
     def set(
@@ -139,7 +137,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetResponse:
+    ) -> BulkOperation:
         """
         Bulk set objects
 
@@ -160,7 +158,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetResponse,
+            cast_to=BulkOperation,
         )
 
 
@@ -195,7 +193,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete objects
 
@@ -221,7 +219,7 @@ class AsyncBulkResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     async def add_subscriptions(
@@ -235,7 +233,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkAddSubscriptionsResponse:
+    ) -> BulkOperation:
         """Add subscriptions for a set of objects in a single collection.
 
         If a subscription
@@ -260,7 +258,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkAddSubscriptionsResponse,
+            cast_to=BulkOperation,
         )
 
     async def set(
@@ -274,7 +272,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetResponse:
+    ) -> BulkOperation:
         """
         Bulk set objects
 
@@ -295,7 +293,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetResponse,
+            cast_to=BulkOperation,
         )
 
 

@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageListEventsResponse", "Recipient", "RecipientObjectReference"]
+__all__ = ["MessageEvent", "Recipient", "RecipientObjectReference"]
 
 
 class RecipientObjectReference(BaseModel):
@@ -22,7 +22,7 @@ class RecipientObjectReference(BaseModel):
 Recipient: TypeAlias = Union[str, RecipientObjectReference]
 
 
-class MessageListEventsResponse(BaseModel):
+class MessageEvent(BaseModel):
     id: str
 
     api_typename: str = FieldInfo(alias="__typename")

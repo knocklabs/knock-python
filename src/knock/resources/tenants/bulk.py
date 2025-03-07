@@ -21,8 +21,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.tenants import bulk_set_params, bulk_delete_params
-from ...types.tenants.bulk_set_response import BulkSetResponse
-from ...types.tenants.bulk_delete_response import BulkDeleteResponse
+from ...types.bulk_operation import BulkOperation
 from ...types.shared_params.inline_tenant_request import InlineTenantRequest
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
@@ -58,7 +57,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete tenants
 
@@ -82,7 +81,7 @@ class BulkResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"tenant_ids": tenant_ids}, bulk_delete_params.BulkDeleteParams),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     def set(
@@ -95,7 +94,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetResponse:
+    ) -> BulkOperation:
         """
         Bulk set tenants
 
@@ -114,7 +113,7 @@ class BulkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetResponse,
+            cast_to=BulkOperation,
         )
 
 
@@ -148,7 +147,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> BulkOperation:
         """
         Bulk delete tenants
 
@@ -172,7 +171,7 @@ class AsyncBulkResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"tenant_ids": tenant_ids}, bulk_delete_params.BulkDeleteParams),
             ),
-            cast_to=BulkDeleteResponse,
+            cast_to=BulkOperation,
         )
 
     async def set(
@@ -185,7 +184,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkSetResponse:
+    ) -> BulkOperation:
         """
         Bulk set tenants
 
@@ -204,7 +203,7 @@ class AsyncBulkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BulkSetResponse,
+            cast_to=BulkOperation,
         )
 
 

@@ -37,19 +37,11 @@ from ..._response import (
 )
 from ...pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.message_get_response import MessageGetResponse
-from ...types.message_list_response import MessageListResponse
-from ...types.message_archive_response import MessageArchiveResponse
-from ...types.message_unarchive_response import MessageUnarchiveResponse
+from ...types.message import Message
+from ...types.activity import Activity
+from ...types.message_event import MessageEvent
 from ...types.message_get_content_response import MessageGetContentResponse
-from ...types.message_list_events_response import MessageListEventsResponse
-from ...types.message_mark_as_read_response import MessageMarkAsReadResponse
-from ...types.message_mark_as_seen_response import MessageMarkAsSeenResponse
-from ...types.message_mark_as_unread_response import MessageMarkAsUnreadResponse
-from ...types.message_mark_as_unseen_response import MessageMarkAsUnseenResponse
-from ...types.message_list_activities_response import MessageListActivitiesResponse
 from ...types.message_list_delivery_logs_response import MessageListDeliveryLogsResponse
-from ...types.message_mark_as_interacted_response import MessageMarkAsInteractedResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -102,7 +94,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[MessageListResponse]:
+    ) -> SyncEntriesCursor[Message]:
         """
         List messages
 
@@ -143,7 +135,7 @@ class MessagesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v1/messages",
-            page=SyncEntriesCursor[MessageListResponse],
+            page=SyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,7 +160,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            model=MessageListResponse,
+            model=Message,
         )
 
     def archive(
@@ -181,7 +173,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageArchiveResponse:
+    ) -> Message:
         """
         Archive message
 
@@ -201,7 +193,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageArchiveResponse,
+            cast_to=Message,
         )
 
     def get(
@@ -214,7 +206,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageGetResponse:
+    ) -> Message:
         """
         Get message
 
@@ -234,7 +226,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetResponse,
+            cast_to=Message,
         )
 
     def get_content(
@@ -285,7 +277,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncItemsCursor[MessageListActivitiesResponse]:
+    ) -> SyncItemsCursor[Activity]:
         """
         List activities
 
@@ -310,7 +302,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=SyncItemsCursor[MessageListActivitiesResponse],
+            page=SyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -326,7 +318,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_activities_params.MessageListActivitiesParams,
                 ),
             ),
-            model=MessageListActivitiesResponse,
+            model=Activity,
         )
 
     def list_delivery_logs(
@@ -396,7 +388,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[MessageListEventsResponse]:
+    ) -> SyncEntriesCursor[MessageEvent]:
         """
         List events
 
@@ -419,7 +411,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/events",
-            page=SyncEntriesCursor[MessageListEventsResponse],
+            page=SyncEntriesCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -434,7 +426,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_events_params.MessageListEventsParams,
                 ),
             ),
-            model=MessageListEventsResponse,
+            model=MessageEvent,
         )
 
     def mark_as_interacted(
@@ -448,7 +440,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsInteractedResponse:
+    ) -> Message:
         """
         Mark message as interacted
 
@@ -473,7 +465,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsInteractedResponse,
+            cast_to=Message,
         )
 
     def mark_as_read(
@@ -486,7 +478,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsReadResponse:
+    ) -> Message:
         """
         Mark message as read
 
@@ -506,7 +498,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsReadResponse,
+            cast_to=Message,
         )
 
     def mark_as_seen(
@@ -519,7 +511,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsSeenResponse:
+    ) -> Message:
         """
         Mark message as seen
 
@@ -539,7 +531,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsSeenResponse,
+            cast_to=Message,
         )
 
     def mark_as_unread(
@@ -552,7 +544,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsUnreadResponse:
+    ) -> Message:
         """
         Mark message as unread
 
@@ -572,7 +564,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsUnreadResponse,
+            cast_to=Message,
         )
 
     def mark_as_unseen(
@@ -585,7 +577,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsUnseenResponse:
+    ) -> Message:
         """
         Mark message as unseen
 
@@ -605,7 +597,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsUnseenResponse,
+            cast_to=Message,
         )
 
     def unarchive(
@@ -618,7 +610,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageUnarchiveResponse:
+    ) -> Message:
         """
         Unarchive message
 
@@ -638,7 +630,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageUnarchiveResponse,
+            cast_to=Message,
         )
 
 
@@ -690,7 +682,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageListResponse, AsyncEntriesCursor[MessageListResponse]]:
+    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
         """
         List messages
 
@@ -731,7 +723,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v1/messages",
-            page=AsyncEntriesCursor[MessageListResponse],
+            page=AsyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -756,7 +748,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            model=MessageListResponse,
+            model=Message,
         )
 
     async def archive(
@@ -769,7 +761,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageArchiveResponse:
+    ) -> Message:
         """
         Archive message
 
@@ -789,7 +781,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageArchiveResponse,
+            cast_to=Message,
         )
 
     async def get(
@@ -802,7 +794,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageGetResponse:
+    ) -> Message:
         """
         Get message
 
@@ -822,7 +814,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetResponse,
+            cast_to=Message,
         )
 
     async def get_content(
@@ -873,7 +865,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageListActivitiesResponse, AsyncItemsCursor[MessageListActivitiesResponse]]:
+    ) -> AsyncPaginator[Activity, AsyncItemsCursor[Activity]]:
         """
         List activities
 
@@ -898,7 +890,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=AsyncItemsCursor[MessageListActivitiesResponse],
+            page=AsyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -914,7 +906,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_activities_params.MessageListActivitiesParams,
                 ),
             ),
-            model=MessageListActivitiesResponse,
+            model=Activity,
         )
 
     def list_delivery_logs(
@@ -984,7 +976,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageListEventsResponse, AsyncEntriesCursor[MessageListEventsResponse]]:
+    ) -> AsyncPaginator[MessageEvent, AsyncEntriesCursor[MessageEvent]]:
         """
         List events
 
@@ -1007,7 +999,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/events",
-            page=AsyncEntriesCursor[MessageListEventsResponse],
+            page=AsyncEntriesCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1022,7 +1014,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_events_params.MessageListEventsParams,
                 ),
             ),
-            model=MessageListEventsResponse,
+            model=MessageEvent,
         )
 
     async def mark_as_interacted(
@@ -1036,7 +1028,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsInteractedResponse:
+    ) -> Message:
         """
         Mark message as interacted
 
@@ -1061,7 +1053,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsInteractedResponse,
+            cast_to=Message,
         )
 
     async def mark_as_read(
@@ -1074,7 +1066,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsReadResponse:
+    ) -> Message:
         """
         Mark message as read
 
@@ -1094,7 +1086,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsReadResponse,
+            cast_to=Message,
         )
 
     async def mark_as_seen(
@@ -1107,7 +1099,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsSeenResponse:
+    ) -> Message:
         """
         Mark message as seen
 
@@ -1127,7 +1119,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsSeenResponse,
+            cast_to=Message,
         )
 
     async def mark_as_unread(
@@ -1140,7 +1132,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsUnreadResponse:
+    ) -> Message:
         """
         Mark message as unread
 
@@ -1160,7 +1152,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsUnreadResponse,
+            cast_to=Message,
         )
 
     async def mark_as_unseen(
@@ -1173,7 +1165,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageMarkAsUnseenResponse:
+    ) -> Message:
         """
         Mark message as unseen
 
@@ -1193,7 +1185,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageMarkAsUnseenResponse,
+            cast_to=Message,
         )
 
     async def unarchive(
@@ -1206,7 +1198,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageUnarchiveResponse:
+    ) -> Message:
         """
         Unarchive message
 
@@ -1226,7 +1218,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageUnarchiveResponse,
+            cast_to=Message,
         )
 
 

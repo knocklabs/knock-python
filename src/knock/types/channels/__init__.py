@@ -3,4 +3,3 @@
 from __future__ import annotations
 
 from .bulk_update_message_status_params import BulkUpdateMessageStatusParams as BulkUpdateMessageStatusParams
-from .bulk_update_message_status_response import BulkUpdateMessageStatusResponse as BulkUpdateMessageStatusResponse

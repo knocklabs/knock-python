@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from knock import Knock, AsyncKnock
-from knock.types import BulkOperationGetResponse
+from knock.types import BulkOperation
 from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +25,7 @@ class TestBulkOperations:
         bulk_operation = client.bulk_operations.get(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+        assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -39,7 +39,7 @@ class TestBulkOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_operation = response.parse()
-        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+        assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -53,7 +53,7 @@ class TestBulkOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk_operation = response.parse()
-            assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+            assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -79,7 +79,7 @@ class TestAsyncBulkOperations:
         bulk_operation = await async_client.bulk_operations.get(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+        assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -93,7 +93,7 @@ class TestAsyncBulkOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_operation = await response.parse()
-        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+        assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -107,7 +107,7 @@ class TestAsyncBulkOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk_operation = await response.parse()
-            assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
+            assert_matches_type(BulkOperation, bulk_operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

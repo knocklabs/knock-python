@@ -6,9 +6,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["BulkSetResponse", "ErrorItem"]
+__all__ = ["BulkOperation", "ErrorItem"]
 
 
 class ErrorItem(BaseModel):
@@ -17,7 +17,7 @@ class ErrorItem(BaseModel):
     collection: Optional[str] = None
 
 
-class BulkSetResponse(BaseModel):
+class BulkOperation(BaseModel):
     id: str
 
     api_typename: str = FieldInfo(alias="__typename")

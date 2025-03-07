@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .shared.schedule import Schedule
+from .schedule import Schedule
 
 __all__ = ["ScheduleUpdateResponse"]
 

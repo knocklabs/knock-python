@@ -5,14 +5,14 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import TypedDict
 
-from .shared_params.recipient_request import RecipientRequest
-from .shared_params.inline_tenant_request import InlineTenantRequest
+from .recipient_request_param import RecipientRequestParam
+from .inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["WorkflowTriggerParams"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
-    actor: Optional[RecipientRequest]
+    actor: Optional[RecipientRequestParam]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -32,11 +32,11 @@ class WorkflowTriggerParams(TypedDict, total=False):
     This data will be available to the workflow as a map in the `data` field.
     """
 
-    recipients: List[RecipientRequest]
+    recipients: List[RecipientRequestParam]
     """The recipients to trigger the workflow for.
 
     Cannot exceed 1000 recipients in a single trigger.
     """
 
-    tenant: Optional[InlineTenantRequest]
+    tenant: Optional[InlineTenantRequestParam]
     """An inline tenant request"""

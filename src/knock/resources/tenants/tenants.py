@@ -14,7 +14,10 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import tenant_set_params, tenant_list_params
+from ...types import (
+    tenant_set_params,
+    tenant_list_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -30,9 +33,9 @@ from ..._response import (
 )
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared.tenant import Tenant
-from ...types.shared_params.inline_channel_data_request import InlineChannelDataRequest
-from ...types.shared_params.inline_preference_set_request import InlinePreferenceSetRequest
+from ...types.tenant import Tenant
+from ...types.inline_channel_data_request_param import InlineChannelDataRequestParam
+from ...types.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["TenantsResource", "AsyncTenantsResource"]
 
@@ -182,8 +185,8 @@ class TenantsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequest] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequest] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -372,8 +375,8 @@ class AsyncTenantsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequest] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequest] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

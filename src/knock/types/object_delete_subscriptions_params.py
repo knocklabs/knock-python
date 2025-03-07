@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from .shared_params.recipient_request import RecipientRequest
+from .recipient_request_param import RecipientRequestParam
 
 __all__ = ["ObjectDeleteSubscriptionsParams"]
 
@@ -13,4 +13,4 @@ __all__ = ["ObjectDeleteSubscriptionsParams"]
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
     collection: Required[str]
 
-    recipients: Required[List[RecipientRequest]]
+    recipients: Required[List[RecipientRequestParam]]

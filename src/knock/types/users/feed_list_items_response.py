@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from ..activity import Activity
-from ..shared.recipient import Recipient
+from ..recipient import Recipient
 
 __all__ = [
     "FeedListItemsResponse",

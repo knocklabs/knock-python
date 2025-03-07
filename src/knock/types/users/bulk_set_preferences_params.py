@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from ..shared_params.preference_set_request import PreferenceSetRequest
+from ..preference_set_request_param import PreferenceSetRequestParam
 
 __all__ = ["BulkSetPreferencesParams"]
 
 
 class BulkSetPreferencesParams(TypedDict, total=False):
-    preferences: Required[PreferenceSetRequest]
+    preferences: Required[PreferenceSetRequestParam]
     """Set preferences for a recipient"""
 
     user_ids: Required[List[str]]

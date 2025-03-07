@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .shared.preference_set import PreferenceSet
+from .preference_set import PreferenceSet
 
 __all__ = ["UserListPreferencesResponse"]
 

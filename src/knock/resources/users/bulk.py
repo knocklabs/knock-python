@@ -22,8 +22,8 @@ from ..._response import (
 from ...types.users import bulk_delete_params, bulk_identify_params, bulk_set_preferences_params
 from ..._base_client import make_request_options
 from ...types.bulk_operation import BulkOperation
-from ...types.shared_params.preference_set_request import PreferenceSetRequest
-from ...types.shared_params.inline_identify_user_request import InlineIdentifyUserRequest
+from ...types.preference_set_request_param import PreferenceSetRequestParam
+from ...types.inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -90,7 +90,7 @@ class BulkResource(SyncAPIResource):
     def identify(
         self,
         *,
-        users: Iterable[InlineIdentifyUserRequest],
+        users: Iterable[InlineIdentifyUserRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,7 +122,7 @@ class BulkResource(SyncAPIResource):
     def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequest,
+        preferences: PreferenceSetRequestParam,
         user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,7 +225,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def identify(
         self,
         *,
-        users: Iterable[InlineIdentifyUserRequest],
+        users: Iterable[InlineIdentifyUserRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -257,7 +257,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequest,
+        preferences: PreferenceSetRequestParam,
         user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

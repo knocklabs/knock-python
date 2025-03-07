@@ -22,7 +22,7 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.tenants import bulk_set_params, bulk_delete_params
 from ...types.bulk_operation import BulkOperation
-from ...types.shared_params.inline_tenant_request import InlineTenantRequest
+from ...types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -87,7 +87,7 @@ class BulkResource(SyncAPIResource):
     def set(
         self,
         *,
-        tenants: List[InlineTenantRequest],
+        tenants: List[InlineTenantRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,7 +177,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def set(
         self,
         *,
-        tenants: List[InlineTenantRequest],
+        tenants: List[InlineTenantRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

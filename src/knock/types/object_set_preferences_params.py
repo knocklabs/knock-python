@@ -6,7 +6,7 @@ from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from .shared_params.condition import Condition
-from .shared_params.preference_set_channel_types import PreferenceSetChannelTypes
+from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
 __all__ = [
     "ObjectSetPreferencesParams",
@@ -28,7 +28,7 @@ class ObjectSetPreferencesParams(TypedDict, total=False):
     the values are the preference settings for that category.
     """
 
-    channel_types: Optional[PreferenceSetChannelTypes]
+    channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
     workflows: Optional[Dict[str, Workflows]]
@@ -39,7 +39,7 @@ class ObjectSetPreferencesParams(TypedDict, total=False):
 
 
 class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
-    channel_types: Optional[PreferenceSetChannelTypes]
+    channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
     conditions: Optional[Iterable[Condition]]
@@ -49,7 +49,7 @@ Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySetti
 
 
 class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
-    channel_types: Optional[PreferenceSetChannelTypes]
+    channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
     conditions: Optional[Iterable[Condition]]

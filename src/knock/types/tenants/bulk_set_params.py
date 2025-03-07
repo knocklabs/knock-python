@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from ..shared_params.inline_tenant_request import InlineTenantRequest
+from ..inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["BulkSetParams"]
 
 
 class BulkSetParams(TypedDict, total=False):
-    tenants: Required[List[InlineTenantRequest]]
+    tenants: Required[List[InlineTenantRequestParam]]

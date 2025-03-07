@@ -5,8 +5,8 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
+from .user import User
 from .._models import BaseModel
-from .shared.user import User
 
 __all__ = ["AudienceMember"]
 

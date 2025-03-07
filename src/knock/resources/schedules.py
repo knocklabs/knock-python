@@ -28,13 +28,13 @@ from .._response import (
 )
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.schedule import Schedule
+from ..types.schedule import Schedule
+from ..types.recipient_request_param import RecipientRequestParam
 from ..types.schedule_create_response import ScheduleCreateResponse
 from ..types.schedule_delete_response import ScheduleDeleteResponse
 from ..types.schedule_update_response import ScheduleUpdateResponse
-from ..types.shared_params.recipient_request import RecipientRequest
-from ..types.shared_params.schedule_repeat_rule import ScheduleRepeatRule
-from ..types.shared_params.inline_tenant_request import InlineTenantRequest
+from ..types.schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from ..types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["SchedulesResource", "AsyncSchedulesResource"]
 
@@ -63,12 +63,12 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         recipients: List[schedule_create_params.Recipient],
-        repeats: Iterable[ScheduleRepeatRule],
+        repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,12 +114,12 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[RecipientRequest] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRule] | NotGiven = NOT_GIVEN,
+        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,12 +286,12 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         recipients: List[schedule_create_params.Recipient],
-        repeats: Iterable[ScheduleRepeatRule],
+        repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,12 +337,12 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[RecipientRequest] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRule] | NotGiven = NOT_GIVEN,
+        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

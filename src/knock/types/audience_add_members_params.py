@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-from .shared_params.inline_identify_user_request import InlineIdentifyUserRequest
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
 __all__ = ["AudienceAddMembersParams", "Member"]
 
@@ -15,7 +15,7 @@ class AudienceAddMembersParams(TypedDict, total=False):
 
 
 class Member(TypedDict, total=False):
-    user: Required[InlineIdentifyUserRequest]
+    user: Required[InlineIdentifyUserRequestParam]
     """A set of parameters to inline-identify a user with.
 
     Inline identifying the user will ensure that the user is available before the

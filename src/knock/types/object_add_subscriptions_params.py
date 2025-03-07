@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Required, TypedDict
 
-from .shared_params.recipient_request import RecipientRequest
+from .recipient_request_param import RecipientRequestParam
 
 __all__ = ["ObjectAddSubscriptionsParams"]
 
@@ -13,7 +13,7 @@ __all__ = ["ObjectAddSubscriptionsParams"]
 class ObjectAddSubscriptionsParams(TypedDict, total=False):
     collection: Required[str]
 
-    recipients: Required[List[RecipientRequest]]
+    recipients: Required[List[RecipientRequestParam]]
     """The recipients to subscribe to the object"""
 
     properties: Optional[Dict[str, object]]

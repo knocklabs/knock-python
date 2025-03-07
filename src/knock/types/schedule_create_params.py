@@ -7,8 +7,8 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .shared_params.schedule_repeat_rule import ScheduleRepeatRule
-from .shared_params.inline_tenant_request import InlineTenantRequest
+from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from .inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["ScheduleCreateParams", "Recipient", "RecipientObjectReference"]
 
@@ -16,7 +16,7 @@ __all__ = ["ScheduleCreateParams", "Recipient", "RecipientObjectReference"]
 class ScheduleCreateParams(TypedDict, total=False):
     recipients: Required[List[Recipient]]
 
-    repeats: Required[Iterable[ScheduleRepeatRule]]
+    repeats: Required[Iterable[ScheduleRepeatRuleParam]]
 
     workflow: Required[str]
 
@@ -26,7 +26,7 @@ class ScheduleCreateParams(TypedDict, total=False):
 
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 
-    tenant: Optional[InlineTenantRequest]
+    tenant: Optional[InlineTenantRequestParam]
     """An inline tenant request"""
 
 

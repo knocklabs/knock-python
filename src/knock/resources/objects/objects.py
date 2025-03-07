@@ -42,19 +42,19 @@ from ..._response import (
 )
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.object import Object
 from ...types.message import Message
-from ...types.shared.object import Object
-from ...types.shared.schedule import Schedule
-from ...types.shared.channel_data import ChannelData
-from ...types.shared.subscription import Subscription
-from ...types.shared.preference_set import PreferenceSet
-from ...types.shared_params.recipient_request import RecipientRequest
+from ...types.schedule import Schedule
+from ...types.channel_data import ChannelData
+from ...types.subscription import Subscription
+from ...types.preference_set import PreferenceSet
+from ...types.recipient_request_param import RecipientRequestParam
 from ...types.object_list_preferences_response import ObjectListPreferencesResponse
+from ...types.inline_channel_data_request_param import InlineChannelDataRequestParam
 from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
+from ...types.preference_set_channel_types_param import PreferenceSetChannelTypesParam
+from ...types.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 from ...types.object_delete_subscriptions_response import ObjectDeleteSubscriptionsResponse
-from ...types.shared_params.inline_channel_data_request import InlineChannelDataRequest
-from ...types.shared_params.preference_set_channel_types import PreferenceSetChannelTypes
-from ...types.shared_params.inline_preference_set_request import InlinePreferenceSetRequest
 
 __all__ = ["ObjectsResource", "AsyncObjectsResource"]
 
@@ -178,7 +178,7 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         *,
         collection: str,
-        recipients: List[RecipientRequest],
+        recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -229,7 +229,7 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         *,
         collection: str,
-        recipients: List[RecipientRequest],
+        recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -658,8 +658,8 @@ class ObjectsResource(SyncAPIResource):
         id: str,
         *,
         collection: str,
-        channel_data: Optional[InlineChannelDataRequest] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequest] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -752,7 +752,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypes] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -962,7 +962,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         *,
         collection: str,
-        recipients: List[RecipientRequest],
+        recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1013,7 +1013,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         *,
         collection: str,
-        recipients: List[RecipientRequest],
+        recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1444,8 +1444,8 @@ class AsyncObjectsResource(AsyncAPIResource):
         id: str,
         *,
         collection: str,
-        channel_data: Optional[InlineChannelDataRequest] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequest] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1538,7 +1538,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypes] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

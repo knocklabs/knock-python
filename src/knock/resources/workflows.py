@@ -6,7 +6,10 @@ from typing import Dict, List, Optional
 
 import httpx
 
-from ..types import workflow_cancel_params, workflow_trigger_params
+from ..types import (
+    workflow_cancel_params,
+    workflow_trigger_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -21,9 +24,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.recipient_request_param import RecipientRequestParam
 from ..types.workflow_trigger_response import WorkflowTriggerResponse
-from ..types.shared_params.recipient_request import RecipientRequest
-from ..types.shared_params.inline_tenant_request import InlineTenantRequest
+from ..types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
 
@@ -104,11 +107,11 @@ class WorkflowsResource(SyncAPIResource):
         self,
         key: str,
         *,
-        actor: Optional[RecipientRequest] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientRequest] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,11 +245,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        actor: Optional[RecipientRequest] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientRequest] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequest] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
+        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

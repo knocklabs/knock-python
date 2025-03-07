@@ -6,7 +6,7 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .shared.recipient import Recipient
+from .recipient import Recipient
 
 __all__ = ["Activity"]
 

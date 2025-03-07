@@ -7,9 +7,9 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared_params.recipient_request import RecipientRequest
-from .shared_params.schedule_repeat_rule import ScheduleRepeatRule
-from .shared_params.inline_tenant_request import InlineTenantRequest
+from .recipient_request_param import RecipientRequestParam
+from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from .inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["ScheduleUpdateParams"]
 
@@ -17,7 +17,7 @@ __all__ = ["ScheduleUpdateParams"]
 class ScheduleUpdateParams(TypedDict, total=False):
     schedule_ids: Required[List[str]]
 
-    actor: Optional[RecipientRequest]
+    actor: Optional[RecipientRequestParam]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -29,9 +29,9 @@ class ScheduleUpdateParams(TypedDict, total=False):
 
     ending_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 
-    repeats: Iterable[ScheduleRepeatRule]
+    repeats: Iterable[ScheduleRepeatRuleParam]
 
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 
-    tenant: Optional[InlineTenantRequest]
+    tenant: Optional[InlineTenantRequestParam]
     """An inline tenant request"""

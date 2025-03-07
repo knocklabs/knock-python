@@ -40,8 +40,8 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.activity import Activity
 from ...types.message_event import MessageEvent
+from ...types.message_delivery_log import MessageDeliveryLog
 from ...types.message_get_content_response import MessageGetContentResponse
-from ...types.message_list_delivery_logs_response import MessageListDeliveryLogsResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -334,7 +334,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[MessageListDeliveryLogsResponse]:
+    ) -> SyncEntriesCursor[MessageDeliveryLog]:
         """
         List delivery logs
 
@@ -357,7 +357,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/delivery_logs",
-            page=SyncEntriesCursor[MessageListDeliveryLogsResponse],
+            page=SyncEntriesCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -372,7 +372,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_delivery_logs_params.MessageListDeliveryLogsParams,
                 ),
             ),
-            model=MessageListDeliveryLogsResponse,
+            model=MessageDeliveryLog,
         )
 
     def list_events(
@@ -922,7 +922,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageListDeliveryLogsResponse, AsyncEntriesCursor[MessageListDeliveryLogsResponse]]:
+    ) -> AsyncPaginator[MessageDeliveryLog, AsyncEntriesCursor[MessageDeliveryLog]]:
         """
         List delivery logs
 
@@ -945,7 +945,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/delivery_logs",
-            page=AsyncEntriesCursor[MessageListDeliveryLogsResponse],
+            page=AsyncEntriesCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -960,7 +960,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_delivery_logs_params.MessageListDeliveryLogsParams,
                 ),
             ),
-            model=MessageListDeliveryLogsResponse,
+            model=MessageDeliveryLog,
         )
 
     def list_events(

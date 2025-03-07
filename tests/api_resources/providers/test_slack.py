@@ -9,6 +9,7 @@ import pytest
 
 from knock import Knock, AsyncKnock
 from tests.utils import assert_matches_type
+from knock.pagination import SyncSlackChannelsCursor, AsyncSlackChannelsCursor
 from knock.types.providers import (
     SlackCheckAuthResponse,
     SlackListChannelsResponse,
@@ -83,7 +84,7 @@ class TestSlack:
             channel_id="channel_id",
             access_token_object="access_token_object",
         )
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(SyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -101,7 +102,7 @@ class TestSlack:
                 "types": "types",
             },
         )
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(SyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -116,7 +117,7 @@ class TestSlack:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         slack = response.parse()
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(SyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -131,7 +132,7 @@ class TestSlack:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             slack = response.parse()
-            assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+            assert_matches_type(SyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -267,7 +268,7 @@ class TestAsyncSlack:
             channel_id="channel_id",
             access_token_object="access_token_object",
         )
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(AsyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -285,7 +286,7 @@ class TestAsyncSlack:
                 "types": "types",
             },
         )
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(AsyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -300,7 +301,7 @@ class TestAsyncSlack:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         slack = await response.parse()
-        assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+        assert_matches_type(AsyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -315,7 +316,7 @@ class TestAsyncSlack:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             slack = await response.parse()
-            assert_matches_type(SlackListChannelsResponse, slack, path=["response"])
+            assert_matches_type(AsyncSlackChannelsCursor[SlackListChannelsResponse], slack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

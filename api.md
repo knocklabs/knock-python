@@ -258,7 +258,7 @@ from knock.types.providers import (
 Methods:
 
 - <code title="get /v1/providers/slack/{channel_id}/auth_check">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">check_auth</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_check_auth_params.py">params</a>) -> <a href="./src/knock/types/providers/slack_check_auth_response.py">SlackCheckAuthResponse</a></code>
-- <code title="get /v1/providers/slack/{channel_id}/channels">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">list_channels</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_list_channels_params.py">params</a>) -> <a href="./src/knock/types/providers/slack_list_channels_response.py">SyncSlackChannelsCursor[SlackListChannelsResponse]</a></code>
+- <code title="get /v1/providers/slack/{channel_id}/channels">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">list_channels</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_list_channels_params.py">params</a>) -> <a href="./src/knock/types/providers/slack_list_channels_response.py">SlackListChannelsResponse</a></code>
 - <code title="put /v1/providers/slack/{channel_id}/revoke_access">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">revoke_access</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_revoke_access_params.py">params</a>) -> str</code>
 
 ## MsTeams

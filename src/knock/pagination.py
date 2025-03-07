@@ -13,8 +13,6 @@ __all__ = [
     "ItemsCursorPageInfo",
     "SyncItemsCursor",
     "AsyncItemsCursor",
-    "SyncSlackChannelsCursor",
-    "AsyncSlackChannelsCursor",
 ]
 
 _T = TypeVar("_T")
@@ -118,43 +116,3 @@ class AsyncItemsCursor(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"after": after})
-
-
-class SyncSlackChannelsCursor(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    next_cursor: Optional[str] = None
-    slack_channels: List[_T]
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        slack_channels = self.slack_channels
-        if not slack_channels:
-            return []
-        return slack_channels
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        next_cursor = self.next_cursor
-        if not next_cursor:
-            return None
-
-        return PageInfo(params={"query_options.cursor": next_cursor})
-
-
-class AsyncSlackChannelsCursor(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    next_cursor: Optional[str] = None
-    slack_channels: List[_T]
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        slack_channels = self.slack_channels
-        if not slack_channels:
-            return []
-        return slack_channels
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        next_cursor = self.next_cursor
-        if not next_cursor:
-            return None
-
-        return PageInfo(params={"query_options.cursor": next_cursor})

@@ -17,8 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncSlackChannelsCursor, AsyncSlackChannelsCursor
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.providers import slack_check_auth_params, slack_list_channels_params, slack_revoke_access_params
 from ...types.providers.slack_check_auth_response import SlackCheckAuthResponse
 from ...types.providers.slack_list_channels_response import SlackListChannelsResponse
@@ -100,7 +99,7 @@ class SlackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSlackChannelsCursor[SlackListChannelsResponse]:
+    ) -> SlackListChannelsResponse:
         """
         List Slack channels for a Slack workspace
 
@@ -117,9 +116,8 @@ class SlackResource(SyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/v1/providers/slack/{channel_id}/channels",
-            page=SyncSlackChannelsCursor[SlackListChannelsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -133,7 +131,7 @@ class SlackResource(SyncAPIResource):
                     slack_list_channels_params.SlackListChannelsParams,
                 ),
             ),
-            model=SlackListChannelsResponse,
+            cast_to=SlackListChannelsResponse,
         )
 
     def revoke_access(
@@ -241,7 +239,7 @@ class AsyncSlackResource(AsyncAPIResource):
             cast_to=SlackCheckAuthResponse,
         )
 
-    def list_channels(
+    async def list_channels(
         self,
         channel_id: str,
         *,
@@ -253,7 +251,7 @@ class AsyncSlackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SlackListChannelsResponse, AsyncSlackChannelsCursor[SlackListChannelsResponse]]:
+    ) -> SlackListChannelsResponse:
         """
         List Slack channels for a Slack workspace
 
@@ -270,15 +268,14 @@ class AsyncSlackResource(AsyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/v1/providers/slack/{channel_id}/channels",
-            page=AsyncSlackChannelsCursor[SlackListChannelsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "access_token_object": access_token_object,
                         "query_options": query_options,
@@ -286,7 +283,7 @@ class AsyncSlackResource(AsyncAPIResource):
                     slack_list_channels_params.SlackListChannelsParams,
                 ),
             ),
-            model=SlackListChannelsResponse,
+            cast_to=SlackListChannelsResponse,
         )
 
     async def revoke_access(

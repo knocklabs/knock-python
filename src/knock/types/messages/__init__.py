@@ -1,0 +1,20 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from .batch_archive_params import BatchArchiveParams as BatchArchiveParams
+from .batch_archive_response import BatchArchiveResponse as BatchArchiveResponse
+from .batch_unarchive_params import BatchUnarchiveParams as BatchUnarchiveParams
+from .batch_get_content_params import BatchGetContentParams as BatchGetContentParams
+from .batch_unarchive_response import BatchUnarchiveResponse as BatchUnarchiveResponse
+from .batch_mark_as_read_params import BatchMarkAsReadParams as BatchMarkAsReadParams
+from .batch_mark_as_seen_params import BatchMarkAsSeenParams as BatchMarkAsSeenParams
+from .batch_get_content_response import BatchGetContentResponse as BatchGetContentResponse
+from .batch_mark_as_read_response import BatchMarkAsReadResponse as BatchMarkAsReadResponse
+from .batch_mark_as_seen_response import BatchMarkAsSeenResponse as BatchMarkAsSeenResponse
+from .batch_mark_as_unread_params import BatchMarkAsUnreadParams as BatchMarkAsUnreadParams
+from .batch_mark_as_unseen_params import BatchMarkAsUnseenParams as BatchMarkAsUnseenParams
+from .batch_mark_as_unread_response import BatchMarkAsUnreadResponse as BatchMarkAsUnreadResponse
+from .batch_mark_as_unseen_response import BatchMarkAsUnseenResponse as BatchMarkAsUnseenResponse
+from .batch_mark_as_interacted_params import BatchMarkAsInteractedParams as BatchMarkAsInteractedParams
+from .batch_mark_as_interacted_response import BatchMarkAsInteractedResponse as BatchMarkAsInteractedResponse

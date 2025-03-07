@@ -1,0 +1,342 @@
+# Shared Types
+
+```python
+from knock.types import (
+    ChannelData,
+    ChannelDataRequest,
+    Condition,
+    DiscordChannelData,
+    InlineChannelDataRequest,
+    InlineIdentifyUserRequest,
+    InlineObjectRequest,
+    InlinePreferenceSetRequest,
+    InlineTenantRequest,
+    MsTeamsChannelData,
+    Object,
+    OneSignalChannelData,
+    PreferenceSet,
+    PreferenceSetChannelTypeSetting,
+    PreferenceSetChannelTypes,
+    PreferenceSetRequest,
+    PushChannelData,
+    Recipient,
+    RecipientRequest,
+    Schedule,
+    ScheduleRepeatRule,
+    SlackChannelData,
+    Subscription,
+    Tenant,
+    TenantRequest,
+    User,
+)
+```
+
+# Users
+
+Types:
+
+```python
+from knock.types import (
+    UserDeleteResponse,
+    UserListMessagesResponse,
+    UserListPreferencesResponse,
+    UserUnsetChannelDataResponse,
+)
+```
+
+Methods:
+
+- <code title="put /v1/users/{user_id}">client.users.<a href="./src/knock/resources/users/users.py">update</a>(user_id, \*\*<a href="src/knock/types/user_update_params.py">params</a>) -> <a href="./src/knock/types/shared/user.py">User</a></code>
+- <code title="get /v1/users">client.users.<a href="./src/knock/resources/users/users.py">list</a>(\*\*<a href="src/knock/types/user_list_params.py">params</a>) -> <a href="./src/knock/types/shared/user.py">SyncEntriesCursor[User]</a></code>
+- <code title="delete /v1/users/{user_id}">client.users.<a href="./src/knock/resources/users/users.py">delete</a>(user_id) -> str</code>
+- <code title="get /v1/users/{user_id}">client.users.<a href="./src/knock/resources/users/users.py">get</a>(user_id) -> <a href="./src/knock/types/shared/user.py">User</a></code>
+- <code title="get /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knock/resources/users/users.py">get_channel_data</a>(channel_id, \*, user_id) -> <a href="./src/knock/types/shared/channel_data.py">ChannelData</a></code>
+- <code title="get /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knock/resources/users/users.py">get_preferences</a>(id, \*, user_id, \*\*<a href="src/knock/types/user_get_preferences_params.py">params</a>) -> <a href="./src/knock/types/shared/preference_set.py">PreferenceSet</a></code>
+- <code title="get /v1/users/{user_id}/messages">client.users.<a href="./src/knock/resources/users/users.py">list_messages</a>(user_id, \*\*<a href="src/knock/types/user_list_messages_params.py">params</a>) -> <a href="./src/knock/types/user_list_messages_response.py">SyncEntriesCursor[UserListMessagesResponse]</a></code>
+- <code title="get /v1/users/{user_id}/preferences">client.users.<a href="./src/knock/resources/users/users.py">list_preferences</a>(user_id) -> <a href="./src/knock/types/user_list_preferences_response.py">UserListPreferencesResponse</a></code>
+- <code title="get /v1/users/{user_id}/schedules">client.users.<a href="./src/knock/resources/users/users.py">list_schedules</a>(user_id, \*\*<a href="src/knock/types/user_list_schedules_params.py">params</a>) -> <a href="./src/knock/types/shared/schedule.py">SyncEntriesCursor[Schedule]</a></code>
+- <code title="get /v1/users/{user_id}/subscriptions">client.users.<a href="./src/knock/resources/users/users.py">list_subscriptions</a>(user_id, \*\*<a href="src/knock/types/user_list_subscriptions_params.py">params</a>) -> <a href="./src/knock/types/shared/subscription.py">SyncEntriesCursor[Subscription]</a></code>
+- <code title="post /v1/users/{user_id}/merge">client.users.<a href="./src/knock/resources/users/users.py">merge</a>(user_id, \*\*<a href="src/knock/types/user_merge_params.py">params</a>) -> <a href="./src/knock/types/shared/user.py">User</a></code>
+- <code title="put /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knock/resources/users/users.py">set_channel_data</a>(channel_id, \*, user_id, \*\*<a href="src/knock/types/user_set_channel_data_params.py">params</a>) -> <a href="./src/knock/types/shared/channel_data.py">ChannelData</a></code>
+- <code title="put /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knock/resources/users/users.py">set_preferences</a>(id, \*, user_id, \*\*<a href="src/knock/types/user_set_preferences_params.py">params</a>) -> <a href="./src/knock/types/shared/preference_set.py">PreferenceSet</a></code>
+- <code title="delete /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knock/resources/users/users.py">unset_channel_data</a>(channel_id, \*, user_id) -> str</code>
+
+## Feeds
+
+Types:
+
+```python
+from knock.types.users import FeedGetSettingsResponse, FeedListItemsResponse
+```
+
+Methods:
+
+- <code title="get /v1/users/{user_id}/feeds/{id}/settings">client.users.feeds.<a href="./src/knock/resources/users/feeds.py">get_settings</a>(id, \*, user_id) -> <a href="./src/knock/types/users/feed_get_settings_response.py">FeedGetSettingsResponse</a></code>
+- <code title="get /v1/users/{user_id}/feeds/{id}">client.users.feeds.<a href="./src/knock/resources/users/feeds.py">list_items</a>(id, \*, user_id, \*\*<a href="src/knock/types/users/feed_list_items_params.py">params</a>) -> <a href="./src/knock/types/users/feed_list_items_response.py">SyncEntriesCursor[FeedListItemsResponse]</a></code>
+
+## Bulk
+
+Types:
+
+```python
+from knock.types.users import BulkDeleteResponse, BulkIdentifyResponse, BulkSetPreferencesResponse
+```
+
+Methods:
+
+- <code title="post /v1/users/bulk/delete">client.users.bulk.<a href="./src/knock/resources/users/bulk.py">delete</a>(\*\*<a href="src/knock/types/users/bulk_delete_params.py">params</a>) -> <a href="./src/knock/types/users/bulk_delete_response.py">BulkDeleteResponse</a></code>
+- <code title="post /v1/users/bulk/identify">client.users.bulk.<a href="./src/knock/resources/users/bulk.py">identify</a>(\*\*<a href="src/knock/types/users/bulk_identify_params.py">params</a>) -> <a href="./src/knock/types/users/bulk_identify_response.py">BulkIdentifyResponse</a></code>
+- <code title="post /v1/users/bulk/preferences">client.users.bulk.<a href="./src/knock/resources/users/bulk.py">set_preferences</a>(\*\*<a href="src/knock/types/users/bulk_set_preferences_params.py">params</a>) -> <a href="./src/knock/types/users/bulk_set_preferences_response.py">BulkSetPreferencesResponse</a></code>
+
+# Objects
+
+Types:
+
+```python
+from knock.types import (
+    ObjectDeleteResponse,
+    ObjectAddSubscriptionsResponse,
+    ObjectDeleteSubscriptionsResponse,
+    ObjectListMessagesResponse,
+    ObjectListPreferencesResponse,
+    ObjectUnsetChannelDataResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/objects/{collection}">client.objects.<a href="./src/knock/resources/objects/objects.py">list</a>(collection, \*\*<a href="src/knock/types/object_list_params.py">params</a>) -> <a href="./src/knock/types/shared/object.py">SyncEntriesCursor[Object]</a></code>
+- <code title="delete /v1/objects/{collection}/{id}">client.objects.<a href="./src/knock/resources/objects/objects.py">delete</a>(id, \*, collection) -> str</code>
+- <code title="post /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knock/resources/objects/objects.py">add_subscriptions</a>(object_id, \*, collection, \*\*<a href="src/knock/types/object_add_subscriptions_params.py">params</a>) -> <a href="./src/knock/types/object_add_subscriptions_response.py">ObjectAddSubscriptionsResponse</a></code>
+- <code title="delete /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knock/resources/objects/objects.py">delete_subscriptions</a>(object_id, \*, collection, \*\*<a href="src/knock/types/object_delete_subscriptions_params.py">params</a>) -> <a href="./src/knock/types/object_delete_subscriptions_response.py">ObjectDeleteSubscriptionsResponse</a></code>
+- <code title="get /v1/objects/{collection}/{id}">client.objects.<a href="./src/knock/resources/objects/objects.py">get</a>(id, \*, collection) -> <a href="./src/knock/types/shared/object.py">Object</a></code>
+- <code title="get /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knock/resources/objects/objects.py">get_channel_data</a>(channel_id, \*, collection, object_id) -> <a href="./src/knock/types/shared/channel_data.py">ChannelData</a></code>
+- <code title="get /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knock/resources/objects/objects.py">get_preferences</a>(id, \*, collection, object_id, \*\*<a href="src/knock/types/object_get_preferences_params.py">params</a>) -> <a href="./src/knock/types/shared/preference_set.py">PreferenceSet</a></code>
+- <code title="get /v1/objects/{collection}/{id}/messages">client.objects.<a href="./src/knock/resources/objects/objects.py">list_messages</a>(id, \*, collection, \*\*<a href="src/knock/types/object_list_messages_params.py">params</a>) -> <a href="./src/knock/types/object_list_messages_response.py">SyncEntriesCursor[ObjectListMessagesResponse]</a></code>
+- <code title="get /v1/objects/{collection}/{object_id}/preferences">client.objects.<a href="./src/knock/resources/objects/objects.py">list_preferences</a>(object_id, \*, collection) -> <a href="./src/knock/types/object_list_preferences_response.py">ObjectListPreferencesResponse</a></code>
+- <code title="get /v1/objects/{collection}/{id}/schedules">client.objects.<a href="./src/knock/resources/objects/objects.py">list_schedules</a>(id, \*, collection, \*\*<a href="src/knock/types/object_list_schedules_params.py">params</a>) -> <a href="./src/knock/types/shared/schedule.py">SyncEntriesCursor[Schedule]</a></code>
+- <code title="get /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knock/resources/objects/objects.py">list_subscriptions</a>(object_id, \*, collection, \*\*<a href="src/knock/types/object_list_subscriptions_params.py">params</a>) -> <a href="./src/knock/types/shared/subscription.py">SyncEntriesCursor[Subscription]</a></code>
+- <code title="put /v1/objects/{collection}/{id}">client.objects.<a href="./src/knock/resources/objects/objects.py">set</a>(id, \*, collection, \*\*<a href="src/knock/types/object_set_params.py">params</a>) -> <a href="./src/knock/types/shared/object.py">Object</a></code>
+- <code title="put /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knock/resources/objects/objects.py">set_channel_data</a>(channel_id, \*, collection, object_id, \*\*<a href="src/knock/types/object_set_channel_data_params.py">params</a>) -> <a href="./src/knock/types/shared/channel_data.py">ChannelData</a></code>
+- <code title="put /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knock/resources/objects/objects.py">set_preferences</a>(id, \*, collection, object_id, \*\*<a href="src/knock/types/object_set_preferences_params.py">params</a>) -> <a href="./src/knock/types/shared/preference_set.py">PreferenceSet</a></code>
+- <code title="delete /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knock/resources/objects/objects.py">unset_channel_data</a>(channel_id, \*, collection, object_id) -> str</code>
+
+## Bulk
+
+Types:
+
+```python
+from knock.types.objects import BulkDeleteResponse, BulkAddSubscriptionsResponse, BulkSetResponse
+```
+
+Methods:
+
+- <code title="post /v1/objects/{collection}/bulk/delete">client.objects.bulk.<a href="./src/knock/resources/objects/bulk.py">delete</a>(collection, \*\*<a href="src/knock/types/objects/bulk_delete_params.py">params</a>) -> <a href="./src/knock/types/objects/bulk_delete_response.py">BulkDeleteResponse</a></code>
+- <code title="post /v1/objects/{collection}/bulk/subscriptions/add">client.objects.bulk.<a href="./src/knock/resources/objects/bulk.py">add_subscriptions</a>(collection, \*\*<a href="src/knock/types/objects/bulk_add_subscriptions_params.py">params</a>) -> <a href="./src/knock/types/objects/bulk_add_subscriptions_response.py">BulkAddSubscriptionsResponse</a></code>
+- <code title="post /v1/objects/{collection}/bulk/set">client.objects.bulk.<a href="./src/knock/resources/objects/bulk.py">set</a>(collection, \*\*<a href="src/knock/types/objects/bulk_set_params.py">params</a>) -> <a href="./src/knock/types/objects/bulk_set_response.py">BulkSetResponse</a></code>
+
+# Tenants
+
+Types:
+
+```python
+from knock.types import TenantDeleteResponse
+```
+
+Methods:
+
+- <code title="get /v1/tenants">client.tenants.<a href="./src/knock/resources/tenants/tenants.py">list</a>(\*\*<a href="src/knock/types/tenant_list_params.py">params</a>) -> <a href="./src/knock/types/shared/tenant.py">SyncEntriesCursor[Tenant]</a></code>
+- <code title="delete /v1/tenants/{id}">client.tenants.<a href="./src/knock/resources/tenants/tenants.py">delete</a>(id) -> str</code>
+- <code title="get /v1/tenants/{id}">client.tenants.<a href="./src/knock/resources/tenants/tenants.py">get</a>(id) -> <a href="./src/knock/types/shared/tenant.py">Tenant</a></code>
+- <code title="put /v1/tenants/{id}">client.tenants.<a href="./src/knock/resources/tenants/tenants.py">set</a>(id, \*\*<a href="src/knock/types/tenant_set_params.py">params</a>) -> <a href="./src/knock/types/shared/tenant.py">Tenant</a></code>
+
+## Bulk
+
+Types:
+
+```python
+from knock.types.tenants import BulkDeleteResponse, BulkSetResponse
+```
+
+Methods:
+
+- <code title="post /v1/tenants/bulk/delete">client.tenants.bulk.<a href="./src/knock/resources/tenants/bulk.py">delete</a>(\*\*<a href="src/knock/types/tenants/bulk_delete_params.py">params</a>) -> <a href="./src/knock/types/tenants/bulk_delete_response.py">BulkDeleteResponse</a></code>
+- <code title="post /v1/tenants/bulk/set">client.tenants.bulk.<a href="./src/knock/resources/tenants/bulk.py">set</a>(\*\*<a href="src/knock/types/tenants/bulk_set_params.py">params</a>) -> <a href="./src/knock/types/tenants/bulk_set_response.py">BulkSetResponse</a></code>
+
+# BulkOperations
+
+Types:
+
+```python
+from knock.types import BulkOperationGetResponse
+```
+
+Methods:
+
+- <code title="get /v1/bulk_operations/{id}">client.bulk_operations.<a href="./src/knock/resources/bulk_operations.py">get</a>(id) -> <a href="./src/knock/types/bulk_operation_get_response.py">BulkOperationGetResponse</a></code>
+
+# Messages
+
+Types:
+
+```python
+from knock.types import (
+    MessageListResponse,
+    MessageArchiveResponse,
+    MessageGetResponse,
+    MessageGetContentResponse,
+    MessageListActivitiesResponse,
+    MessageListDeliveryLogsResponse,
+    MessageListEventsResponse,
+    MessageMarkAsInteractedResponse,
+    MessageMarkAsReadResponse,
+    MessageMarkAsSeenResponse,
+    MessageMarkAsUnreadResponse,
+    MessageMarkAsUnseenResponse,
+    MessageUnarchiveResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/messages">client.messages.<a href="./src/knock/resources/messages/messages.py">list</a>(\*\*<a href="src/knock/types/message_list_params.py">params</a>) -> <a href="./src/knock/types/message_list_response.py">SyncEntriesCursor[MessageListResponse]</a></code>
+- <code title="put /v1/messages/{message_id}/archived">client.messages.<a href="./src/knock/resources/messages/messages.py">archive</a>(message_id) -> <a href="./src/knock/types/message_archive_response.py">MessageArchiveResponse</a></code>
+- <code title="get /v1/messages/{message_id}">client.messages.<a href="./src/knock/resources/messages/messages.py">get</a>(message_id) -> <a href="./src/knock/types/message_get_response.py">MessageGetResponse</a></code>
+- <code title="get /v1/messages/{message_id}/content">client.messages.<a href="./src/knock/resources/messages/messages.py">get_content</a>(message_id) -> <a href="./src/knock/types/message_get_content_response.py">MessageGetContentResponse</a></code>
+- <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knock/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knock/types/message_list_activities_params.py">params</a>) -> <a href="./src/knock/types/message_list_activities_response.py">SyncItemsCursor[MessageListActivitiesResponse]</a></code>
+- <code title="get /v1/messages/{message_id}/delivery_logs">client.messages.<a href="./src/knock/resources/messages/messages.py">list_delivery_logs</a>(message_id, \*\*<a href="src/knock/types/message_list_delivery_logs_params.py">params</a>) -> <a href="./src/knock/types/message_list_delivery_logs_response.py">SyncEntriesCursor[MessageListDeliveryLogsResponse]</a></code>
+- <code title="get /v1/messages/{message_id}/events">client.messages.<a href="./src/knock/resources/messages/messages.py">list_events</a>(message_id, \*\*<a href="src/knock/types/message_list_events_params.py">params</a>) -> <a href="./src/knock/types/message_list_events_response.py">SyncEntriesCursor[MessageListEventsResponse]</a></code>
+- <code title="put /v1/messages/{message_id}/interacted">client.messages.<a href="./src/knock/resources/messages/messages.py">mark_as_interacted</a>(message_id, \*\*<a href="src/knock/types/message_mark_as_interacted_params.py">params</a>) -> <a href="./src/knock/types/message_mark_as_interacted_response.py">MessageMarkAsInteractedResponse</a></code>
+- <code title="put /v1/messages/{message_id}/read">client.messages.<a href="./src/knock/resources/messages/messages.py">mark_as_read</a>(message_id) -> <a href="./src/knock/types/message_mark_as_read_response.py">MessageMarkAsReadResponse</a></code>
+- <code title="put /v1/messages/{message_id}/seen">client.messages.<a href="./src/knock/resources/messages/messages.py">mark_as_seen</a>(message_id) -> <a href="./src/knock/types/message_mark_as_seen_response.py">MessageMarkAsSeenResponse</a></code>
+- <code title="delete /v1/messages/{message_id}/unread">client.messages.<a href="./src/knock/resources/messages/messages.py">mark_as_unread</a>(message_id) -> <a href="./src/knock/types/message_mark_as_unread_response.py">MessageMarkAsUnreadResponse</a></code>
+- <code title="delete /v1/messages/{message_id}/unseen">client.messages.<a href="./src/knock/resources/messages/messages.py">mark_as_unseen</a>(message_id) -> <a href="./src/knock/types/message_mark_as_unseen_response.py">MessageMarkAsUnseenResponse</a></code>
+- <code title="delete /v1/messages/{message_id}/unarchived">client.messages.<a href="./src/knock/resources/messages/messages.py">unarchive</a>(message_id) -> <a href="./src/knock/types/message_unarchive_response.py">MessageUnarchiveResponse</a></code>
+
+## Batch
+
+Types:
+
+```python
+from knock.types.messages import (
+    BatchArchiveResponse,
+    BatchGetContentResponse,
+    BatchMarkAsInteractedResponse,
+    BatchMarkAsReadResponse,
+    BatchMarkAsSeenResponse,
+    BatchMarkAsUnreadResponse,
+    BatchMarkAsUnseenResponse,
+    BatchUnarchiveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/messages/batch/archived">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">archive</a>(\*\*<a href="src/knock/types/messages/batch_archive_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_archive_response.py">BatchArchiveResponse</a></code>
+- <code title="get /v1/messages/batch/content">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">get_content</a>(\*\*<a href="src/knock/types/messages/batch_get_content_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_get_content_response.py">BatchGetContentResponse</a></code>
+- <code title="post /v1/messages/batch/interacted">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">mark_as_interacted</a>(\*\*<a href="src/knock/types/messages/batch_mark_as_interacted_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_mark_as_interacted_response.py">BatchMarkAsInteractedResponse</a></code>
+- <code title="post /v1/messages/batch/read">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">mark_as_read</a>(\*\*<a href="src/knock/types/messages/batch_mark_as_read_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_mark_as_read_response.py">BatchMarkAsReadResponse</a></code>
+- <code title="post /v1/messages/batch/seen">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">mark_as_seen</a>(\*\*<a href="src/knock/types/messages/batch_mark_as_seen_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_mark_as_seen_response.py">BatchMarkAsSeenResponse</a></code>
+- <code title="post /v1/messages/batch/unread">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">mark_as_unread</a>(\*\*<a href="src/knock/types/messages/batch_mark_as_unread_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_mark_as_unread_response.py">BatchMarkAsUnreadResponse</a></code>
+- <code title="post /v1/messages/batch/unseen">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">mark_as_unseen</a>(\*\*<a href="src/knock/types/messages/batch_mark_as_unseen_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_mark_as_unseen_response.py">BatchMarkAsUnseenResponse</a></code>
+- <code title="post /v1/messages/batch/unarchived">client.messages.batch.<a href="./src/knock/resources/messages/batch.py">unarchive</a>(\*\*<a href="src/knock/types/messages/batch_unarchive_params.py">params</a>) -> <a href="./src/knock/types/messages/batch_unarchive_response.py">BatchUnarchiveResponse</a></code>
+
+# Providers
+
+## Slack
+
+Types:
+
+```python
+from knock.types.providers import (
+    SlackCheckAuthResponse,
+    SlackListChannelsResponse,
+    SlackRevokeAccessResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/providers/slack/{channel_id}/auth_check">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">check_auth</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_check_auth_params.py">params</a>) -> <a href="./src/knock/types/providers/slack_check_auth_response.py">SlackCheckAuthResponse</a></code>
+- <code title="get /v1/providers/slack/{channel_id}/channels">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">list_channels</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_list_channels_params.py">params</a>) -> <a href="./src/knock/types/providers/slack_list_channels_response.py">SlackListChannelsResponse</a></code>
+- <code title="put /v1/providers/slack/{channel_id}/revoke_access">client.providers.slack.<a href="./src/knock/resources/providers/slack.py">revoke_access</a>(channel_id, \*\*<a href="src/knock/types/providers/slack_revoke_access_params.py">params</a>) -> str</code>
+
+## MsTeams
+
+Types:
+
+```python
+from knock.types.providers import (
+    MsTeamCheckAuthResponse,
+    MsTeamListChannelsResponse,
+    MsTeamListTeamsResponse,
+    MsTeamRevokeAccessResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/providers/ms-teams/{channel_id}/auth_check">client.providers.ms_teams.<a href="./src/knock/resources/providers/ms_teams.py">check_auth</a>(channel_id, \*\*<a href="src/knock/types/providers/ms_team_check_auth_params.py">params</a>) -> <a href="./src/knock/types/providers/ms_team_check_auth_response.py">MsTeamCheckAuthResponse</a></code>
+- <code title="get /v1/providers/ms-teams/{channel_id}/channels">client.providers.ms_teams.<a href="./src/knock/resources/providers/ms_teams.py">list_channels</a>(channel_id, \*\*<a href="src/knock/types/providers/ms_team_list_channels_params.py">params</a>) -> <a href="./src/knock/types/providers/ms_team_list_channels_response.py">MsTeamListChannelsResponse</a></code>
+- <code title="get /v1/providers/ms-teams/{channel_id}/teams">client.providers.ms_teams.<a href="./src/knock/resources/providers/ms_teams.py">list_teams</a>(channel_id, \*\*<a href="src/knock/types/providers/ms_team_list_teams_params.py">params</a>) -> <a href="./src/knock/types/providers/ms_team_list_teams_response.py">MsTeamListTeamsResponse</a></code>
+- <code title="put /v1/providers/ms-teams/{channel_id}/revoke_access">client.providers.ms_teams.<a href="./src/knock/resources/providers/ms_teams.py">revoke_access</a>(channel_id, \*\*<a href="src/knock/types/providers/ms_team_revoke_access_params.py">params</a>) -> str</code>
+
+# Workflows
+
+Types:
+
+```python
+from knock.types import WorkflowCancelResponse, WorkflowTriggerResponse
+```
+
+Methods:
+
+- <code title="post /v1/workflows/{key}/cancel">client.workflows.<a href="./src/knock/resources/workflows.py">cancel</a>(key, \*\*<a href="src/knock/types/workflow_cancel_params.py">params</a>) -> str</code>
+- <code title="post /v1/workflows/{key}/trigger">client.workflows.<a href="./src/knock/resources/workflows.py">trigger</a>(key, \*\*<a href="src/knock/types/workflow_trigger_params.py">params</a>) -> <a href="./src/knock/types/workflow_trigger_response.py">WorkflowTriggerResponse</a></code>
+
+# Schedules
+
+Types:
+
+```python
+from knock.types import ScheduleCreateResponse, ScheduleUpdateResponse, ScheduleDeleteResponse
+```
+
+Methods:
+
+- <code title="post /v1/schedules">client.schedules.<a href="./src/knock/resources/schedules.py">create</a>(\*\*<a href="src/knock/types/schedule_create_params.py">params</a>) -> <a href="./src/knock/types/schedule_create_response.py">ScheduleCreateResponse</a></code>
+- <code title="put /v1/schedules">client.schedules.<a href="./src/knock/resources/schedules.py">update</a>(\*\*<a href="src/knock/types/schedule_update_params.py">params</a>) -> <a href="./src/knock/types/schedule_update_response.py">ScheduleUpdateResponse</a></code>
+- <code title="get /v1/schedules">client.schedules.<a href="./src/knock/resources/schedules.py">list</a>(\*\*<a href="src/knock/types/schedule_list_params.py">params</a>) -> <a href="./src/knock/types/shared/schedule.py">SyncEntriesCursor[Schedule]</a></code>
+- <code title="delete /v1/schedules">client.schedules.<a href="./src/knock/resources/schedules.py">delete</a>(\*\*<a href="src/knock/types/schedule_delete_params.py">params</a>) -> <a href="./src/knock/types/schedule_delete_response.py">ScheduleDeleteResponse</a></code>
+
+# Channels
+
+## Bulk
+
+Types:
+
+```python
+from knock.types.channels import BulkUpdateMessageStatusResponse
+```
+
+Methods:
+
+- <code title="post /v1/channels/{channel_id}/messages/bulk/{action}">client.channels.bulk.<a href="./src/knock/resources/channels/bulk.py">update_message_status</a>(action, \*, channel_id, \*\*<a href="src/knock/types/channels/bulk_update_message_status_params.py">params</a>) -> <a href="./src/knock/types/channels/bulk_update_message_status_response.py">BulkUpdateMessageStatusResponse</a></code>
+
+# Audiences
+
+Types:
+
+```python
+from knock.types import (
+    AudienceAddMembersResponse,
+    AudienceListMembersResponse,
+    AudienceRemoveMembersResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/audiences/{key}/members">client.audiences.<a href="./src/knock/resources/audiences.py">add_members</a>(key, \*\*<a href="src/knock/types/audience_add_members_params.py">params</a>) -> str</code>
+- <code title="get /v1/audiences/{key}/members">client.audiences.<a href="./src/knock/resources/audiences.py">list_members</a>(key) -> <a href="./src/knock/types/audience_list_members_response.py">AudienceListMembersResponse</a></code>
+- <code title="delete /v1/audiences/{key}/members">client.audiences.<a href="./src/knock/resources/audiences.py">remove_members</a>(key, \*\*<a href="src/knock/types/audience_remove_members_params.py">params</a>) -> str</code>

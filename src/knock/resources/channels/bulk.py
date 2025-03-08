@@ -50,11 +50,11 @@ class BulkResource(SyncAPIResource):
 
     def update_message_status(
         self,
+        channel_id: str,
         action: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        channel_id: str,
         archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
@@ -144,11 +144,11 @@ class AsyncBulkResource(AsyncAPIResource):
 
     async def update_message_status(
         self,
+        channel_id: str,
         action: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        channel_id: str,
         archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"

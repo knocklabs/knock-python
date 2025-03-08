@@ -15,7 +15,6 @@ from knock.types import (
     ChannelData,
     Subscription,
     PreferenceSet,
-    ObjectListPreferencesResponse,
     ObjectAddSubscriptionsResponse,
     ObjectDeleteSubscriptionsResponse,
 )
@@ -97,8 +96,8 @@ class TestObjects:
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         object_ = client.objects.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(str, object_, path=["response"])
 
@@ -108,8 +107,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.objects.with_raw_response.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -123,8 +122,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.objects.with_streaming_response.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,14 +140,14 @@ class TestObjects:
     def test_path_params_delete(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.delete(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.delete(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -157,8 +156,8 @@ class TestObjects:
     @parametrize
     def test_method_add_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
@@ -169,8 +168,8 @@ class TestObjects:
     @parametrize
     def test_method_add_subscriptions_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
             properties={"key": "bar"},
         )
@@ -182,8 +181,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_add_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         )
 
@@ -198,8 +197,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_add_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         ) as response:
             assert not response.is_closed
@@ -217,15 +216,15 @@ class TestObjects:
     def test_path_params_add_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.add_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
                 recipients=["user_1", "user_2"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.add_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
                 recipients=["user_1", "user_2"],
             )
 
@@ -235,8 +234,8 @@ class TestObjects:
     @parametrize
     def test_method_delete_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
@@ -247,8 +246,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_delete_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         )
 
@@ -263,8 +262,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_delete_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
@@ -282,15 +281,15 @@ class TestObjects:
     def test_path_params_delete_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.delete_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
                 recipients=[{"id": "user_1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.delete_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
                 recipients=[{"id": "user_1"}],
             )
 
@@ -300,8 +299,8 @@ class TestObjects:
     @parametrize
     def test_method_get(self, client: Knock) -> None:
         object_ = client.objects.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -311,8 +310,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_get(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -326,8 +325,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_get(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -344,14 +343,14 @@ class TestObjects:
     def test_path_params_get(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.get(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.get(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -360,9 +359,9 @@ class TestObjects:
     @parametrize
     def test_method_get_channel_data(self, client: Knock) -> None:
         object_ = client.objects.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -372,9 +371,9 @@ class TestObjects:
     @parametrize
     def test_raw_response_get_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -388,9 +387,9 @@ class TestObjects:
     @parametrize
     def test_streaming_response_get_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -407,23 +406,23 @@ class TestObjects:
     def test_path_params_get_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.objects.with_raw_response.get_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
             )
 
     @pytest.mark.skip(
@@ -432,9 +431,9 @@ class TestObjects:
     @parametrize
     def test_method_get_preferences(self, client: Knock) -> None:
         object_ = client.objects.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
@@ -444,9 +443,9 @@ class TestObjects:
     @parametrize
     def test_method_get_preferences_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
             tenant="tenant",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
@@ -457,9 +456,9 @@ class TestObjects:
     @parametrize
     def test_raw_response_get_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -473,9 +472,9 @@ class TestObjects:
     @parametrize
     def test_streaming_response_get_preferences(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,23 +491,23 @@ class TestObjects:
     def test_path_params_get_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.get_preferences(
-                id="id",
                 collection="",
                 object_id="object_id",
+                preference_set_id="default",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.get_preferences(
-                id="id",
                 collection="collection",
                 object_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             client.objects.with_raw_response.get_preferences(
-                id="",
                 collection="collection",
                 object_id="object_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -517,8 +516,8 @@ class TestObjects:
     @parametrize
     def test_method_list_messages(self, client: Knock) -> None:
         object_ = client.objects.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         )
         assert_matches_type(SyncEntriesCursor[Message], object_, path=["response"])
 
@@ -528,8 +527,8 @@ class TestObjects:
     @parametrize
     def test_method_list_messages_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
             after="after",
             before="before",
             channel_id="channel_id",
@@ -552,8 +551,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_list_messages(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         )
 
         assert response.is_closed is True
@@ -567,8 +566,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_list_messages(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -585,74 +584,14 @@ class TestObjects:
     def test_path_params_list_messages(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.list_messages(
-                id="project-123",
                 collection="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.objects.with_raw_response.list_messages(
-                id="",
-                collection="projects",
-            )
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_method_list_preferences(self, client: Knock) -> None:
-        object_ = client.objects.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        )
-        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_raw_response_list_preferences(self, client: Knock) -> None:
-        response = client.objects.with_raw_response.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        object_ = response.parse()
-        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_streaming_response_list_preferences(self, client: Knock) -> None:
-        with client.objects.with_streaming_response.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            object_ = response.parse()
-            assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_path_params_list_preferences(self, client: Knock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
-            client.objects.with_raw_response.list_preferences(
-                object_id="object_id",
-                collection="",
+                object_id="project-123",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
-            client.objects.with_raw_response.list_preferences(
+            client.objects.with_raw_response.list_messages(
+                collection="projects",
                 object_id="",
-                collection="collection",
             )
 
     @pytest.mark.skip(
@@ -661,8 +600,8 @@ class TestObjects:
     @parametrize
     def test_method_list_schedules(self, client: Knock) -> None:
         object_ = client.objects.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(SyncEntriesCursor[Schedule], object_, path=["response"])
 
@@ -672,8 +611,8 @@ class TestObjects:
     @parametrize
     def test_method_list_schedules_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
             after="after",
             before="before",
             page_size=0,
@@ -688,8 +627,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_list_schedules(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -703,8 +642,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_list_schedules(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -721,14 +660,14 @@ class TestObjects:
     def test_path_params_list_schedules(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.list_schedules(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.list_schedules(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -737,8 +676,8 @@ class TestObjects:
     @parametrize
     def test_method_list_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(SyncEntriesCursor[Subscription], object_, path=["response"])
 
@@ -748,11 +687,12 @@ class TestObjects:
     @parametrize
     def test_method_list_subscriptions_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             after="after",
             before="before",
             mode="recipient",
+            objects=["user_123"],
             page_size=0,
             recipients=["user_123"],
         )
@@ -764,8 +704,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_list_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -779,8 +719,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_list_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -797,14 +737,14 @@ class TestObjects:
     def test_path_params_list_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.list_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.list_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -813,8 +753,8 @@ class TestObjects:
     @parametrize
     def test_method_set(self, client: Knock) -> None:
         object_ = client.objects.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -824,8 +764,8 @@ class TestObjects:
     @parametrize
     def test_method_set_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
             preferences={
                 "default": {
@@ -886,8 +826,8 @@ class TestObjects:
     @parametrize
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -901,8 +841,8 @@ class TestObjects:
     @parametrize
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -919,14 +859,14 @@ class TestObjects:
     def test_path_params_set(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.set(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.set(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -935,9 +875,9 @@ class TestObjects:
     @parametrize
     def test_method_set_channel_data(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -948,9 +888,9 @@ class TestObjects:
     @parametrize
     def test_method_set_channel_data_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -961,9 +901,9 @@ class TestObjects:
     @parametrize
     def test_raw_response_set_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
 
@@ -978,9 +918,9 @@ class TestObjects:
     @parametrize
     def test_streaming_response_set_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
@@ -998,25 +938,25 @@ class TestObjects:
     def test_path_params_set_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.objects.with_raw_response.set_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
                 data={"tokens": ["push_token_1"]},
             )
 
@@ -1026,9 +966,9 @@ class TestObjects:
     @parametrize
     def test_method_set_preferences(self, client: Knock) -> None:
         object_ = client.objects.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
@@ -1038,9 +978,9 @@ class TestObjects:
     @parametrize
     def test_method_set_preferences_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -1097,9 +1037,9 @@ class TestObjects:
     @parametrize
     def test_raw_response_set_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -1113,9 +1053,9 @@ class TestObjects:
     @parametrize
     def test_streaming_response_set_preferences(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1132,23 +1072,23 @@ class TestObjects:
     def test_path_params_set_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.set_preferences(
-                id="id",
                 collection="",
                 object_id="object_id",
+                preference_set_id="default",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.set_preferences(
-                id="id",
                 collection="collection",
                 object_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             client.objects.with_raw_response.set_preferences(
-                id="",
                 collection="collection",
                 object_id="object_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -1157,9 +1097,9 @@ class TestObjects:
     @parametrize
     def test_method_unset_channel_data(self, client: Knock) -> None:
         object_ = client.objects.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(str, object_, path=["response"])
 
@@ -1169,9 +1109,9 @@ class TestObjects:
     @parametrize
     def test_raw_response_unset_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -1185,9 +1125,9 @@ class TestObjects:
     @parametrize
     def test_streaming_response_unset_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1204,23 +1144,23 @@ class TestObjects:
     def test_path_params_unset_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.objects.with_raw_response.unset_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
             )
 
 
@@ -1296,8 +1236,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(str, object_, path=["response"])
 
@@ -1307,8 +1247,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -1322,8 +1262,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.delete(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1340,14 +1280,14 @@ class TestAsyncObjects:
     async def test_path_params_delete(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.delete(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.delete(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -1356,8 +1296,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_add_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
@@ -1368,8 +1308,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_add_subscriptions_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
             properties={"key": "bar"},
         )
@@ -1381,8 +1321,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         )
 
@@ -1397,8 +1337,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.add_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=["user_1", "user_2"],
         ) as response:
             assert not response.is_closed
@@ -1416,15 +1356,15 @@ class TestAsyncObjects:
     async def test_path_params_add_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.add_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
                 recipients=["user_1", "user_2"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.add_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
                 recipients=["user_1", "user_2"],
             )
 
@@ -1434,8 +1374,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
@@ -1446,8 +1386,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         )
 
@@ -1462,8 +1402,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.delete_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
@@ -1481,15 +1421,15 @@ class TestAsyncObjects:
     async def test_path_params_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.delete_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
                 recipients=[{"id": "user_1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.delete_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
                 recipients=[{"id": "user_1"}],
             )
 
@@ -1499,8 +1439,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_get(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -1510,8 +1450,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -1525,8 +1465,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1543,14 +1483,14 @@ class TestAsyncObjects:
     async def test_path_params_get(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.get(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.get(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -1559,9 +1499,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_get_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -1571,9 +1511,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -1587,9 +1527,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1606,23 +1546,23 @@ class TestAsyncObjects:
     async def test_path_params_get_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.objects.with_raw_response.get_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
             )
 
     @pytest.mark.skip(
@@ -1631,9 +1571,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_get_preferences(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
@@ -1643,9 +1583,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_get_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
             tenant="tenant",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
@@ -1656,9 +1596,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_get_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -1672,9 +1612,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_get_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1691,23 +1631,23 @@ class TestAsyncObjects:
     async def test_path_params_get_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.get_preferences(
-                id="id",
                 collection="",
                 object_id="object_id",
+                preference_set_id="default",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.get_preferences(
-                id="id",
                 collection="collection",
                 object_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             await async_client.objects.with_raw_response.get_preferences(
-                id="",
                 collection="collection",
                 object_id="object_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -1716,8 +1656,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_messages(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         )
         assert_matches_type(AsyncEntriesCursor[Message], object_, path=["response"])
 
@@ -1727,8 +1667,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_messages_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
             after="after",
             before="before",
             channel_id="channel_id",
@@ -1751,8 +1691,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_list_messages(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         )
 
         assert response.is_closed is True
@@ -1766,8 +1706,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_list_messages(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_messages(
-            id="project-123",
             collection="projects",
+            object_id="project-123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1784,74 +1724,14 @@ class TestAsyncObjects:
     async def test_path_params_list_messages(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.list_messages(
-                id="project-123",
                 collection="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.objects.with_raw_response.list_messages(
-                id="",
-                collection="projects",
-            )
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_method_list_preferences(self, async_client: AsyncKnock) -> None:
-        object_ = await async_client.objects.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        )
-        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_raw_response_list_preferences(self, async_client: AsyncKnock) -> None:
-        response = await async_client.objects.with_raw_response.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        object_ = await response.parse()
-        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_streaming_response_list_preferences(self, async_client: AsyncKnock) -> None:
-        async with async_client.objects.with_streaming_response.list_preferences(
-            object_id="object_id",
-            collection="collection",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            object_ = await response.parse()
-            assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_path_params_list_preferences(self, async_client: AsyncKnock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
-            await async_client.objects.with_raw_response.list_preferences(
-                object_id="object_id",
-                collection="",
+                object_id="project-123",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
-            await async_client.objects.with_raw_response.list_preferences(
+            await async_client.objects.with_raw_response.list_messages(
+                collection="projects",
                 object_id="",
-                collection="collection",
             )
 
     @pytest.mark.skip(
@@ -1860,8 +1740,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_schedules(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(AsyncEntriesCursor[Schedule], object_, path=["response"])
 
@@ -1871,8 +1751,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_schedules_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
             after="after",
             before="before",
             page_size=0,
@@ -1887,8 +1767,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_list_schedules(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -1902,8 +1782,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_list_schedules(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_schedules(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1920,14 +1800,14 @@ class TestAsyncObjects:
     async def test_path_params_list_schedules(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.list_schedules(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.list_schedules(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -1936,8 +1816,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(AsyncEntriesCursor[Subscription], object_, path=["response"])
 
@@ -1947,11 +1827,12 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_subscriptions_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
             after="after",
             before="before",
             mode="recipient",
+            objects=["user_123"],
             page_size=0,
             recipients=["user_123"],
         )
@@ -1963,8 +1844,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_list_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -1978,8 +1859,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_list_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_subscriptions(
-            object_id="object_id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1996,14 +1877,14 @@ class TestAsyncObjects:
     async def test_path_params_list_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.list_subscriptions(
-                object_id="object_id",
                 collection="",
+                object_id="object_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.list_subscriptions(
-                object_id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -2012,8 +1893,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -2023,8 +1904,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
             preferences={
                 "default": {
@@ -2085,8 +1966,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         )
 
         assert response.is_closed is True
@@ -2100,8 +1981,8 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set(
-            id="id",
             collection="collection",
+            object_id="object_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2118,14 +1999,14 @@ class TestAsyncObjects:
     async def test_path_params_set(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.set(
-                id="id",
                 collection="",
+                object_id="object_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.set(
-                id="",
                 collection="collection",
+                object_id="",
             )
 
     @pytest.mark.skip(
@@ -2134,9 +2015,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -2147,9 +2028,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set_channel_data_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -2160,9 +2041,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
 
@@ -2177,9 +2058,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
@@ -2197,25 +2078,25 @@ class TestAsyncObjects:
     async def test_path_params_set_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
                 data={"tokens": ["push_token_1"]},
             )
 
@@ -2225,9 +2106,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set_preferences(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
@@ -2237,9 +2118,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_set_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -2296,9 +2177,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_set_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -2312,9 +2193,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_set_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set_preferences(
-            id="id",
             collection="collection",
             object_id="object_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2331,23 +2212,23 @@ class TestAsyncObjects:
     async def test_path_params_set_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.set_preferences(
-                id="id",
                 collection="",
                 object_id="object_id",
+                preference_set_id="default",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.set_preferences(
-                id="id",
                 collection="collection",
                 object_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             await async_client.objects.with_raw_response.set_preferences(
-                id="",
                 collection="collection",
                 object_id="object_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -2356,9 +2237,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_unset_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(str, object_, path=["response"])
 
@@ -2368,9 +2249,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -2384,9 +2265,9 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection="collection",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2403,21 +2284,21 @@ class TestAsyncObjects:
     async def test_path_params_unset_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="",
                 object_id="object_id",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 collection="collection",
                 object_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.objects.with_raw_response.unset_channel_data(
-                channel_id="",
                 collection="collection",
                 object_id="object_id",
+                channel_id="",
             )

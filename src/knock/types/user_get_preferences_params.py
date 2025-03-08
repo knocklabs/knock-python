@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["UserGetPreferencesParams"]
 
 
 class UserGetPreferencesParams(TypedDict, total=False):
-    user_id: Required[str]
-
     tenant: str
     """Tenant ID"""

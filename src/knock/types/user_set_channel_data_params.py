@@ -15,8 +15,6 @@ __all__ = ["UserSetChannelDataParams", "Data"]
 
 
 class UserSetChannelDataParams(TypedDict, total=False):
-    user_id: Required[str]
-
     data: Required[Data]
     """Channel data for push providers"""
 

@@ -11,6 +11,4 @@ __all__ = ["ObjectDeleteSubscriptionsParams"]
 
 
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
-    collection: Required[str]
-
     recipients: Required[List[RecipientRequestParam]]

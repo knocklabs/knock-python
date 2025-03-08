@@ -24,8 +24,8 @@ class TestBulk:
     @parametrize
     def test_method_update_message_status(self, client: Knock) -> None:
         bulk = client.channels.bulk.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -35,8 +35,8 @@ class TestBulk:
     @parametrize
     def test_method_update_message_status_with_all_params(self, client: Knock) -> None:
         bulk = client.channels.bulk.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
             archived="exclude",
             delivery_status="queued",
             engagement_status="seen",
@@ -56,8 +56,8 @@ class TestBulk:
     @parametrize
     def test_raw_response_update_message_status(self, client: Knock) -> None:
         response = client.channels.bulk.with_raw_response.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         )
 
         assert response.is_closed is True
@@ -71,8 +71,8 @@ class TestBulk:
     @parametrize
     def test_streaming_response_update_message_status(self, client: Knock) -> None:
         with client.channels.bulk.with_streaming_response.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -89,8 +89,8 @@ class TestBulk:
     def test_path_params_update_message_status(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.channels.bulk.with_raw_response.update_message_status(
-                action="seen",
                 channel_id="",
+                action="seen",
             )
 
 
@@ -103,8 +103,8 @@ class TestAsyncBulk:
     @parametrize
     async def test_method_update_message_status(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.channels.bulk.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -114,8 +114,8 @@ class TestAsyncBulk:
     @parametrize
     async def test_method_update_message_status_with_all_params(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.channels.bulk.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
             archived="exclude",
             delivery_status="queued",
             engagement_status="seen",
@@ -135,8 +135,8 @@ class TestAsyncBulk:
     @parametrize
     async def test_raw_response_update_message_status(self, async_client: AsyncKnock) -> None:
         response = await async_client.channels.bulk.with_raw_response.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         )
 
         assert response.is_closed is True
@@ -150,8 +150,8 @@ class TestAsyncBulk:
     @parametrize
     async def test_streaming_response_update_message_status(self, async_client: AsyncKnock) -> None:
         async with async_client.channels.bulk.with_streaming_response.update_message_status(
-            action="seen",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,6 +168,6 @@ class TestAsyncBulk:
     async def test_path_params_update_message_status(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.channels.bulk.with_raw_response.update_message_status(
-                action="seen",
                 channel_id="",
+                action="seen",
             )

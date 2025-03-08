@@ -291,8 +291,8 @@ class TestUsers:
     @parametrize
     def test_method_get_channel_data(self, client: Knock) -> None:
         user = client.users.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -302,8 +302,8 @@ class TestUsers:
     @parametrize
     def test_raw_response_get_channel_data(self, client: Knock) -> None:
         response = client.users.with_raw_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -317,8 +317,8 @@ class TestUsers:
     @parametrize
     def test_streaming_response_get_channel_data(self, client: Knock) -> None:
         with client.users.with_streaming_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -335,14 +335,14 @@ class TestUsers:
     def test_path_params_get_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.users.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.users.with_raw_response.get_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
             )
 
     @pytest.mark.skip(
@@ -351,8 +351,8 @@ class TestUsers:
     @parametrize
     def test_method_get_preferences(self, client: Knock) -> None:
         user = client.users.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
 
@@ -362,8 +362,8 @@ class TestUsers:
     @parametrize
     def test_method_get_preferences_with_all_params(self, client: Knock) -> None:
         user = client.users.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
             tenant="tenant",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
@@ -374,8 +374,8 @@ class TestUsers:
     @parametrize
     def test_raw_response_get_preferences(self, client: Knock) -> None:
         response = client.users.with_raw_response.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -389,8 +389,8 @@ class TestUsers:
     @parametrize
     def test_streaming_response_get_preferences(self, client: Knock) -> None:
         with client.users.with_streaming_response.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -407,14 +407,14 @@ class TestUsers:
     def test_path_params_get_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.users.with_raw_response.get_preferences(
-                id="id",
                 user_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             client.users.with_raw_response.get_preferences(
-                id="",
                 user_id="user_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -728,8 +728,8 @@ class TestUsers:
     @parametrize
     def test_method_set_channel_data(self, client: Knock) -> None:
         user = client.users.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -740,8 +740,8 @@ class TestUsers:
     @parametrize
     def test_method_set_channel_data_with_all_params(self, client: Knock) -> None:
         user = client.users.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -752,8 +752,8 @@ class TestUsers:
     @parametrize
     def test_raw_response_set_channel_data(self, client: Knock) -> None:
         response = client.users.with_raw_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
 
@@ -768,8 +768,8 @@ class TestUsers:
     @parametrize
     def test_streaming_response_set_channel_data(self, client: Knock) -> None:
         with client.users.with_streaming_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
@@ -787,15 +787,15 @@ class TestUsers:
     def test_path_params_set_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.users.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.users.with_raw_response.set_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
                 data={"tokens": ["push_token_1"]},
             )
 
@@ -805,8 +805,8 @@ class TestUsers:
     @parametrize
     def test_method_set_preferences(self, client: Knock) -> None:
         user = client.users.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
 
@@ -816,8 +816,8 @@ class TestUsers:
     @parametrize
     def test_method_set_preferences_with_all_params(self, client: Knock) -> None:
         user = client.users.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -874,8 +874,8 @@ class TestUsers:
     @parametrize
     def test_raw_response_set_preferences(self, client: Knock) -> None:
         response = client.users.with_raw_response.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -889,8 +889,8 @@ class TestUsers:
     @parametrize
     def test_streaming_response_set_preferences(self, client: Knock) -> None:
         with client.users.with_streaming_response.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -907,14 +907,14 @@ class TestUsers:
     def test_path_params_set_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.users.with_raw_response.set_preferences(
-                id="id",
                 user_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             client.users.with_raw_response.set_preferences(
-                id="",
                 user_id="user_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -923,8 +923,8 @@ class TestUsers:
     @parametrize
     def test_method_unset_channel_data(self, client: Knock) -> None:
         user = client.users.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(str, user, path=["response"])
 
@@ -934,8 +934,8 @@ class TestUsers:
     @parametrize
     def test_raw_response_unset_channel_data(self, client: Knock) -> None:
         response = client.users.with_raw_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -949,8 +949,8 @@ class TestUsers:
     @parametrize
     def test_streaming_response_unset_channel_data(self, client: Knock) -> None:
         with client.users.with_streaming_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -967,14 +967,14 @@ class TestUsers:
     def test_path_params_unset_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.users.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.users.with_raw_response.unset_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
             )
 
 
@@ -1245,8 +1245,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_get_channel_data(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -1256,8 +1256,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.with_raw_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -1271,8 +1271,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.users.with_streaming_response.get_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1289,14 +1289,14 @@ class TestAsyncUsers:
     async def test_path_params_get_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.get_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.users.with_raw_response.get_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
             )
 
     @pytest.mark.skip(
@@ -1305,8 +1305,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_get_preferences(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
 
@@ -1316,8 +1316,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_get_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
             tenant="tenant",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
@@ -1328,8 +1328,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_get_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.with_raw_response.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -1343,8 +1343,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_get_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.users.with_streaming_response.get_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1361,14 +1361,14 @@ class TestAsyncUsers:
     async def test_path_params_get_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.get_preferences(
-                id="id",
                 user_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             await async_client.users.with_raw_response.get_preferences(
-                id="",
                 user_id="user_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -1682,8 +1682,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_set_channel_data(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -1694,8 +1694,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_set_channel_data_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -1706,8 +1706,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.with_raw_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         )
 
@@ -1722,8 +1722,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.users.with_streaming_response.set_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
@@ -1741,15 +1741,15 @@ class TestAsyncUsers:
     async def test_path_params_set_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.set_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.users.with_raw_response.set_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
                 data={"tokens": ["push_token_1"]},
             )
 
@@ -1759,8 +1759,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_set_preferences(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
         assert_matches_type(PreferenceSet, user, path=["response"])
 
@@ -1770,8 +1770,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_set_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -1828,8 +1828,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_set_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.with_raw_response.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         )
 
         assert response.is_closed is True
@@ -1843,8 +1843,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_set_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.users.with_streaming_response.set_preferences(
-            id="id",
             user_id="user_id",
+            preference_set_id="default",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1861,14 +1861,14 @@ class TestAsyncUsers:
     async def test_path_params_set_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.set_preferences(
-                id="id",
                 user_id="",
+                preference_set_id="default",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preference_set_id` but received ''"):
             await async_client.users.with_raw_response.set_preferences(
-                id="",
                 user_id="user_id",
+                preference_set_id="",
             )
 
     @pytest.mark.skip(
@@ -1877,8 +1877,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_unset_channel_data(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(str, user, path=["response"])
 
@@ -1888,8 +1888,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.with_raw_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -1903,8 +1903,8 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.users.with_streaming_response.unset_channel_data(
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             user_id="user_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1921,12 +1921,12 @@ class TestAsyncUsers:
     async def test_path_params_unset_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.unset_channel_data(
-                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 user_id="",
+                channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.users.with_raw_response.unset_channel_data(
-                channel_id="",
                 user_id="user_id",
+                channel_id="",
             )

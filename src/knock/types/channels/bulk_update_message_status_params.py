@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,8 +12,6 @@ __all__ = ["BulkUpdateMessageStatusParams"]
 
 
 class BulkUpdateMessageStatusParams(TypedDict, total=False):
-    channel_id: Required[str]
-
     archived: Literal["exclude", "include", "only"]
 
     delivery_status: Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]

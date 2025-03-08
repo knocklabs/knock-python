@@ -259,9 +259,9 @@ class UsersResource(SyncAPIResource):
 
     def get_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,9 +295,9 @@ class UsersResource(SyncAPIResource):
 
     def get_preferences(
         self,
-        id: str,
-        *,
         user_id: str,
+        preference_set_id: str,
+        *,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -322,10 +322,10 @@ class UsersResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return self._get(
-            f"/v1/users/{user_id}/preferences/{id}",
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -621,9 +621,9 @@ class UsersResource(SyncAPIResource):
 
     def set_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         data: user_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -661,9 +661,9 @@ class UsersResource(SyncAPIResource):
 
     def set_preferences(
         self,
-        id: str,
-        *,
         user_id: str,
+        preference_set_id: str,
+        *,
         categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -698,10 +698,10 @@ class UsersResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return self._put(
-            f"/v1/users/{user_id}/preferences/{id}",
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
             body=maybe_transform(
                 {
                     "categories": categories,
@@ -718,9 +718,9 @@ class UsersResource(SyncAPIResource):
 
     def unset_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -948,9 +948,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def get_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -984,9 +984,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def get_preferences(
         self,
-        id: str,
-        *,
         user_id: str,
+        preference_set_id: str,
+        *,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1011,10 +1011,10 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/preferences/{id}",
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1312,9 +1312,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def set_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         data: user_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1352,9 +1352,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def set_preferences(
         self,
-        id: str,
-        *,
         user_id: str,
+        preference_set_id: str,
+        *,
         categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -1389,10 +1389,10 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/preferences/{id}",
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
             body=await async_maybe_transform(
                 {
                     "categories": categories,
@@ -1409,9 +1409,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def unset_channel_data(
         self,
+        user_id: str,
         channel_id: str,
         *,
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

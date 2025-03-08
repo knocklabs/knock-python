@@ -11,8 +11,6 @@ __all__ = ["ObjectAddSubscriptionsParams"]
 
 
 class ObjectAddSubscriptionsParams(TypedDict, total=False):
-    collection: Required[str]
-
     recipients: Required[List[RecipientRequestParam]]
     """The recipients to subscribe to the object"""
 

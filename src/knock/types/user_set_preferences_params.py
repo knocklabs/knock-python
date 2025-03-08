@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypeAlias, TypedDict
 
 from .shared_params.condition import Condition
 from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
@@ -18,8 +18,6 @@ __all__ = [
 
 
 class UserSetPreferencesParams(TypedDict, total=False):
-    user_id: Required[str]
-
     categories: Optional[Dict[str, Categories]]
     """
     A setting for a preference set, where the key in the object is the category, and

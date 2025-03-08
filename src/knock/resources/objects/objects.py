@@ -49,7 +49,6 @@ from ...types.channel_data import ChannelData
 from ...types.subscription import Subscription
 from ...types.preference_set import PreferenceSet
 from ...types.recipient_request_param import RecipientRequestParam
-from ...types.object_list_preferences_response import ObjectListPreferencesResponse
 from ...types.inline_channel_data_request_param import InlineChannelDataRequestParam
 from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
 from ...types.preference_set_channel_types_param import PreferenceSetChannelTypesParam
@@ -139,9 +138,9 @@ class ObjectsResource(SyncAPIResource):
 
     def delete(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -163,10 +162,10 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._delete(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -175,9 +174,9 @@ class ObjectsResource(SyncAPIResource):
 
     def add_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -226,9 +225,9 @@ class ObjectsResource(SyncAPIResource):
 
     def delete_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -266,9 +265,9 @@ class ObjectsResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,10 +289,10 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -302,10 +301,10 @@ class ObjectsResource(SyncAPIResource):
 
     def get_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -341,10 +340,10 @@ class ObjectsResource(SyncAPIResource):
 
     def get_preferences(
         self,
-        id: str,
-        *,
         collection: str,
         object_id: str,
+        preference_set_id: str,
+        *,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -371,10 +370,10 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -387,9 +386,9 @@ class ObjectsResource(SyncAPIResource):
 
     def list_messages(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         channel_id: str | NotGiven = NOT_GIVEN,
@@ -452,10 +451,10 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/messages",
+            f"/v1/objects/{collection}/{object_id}/messages",
             page=SyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -484,47 +483,11 @@ class ObjectsResource(SyncAPIResource):
             model=Message,
         )
 
-    def list_preferences(
-        self,
-        object_id: str,
-        *,
-        collection: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectListPreferencesResponse:
-        """
-        List preference sets
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectListPreferencesResponse,
-        )
-
     def list_schedules(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
@@ -561,10 +524,10 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/schedules",
+            f"/v1/objects/{collection}/{object_id}/schedules",
             page=SyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -587,12 +550,13 @@ class ObjectsResource(SyncAPIResource):
 
     def list_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
+        objects: List[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         recipients: List[object_list_subscriptions_params.Recipient] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -614,6 +578,8 @@ class ObjectsResource(SyncAPIResource):
           before: The cursor to fetch entries before
 
           mode: Mode of the request
+
+          objects: Objects to filter by (only used if mode is `recipient`)
 
           page_size: The page size to fetch
 
@@ -644,6 +610,7 @@ class ObjectsResource(SyncAPIResource):
                         "after": after,
                         "before": before,
                         "mode": mode,
+                        "objects": objects,
                         "page_size": page_size,
                         "recipients": recipients,
                     },
@@ -655,9 +622,9 @@ class ObjectsResource(SyncAPIResource):
 
     def set(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -685,10 +652,10 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             body=maybe_transform(
                 {
                     "channel_data": channel_data,
@@ -704,10 +671,10 @@ class ObjectsResource(SyncAPIResource):
 
     def set_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         data: object_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -747,10 +714,10 @@ class ObjectsResource(SyncAPIResource):
 
     def set_preferences(
         self,
-        id: str,
-        *,
         collection: str,
         object_id: str,
+        preference_set_id: str,
+        *,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -785,10 +752,10 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             body=maybe_transform(
                 {
                     "categories": categories,
@@ -805,10 +772,10 @@ class ObjectsResource(SyncAPIResource):
 
     def unset_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -923,9 +890,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -947,10 +914,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._delete(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -959,9 +926,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def add_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1010,9 +977,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def delete_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1050,9 +1017,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1074,10 +1041,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1086,10 +1053,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def get_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1125,10 +1092,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def get_preferences(
         self,
-        id: str,
-        *,
         collection: str,
         object_id: str,
+        preference_set_id: str,
+        *,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1155,10 +1122,10 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1173,9 +1140,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     def list_messages(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         channel_id: str | NotGiven = NOT_GIVEN,
@@ -1238,10 +1205,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/messages",
+            f"/v1/objects/{collection}/{object_id}/messages",
             page=AsyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1270,47 +1237,11 @@ class AsyncObjectsResource(AsyncAPIResource):
             model=Message,
         )
 
-    async def list_preferences(
-        self,
-        object_id: str,
-        *,
-        collection: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectListPreferencesResponse:
-        """
-        List preference sets
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return await self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectListPreferencesResponse,
-        )
-
     def list_schedules(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
@@ -1347,10 +1278,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/schedules",
+            f"/v1/objects/{collection}/{object_id}/schedules",
             page=AsyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1373,12 +1304,13 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     def list_subscriptions(
         self,
+        collection: str,
         object_id: str,
         *,
-        collection: str,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
+        objects: List[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         recipients: List[object_list_subscriptions_params.Recipient] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1400,6 +1332,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           before: The cursor to fetch entries before
 
           mode: Mode of the request
+
+          objects: Objects to filter by (only used if mode is `recipient`)
 
           page_size: The page size to fetch
 
@@ -1430,6 +1364,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                         "after": after,
                         "before": before,
                         "mode": mode,
+                        "objects": objects,
                         "page_size": page_size,
                         "recipients": recipients,
                     },
@@ -1441,9 +1376,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def set(
         self,
-        id: str,
-        *,
         collection: str,
+        object_id: str,
+        *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1471,10 +1406,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{id}",
+            f"/v1/objects/{collection}/{object_id}",
             body=await async_maybe_transform(
                 {
                     "channel_data": channel_data,
@@ -1490,10 +1425,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def set_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         data: object_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1533,10 +1468,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def set_preferences(
         self,
-        id: str,
-        *,
         collection: str,
         object_id: str,
+        preference_set_id: str,
+        *,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -1571,10 +1506,10 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             body=await async_maybe_transform(
                 {
                     "categories": categories,
@@ -1591,10 +1526,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
     async def unset_channel_data(
         self,
-        channel_id: str,
-        *,
         collection: str,
         object_id: str,
+        channel_id: str,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1657,9 +1592,6 @@ class ObjectsResourceWithRawResponse:
         self.list_messages = to_raw_response_wrapper(
             objects.list_messages,
         )
-        self.list_preferences = to_raw_response_wrapper(
-            objects.list_preferences,
-        )
         self.list_schedules = to_raw_response_wrapper(
             objects.list_schedules,
         )
@@ -1711,9 +1643,6 @@ class AsyncObjectsResourceWithRawResponse:
         )
         self.list_messages = async_to_raw_response_wrapper(
             objects.list_messages,
-        )
-        self.list_preferences = async_to_raw_response_wrapper(
-            objects.list_preferences,
         )
         self.list_schedules = async_to_raw_response_wrapper(
             objects.list_schedules,
@@ -1767,9 +1696,6 @@ class ObjectsResourceWithStreamingResponse:
         self.list_messages = to_streamed_response_wrapper(
             objects.list_messages,
         )
-        self.list_preferences = to_streamed_response_wrapper(
-            objects.list_preferences,
-        )
         self.list_schedules = to_streamed_response_wrapper(
             objects.list_schedules,
         )
@@ -1821,9 +1747,6 @@ class AsyncObjectsResourceWithStreamingResponse:
         )
         self.list_messages = async_to_streamed_response_wrapper(
             objects.list_messages,
-        )
-        self.list_preferences = async_to_streamed_response_wrapper(
-            objects.list_preferences,
         )
         self.list_schedules = async_to_streamed_response_wrapper(
             objects.list_schedules,

@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ObjectListSchedulesParams"]
 
 
 class ObjectListSchedulesParams(TypedDict, total=False):
-    collection: Required[str]
-
     after: str
     """The cursor to fetch entries after"""
 

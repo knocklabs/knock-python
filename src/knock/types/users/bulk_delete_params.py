@@ -3,15 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Required, Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["BulkDeleteParams"]
 
 
 class BulkDeleteParams(TypedDict, total=False):
-    query_user_ids: Required[Annotated[List[str], PropertyInfo(alias="user_ids")]]
-    """The IDs of the users to delete"""
-
-    body_user_ids: Required[Annotated[List[str], PropertyInfo(alias="user_ids")]]
+    user_ids: Required[List[str]]

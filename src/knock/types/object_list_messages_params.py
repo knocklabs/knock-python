@@ -3,14 +3,12 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ObjectListMessagesParams"]
 
 
 class ObjectListMessagesParams(TypedDict, total=False):
-    collection: Required[str]
-
     after: str
     """The cursor to fetch entries after"""
 

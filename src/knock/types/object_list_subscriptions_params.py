@@ -5,12 +5,10 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ObjectListSubscriptionsParams", "Recipient", "RecipientObjectReference"]
+__all__ = ["ObjectListSubscriptionsParams", "Object", "ObjectObjectReference", "Recipient", "RecipientObjectReference"]
 
 
 class ObjectListSubscriptionsParams(TypedDict, total=False):
-    collection: Required[str]
-
     after: str
     """The cursor to fetch entries after"""
 
@@ -20,11 +18,25 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     mode: Literal["recipient", "object"]
     """Mode of the request"""
 
+    objects: List[Object]
+    """Objects to filter by (only used if mode is `recipient`)"""
+
     page_size: int
     """The page size to fetch"""
 
     recipients: List[Recipient]
     """Recipients to filter by (only used if mode is `object`)"""
+
+
+class ObjectObjectReference(TypedDict, total=False):
+    id: Required[str]
+    """An object identifier"""
+
+    collection: Required[str]
+    """The collection the object belongs to"""
+
+
+Object: TypeAlias = Union[str, ObjectObjectReference]
 
 
 class RecipientObjectReference(TypedDict, total=False):

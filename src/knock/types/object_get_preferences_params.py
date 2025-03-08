@@ -2,15 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ObjectGetPreferencesParams"]
 
 
 class ObjectGetPreferencesParams(TypedDict, total=False):
-    collection: Required[str]
-
-    object_id: Required[str]
-
     tenant: str
     """Tenant ID"""

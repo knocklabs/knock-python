@@ -72,7 +72,7 @@ class TestTenants:
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         tenant = client.tenants.delete(
-            "id",
+            "tenant_id",
         )
         assert_matches_type(str, tenant, path=["response"])
 
@@ -82,7 +82,7 @@ class TestTenants:
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.tenants.with_raw_response.delete(
-            "id",
+            "tenant_id",
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestTenants:
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.tenants.with_streaming_response.delete(
-            "id",
+            "tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,7 +111,7 @@ class TestTenants:
     )
     @parametrize
     def test_path_params_delete(self, client: Knock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             client.tenants.with_raw_response.delete(
                 "",
             )
@@ -122,7 +122,7 @@ class TestTenants:
     @parametrize
     def test_method_get(self, client: Knock) -> None:
         tenant = client.tenants.get(
-            "id",
+            "tenant_id",
         )
         assert_matches_type(Tenant, tenant, path=["response"])
 
@@ -132,7 +132,7 @@ class TestTenants:
     @parametrize
     def test_raw_response_get(self, client: Knock) -> None:
         response = client.tenants.with_raw_response.get(
-            "id",
+            "tenant_id",
         )
 
         assert response.is_closed is True
@@ -146,7 +146,7 @@ class TestTenants:
     @parametrize
     def test_streaming_response_get(self, client: Knock) -> None:
         with client.tenants.with_streaming_response.get(
-            "id",
+            "tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -161,7 +161,7 @@ class TestTenants:
     )
     @parametrize
     def test_path_params_get(self, client: Knock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             client.tenants.with_raw_response.get(
                 "",
             )
@@ -172,7 +172,7 @@ class TestTenants:
     @parametrize
     def test_method_set(self, client: Knock) -> None:
         tenant = client.tenants.set(
-            id="id",
+            tenant_id="tenant_id",
         )
         assert_matches_type(Tenant, tenant, path=["response"])
 
@@ -182,7 +182,7 @@ class TestTenants:
     @parametrize
     def test_method_set_with_all_params(self, client: Knock) -> None:
         tenant = client.tenants.set(
-            id="id",
+            tenant_id="tenant_id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
             preferences={
                 "default": {
@@ -300,7 +300,7 @@ class TestTenants:
     @parametrize
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.tenants.with_raw_response.set(
-            id="id",
+            tenant_id="tenant_id",
         )
 
         assert response.is_closed is True
@@ -314,7 +314,7 @@ class TestTenants:
     @parametrize
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.tenants.with_streaming_response.set(
-            id="id",
+            tenant_id="tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -329,9 +329,9 @@ class TestTenants:
     )
     @parametrize
     def test_path_params_set(self, client: Knock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             client.tenants.with_raw_response.set(
-                id="",
+                tenant_id="",
             )
 
 
@@ -390,7 +390,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.delete(
-            "id",
+            "tenant_id",
         )
         assert_matches_type(str, tenant, path=["response"])
 
@@ -400,7 +400,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.tenants.with_raw_response.delete(
-            "id",
+            "tenant_id",
         )
 
         assert response.is_closed is True
@@ -414,7 +414,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.tenants.with_streaming_response.delete(
-            "id",
+            "tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -429,7 +429,7 @@ class TestAsyncTenants:
     )
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncKnock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             await async_client.tenants.with_raw_response.delete(
                 "",
             )
@@ -440,7 +440,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_method_get(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.get(
-            "id",
+            "tenant_id",
         )
         assert_matches_type(Tenant, tenant, path=["response"])
 
@@ -450,7 +450,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncKnock) -> None:
         response = await async_client.tenants.with_raw_response.get(
-            "id",
+            "tenant_id",
         )
 
         assert response.is_closed is True
@@ -464,7 +464,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncKnock) -> None:
         async with async_client.tenants.with_streaming_response.get(
-            "id",
+            "tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,7 +479,7 @@ class TestAsyncTenants:
     )
     @parametrize
     async def test_path_params_get(self, async_client: AsyncKnock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             await async_client.tenants.with_raw_response.get(
                 "",
             )
@@ -490,7 +490,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.set(
-            id="id",
+            tenant_id="tenant_id",
         )
         assert_matches_type(Tenant, tenant, path=["response"])
 
@@ -500,7 +500,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_method_set_with_all_params(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.set(
-            id="id",
+            tenant_id="tenant_id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
             preferences={
                 "default": {
@@ -618,7 +618,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.tenants.with_raw_response.set(
-            id="id",
+            tenant_id="tenant_id",
         )
 
         assert response.is_closed is True
@@ -632,7 +632,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.tenants.with_streaming_response.set(
-            id="id",
+            tenant_id="tenant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -647,7 +647,7 @@ class TestAsyncTenants:
     )
     @parametrize
     async def test_path_params_set(self, async_client: AsyncKnock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tenant_id` but received ''"):
             await async_client.tenants.with_raw_response.set(
-                id="",
+                tenant_id="",
             )

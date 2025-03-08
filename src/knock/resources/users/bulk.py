@@ -51,8 +51,7 @@ class BulkResource(SyncAPIResource):
     def delete(
         self,
         *,
-        query_user_ids: List[str],
-        body_user_ids: List[str],
+        user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,8 +63,6 @@ class BulkResource(SyncAPIResource):
         Bulk delete users
 
         Args:
-          query_user_ids: The IDs of the users to delete
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -76,13 +73,9 @@ class BulkResource(SyncAPIResource):
         """
         return self._post(
             "/v1/users/bulk/delete",
-            body=maybe_transform({"body_user_ids": body_user_ids}, bulk_delete_params.BulkDeleteParams),
+            body=maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_user_ids": query_user_ids}, bulk_delete_params.BulkDeleteParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BulkOperation,
         )
@@ -184,8 +177,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        query_user_ids: List[str],
-        body_user_ids: List[str],
+        user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,8 +189,6 @@ class AsyncBulkResource(AsyncAPIResource):
         Bulk delete users
 
         Args:
-          query_user_ids: The IDs of the users to delete
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,15 +199,9 @@ class AsyncBulkResource(AsyncAPIResource):
         """
         return await self._post(
             "/v1/users/bulk/delete",
-            body=await async_maybe_transform({"body_user_ids": body_user_ids}, bulk_delete_params.BulkDeleteParams),
+            body=await async_maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"query_user_ids": query_user_ids}, bulk_delete_params.BulkDeleteParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BulkOperation,
         )

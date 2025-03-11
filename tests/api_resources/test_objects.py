@@ -7,19 +7,21 @@ from typing import Any, cast
 
 import pytest
 
-from knock import Knock, AsyncKnock
-from knock.types import (
+from knockapi import Knock, AsyncKnock
+from tests.utils import assert_matches_type
+from knockapi.types import (
     Object,
     Message,
     Schedule,
-    ChannelData,
-    Subscription,
-    PreferenceSet,
     ObjectAddSubscriptionsResponse,
     ObjectDeleteSubscriptionsResponse,
 )
-from tests.utils import assert_matches_type
-from knock.pagination import SyncEntriesCursor, AsyncEntriesCursor
+from knockapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
+from knockapi.types.recipients import (
+    ChannelData,
+    Subscription,
+    PreferenceSet,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

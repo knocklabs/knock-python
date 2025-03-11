@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from knock import Knock, BaseModel, AsyncKnock
-from knock._response import (
+from knockapi import Knock, BaseModel, AsyncKnock
+from knockapi._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from knock._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from knock._streaming import Stream
-from knock._base_client import FinalRequestOptions
+from knockapi._streaming import Stream
+from knockapi._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]): ...
@@ -37,7 +37,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'knock._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'knockapi._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -68,7 +68,7 @@ def test_response_parse_mismatched_basemodel(client: Knock) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from knock import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from knockapi import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -86,7 +86,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncKnoc
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from knock import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from knockapi import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 

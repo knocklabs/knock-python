@@ -21,12 +21,17 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from knock import Knock, AsyncKnock, APIResponseValidationError
-from knock._types import Omit
-from knock._models import BaseModel, FinalRequestOptions
-from knock._constants import RAW_RESPONSE_HEADER
-from knock._exceptions import KnockError, APIStatusError, APITimeoutError, APIResponseValidationError
-from knock._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
+from knockapi import Knock, AsyncKnock, APIResponseValidationError
+from knockapi._types import Omit
+from knockapi._models import BaseModel, FinalRequestOptions
+from knockapi._constants import RAW_RESPONSE_HEADER
+from knockapi._exceptions import KnockError, APIStatusError, APITimeoutError, APIResponseValidationError
+from knockapi._base_client import (
+    DEFAULT_TIMEOUT,
+    HTTPX_DEFAULT_TIMEOUT,
+    BaseClient,
+    make_request_options,
+)
 
 from .utils import update_env
 
@@ -228,10 +233,10 @@ class TestKnock:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "knock/_legacy_response.py",
-                        "knock/_response.py",
+                        "knockapi/_legacy_response.py",
+                        "knockapi/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "knock/_compat.py",
+                        "knockapi/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -732,7 +737,7 @@ class TestKnock:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/users/user_id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -744,7 +749,7 @@ class TestKnock:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/users/user_id").mock(return_value=httpx.Response(500))
@@ -757,7 +762,7 @@ class TestKnock:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
@@ -788,7 +793,7 @@ class TestKnock:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(self, client: Knock, failures_before_success: int, respx_mock: MockRouter) -> None:
         client = client.with_options(max_retries=4)
@@ -809,7 +814,7 @@ class TestKnock:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
         self, client: Knock, failures_before_success: int, respx_mock: MockRouter
@@ -1010,10 +1015,10 @@ class TestAsyncKnock:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "knock/_legacy_response.py",
-                        "knock/_response.py",
+                        "knockapi/_legacy_response.py",
+                        "knockapi/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "knock/_compat.py",
+                        "knockapi/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1518,7 +1523,7 @@ class TestAsyncKnock:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/users/user_id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1530,7 +1535,7 @@ class TestAsyncKnock:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/users/user_id").mock(return_value=httpx.Response(500))
@@ -1543,7 +1548,7 @@ class TestAsyncKnock:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
@@ -1575,7 +1580,7 @@ class TestAsyncKnock:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
@@ -1601,7 +1606,7 @@ class TestAsyncKnock:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("knock._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
@@ -1635,8 +1640,8 @@ class TestAsyncKnock:
         import nest_asyncio
         import threading
 
-        from knock._utils import asyncify
-        from knock._base_client import get_platform 
+        from knockapi._utils import asyncify
+        from knockapi._base_client import get_platform 
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()

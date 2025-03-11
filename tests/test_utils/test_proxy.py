@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from knock._utils import LazyProxy
+from knockapi._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

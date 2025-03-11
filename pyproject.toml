@@ -1,5 +1,5 @@
 [project]
-name = "knock"
+name = "knockapi"
 version = "0.0.1-alpha.0"
 description = "The official Python library for the knock API"
 dynamic = ["readme"]
@@ -76,14 +76,14 @@ format = { chain = [
 "check:ruff" = "ruff check ."
 "fix:ruff" = "ruff check --fix ."
 
-"check:importable" = "python -c 'import knock'"
+"check:importable" = "python -c 'import knockapi'"
 
 typecheck = { chain = [
   "typecheck:pyright",
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes knock --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes knockapi --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -96,7 +96,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/knock"]
+packages = ["src/knockapi"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -199,7 +199,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["knock", "tests"]
+known-first-party = ["knockapi", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

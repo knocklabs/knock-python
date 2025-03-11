@@ -7,16 +7,16 @@ from typing import Any, cast
 
 import pytest
 
-from knock import Knock, AsyncKnock
-from knock.types import (
+from knockapi import Knock, AsyncKnock
+from tests.utils import assert_matches_type
+from knockapi.types import (
     Message,
     Activity,
     MessageEvent,
     MessageDeliveryLog,
     MessageGetContentResponse,
 )
-from tests.utils import assert_matches_type
-from knock.pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
+from knockapi.pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from knock import Knock, AsyncKnock
+from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
-from knock.types.providers import (
+from knockapi.types.providers import (
     MsTeamCheckAuthResponse,
     MsTeamListTeamsResponse,
     MsTeamListChannelsResponse,

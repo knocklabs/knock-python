@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from knock._utils import PropertyInfo
-from knock._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from knock._models import BaseModel, construct_type
+from knockapi._utils import PropertyInfo
+from knockapi._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from knockapi._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from knock import Knock, AsyncKnock
-from knock.types import BulkOperation
+from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
+from knockapi.types import BulkOperation
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -7,10 +7,10 @@ from typing import Any, cast
 
 import pytest
 
-from knock import Knock, AsyncKnock
+from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
-from knock.pagination import SyncSlackChannelsCursor, AsyncSlackChannelsCursor
-from knock.types.providers import (
+from knockapi.pagination import SyncSlackChannelsCursor, AsyncSlackChannelsCursor
+from knockapi.types.providers import (
     SlackCheckAuthResponse,
     SlackListChannelsResponse,
 )

@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from knock._types import Omit, NoneType
-from knock._utils import (
+from knockapi._types import Omit, NoneType
+from knockapi._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -18,8 +18,8 @@ from knock._utils import (
     is_annotated_type,
     is_type_alias_type,
 )
-from knock._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from knock._models import BaseModel
+from knockapi._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from knockapi._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

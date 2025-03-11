@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from knock._qs import Querystring, stringify
+from knockapi._qs import Querystring, stringify
 
 
 def test_empty() -> None:

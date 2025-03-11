@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from knock import Knock, AsyncKnock
-from knock._streaming import Stream, AsyncStream, ServerSentEvent
+from knockapi import Knock, AsyncKnock
+from knockapi._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

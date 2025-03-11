@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from knock._types import FileTypes
-from knock._utils import extract_files
+from knockapi._types import FileTypes
+from knockapi._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from knock._types import Base64FileInput
-from knock._utils import (
+from knockapi._types import Base64FileInput
+from knockapi._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from knock._compat import PYDANTIC_V2
-from knock._models import BaseModel
+from knockapi._compat import PYDANTIC_V2
+from knockapi._models import BaseModel
 
 _T = TypeVar("_T")
 

@@ -147,6 +147,30 @@ for user in first_page.entries:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from knock import Knock
+
+client = Knock()
+
+preference_set = client.users.set_preferences(
+    user_id="user_id",
+    preference_set_id="default",
+    channel_types={
+        "chat": True,
+        "email": True,
+        "http": True,
+        "in_app_feed": True,
+        "push": True,
+        "sms": True,
+    },
+)
+print(preference_set.channel_types)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `knock.APIConnectionError` is raised.

@@ -37,8 +37,8 @@ class TestBulk:
         bulk = client.channels.bulk.update_message_status(
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             action="seen",
-            archived="exclude",
-            delivery_status="queued",
+            archived="include",
+            delivery_status="delivered",
             engagement_status="seen",
             has_tenant=True,
             newer_than=parse_datetime("2024-01-01T00:00:00Z"),
@@ -116,8 +116,8 @@ class TestAsyncBulk:
         bulk = await async_client.channels.bulk.update_message_status(
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             action="seen",
-            archived="exclude",
-            delivery_status="queued",
+            archived="include",
+            delivery_status="delivered",
             engagement_status="seen",
             has_tenant=True,
             newer_than=parse_datetime("2024-01-01T00:00:00Z"),

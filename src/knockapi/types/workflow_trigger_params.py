@@ -26,17 +26,14 @@ class WorkflowTriggerParams(TypedDict, total=False):
     cancellation of any workflow runs associated with this trigger.
     """
 
-    data: Optional[Dict[str, object]]
+    data: Optional[Dict[str, str]]
     """An optional map of data to be used in the workflow.
 
     This data will be available to the workflow as a map in the `data` field.
     """
 
     recipients: List[RecipientRequestParam]
-    """The recipients to trigger the workflow for.
-
-    Cannot exceed 1000 recipients in a single trigger.
-    """
+    """The recipients to trigger the workflow for."""
 
     tenant: Optional[InlineTenantRequestParam]
     """An inline tenant request"""

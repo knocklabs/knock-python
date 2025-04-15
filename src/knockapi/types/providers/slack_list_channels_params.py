@@ -18,14 +18,14 @@ class QueryOptions(TypedDict, total=False):
     cursor: str
     """A cursor to paginate through the channels"""
 
-    exclude_archived: bool
+    exclude_archived: str
     """Whether to exclude archived channels"""
 
-    limit: int
+    limit: str
     """The number of channels to return"""
 
     team_id: str
     """The ID of the Slack team to get channels for"""
 
     types: str
-    """The types of channels to return (comma separated list)"""
+    """The types of channels to return"""

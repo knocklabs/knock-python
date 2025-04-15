@@ -2,17 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -22,7 +16,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.channels import bulk_update_message_status_params
 from ...types.bulk_operation import BulkOperation
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
@@ -55,22 +48,6 @@ class BulkResource(SyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
-        delivery_status: Literal[
-            "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
-        ]
-        | NotGiven = NOT_GIVEN,
-        engagement_status: Literal[
-            "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
-        ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: List[str] | NotGiven = NOT_GIVEN,
-        tenants: List[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,12 +55,8 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Bulk update messages for a specific channel.
-
-        The channel is specified by the
-        `channel_id` parameter. The action to perform is specified by the `action`
-        parameter, where the action is a status change action (e.g. `archive`,
-        `unarchive`).
+        """
+        Bulk update messages for a specific channel
 
         Args:
           extra_headers: Send extra headers
@@ -100,21 +73,6 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return self._post(
             f"/v1/channels/{channel_id}/messages/bulk/{action}",
-            body=maybe_transform(
-                {
-                    "archived": archived,
-                    "delivery_status": delivery_status,
-                    "engagement_status": engagement_status,
-                    "has_tenant": has_tenant,
-                    "newer_than": newer_than,
-                    "older_than": older_than,
-                    "recipient_ids": recipient_ids,
-                    "tenants": tenants,
-                    "trigger_data": trigger_data,
-                    "workflows": workflows,
-                },
-                bulk_update_message_status_params.BulkUpdateMessageStatusParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -149,22 +107,6 @@ class AsyncBulkResource(AsyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
-        delivery_status: Literal[
-            "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
-        ]
-        | NotGiven = NOT_GIVEN,
-        engagement_status: Literal[
-            "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
-        ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: List[str] | NotGiven = NOT_GIVEN,
-        tenants: List[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,12 +114,8 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Bulk update messages for a specific channel.
-
-        The channel is specified by the
-        `channel_id` parameter. The action to perform is specified by the `action`
-        parameter, where the action is a status change action (e.g. `archive`,
-        `unarchive`).
+        """
+        Bulk update messages for a specific channel
 
         Args:
           extra_headers: Send extra headers
@@ -194,21 +132,6 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return await self._post(
             f"/v1/channels/{channel_id}/messages/bulk/{action}",
-            body=await async_maybe_transform(
-                {
-                    "archived": archived,
-                    "delivery_status": delivery_status,
-                    "engagement_status": engagement_status,
-                    "has_tenant": has_tenant,
-                    "newer_than": newer_than,
-                    "older_than": older_than,
-                    "recipient_ids": recipient_ids,
-                    "tenants": tenants,
-                    "trigger_data": trigger_data,
-                    "workflows": workflows,
-                },
-                bulk_update_message_status_params.BulkUpdateMessageStatusParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

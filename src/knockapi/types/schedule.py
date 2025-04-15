@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -31,7 +31,7 @@ class Schedule(BaseModel):
     actor: Optional[Recipient] = None
     """A recipient, which is either a user or an object"""
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
 
     last_occurrence_at: Optional[datetime] = None
 

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -20,9 +20,9 @@ __all__ = [
     "BatchGetContentResponseItemDataMessageChatContentTemplateBlock",
     "BatchGetContentResponseItemDataMessageInAppFeedContent",
     "BatchGetContentResponseItemDataMessageInAppFeedContentBlock",
-    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedContentBlock",
-    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock",
-    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton",
+    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockContentBlock",
+    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlock",
+    "BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlockButton",
 ]
 
 
@@ -63,7 +63,7 @@ class BatchGetContentResponseItemDataMessagePushContent(BaseModel):
 
     title: str
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
 
 
 class BatchGetContentResponseItemDataMessageChatContentTemplateBlock(BaseModel):
@@ -78,7 +78,7 @@ class BatchGetContentResponseItemDataMessageChatContentTemplate(BaseModel):
     blocks: Optional[List[BatchGetContentResponseItemDataMessageChatContentTemplateBlock]] = None
     """The structured blocks of the message"""
 
-    json_content: Optional[Dict[str, object]] = None
+    json_content: Optional[object] = None
     """The JSON content of the message"""
 
     summary: Optional[str] = None
@@ -87,15 +87,15 @@ class BatchGetContentResponseItemDataMessageChatContentTemplate(BaseModel):
 class BatchGetContentResponseItemDataMessageChatContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
 
-    connection: Dict[str, object]
+    connection: object
     """The channel data connection from the recipient to the underlying provider"""
 
     template: BatchGetContentResponseItemDataMessageChatContentTemplate
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[object] = None
 
 
-class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
+class BatchGetContentResponseItemDataMessageInAppFeedContentBlockContentBlock(BaseModel):
     content: str
 
     name: str
@@ -105,7 +105,7 @@ class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFee
     type: Literal["markdown", "text"]
 
 
-class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseModel):
+class BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlockButton(BaseModel):
     action: str
 
     label: str
@@ -113,8 +113,8 @@ class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFee
     name: str
 
 
-class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
-    buttons: List[BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton]
+class BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlock(BaseModel):
+    buttons: List[BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlockButton]
 
     name: str
 
@@ -122,8 +122,8 @@ class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFee
 
 
 BatchGetContentResponseItemDataMessageInAppFeedContentBlock: TypeAlias = Union[
-    BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedContentBlock,
-    BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock,
+    BatchGetContentResponseItemDataMessageInAppFeedContentBlockContentBlock,
+    BatchGetContentResponseItemDataMessageInAppFeedContentBlockButtonSetBlock,
 ]
 
 

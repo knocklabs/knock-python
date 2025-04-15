@@ -5,40 +5,22 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = [
-    "MsTeamsChannelData",
-    "Connection",
-    "ConnectionMsTeamsTokenConnection",
-    "ConnectionMsTeamsIncomingWebhookConnection",
-    "ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook",
-]
+__all__ = ["MsTeamsChannelData", "Connection", "ConnectionTokenConnection", "ConnectionIncomingWebhookConnection"]
 
 
-class ConnectionMsTeamsTokenConnection(BaseModel):
-    ms_teams_channel_id: Optional[str] = None
-    """The Microsoft Teams channel ID"""
+class ConnectionTokenConnection(BaseModel):
+    access_token: Optional[str] = None
 
-    ms_teams_team_id: Optional[str] = None
-    """The Microsoft Teams team ID"""
+    channel_id: Optional[str] = None
 
-    ms_teams_tenant_id: Optional[str] = None
-    """The Microsoft Teams tenant ID"""
-
-    ms_teams_user_id: Optional[str] = None
-    """The Microsoft Teams user ID"""
+    user_id: Optional[str] = None
 
 
-class ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook(BaseModel):
+class ConnectionIncomingWebhookConnection(BaseModel):
     url: str
-    """The URL of the incoming webhook"""
 
 
-class ConnectionMsTeamsIncomingWebhookConnection(BaseModel):
-    incoming_webhook: ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook
-    """The incoming webhook"""
-
-
-Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeamsIncomingWebhookConnection]
+Connection: TypeAlias = Union[ConnectionTokenConnection, ConnectionIncomingWebhookConnection]
 
 
 class MsTeamsChannelData(BaseModel):

@@ -10,3 +10,4 @@ __all__ = ["BulkDeleteParams"]
 
 class BulkDeleteParams(TypedDict, total=False):
     user_ids: Required[List[str]]
+    """The IDs of the users to delete"""

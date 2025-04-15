@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -19,9 +19,9 @@ __all__ = [
     "DataMessageChatContentTemplateBlock",
     "DataMessageInAppFeedContent",
     "DataMessageInAppFeedContentBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton",
+    "DataMessageInAppFeedContentBlockContentBlock",
+    "DataMessageInAppFeedContentBlockButtonSetBlock",
+    "DataMessageInAppFeedContentBlockButtonSetBlockButton",
 ]
 
 
@@ -62,7 +62,7 @@ class DataMessagePushContent(BaseModel):
 
     title: str
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
 
 
 class DataMessageChatContentTemplateBlock(BaseModel):
@@ -77,7 +77,7 @@ class DataMessageChatContentTemplate(BaseModel):
     blocks: Optional[List[DataMessageChatContentTemplateBlock]] = None
     """The structured blocks of the message"""
 
-    json_content: Optional[Dict[str, object]] = None
+    json_content: Optional[object] = None
     """The JSON content of the message"""
 
     summary: Optional[str] = None
@@ -86,15 +86,15 @@ class DataMessageChatContentTemplate(BaseModel):
 class DataMessageChatContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
 
-    connection: Dict[str, object]
+    connection: object
     """The channel data connection from the recipient to the underlying provider"""
 
     template: DataMessageChatContentTemplate
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[object] = None
 
 
-class DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
+class DataMessageInAppFeedContentBlockContentBlock(BaseModel):
     content: str
 
     name: str
@@ -104,7 +104,7 @@ class DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
     type: Literal["markdown", "text"]
 
 
-class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseModel):
+class DataMessageInAppFeedContentBlockButtonSetBlockButton(BaseModel):
     action: str
 
     label: str
@@ -112,8 +112,8 @@ class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseM
     name: str
 
 
-class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
-    buttons: List[DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton]
+class DataMessageInAppFeedContentBlockButtonSetBlock(BaseModel):
+    buttons: List[DataMessageInAppFeedContentBlockButtonSetBlockButton]
 
     name: str
 
@@ -121,8 +121,7 @@ class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
 
 
 DataMessageInAppFeedContentBlock: TypeAlias = Union[
-    DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock,
-    DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock,
+    DataMessageInAppFeedContentBlockContentBlock, DataMessageInAppFeedContentBlockButtonSetBlock
 ]
 
 

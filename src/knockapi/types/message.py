@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Message", "Actor", "ActorObjectReference", "Recipient", "RecipientObjectReference", "Source"]
+__all__ = ["Message", "Actor", "ActorUnionMember1", "Recipient", "RecipientUnionMember1", "Source"]
 
 
-class ActorObjectReference(BaseModel):
+class ActorUnionMember1(BaseModel):
     id: str
     """An object identifier"""
 
@@ -19,10 +19,10 @@ class ActorObjectReference(BaseModel):
     """The collection the object belongs to"""
 
 
-Actor: TypeAlias = Union[str, ActorObjectReference]
+Actor: TypeAlias = Union[str, ActorUnionMember1]
 
 
-class RecipientObjectReference(BaseModel):
+class RecipientUnionMember1(BaseModel):
     id: str
     """An object identifier"""
 
@@ -30,7 +30,7 @@ class RecipientObjectReference(BaseModel):
     """The collection the object belongs to"""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientUnionMember1]
 
 
 class Source(BaseModel):
@@ -64,7 +64,7 @@ class Message(BaseModel):
     clicked_at: Optional[datetime] = None
     """Timestamp when message was clicked"""
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
     """Additional message data"""
 
     engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
@@ -79,7 +79,7 @@ class Message(BaseModel):
     link_clicked_at: Optional[datetime] = None
     """Timestamp when a link in the message was clicked"""
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[object] = None
     """Message metadata"""
 
     read_at: Optional[datetime] = None

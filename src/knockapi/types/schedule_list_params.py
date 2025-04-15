@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["ScheduleListParams", "Recipient", "RecipientObjectReference"]
+__all__ = ["ScheduleListParams", "Recipient", "RecipientUnionMember1"]
 
 
 class ScheduleListParams(TypedDict, total=False):
@@ -28,7 +28,7 @@ class ScheduleListParams(TypedDict, total=False):
     """Filter by tenant"""
 
 
-class RecipientObjectReference(TypedDict, total=False):
+class RecipientUnionMember1(TypedDict, total=False):
     id: Required[str]
     """An object identifier"""
 
@@ -36,4 +36,4 @@ class RecipientObjectReference(TypedDict, total=False):
     """The collection the object belongs to"""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientUnionMember1]

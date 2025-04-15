@@ -1,59 +1,79 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
-from .preference_set_channel_type_setting import PreferenceSetChannelTypeSetting
+from ..shared.condition import Condition
 
-__all__ = ["PreferenceSetChannelTypes", "Chat", "Email", "HTTP", "InAppFeed", "Push", "SMS"]
+__all__ = [
+    "PreferenceSetChannelTypes",
+    "Chat",
+    "ChatConditions",
+    "Email",
+    "EmailConditions",
+    "HTTP",
+    "HTTPConditions",
+    "InAppFeed",
+    "InAppFeedConditions",
+    "Push",
+    "PushConditions",
+    "SMS",
+    "SMSConditions",
+]
 
-Chat: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-Email: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
+class ChatConditions(BaseModel):
+    conditions: List[Condition]
 
-HTTP: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-InAppFeed: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
+Chat: TypeAlias = Union[bool, ChatConditions]
 
-Push: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
+class EmailConditions(BaseModel):
+    conditions: List[Condition]
+
+
+Email: TypeAlias = Union[bool, EmailConditions]
+
+
+class HTTPConditions(BaseModel):
+    conditions: List[Condition]
+
+
+HTTP: TypeAlias = Union[bool, HTTPConditions]
+
+
+class InAppFeedConditions(BaseModel):
+    conditions: List[Condition]
+
+
+InAppFeed: TypeAlias = Union[bool, InAppFeedConditions]
+
+
+class PushConditions(BaseModel):
+    conditions: List[Condition]
+
+
+Push: TypeAlias = Union[bool, PushConditions]
+
+
+class SMSConditions(BaseModel):
+    conditions: List[Condition]
+
+
+SMS: TypeAlias = Union[bool, SMSConditions]
 
 
 class PreferenceSetChannelTypes(BaseModel):
     chat: Optional[Chat] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """
 
     email: Optional[Email] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """
 
     http: Optional[HTTP] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """
 
     in_app_feed: Optional[InAppFeed] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """
 
     push: Optional[Push] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """
 
     sms: Optional[SMS] = None
-    """A set of settings for a channel type.
-
-    Currently, this can only be a list of conditions to apply.
-    """

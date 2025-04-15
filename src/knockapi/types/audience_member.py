@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -14,7 +13,7 @@ __all__ = ["AudienceMember"]
 class AudienceMember(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
 
-    added_at: datetime
+    added_at: str
 
     user: User
     """A user object"""

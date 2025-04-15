@@ -5,40 +5,22 @@ from __future__ import annotations
 from typing import Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = [
-    "MsTeamsChannelDataParam",
-    "Connection",
-    "ConnectionMsTeamsTokenConnection",
-    "ConnectionMsTeamsIncomingWebhookConnection",
-    "ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook",
-]
+__all__ = ["MsTeamsChannelDataParam", "Connection", "ConnectionTokenConnection", "ConnectionIncomingWebhookConnection"]
 
 
-class ConnectionMsTeamsTokenConnection(TypedDict, total=False):
-    ms_teams_channel_id: Optional[str]
-    """The Microsoft Teams channel ID"""
+class ConnectionTokenConnection(TypedDict, total=False):
+    access_token: Optional[str]
 
-    ms_teams_team_id: Optional[str]
-    """The Microsoft Teams team ID"""
+    channel_id: Optional[str]
 
-    ms_teams_tenant_id: Optional[str]
-    """The Microsoft Teams tenant ID"""
-
-    ms_teams_user_id: Optional[str]
-    """The Microsoft Teams user ID"""
+    user_id: Optional[str]
 
 
-class ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
+class ConnectionIncomingWebhookConnection(TypedDict, total=False):
     url: Required[str]
-    """The URL of the incoming webhook"""
 
 
-class ConnectionMsTeamsIncomingWebhookConnection(TypedDict, total=False):
-    incoming_webhook: Required[ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook]
-    """The incoming webhook"""
-
-
-Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeamsIncomingWebhookConnection]
+Connection: TypeAlias = Union[ConnectionTokenConnection, ConnectionIncomingWebhookConnection]
 
 
 class MsTeamsChannelDataParam(TypedDict, total=False):

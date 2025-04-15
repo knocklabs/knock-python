@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List
 
 import httpx
 
@@ -19,11 +19,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.users import bulk_delete_params, bulk_identify_params, bulk_set_preferences_params
+from ...types.users import bulk_delete_params
 from ..._base_client import make_request_options
 from ...types.bulk_operation import BulkOperation
-from ...types.inline_identify_user_request_param import InlineIdentifyUserRequestParam
-from ...types.recipients.preference_set_request_param import PreferenceSetRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -60,9 +58,11 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete users
+        Bulk deletes a list of users
 
         Args:
+          user_ids: The IDs of the users to delete
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,9 +73,12 @@ class BulkResource(SyncAPIResource):
         """
         return self._post(
             "/v1/users/bulk/delete",
-            body=maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             ),
             cast_to=BulkOperation,
         )
@@ -83,7 +86,6 @@ class BulkResource(SyncAPIResource):
     def identify(
         self,
         *,
-        users: Iterable[InlineIdentifyUserRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,21 +93,9 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk identifies users
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Bulk identifies a list of users"""
         return self._post(
             "/v1/users/bulk/identify",
-            body=maybe_transform({"users": users}, bulk_identify_params.BulkIdentifyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,8 +105,6 @@ class BulkResource(SyncAPIResource):
     def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequestParam,
-        user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,29 +112,9 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk set preferences
-
-        Args:
-          preferences: Set preferences for a recipient
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Bulk sets user preferences"""
         return self._post(
             "/v1/users/bulk/preferences",
-            body=maybe_transform(
-                {
-                    "preferences": preferences,
-                    "user_ids": user_ids,
-                },
-                bulk_set_preferences_params.BulkSetPreferencesParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -186,9 +154,11 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete users
+        Bulk deletes a list of users
 
         Args:
+          user_ids: The IDs of the users to delete
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -199,9 +169,12 @@ class AsyncBulkResource(AsyncAPIResource):
         """
         return await self._post(
             "/v1/users/bulk/delete",
-            body=await async_maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             ),
             cast_to=BulkOperation,
         )
@@ -209,7 +182,6 @@ class AsyncBulkResource(AsyncAPIResource):
     async def identify(
         self,
         *,
-        users: Iterable[InlineIdentifyUserRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,21 +189,9 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk identifies users
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Bulk identifies a list of users"""
         return await self._post(
             "/v1/users/bulk/identify",
-            body=await async_maybe_transform({"users": users}, bulk_identify_params.BulkIdentifyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -241,8 +201,6 @@ class AsyncBulkResource(AsyncAPIResource):
     async def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequestParam,
-        user_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,29 +208,9 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk set preferences
-
-        Args:
-          preferences: Set preferences for a recipient
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Bulk sets user preferences"""
         return await self._post(
             "/v1/users/bulk/preferences",
-            body=await async_maybe_transform(
-                {
-                    "preferences": preferences,
-                    "user_ids": user_ids,
-                },
-                bulk_set_preferences_params.BulkSetPreferencesParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

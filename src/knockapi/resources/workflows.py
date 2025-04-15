@@ -66,9 +66,7 @@ class WorkflowsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        When invoked for a workflow using a specific workflow key and cancellation key,
-        will cancel any queued workflow runs associated with that key/cancellation key
-        pair. Can optionally be provided one or more recipients to scope the request to.
+        Issues a cancellation request to inflight workflow runs
 
         Args:
           cancellation_key: The cancellation key supplied to the workflow trigger endpoint to use for
@@ -109,7 +107,7 @@ class WorkflowsResource(SyncAPIResource):
         *,
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        data: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -119,13 +117,12 @@ class WorkflowsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WorkflowTriggerResponse:
-        """
-        Trigger a workflow specified by the key to run for the given recipients, using
-        the parameters provided. Returns an identifier for the workflow run request. All
-        workflow runs are executed asynchronously.
+        """Triggers a workflow
 
         Args:
-          actor: Specifies a recipient in a request. This can either be a user identifier
+          actor: Specifies a recipient in a request.
+
+        This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
@@ -135,8 +132,7 @@ class WorkflowsResource(SyncAPIResource):
           data: An optional map of data to be used in the workflow. This data will be available
               to the workflow as a map in the `data` field.
 
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for.
 
           tenant: An inline tenant request
 
@@ -204,9 +200,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        When invoked for a workflow using a specific workflow key and cancellation key,
-        will cancel any queued workflow runs associated with that key/cancellation key
-        pair. Can optionally be provided one or more recipients to scope the request to.
+        Issues a cancellation request to inflight workflow runs
 
         Args:
           cancellation_key: The cancellation key supplied to the workflow trigger endpoint to use for
@@ -247,7 +241,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        data: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -257,13 +251,12 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WorkflowTriggerResponse:
-        """
-        Trigger a workflow specified by the key to run for the given recipients, using
-        the parameters provided. Returns an identifier for the workflow run request. All
-        workflow runs are executed asynchronously.
+        """Triggers a workflow
 
         Args:
-          actor: Specifies a recipient in a request. This can either be a user identifier
+          actor: Specifies a recipient in a request.
+
+        This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
@@ -273,8 +266,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           data: An optional map of data to be used in the workflow. This data will be available
               to the workflow as a map in the `data` field.
 
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for.
 
           tenant: An inline tenant request
 

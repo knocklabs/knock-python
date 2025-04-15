@@ -20,9 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.tenants import bulk_set_params, bulk_delete_params
+from ...types.tenants import bulk_delete_params
 from ...types.bulk_operation import BulkOperation
-from ...types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -59,7 +58,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete tenants
+        Deletes tenants in bulk
 
         Args:
           tenant_ids: The IDs of the tenants to delete
@@ -87,7 +86,6 @@ class BulkResource(SyncAPIResource):
     def set(
         self,
         *,
-        tenants: List[InlineTenantRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,21 +93,9 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk set tenants
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Sets tenants in bulk"""
         return self._post(
             "/v1/tenants/bulk/set",
-            body=maybe_transform({"tenants": tenants}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -149,7 +135,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete tenants
+        Deletes tenants in bulk
 
         Args:
           tenant_ids: The IDs of the tenants to delete
@@ -177,7 +163,6 @@ class AsyncBulkResource(AsyncAPIResource):
     async def set(
         self,
         *,
-        tenants: List[InlineTenantRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,21 +170,9 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """
-        Bulk set tenants
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Sets tenants in bulk"""
         return await self._post(
             "/v1/tenants/bulk/set",
-            body=await async_maybe_transform({"tenants": tenants}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

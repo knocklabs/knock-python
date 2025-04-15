@@ -96,7 +96,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Message]:
         """
-        List messages
+        Returns a paginated list of messages
 
         Args:
           after: The cursor to fetch entries after
@@ -175,7 +175,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Archive message
+        Archives a message
 
         Args:
           extra_headers: Send extra headers
@@ -208,7 +208,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Get message
+        Retrieves a single message
 
         Args:
           extra_headers: Send extra headers
@@ -241,8 +241,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageGetContentResponse:
         """
-        Returns the fully rendered contents of a message, where the response depends on
-        the channel the message was sent on.
+        Get the contents of a message
 
         Args:
           extra_headers: Send extra headers
@@ -279,7 +278,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncItemsCursor[Activity]:
         """
-        List activities
+        Get activities for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -336,7 +335,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[MessageDeliveryLog]:
         """
-        List delivery logs
+        Get delivery logs for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -390,7 +389,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[MessageEvent]:
         """
-        List events
+        Get events for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -442,7 +441,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as interacted
+        Marks a message as interacted with
 
         Args:
           metadata: Metadata about the interaction
@@ -480,7 +479,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as read
+        Marks a message as read
 
         Args:
           extra_headers: Send extra headers
@@ -513,7 +512,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as seen
+        Marks a message as seen
 
         Args:
           extra_headers: Send extra headers
@@ -546,7 +545,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as unread
+        Marks a message as unread
 
         Args:
           extra_headers: Send extra headers
@@ -579,7 +578,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as unseen
+        Marks a message as unseen
 
         Args:
           extra_headers: Send extra headers
@@ -612,7 +611,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Unarchive message
+        Unarchives a message
 
         Args:
           extra_headers: Send extra headers
@@ -684,7 +683,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
         """
-        List messages
+        Returns a paginated list of messages
 
         Args:
           after: The cursor to fetch entries after
@@ -763,7 +762,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Archive message
+        Archives a message
 
         Args:
           extra_headers: Send extra headers
@@ -796,7 +795,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Get message
+        Retrieves a single message
 
         Args:
           extra_headers: Send extra headers
@@ -829,8 +828,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageGetContentResponse:
         """
-        Returns the fully rendered contents of a message, where the response depends on
-        the channel the message was sent on.
+        Get the contents of a message
 
         Args:
           extra_headers: Send extra headers
@@ -867,7 +865,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Activity, AsyncItemsCursor[Activity]]:
         """
-        List activities
+        Get activities for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -924,7 +922,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[MessageDeliveryLog, AsyncEntriesCursor[MessageDeliveryLog]]:
         """
-        List delivery logs
+        Get delivery logs for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -978,7 +976,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[MessageEvent, AsyncEntriesCursor[MessageEvent]]:
         """
-        List events
+        Get events for a message
 
         Args:
           after: The cursor to fetch entries after
@@ -1030,7 +1028,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as interacted
+        Marks a message as interacted with
 
         Args:
           metadata: Metadata about the interaction
@@ -1068,7 +1066,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as read
+        Marks a message as read
 
         Args:
           extra_headers: Send extra headers
@@ -1101,7 +1099,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as seen
+        Marks a message as seen
 
         Args:
           extra_headers: Send extra headers
@@ -1134,7 +1132,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as unread
+        Marks a message as unread
 
         Args:
           extra_headers: Send extra headers
@@ -1167,7 +1165,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Mark message as unseen
+        Marks a message as unseen
 
         Args:
           extra_headers: Send extra headers
@@ -1200,7 +1198,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Unarchive message
+        Unarchives a message
 
         Args:
           extra_headers: Send extra headers

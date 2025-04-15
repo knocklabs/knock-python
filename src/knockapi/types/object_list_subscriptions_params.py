@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ObjectListSubscriptionsParams", "Object", "ObjectObjectReference", "Recipient", "RecipientObjectReference"]
+__all__ = ["ObjectListSubscriptionsParams", "Object", "ObjectUnionMember1", "Recipient", "RecipientUnionMember1"]
 
 
 class ObjectListSubscriptionsParams(TypedDict, total=False):
@@ -28,7 +28,7 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     """Recipients to filter by (only used if mode is `object`)"""
 
 
-class ObjectObjectReference(TypedDict, total=False):
+class ObjectUnionMember1(TypedDict, total=False):
     id: Required[str]
     """An object identifier"""
 
@@ -36,10 +36,10 @@ class ObjectObjectReference(TypedDict, total=False):
     """The collection the object belongs to"""
 
 
-Object: TypeAlias = Union[str, ObjectObjectReference]
+Object: TypeAlias = Union[str, ObjectUnionMember1]
 
 
-class RecipientObjectReference(TypedDict, total=False):
+class RecipientUnionMember1(TypedDict, total=False):
     id: Required[str]
     """An object identifier"""
 
@@ -47,4 +47,4 @@ class RecipientObjectReference(TypedDict, total=False):
     """The collection the object belongs to"""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientUnionMember1]

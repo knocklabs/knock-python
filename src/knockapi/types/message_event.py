@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageEvent", "Recipient", "RecipientObjectReference"]
+__all__ = ["MessageEvent", "Recipient", "RecipientUnionMember1"]
 
 
-class RecipientObjectReference(BaseModel):
+class RecipientUnionMember1(BaseModel):
     id: str
     """An object identifier"""
 
@@ -19,7 +19,7 @@ class RecipientObjectReference(BaseModel):
     """The collection the object belongs to"""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientUnionMember1]
 
 
 class MessageEvent(BaseModel):
@@ -51,5 +51,5 @@ class MessageEvent(BaseModel):
         "message.unarchived",
     ]
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
     """The data associated with the event. Only present for some event types"""

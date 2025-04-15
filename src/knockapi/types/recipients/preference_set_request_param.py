@@ -8,47 +8,33 @@ from typing_extensions import TypeAlias, TypedDict
 from ..shared_params.condition import Condition
 from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
-__all__ = [
-    "PreferenceSetRequestParam",
-    "Categories",
-    "CategoriesPreferenceSetWorkflowCategorySettingObject",
-    "Workflows",
-    "WorkflowsPreferenceSetWorkflowCategorySettingObject",
-]
+__all__ = ["PreferenceSetRequestParam", "Categories", "CategoriesUnionMember1", "Workflows", "WorkflowsUnionMember1"]
 
 
-class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+class CategoriesUnionMember1(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
-    conditions: Optional[Iterable[Condition]]
+    conditions: Iterable[Condition]
 
 
-Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
+Categories: TypeAlias = Union[bool, CategoriesUnionMember1]
 
 
-class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+class WorkflowsUnionMember1(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
-    conditions: Optional[Iterable[Condition]]
+    conditions: Iterable[Condition]
 
 
-Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySettingObject]
+Workflows: TypeAlias = Union[bool, WorkflowsUnionMember1]
 
 
 class PreferenceSetRequestParam(TypedDict, total=False):
     categories: Optional[Dict[str, Categories]]
-    """
-    A setting for a preference set, where the key in the object is the category, and
-    the values are the preference settings for that category.
-    """
 
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences"""
 
     workflows: Optional[Dict[str, Workflows]]
-    """
-    A setting for a preference set, where the key in the object is the workflow key,
-    and the values are the preference settings for that workflow.
-    """

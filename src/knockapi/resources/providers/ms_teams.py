@@ -108,10 +108,10 @@ class MsTeamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListChannelsResponse:
-        """List the Microsoft Teams channels within a team.
+        """Get a list of the Microsoft Teams channels within a team.
 
-        By default, archived and
-        private channels are excluded from the results.
+        By default, archived
+        and private channels are excluded from the results.
 
         Args:
           ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
@@ -160,10 +160,8 @@ class MsTeamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListTeamsResponse:
-        """Get a list of teams belonging to the Microsoft Entra tenant.
-
-        By default,
-        archived and private channels are excluded from the results.
+        """
+        Get a list of teams belonging to the Microsoft Entra tenant
 
         Args:
           ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
@@ -317,10 +315,10 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListChannelsResponse:
-        """List the Microsoft Teams channels within a team.
+        """Get a list of the Microsoft Teams channels within a team.
 
-        By default, archived and
-        private channels are excluded from the results.
+        By default, archived
+        and private channels are excluded from the results.
 
         Args:
           ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
@@ -369,10 +367,8 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListTeamsResponse:
-        """Get a list of teams belonging to the Microsoft Entra tenant.
-
-        By default,
-        archived and private channels are excluded from the results.
+        """
+        Get a list of teams belonging to the Microsoft Entra tenant
 
         Args:
           ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference

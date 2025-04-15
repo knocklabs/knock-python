@@ -8,13 +8,13 @@ from typing_extensions import Required, TypeAlias, TypedDict
 __all__ = [
     "SlackChannelDataParam",
     "Connection",
-    "ConnectionSlackTokenConnection",
-    "ConnectionSlackIncomingWebhookConnection",
+    "ConnectionTokenConnection",
+    "ConnectionIncomingWebhookConnection",
     "Token",
 ]
 
 
-class ConnectionSlackTokenConnection(TypedDict, total=False):
+class ConnectionTokenConnection(TypedDict, total=False):
     access_token: Optional[str]
 
     channel_id: Optional[str]
@@ -22,11 +22,11 @@ class ConnectionSlackTokenConnection(TypedDict, total=False):
     user_id: Optional[str]
 
 
-class ConnectionSlackIncomingWebhookConnection(TypedDict, total=False):
+class ConnectionIncomingWebhookConnection(TypedDict, total=False):
     url: Required[str]
 
 
-Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackIncomingWebhookConnection]
+Connection: TypeAlias = Union[ConnectionTokenConnection, ConnectionIncomingWebhookConnection]
 
 
 class Token(TypedDict, total=False):
@@ -37,4 +37,3 @@ class SlackChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
 
     token: Optional[Token]
-    """A token that's used to store the access token for a Slack workspace."""

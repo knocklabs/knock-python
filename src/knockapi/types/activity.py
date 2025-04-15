@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -19,7 +19,7 @@ class Activity(BaseModel):
     actor: Optional[Recipient] = None
     """A recipient, which is either a user or an object"""
 
-    data: Optional[Dict[str, object]] = None
+    data: Optional[object] = None
     """The data associated with the activity"""
 
     inserted_at: Optional[datetime] = None

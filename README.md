@@ -27,11 +27,10 @@ pip install git+ssh://git@github.com/stainless-sdks/knock-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-import os
 from knockapi import Knock
 
 client = Knock(
-    bearer_token=os.environ.get("KNOCK_API_KEY"),  # This is the default and can be omitted
+    bearer_token="My Bearer Token",
 )
 
 response = client.workflows.trigger(
@@ -42,22 +41,16 @@ response = client.workflows.trigger(
 print(response.workflow_run_id)
 ```
 
-While you can provide a `bearer_token` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `KNOCK_API_KEY="My Bearer Token"` to your `.env` file
-so that your Bearer Token is not stored in source control.
-
 ## Async usage
 
 Simply import `AsyncKnock` instead of `Knock` and use `await` with each API call:
 
 ```python
-import os
 import asyncio
 from knockapi import AsyncKnock
 
 client = AsyncKnock(
-    bearer_token=os.environ.get("KNOCK_API_KEY"),  # This is the default and can be omitted
+    bearer_token="My Bearer Token",
 )
 
 
@@ -93,7 +86,9 @@ This library provides auto-paginating iterators with each list response, so you 
 ```python
 from knockapi import Knock
 
-client = Knock()
+client = Knock(
+    bearer_token="My Bearer Token",
+)
 
 all_users = []
 # Automatically fetches more pages as needed.
@@ -109,7 +104,9 @@ Or, asynchronously:
 import asyncio
 from knockapi import AsyncKnock
 
-client = AsyncKnock()
+client = AsyncKnock(
+    bearer_token="My Bearer Token",
+)
 
 
 async def main() -> None:
@@ -154,21 +151,22 @@ Nested parameters are dictionaries, typed using `TypedDict`, for example:
 ```python
 from knockapi import Knock
 
-client = Knock()
+client = Knock(
+    bearer_token="My Bearer Token",
+)
 
-preference_set = client.users.set_preferences(
-    user_id="user_id",
-    preference_set_id="default",
-    channel_types={
-        "chat": True,
-        "email": True,
-        "http": True,
-        "in_app_feed": True,
-        "push": True,
-        "sms": True,
+response = client.providers.slack.list_channels(
+    channel_id="channel_id",
+    access_token_object="access_token_object",
+    query_options={
+        "cursor": "cursor",
+        "exclude_archived": "exclude_archived",
+        "limit": "limit",
+        "team_id": "team_id",
+        "types": "types",
     },
 )
-print(preference_set.channel_types)
+print(response.query_options)
 ```
 
 ## Handling errors
@@ -184,7 +182,9 @@ All errors inherit from `knockapi.APIError`.
 import knockapi
 from knockapi import Knock
 
-client = Knock()
+client = Knock(
+    bearer_token="My Bearer Token",
+)
 
 try:
     client.users.get(
@@ -229,6 +229,7 @@ from knockapi import Knock
 client = Knock(
     # default is 2
     max_retries=0,
+    bearer_token="My Bearer Token",
 )
 
 # Or, configure per-request:
@@ -249,11 +250,13 @@ from knockapi import Knock
 client = Knock(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
+    bearer_token="My Bearer Token",
 )
 
 # More granular control:
 client = Knock(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
+    bearer_token="My Bearer Token",
 )
 
 # Override per-request:
@@ -299,7 +302,9 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from knockapi import Knock
 
-client = Knock()
+client = Knock(
+    bearer_token="My Bearer Token",
+)
 response = client.users.with_raw_response.get(
     "dnedry",
 )
@@ -384,6 +389,7 @@ client = Knock(
         proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
+    bearer_token="My Bearer Token",
 )
 ```
 
@@ -400,7 +406,9 @@ By default the library closes underlying HTTP connections whenever the client is
 ```py
 from knockapi import Knock
 
-with Knock() as client:
+with Knock(
+    bearer_token="My Bearer Token",
+) as client:
   # make requests here
   ...
 

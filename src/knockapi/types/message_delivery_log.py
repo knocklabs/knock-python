@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -11,9 +11,9 @@ __all__ = ["MessageDeliveryLog", "Request", "Response"]
 
 
 class Request(BaseModel):
-    body: Union[str, Dict[str, object], None] = None
+    body: Union[str, object, None] = None
 
-    headers: Optional[Dict[str, object]] = None
+    headers: Optional[object] = None
 
     host: Optional[str] = None
 
@@ -25,9 +25,9 @@ class Request(BaseModel):
 
 
 class Response(BaseModel):
-    body: Union[str, Dict[str, object], None] = None
+    body: Union[str, object, None] = None
 
-    headers: Optional[Dict[str, object]] = None
+    headers: Optional[object] = None
 
     status: Optional[int] = None
 

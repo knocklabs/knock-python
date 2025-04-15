@@ -72,7 +72,7 @@ class TestBatch:
     @parametrize
     def test_method_get_content(self, client: Knock) -> None:
         batch = client.messages.batch.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
@@ -82,7 +82,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_get_content(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_get_content(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,20 +111,7 @@ class TestBatch:
     )
     @parametrize
     def test_method_mark_as_interacted(self, client: Knock) -> None:
-        batch = client.messages.batch.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        )
-        assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_method_mark_as_interacted_with_all_params(self, client: Knock) -> None:
-        batch = client.messages.batch.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-            metadata={"key": "bar"},
-        )
+        batch = client.messages.batch.mark_as_interacted()
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
     @pytest.mark.skip(
@@ -132,9 +119,7 @@ class TestBatch:
     )
     @parametrize
     def test_raw_response_mark_as_interacted(self, client: Knock) -> None:
-        response = client.messages.batch.with_raw_response.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        )
+        response = client.messages.batch.with_raw_response.mark_as_interacted()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,9 +131,7 @@ class TestBatch:
     )
     @parametrize
     def test_streaming_response_mark_as_interacted(self, client: Knock) -> None:
-        with client.messages.batch.with_streaming_response.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        ) as response:
+        with client.messages.batch.with_streaming_response.mark_as_interacted() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -407,7 +390,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_get_content(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
@@ -417,7 +400,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_get_content(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         )
 
         assert response.is_closed is True
@@ -431,7 +414,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_get_content(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.get_content(
-            message_ids=["string"],
+            message_ids=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -446,20 +429,7 @@ class TestAsyncBatch:
     )
     @parametrize
     async def test_method_mark_as_interacted(self, async_client: AsyncKnock) -> None:
-        batch = await async_client.messages.batch.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        )
-        assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_method_mark_as_interacted_with_all_params(self, async_client: AsyncKnock) -> None:
-        batch = await async_client.messages.batch.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-            metadata={"key": "bar"},
-        )
+        batch = await async_client.messages.batch.mark_as_interacted()
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
     @pytest.mark.skip(
@@ -467,9 +437,7 @@ class TestAsyncBatch:
     )
     @parametrize
     async def test_raw_response_mark_as_interacted(self, async_client: AsyncKnock) -> None:
-        response = await async_client.messages.batch.with_raw_response.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        )
+        response = await async_client.messages.batch.with_raw_response.mark_as_interacted()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -481,9 +449,7 @@ class TestAsyncBatch:
     )
     @parametrize
     async def test_streaming_response_mark_as_interacted(self, async_client: AsyncKnock) -> None:
-        async with async_client.messages.batch.with_streaming_response.mark_as_interacted(
-            message_ids=["1jNaXzB2RZX3LY8wVQnfCKyPnv7"],
-        ) as response:
+        async with async_client.messages.batch.with_streaming_response.mark_as_interacted() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

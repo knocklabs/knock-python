@@ -28,42 +28,7 @@ class TestSchedules:
     )
     @parametrize
     def test_method_create(self, client: Knock) -> None:
-        schedule = client.schedules.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        )
-        assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_method_create_with_all_params(self, client: Knock) -> None:
-        schedule = client.schedules.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                    "day_of_month": None,
-                    "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-                    "hours": None,
-                    "interval": 1,
-                    "minutes": None,
-                }
-            ],
-            workflow="comment-created",
-            data={"key": "bar"},
-            ending_at=None,
-            scheduled_at=None,
-            tenant="acme_corp",
-        )
+        schedule = client.schedules.create()
         assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -71,16 +36,7 @@ class TestSchedules:
     )
     @parametrize
     def test_raw_response_create(self, client: Knock) -> None:
-        response = client.schedules.with_raw_response.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        )
+        response = client.schedules.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -92,16 +48,7 @@ class TestSchedules:
     )
     @parametrize
     def test_streaming_response_create(self, client: Knock) -> None:
-        with client.schedules.with_streaming_response.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        ) as response:
+        with client.schedules.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -115,35 +62,7 @@ class TestSchedules:
     )
     @parametrize
     def test_method_update(self, client: Knock) -> None:
-        schedule = client.schedules.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    def test_method_update_with_all_params(self, client: Knock) -> None:
-        schedule = client.schedules.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-            actor="string",
-            data={"key": "bar"},
-            ending_at=None,
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                    "day_of_month": None,
-                    "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-                    "hours": None,
-                    "interval": 1,
-                    "minutes": None,
-                }
-            ],
-            scheduled_at=None,
-            tenant="acme_corp",
-        )
+        schedule = client.schedules.update()
         assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -151,9 +70,7 @@ class TestSchedules:
     )
     @parametrize
     def test_raw_response_update(self, client: Knock) -> None:
-        response = client.schedules.with_raw_response.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        response = client.schedules.with_raw_response.update()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -165,9 +82,7 @@ class TestSchedules:
     )
     @parametrize
     def test_streaming_response_update(self, client: Knock) -> None:
-        with client.schedules.with_streaming_response.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        ) as response:
+        with client.schedules.with_streaming_response.update() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -236,9 +151,7 @@ class TestSchedules:
     )
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
-        schedule = client.schedules.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        schedule = client.schedules.delete()
         assert_matches_type(ScheduleDeleteResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -246,9 +159,7 @@ class TestSchedules:
     )
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
-        response = client.schedules.with_raw_response.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        response = client.schedules.with_raw_response.delete()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,9 +171,7 @@ class TestSchedules:
     )
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
-        with client.schedules.with_streaming_response.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        ) as response:
+        with client.schedules.with_streaming_response.delete() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -280,42 +189,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_method_create(self, async_client: AsyncKnock) -> None:
-        schedule = await async_client.schedules.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        )
-        assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncKnock) -> None:
-        schedule = await async_client.schedules.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                    "day_of_month": None,
-                    "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-                    "hours": None,
-                    "interval": 1,
-                    "minutes": None,
-                }
-            ],
-            workflow="comment-created",
-            data={"key": "bar"},
-            ending_at=None,
-            scheduled_at=None,
-            tenant="acme_corp",
-        )
+        schedule = await async_client.schedules.create()
         assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -323,16 +197,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncKnock) -> None:
-        response = await async_client.schedules.with_raw_response.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        )
+        response = await async_client.schedules.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -344,16 +209,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncKnock) -> None:
-        async with async_client.schedules.with_streaming_response.create(
-            recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
-            workflow="comment-created",
-        ) as response:
+        async with async_client.schedules.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -367,35 +223,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_method_update(self, async_client: AsyncKnock) -> None:
-        schedule = await async_client.schedules.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncKnock) -> None:
-        schedule = await async_client.schedules.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-            actor="string",
-            data={"key": "bar"},
-            ending_at=None,
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                    "day_of_month": None,
-                    "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-                    "hours": None,
-                    "interval": 1,
-                    "minutes": None,
-                }
-            ],
-            scheduled_at=None,
-            tenant="acme_corp",
-        )
+        schedule = await async_client.schedules.update()
         assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -403,9 +231,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncKnock) -> None:
-        response = await async_client.schedules.with_raw_response.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        response = await async_client.schedules.with_raw_response.update()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -417,9 +243,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncKnock) -> None:
-        async with async_client.schedules.with_streaming_response.update(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        ) as response:
+        async with async_client.schedules.with_streaming_response.update() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -488,9 +312,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
-        schedule = await async_client.schedules.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        schedule = await async_client.schedules.delete()
         assert_matches_type(ScheduleDeleteResponse, schedule, path=["response"])
 
     @pytest.mark.skip(
@@ -498,9 +320,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
-        response = await async_client.schedules.with_raw_response.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        )
+        response = await async_client.schedules.with_raw_response.delete()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -512,9 +332,7 @@ class TestAsyncSchedules:
     )
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
-        async with async_client.schedules.with_streaming_response.delete(
-            schedule_ids=["123e4567-e89b-12d3-a456-426614174000"],
-        ) as response:
+        async with async_client.schedules.with_streaming_response.delete() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

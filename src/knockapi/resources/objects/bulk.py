@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List
 
 import httpx
 
@@ -20,9 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.objects import bulk_set_params, bulk_delete_params, bulk_add_subscriptions_params
+from ...types.objects import bulk_delete_params
 from ...types.bulk_operation import BulkOperation
-from ...types.inline_object_request_param import InlineObjectRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -60,7 +59,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete objects
+        Deletes objects in bulk for a given collection
 
         Args:
           object_ids: The IDs of the objects to delete
@@ -91,7 +90,6 @@ class BulkResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        subscriptions: Iterable[bulk_add_subscriptions_params.Subscription],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,10 +97,8 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Add subscriptions for a set of objects in a single collection.
-
-        If a subscription
-        already exists, it will be updated.
+        """
+        Bulk upserts subscriptions for a set of objects in a single collection
 
         Args:
           extra_headers: Send extra headers
@@ -117,9 +113,6 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
             f"/v1/objects/{collection}/bulk/subscriptions/add",
-            body=maybe_transform(
-                {"subscriptions": subscriptions}, bulk_add_subscriptions_params.BulkAddSubscriptionsParams
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -130,7 +123,6 @@ class BulkResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        objects: Iterable[InlineObjectRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,7 +131,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk set objects
+        Sets objects in bulk for a given collection
 
         Args:
           extra_headers: Send extra headers
@@ -154,7 +146,6 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
             f"/v1/objects/{collection}/bulk/set",
-            body=maybe_transform({"objects": objects}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -195,7 +186,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk delete objects
+        Deletes objects in bulk for a given collection
 
         Args:
           object_ids: The IDs of the objects to delete
@@ -226,7 +217,6 @@ class AsyncBulkResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        subscriptions: Iterable[bulk_add_subscriptions_params.Subscription],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,10 +224,8 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Add subscriptions for a set of objects in a single collection.
-
-        If a subscription
-        already exists, it will be updated.
+        """
+        Bulk upserts subscriptions for a set of objects in a single collection
 
         Args:
           extra_headers: Send extra headers
@@ -252,9 +240,6 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
             f"/v1/objects/{collection}/bulk/subscriptions/add",
-            body=await async_maybe_transform(
-                {"subscriptions": subscriptions}, bulk_add_subscriptions_params.BulkAddSubscriptionsParams
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -265,7 +250,6 @@ class AsyncBulkResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        objects: Iterable[InlineObjectRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,7 +258,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk set objects
+        Sets objects in bulk for a given collection
 
         Args:
           extra_headers: Send extra headers
@@ -289,7 +273,6 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
             f"/v1/objects/{collection}/bulk/set",
-            body=await async_maybe_transform({"objects": objects}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

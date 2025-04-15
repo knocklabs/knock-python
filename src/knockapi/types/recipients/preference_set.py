@@ -9,33 +9,27 @@ from ..._models import BaseModel
 from ..shared.condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
 
-__all__ = [
-    "PreferenceSet",
-    "Categories",
-    "CategoriesPreferenceSetWorkflowCategorySettingObject",
-    "Workflows",
-    "WorkflowsPreferenceSetWorkflowCategorySettingObject",
-]
+__all__ = ["PreferenceSet", "Categories", "CategoriesUnionMember1", "Workflows", "WorkflowsUnionMember1"]
 
 
-class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
+class CategoriesUnionMember1(BaseModel):
     channel_types: Optional[PreferenceSetChannelTypes] = None
     """Channel type preferences"""
 
     conditions: Optional[List[Condition]] = None
 
 
-Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
+Categories: TypeAlias = Union[bool, CategoriesUnionMember1]
 
 
-class WorkflowsPreferenceSetWorkflowCategorySettingObject(BaseModel):
+class WorkflowsUnionMember1(BaseModel):
     channel_types: Optional[PreferenceSetChannelTypes] = None
     """Channel type preferences"""
 
     conditions: Optional[List[Condition]] = None
 
 
-Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySettingObject]
+Workflows: TypeAlias = Union[bool, WorkflowsUnionMember1]
 
 
 class PreferenceSet(BaseModel):
@@ -44,10 +38,8 @@ class PreferenceSet(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
 
     categories: Optional[Dict[str, Categories]] = None
-    """A map of categories and their settings"""
 
     channel_types: Optional[PreferenceSetChannelTypes] = None
     """Channel type preferences"""
 
     workflows: Optional[Dict[str, Workflows]] = None
-    """A map of workflows and their settings"""

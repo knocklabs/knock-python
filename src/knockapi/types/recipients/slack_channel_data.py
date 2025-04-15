@@ -8,13 +8,13 @@ from ..._models import BaseModel
 __all__ = [
     "SlackChannelData",
     "Connection",
-    "ConnectionSlackTokenConnection",
-    "ConnectionSlackIncomingWebhookConnection",
+    "ConnectionTokenConnection",
+    "ConnectionIncomingWebhookConnection",
     "Token",
 ]
 
 
-class ConnectionSlackTokenConnection(BaseModel):
+class ConnectionTokenConnection(BaseModel):
     access_token: Optional[str] = None
 
     channel_id: Optional[str] = None
@@ -22,11 +22,11 @@ class ConnectionSlackTokenConnection(BaseModel):
     user_id: Optional[str] = None
 
 
-class ConnectionSlackIncomingWebhookConnection(BaseModel):
+class ConnectionIncomingWebhookConnection(BaseModel):
     url: str
 
 
-Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackIncomingWebhookConnection]
+Connection: TypeAlias = Union[ConnectionTokenConnection, ConnectionIncomingWebhookConnection]
 
 
 class Token(BaseModel):
@@ -37,4 +37,3 @@ class SlackChannelData(BaseModel):
     connections: List[Connection]
 
     token: Optional[Token] = None
-    """A token that's used to store the access token for a Slack workspace."""

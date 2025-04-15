@@ -2,22 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-from datetime import datetime
+from typing import List
 
 import httpx
 
-from ..types import (
-    schedule_list_params,
-    schedule_create_params,
-    schedule_delete_params,
-    schedule_update_params,
-)
+from ..types import schedule_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -29,12 +20,9 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.schedule import Schedule
-from ..types.recipient_request_param import RecipientRequestParam
 from ..types.schedule_create_response import ScheduleCreateResponse
 from ..types.schedule_delete_response import ScheduleDeleteResponse
 from ..types.schedule_update_response import ScheduleUpdateResponse
-from ..types.schedule_repeat_rule_param import ScheduleRepeatRuleParam
-from ..types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["SchedulesResource", "AsyncSchedulesResource"]
 
@@ -62,13 +50,6 @@ class SchedulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        recipients: List[schedule_create_params.Recipient],
-        repeats: Iterable[ScheduleRepeatRuleParam],
-        workflow: str,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,34 +57,9 @@ class SchedulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleCreateResponse:
-        """
-        Create schedules
-
-        Args:
-          tenant: An inline tenant request
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Create schedules"""
         return self._post(
             "/v1/schedules",
-            body=maybe_transform(
-                {
-                    "recipients": recipients,
-                    "repeats": repeats,
-                    "workflow": workflow,
-                    "data": data,
-                    "ending_at": ending_at,
-                    "scheduled_at": scheduled_at,
-                    "tenant": tenant,
-                },
-                schedule_create_params.ScheduleCreateParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -113,13 +69,6 @@ class SchedulesResource(SyncAPIResource):
     def update(
         self,
         *,
-        schedule_ids: List[str],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -127,39 +76,9 @@ class SchedulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleUpdateResponse:
-        """Update schedules
-
-        Args:
-          actor: Specifies a recipient in a request.
-
-        This can either be a user identifier
-              (string), an inline user request (object), or an inline object request, which is
-              determined by the presence of a `collection` property.
-
-          tenant: An inline tenant request
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Update schedules"""
         return self._put(
             "/v1/schedules",
-            body=maybe_transform(
-                {
-                    "schedule_ids": schedule_ids,
-                    "actor": actor,
-                    "data": data,
-                    "ending_at": ending_at,
-                    "repeats": repeats,
-                    "scheduled_at": scheduled_at,
-                    "tenant": tenant,
-                },
-                schedule_update_params.ScheduleUpdateParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -232,7 +151,6 @@ class SchedulesResource(SyncAPIResource):
     def delete(
         self,
         *,
-        schedule_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,21 +158,9 @@ class SchedulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleDeleteResponse:
-        """
-        Delete schedules
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Delete schedules"""
         return self._delete(
             "/v1/schedules",
-            body=maybe_transform({"schedule_ids": schedule_ids}, schedule_delete_params.ScheduleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -285,13 +191,6 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        recipients: List[schedule_create_params.Recipient],
-        repeats: Iterable[ScheduleRepeatRuleParam],
-        workflow: str,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,34 +198,9 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleCreateResponse:
-        """
-        Create schedules
-
-        Args:
-          tenant: An inline tenant request
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Create schedules"""
         return await self._post(
             "/v1/schedules",
-            body=await async_maybe_transform(
-                {
-                    "recipients": recipients,
-                    "repeats": repeats,
-                    "workflow": workflow,
-                    "data": data,
-                    "ending_at": ending_at,
-                    "scheduled_at": scheduled_at,
-                    "tenant": tenant,
-                },
-                schedule_create_params.ScheduleCreateParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -336,13 +210,6 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        schedule_ids: List[str],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,39 +217,9 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleUpdateResponse:
-        """Update schedules
-
-        Args:
-          actor: Specifies a recipient in a request.
-
-        This can either be a user identifier
-              (string), an inline user request (object), or an inline object request, which is
-              determined by the presence of a `collection` property.
-
-          tenant: An inline tenant request
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Update schedules"""
         return await self._put(
             "/v1/schedules",
-            body=await async_maybe_transform(
-                {
-                    "schedule_ids": schedule_ids,
-                    "actor": actor,
-                    "data": data,
-                    "ending_at": ending_at,
-                    "repeats": repeats,
-                    "scheduled_at": scheduled_at,
-                    "tenant": tenant,
-                },
-                schedule_update_params.ScheduleUpdateParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -455,7 +292,6 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        schedule_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,23 +299,9 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScheduleDeleteResponse:
-        """
-        Delete schedules
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Delete schedules"""
         return await self._delete(
             "/v1/schedules",
-            body=await async_maybe_transform(
-                {"schedule_ids": schedule_ids}, schedule_delete_params.ScheduleDeleteParams
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

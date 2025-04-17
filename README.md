@@ -227,9 +227,9 @@ from knockapi import Knock
 
 # Configure the default for all requests:
 client = Knock(
+    bearer_token="My Bearer Token",
     # default is 2
     max_retries=0,
-    bearer_token="My Bearer Token",
 )
 
 # Or, configure per-request:
@@ -248,15 +248,15 @@ from knockapi import Knock
 
 # Configure the default for all requests:
 client = Knock(
+    bearer_token="My Bearer Token",
     # 20 seconds (default is 1 minute)
     timeout=20.0,
-    bearer_token="My Bearer Token",
 )
 
 # More granular control:
 client = Knock(
-    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
     bearer_token="My Bearer Token",
+    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
@@ -383,13 +383,13 @@ import httpx
 from knockapi import Knock, DefaultHttpxClient
 
 client = Knock(
+    bearer_token="My Bearer Token",
     # Or use the `KNOCK_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
-    bearer_token="My Bearer Token",
 )
 ```
 

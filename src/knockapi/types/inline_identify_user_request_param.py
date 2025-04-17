@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import datetime
-from typing_extensions import Annotated, TypeAlias, TypedDict
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -14,7 +14,7 @@ __all__ = ["InlineIdentifyUserRequestParam"]
 
 
 class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
-    id: str
+    id: Required[str]
     """The unique identifier for the user."""
 
     channel_data: Optional[InlineChannelDataRequestParam]

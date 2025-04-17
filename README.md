@@ -36,8 +36,8 @@ client = Knock(
 
 response = client.workflows.trigger(
     key="dinosaurs-loose",
-    data={"dinosaur": "triceratops"},
     recipients=["dnedry"],
+    data={"dinosaur": "triceratops"},
 )
 print(response.workflow_run_id)
 ```
@@ -64,8 +64,8 @@ client = AsyncKnock(
 async def main() -> None:
     response = await client.workflows.trigger(
         key="dinosaurs-loose",
-        data={"dinosaur": "triceratops"},
         recipients=["dnedry"],
+        data={"dinosaur": "triceratops"},
     )
     print(response.workflow_run_id)
 

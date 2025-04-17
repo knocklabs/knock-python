@@ -110,10 +110,10 @@ class WorkflowsResource(SyncAPIResource):
         self,
         key: str,
         *,
+        recipients: List[RecipientRequestParam],
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -128,6 +128,9 @@ class WorkflowsResource(SyncAPIResource):
         workflow runs are executed asynchronously.
 
         Args:
+          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
+              single trigger.
+
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
@@ -137,9 +140,6 @@ class WorkflowsResource(SyncAPIResource):
               cancel request.
 
           data: An optional map of data to pass into the workflow execution.
-
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
 
           tenant: An request to set a tenant inline.
 
@@ -157,10 +157,10 @@ class WorkflowsResource(SyncAPIResource):
             f"/v1/workflows/{key}/trigger",
             body=maybe_transform(
                 {
+                    "recipients": recipients,
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
-                    "recipients": recipients,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,
@@ -251,10 +251,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         key: str,
         *,
+        recipients: List[RecipientRequestParam],
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -269,6 +269,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow runs are executed asynchronously.
 
         Args:
+          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
+              single trigger.
+
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
@@ -278,9 +281,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               cancel request.
 
           data: An optional map of data to pass into the workflow execution.
-
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
 
           tenant: An request to set a tenant inline.
 
@@ -298,10 +298,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
             f"/v1/workflows/{key}/trigger",
             body=await async_maybe_transform(
                 {
+                    "recipients": recipients,
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
-                    "recipients": recipients,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,

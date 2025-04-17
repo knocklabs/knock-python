@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Message", "Actor", "ActorRecipientReference", "Recipient", "RecipientRecipientReference", "Source"]
+__all__ = ["Message", "Actor", "ActorObjectReference", "Recipient", "RecipientObjectReference", "Source"]
 
 
-class ActorRecipientReference(BaseModel):
+class ActorObjectReference(BaseModel):
     id: Optional[str] = None
     """An identifier for the recipient object."""
 
@@ -19,10 +19,10 @@ class ActorRecipientReference(BaseModel):
     """The collection the recipient object belongs to."""
 
 
-Actor: TypeAlias = Union[str, ActorRecipientReference]
+Actor: TypeAlias = Union[str, ActorObjectReference]
 
 
-class RecipientRecipientReference(BaseModel):
+class RecipientObjectReference(BaseModel):
     id: Optional[str] = None
     """An identifier for the recipient object."""
 
@@ -30,7 +30,7 @@ class RecipientRecipientReference(BaseModel):
     """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientRecipientReference]
+Recipient: TypeAlias = Union[str, RecipientObjectReference]
 
 
 class Source(BaseModel):
@@ -54,7 +54,11 @@ class Message(BaseModel):
     """The type name of the schema."""
 
     actors: Optional[List[Actor]] = None
-    """A list of messages."""
+    """One or more actors that are associated with this message.
+
+    Note: this is a list that can contain up to 10 actors if the message is produced
+    from a batch.
+    """
 
     archived_at: Optional[datetime] = None
     """Timestamp when the message was archived."""

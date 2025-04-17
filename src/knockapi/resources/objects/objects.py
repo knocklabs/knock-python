@@ -435,27 +435,32 @@ class ObjectsResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          channel_id: The unique identifier for the channel.
+          channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: The engagement status to filter messages by.
+          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
+              results to messages with the given engagement status(es).
 
-          message_ids: The message IDs to filter messages by.
+          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+              option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: The source of the message (workflow key).
+          source: Limits the results to only items of the source workflow.
 
-          status: The delivery status to filter messages by.
+          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
+              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+              delivery status(es).
 
-          tenant: The unique identifier for the tenant.
+          tenant: Limits the results to items with the corresponding tenant, or where the tenant
+              is empty.
 
-          trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
+          trigger_data: Limits the results to only items that were generated with the given data.
 
-          workflow_categories: The workflow categories to filter messages by.
+          workflow_categories: Limits the results to only items related to any of the provided categories.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
+          workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: The workflow run ID to filter messages by.
+          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
 
           extra_headers: Send extra headers
 
@@ -1211,27 +1216,32 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          channel_id: The unique identifier for the channel.
+          channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: The engagement status to filter messages by.
+          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
+              results to messages with the given engagement status(es).
 
-          message_ids: The message IDs to filter messages by.
+          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+              option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: The source of the message (workflow key).
+          source: Limits the results to only items of the source workflow.
 
-          status: The delivery status to filter messages by.
+          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
+              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+              delivery status(es).
 
-          tenant: The unique identifier for the tenant.
+          tenant: Limits the results to items with the corresponding tenant, or where the tenant
+              is empty.
 
-          trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
+          trigger_data: Limits the results to only items that were generated with the given data.
 
-          workflow_categories: The workflow categories to filter messages by.
+          workflow_categories: Limits the results to only items related to any of the provided categories.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
+          workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: The workflow run ID to filter messages by.
+          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
 
           extra_headers: Send extra headers
 

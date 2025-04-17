@@ -16,34 +16,48 @@ class ObjectListMessagesParams(TypedDict, total=False):
     """The cursor to fetch entries before."""
 
     channel_id: str
-    """The unique identifier for the channel."""
+    """Limits the results to items with the corresponding channel id."""
 
     engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
-    """The engagement status to filter messages by."""
+    """One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`.
+
+    Limits results to messages with the given engagement status(es).
+    """
 
     message_ids: List[str]
-    """The message IDs to filter messages by."""
+    """Limits the results to only the message ids given (max 50).
+
+    Note: when using this option, the results will be subject to any other filters
+    applied to the query.
+    """
 
     page_size: int
     """The number of items per page."""
 
     source: str
-    """The source of the message (workflow key)."""
+    """Limits the results to only items of the source workflow."""
 
     status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-    """The delivery status to filter messages by."""
+    """
+    One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
+    `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+    delivery status(es).
+    """
 
     tenant: str
-    """The unique identifier for the tenant."""
+    """
+    Limits the results to items with the corresponding tenant, or where the tenant
+    is empty.
+    """
 
     trigger_data: str
-    """The trigger data to filter messages by. Must be a valid JSON object."""
+    """Limits the results to only items that were generated with the given data."""
 
     workflow_categories: List[str]
-    """The workflow categories to filter messages by."""
+    """Limits the results to only items related to any of the provided categories."""
 
     workflow_recipient_run_id: str
-    """The workflow recipient run ID to filter messages by."""
+    """Limits the results to messages for a specific recipient's workflow run."""
 
     workflow_run_id: str
-    """The workflow run ID to filter messages by."""
+    """Limits the results to messages triggered by the top-level workflow run ID."""

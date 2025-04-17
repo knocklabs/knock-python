@@ -81,8 +81,8 @@ class SchedulesResource(SyncAPIResource):
         timing, and data. Schedules can be one-time or recurring.
 
         Args:
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
+              or use a list of user ids. Cannot exceed 1000 recipients in a single trigger.
 
           repeats: The repeat rule for the schedule.
 
@@ -332,8 +332,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
         timing, and data. Schedules can be one-time or recurring.
 
         Args:
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
+              or use a list of user ids. Cannot exceed 1000 recipients in a single trigger.
 
           repeats: The repeat rule for the schedule.
 

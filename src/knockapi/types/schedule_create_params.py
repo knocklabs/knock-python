@@ -17,7 +17,8 @@ class ScheduleCreateParams(TypedDict, total=False):
     recipients: Required[List[Recipient]]
     """The recipients to trigger the workflow for.
 
-    Cannot exceed 1000 recipients in a single trigger.
+    Can inline identify users, objects, or use a list of user ids. Cannot exceed
+    1000 recipients in a single trigger.
     """
 
     repeats: Required[Iterable[ScheduleRepeatRuleParam]]

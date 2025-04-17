@@ -57,7 +57,6 @@ class WorkflowsResource(SyncAPIResource):
         *,
         cancellation_key: str,
         recipients: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,8 +77,6 @@ class WorkflowsResource(SyncAPIResource):
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
 
-          tenant: The unique identifier for the tenant.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -96,7 +93,6 @@ class WorkflowsResource(SyncAPIResource):
                 {
                     "cancellation_key": cancellation_key,
                     "recipients": recipients,
-                    "tenant": tenant,
                 },
                 workflow_cancel_params.WorkflowCancelParams,
             ),
@@ -128,8 +124,8 @@ class WorkflowsResource(SyncAPIResource):
         workflow runs are executed asynchronously.
 
         Args:
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
+              or use a list of user ids. Cannot exceed 1000 recipients in a single trigger.
 
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
@@ -198,7 +194,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         cancellation_key: str,
         recipients: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,8 +214,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
 
-          tenant: The unique identifier for the tenant.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -237,7 +230,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 {
                     "cancellation_key": cancellation_key,
                     "recipients": recipients,
-                    "tenant": tenant,
                 },
                 workflow_cancel_params.WorkflowCancelParams,
             ),
@@ -269,8 +261,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow runs are executed asynchronously.
 
         Args:
-          recipients: The recipients to trigger the workflow for. Cannot exceed 1000 recipients in a
-              single trigger.
+          recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
+              or use a list of user ids. Cannot exceed 1000 recipients in a single trigger.
 
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is

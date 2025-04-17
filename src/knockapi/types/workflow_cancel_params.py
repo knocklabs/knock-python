@@ -21,6 +21,3 @@ class WorkflowCancelParams(TypedDict, total=False):
 
     If omitted, cancels for all recipients associated with the cancellation key.
     """
-
-    tenant: Optional[str]
-    """The unique identifier for the tenant."""

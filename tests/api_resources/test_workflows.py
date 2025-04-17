@@ -39,7 +39,6 @@ class TestWorkflows:
             key="key",
             cancellation_key="cancel-workflow-123",
             recipients=["jhammond"],
-            tenant="prk_1",
         )
         assert_matches_type(str, workflow, path=["response"])
 
@@ -185,7 +184,6 @@ class TestAsyncWorkflows:
             key="key",
             cancellation_key="cancel-workflow-123",
             recipients=["jhammond"],
-            tenant="prk_1",
         )
         assert_matches_type(str, workflow, path=["response"])
 

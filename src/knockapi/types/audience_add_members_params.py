@@ -20,7 +20,7 @@ class Member(TypedDict, total=False):
     """A set of parameters to inline-identify a user with.
 
     Inline identifying the user will ensure that the user is available before the
-    request is executed in Knock. It will perform an upsert against the user you're
+    request is executed in Knock. It will perform an upsert for the user you're
     supplying, replacing any properties specified.
     """
 

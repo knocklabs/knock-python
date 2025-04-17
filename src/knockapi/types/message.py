@@ -51,7 +51,7 @@ class Message(BaseModel):
     """The unique identifier for the message."""
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     actors: Optional[List[Actor]] = None
     """One or more actors that are associated with this message.
@@ -70,7 +70,7 @@ class Message(BaseModel):
     """Timestamp when the message was clicked."""
 
     data: Optional[Dict[str, object]] = None
-    """The data associated with the message."""
+    """Data from the activities linked to the message"""
 
     engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
     """A list of engagement statuses."""
@@ -108,11 +108,7 @@ class Message(BaseModel):
     status: Optional[
         Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
     ] = None
-    """The message delivery status.
-
-    Can be one of: queued, sent, delivered, delivery_attempted, undelivered,
-    not_sent, bounced.
-    """
+    """The message delivery status."""
 
     tenant: Optional[str] = None
     """The id for the tenant set for the message."""

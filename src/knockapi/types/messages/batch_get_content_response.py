@@ -28,7 +28,7 @@ __all__ = [
 
 class BatchGetContentResponseItemDataMessageEmailContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     from_: str = FieldInfo(alias="from")
     """The sender's email address."""
@@ -57,7 +57,7 @@ class BatchGetContentResponseItemDataMessageEmailContent(BaseModel):
 
 class BatchGetContentResponseItemDataMessageSMSContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     body: str
     """The content body of the SMS message."""
@@ -71,7 +71,7 @@ class BatchGetContentResponseItemDataMessagePushContent(BaseModel):
     """The device token to send the push notification to."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     body: str
     """The content body of the push notification."""
@@ -107,7 +107,7 @@ class BatchGetContentResponseItemDataMessageChatContentTemplate(BaseModel):
 
 class BatchGetContentResponseItemDataMessageChatContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     connection: Dict[str, object]
     """The channel data connection from the recipient to the underlying provider."""
@@ -163,7 +163,7 @@ BatchGetContentResponseItemDataMessageInAppFeedContentBlock: TypeAlias = Union[
 
 class BatchGetContentResponseItemDataMessageInAppFeedContent(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     blocks: List[BatchGetContentResponseItemDataMessageInAppFeedContentBlock]
     """The blocks of the message in an app feed."""
@@ -180,7 +180,7 @@ BatchGetContentResponseItemData: TypeAlias = Union[
 
 class BatchGetContentResponseItem(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     data: BatchGetContentResponseItemData
     """Content data specific to the channel type."""

@@ -27,7 +27,7 @@ class MessageEvent(BaseModel):
     """The unique identifier for the message event."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     inserted_at: datetime
     """Timestamp when the event was created."""

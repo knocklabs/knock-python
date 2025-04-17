@@ -13,16 +13,19 @@ __all__ = ["AudienceMember"]
 
 class AudienceMember(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     added_at: datetime
     """Timestamp when the resource was created."""
 
     user: User
-    """A user object."""
+    """A user who can receive notifications in Knock.
+
+    They are always referenced by your internal identifier.
+    """
 
     user_id: str
-    """The unique identifier for the user."""
+    """The ID for the user that you set when identifying them in Knock."""
 
     tenant: Optional[str] = None
     """The unique identifier for the tenant."""

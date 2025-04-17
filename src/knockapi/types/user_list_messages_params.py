@@ -19,7 +19,7 @@ class UserListMessagesParams(TypedDict, total=False):
     """Limits the results to items with the corresponding channel id."""
 
     engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
-    """One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`.
+    """One or more engagement statuses.
 
     Limits results to messages with the given engagement status(es).
     """
@@ -38,10 +38,9 @@ class UserListMessagesParams(TypedDict, total=False):
     """Limits the results to only items of the source workflow."""
 
     status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-    """
-    One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-    `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
-    delivery status(es).
+    """One or more delivery statuses.
+
+    Limits results to messages with the given delivery status(es).
     """
 
     tenant: str

@@ -24,7 +24,7 @@ class BulkOperation(BaseModel):
     """Unique identifier for the bulk operation."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     estimated_total_rows: int
     """The estimated total number of rows to process."""
@@ -39,10 +39,7 @@ class BulkOperation(BaseModel):
     """The number of rows processed so far."""
 
     status: Literal["queued", "processing", "completed", "failed"]
-    """The status of the bulk operation.
-
-    One of: queued, processing, completed, failed.
-    """
+    """The status of the bulk operation."""
 
     success_count: int
     """The number of successful operations."""

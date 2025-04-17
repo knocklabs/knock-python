@@ -45,12 +45,12 @@ class PreferenceSet(BaseModel):
     """Unique identifier for the preference set."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     categories: Optional[Dict[str, Categories]] = None
     """
-    A setting for a preference set, where the key in the object is the category, and
-    the values are the preference settings for that category.
+    An object where the key is the category and the values are the preference
+    settings for that category.
     """
 
     channel_types: Optional[PreferenceSetChannelTypes] = None
@@ -58,6 +58,6 @@ class PreferenceSet(BaseModel):
 
     workflows: Optional[Dict[str, Workflows]] = None
     """
-    A setting for a preference set, where the key in the object is the workflow key,
-    and the values are the preference settings for that workflow.
+    An object where the key is the workflow key and the values are the preference
+    settings for that workflow.
     """

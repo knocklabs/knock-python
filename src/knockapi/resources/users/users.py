@@ -160,13 +160,13 @@ class UsersResource(SyncAPIResource):
         Retrieve a paginated list of users in the environment.
 
         Args:
-          after: The cursor to fetch entries after..
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before..
+          before: The cursor to fetch entries before.
 
-          include: Includes preferences of the users in the response.
+          include: Associated resources to include in the response.
 
-          page_size: The number of items per page..
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -381,8 +381,8 @@ class UsersResource(SyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -391,8 +391,7 @@ class UsersResource(SyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant
@@ -569,9 +568,9 @@ class UsersResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          include: Includes preferences of the recipient subscribers in the response.
+          include: Associated resources to include in the response.
 
-          objects: Objects to filter by.
+          objects: Only return subscriptions for the given recipients.
 
           page_size: The number of items per page.
 
@@ -706,13 +705,13 @@ class UsersResource(SyncAPIResource):
         that will replace the existing preference set for the user.
 
         Args:
-          categories: A setting for a preference set, where the key in the object is the category, and
-              the values are the preference settings for that category.
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
 
           channel_types: Channel type preferences.
 
-          workflows: A setting for a preference set, where the key in the object is the workflow key,
-              and the values are the preference settings for that workflow.
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
 
           extra_headers: Send extra headers
 
@@ -875,13 +874,13 @@ class AsyncUsersResource(AsyncAPIResource):
         Retrieve a paginated list of users in the environment.
 
         Args:
-          after: The cursor to fetch entries after..
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before..
+          before: The cursor to fetch entries before.
 
-          include: Includes preferences of the users in the response.
+          include: Associated resources to include in the response.
 
-          page_size: The number of items per page..
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -1098,8 +1097,8 @@ class AsyncUsersResource(AsyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -1108,8 +1107,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant
@@ -1286,9 +1284,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          include: Includes preferences of the recipient subscribers in the response.
+          include: Associated resources to include in the response.
 
-          objects: Objects to filter by.
+          objects: Only return subscriptions for the given recipients.
 
           page_size: The number of items per page.
 
@@ -1423,13 +1421,13 @@ class AsyncUsersResource(AsyncAPIResource):
         that will replace the existing preference set for the user.
 
         Args:
-          categories: A setting for a preference set, where the key in the object is the category, and
-              the values are the preference settings for that category.
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
 
           channel_types: Channel type preferences.
 
-          workflows: A setting for a preference set, where the key in the object is the workflow key,
-              and the values are the preference settings for that workflow.
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
 
           extra_headers: Send extra headers
 

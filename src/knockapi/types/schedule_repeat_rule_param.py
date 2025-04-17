@@ -12,7 +12,7 @@ __all__ = ["ScheduleRepeatRuleParam"]
 
 class ScheduleRepeatRuleParam(TypedDict, total=False):
     _typename: Required[Annotated[str, PropertyInfo(alias="__typename")]]
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     frequency: Required[Literal["daily", "weekly", "monthly", "hourly"]]
     """The frequency of the schedule."""

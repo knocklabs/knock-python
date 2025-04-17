@@ -46,7 +46,7 @@ class MessageDeliveryLog(BaseModel):
     """The unique identifier for the message delivery log."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     environment_id: str
     """The ID of the environment in which the message delivery occurred."""

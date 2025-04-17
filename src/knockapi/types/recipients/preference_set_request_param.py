@@ -42,8 +42,8 @@ Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySetting
 class PreferenceSetRequestParam(TypedDict, total=False):
     categories: Optional[Dict[str, Categories]]
     """
-    A setting for a preference set, where the key in the object is the category, and
-    the values are the preference settings for that category.
+    An object where the key is the category and the values are the preference
+    settings for that category.
     """
 
     channel_types: Optional[PreferenceSetChannelTypesParam]
@@ -51,6 +51,6 @@ class PreferenceSetRequestParam(TypedDict, total=False):
 
     workflows: Optional[Dict[str, Workflows]]
     """
-    A setting for a preference set, where the key in the object is the workflow key,
-    and the values are the preference settings for that workflow.
+    An object where the key is the workflow key and the values are the preference
+    settings for that workflow.
     """

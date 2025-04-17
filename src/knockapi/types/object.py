@@ -15,7 +15,7 @@ class Object(BaseModel):
     """Unique identifier for the object."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     collection: str
     """The collection this object belongs to."""

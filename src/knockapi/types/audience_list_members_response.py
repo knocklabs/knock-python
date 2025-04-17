@@ -12,7 +12,7 @@ __all__ = ["AudienceListMembersResponse", "PageInfo"]
 
 class PageInfo(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     page_size: int
     """The number of items per page."""

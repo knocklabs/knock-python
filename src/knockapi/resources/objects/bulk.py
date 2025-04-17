@@ -99,10 +99,10 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Add subscriptions for a set of objects in a single collection.
+        """Add subscriptions for all objects in a single collection.
 
-        If a subscription
-        already exists, it will be updated.
+        If a subscription for
+        an object in the collectionalready exists, it will be updated.
 
         Args:
           subscriptions: A list of subscriptions.
@@ -238,10 +238,10 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Add subscriptions for a set of objects in a single collection.
+        """Add subscriptions for all objects in a single collection.
 
-        If a subscription
-        already exists, it will be updated.
+        If a subscription for
+        an object in the collectionalready exists, it will be updated.
 
         Args:
           subscriptions: A list of subscriptions.

@@ -437,8 +437,8 @@ class ObjectsResource(SyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -447,8 +447,7 @@ class ObjectsResource(SyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant
@@ -759,13 +758,13 @@ class ObjectsResource(SyncAPIResource):
         Updates the preference set for the specified object.
 
         Args:
-          categories: A setting for a preference set, where the key in the object is the category, and
-              the values are the preference settings for that category.
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
 
           channel_types: Channel type preferences.
 
-          workflows: A setting for a preference set, where the key in the object is the workflow key,
-              and the values are the preference settings for that workflow.
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
 
           extra_headers: Send extra headers
 
@@ -1218,8 +1217,8 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -1228,8 +1227,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant
@@ -1540,13 +1538,13 @@ class AsyncObjectsResource(AsyncAPIResource):
         Updates the preference set for the specified object.
 
         Args:
-          categories: A setting for a preference set, where the key in the object is the category, and
-              the values are the preference settings for that category.
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
 
           channel_types: Channel type preferences.
 
-          workflows: A setting for a preference set, where the key in the object is the workflow key,
-              and the values are the preference settings for that workflow.
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
 
           extra_headers: Send extra headers
 

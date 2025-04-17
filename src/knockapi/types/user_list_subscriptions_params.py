@@ -16,10 +16,10 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     """The cursor to fetch entries before."""
 
     include: List[Literal["preferences"]]
-    """Includes preferences of the recipient subscribers in the response."""
+    """Associated resources to include in the response."""
 
     objects: List[Object]
-    """Objects to filter by."""
+    """Only return subscriptions for the given recipients."""
 
     page_size: int
     """The number of items per page."""

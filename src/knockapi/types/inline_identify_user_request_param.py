@@ -15,7 +15,7 @@ __all__ = ["InlineIdentifyUserRequestParam"]
 
 class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     id: Required[str]
-    """The unique identifier for the user."""
+    """The ID for the user that you set when identifying them in Knock."""
 
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""

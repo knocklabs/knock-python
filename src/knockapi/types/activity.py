@@ -16,10 +16,10 @@ class Activity(BaseModel):
     """Unique identifier for the activity."""
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     actor: Optional[Recipient] = None
-    """A recipient, which is either a user or an object."""
+    """A recipient of a notification, which is either a user or an object."""
 
     data: Optional[Dict[str, object]] = None
     """The data associated with the activity."""
@@ -28,7 +28,7 @@ class Activity(BaseModel):
     """Timestamp when the resource was created."""
 
     recipient: Optional[Recipient] = None
-    """A recipient, which is either a user or an object."""
+    """A recipient of a notification, which is either a user or an object."""
 
     updated_at: Optional[datetime] = None
     """The timestamp when the resource was last updated."""

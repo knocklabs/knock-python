@@ -60,7 +60,7 @@ Block: TypeAlias = Union[BlockMessageInAppFeedContentBlock, BlockMessageInAppFee
 
 class Source(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     categories: List[str]
     """Categories this workflow belongs to."""
@@ -77,7 +77,7 @@ class FeedListItemsResponse(BaseModel):
     """Unique identifier for the feed."""
 
     api_typename: str = FieldInfo(alias="__typename")
-    """The type name of the schema."""
+    """The typename of the schema."""
 
     activities: List[Activity]
     """List of activities associated with this feed item."""

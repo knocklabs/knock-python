@@ -10,13 +10,13 @@ __all__ = ["UserListParams"]
 
 class UserListParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after.."""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before.."""
+    """The cursor to fetch entries before."""
 
     include: List[Literal["preferences"]]
-    """Includes preferences of the users in the response."""
+    """Associated resources to include in the response."""
 
     page_size: int
-    """The number of items per page.."""
+    """The number of items per page."""

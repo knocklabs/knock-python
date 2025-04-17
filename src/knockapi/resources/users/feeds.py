@@ -111,7 +111,7 @@ class FeedsResource(SyncAPIResource):
         Args:
           after: The cursor to fetch entries after.
 
-          archived: The archived status of the feed items to return.
+          archived: The archived status of the feed items.
 
           before: The cursor to fetch entries before.
 
@@ -119,15 +119,15 @@ class FeedsResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: The source of the feed items to return.
+          source: The source of the feed items.
 
-          status: The status of the feed items to return.
+          status: The status of the feed items.
 
-          tenant: The tenant of the feed items to return.
+          tenant: The tenant associated with the feed items.
 
-          trigger_data: The trigger data of the feed items to return (as a JSON string).
+          trigger_data: The trigger data of the feed items (as a JSON string).
 
-          workflow_categories: The workflow categories of the feed items to return.
+          workflow_categories: The workflow categories of the feed items.
 
           extra_headers: Send extra headers
 
@@ -254,7 +254,7 @@ class AsyncFeedsResource(AsyncAPIResource):
         Args:
           after: The cursor to fetch entries after.
 
-          archived: The archived status of the feed items to return.
+          archived: The archived status of the feed items.
 
           before: The cursor to fetch entries before.
 
@@ -262,15 +262,15 @@ class AsyncFeedsResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: The source of the feed items to return.
+          source: The source of the feed items.
 
-          status: The status of the feed items to return.
+          status: The status of the feed items.
 
-          tenant: The tenant of the feed items to return.
+          tenant: The tenant associated with the feed items.
 
-          trigger_data: The trigger data of the feed items to return (as a JSON string).
+          trigger_data: The trigger data of the feed items (as a JSON string).
 
-          workflow_categories: The workflow categories of the feed items to return.
+          workflow_categories: The workflow categories of the feed items.
 
           extra_headers: Send extra headers
 

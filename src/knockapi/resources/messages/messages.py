@@ -105,8 +105,8 @@ class MessagesResource(SyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -115,8 +115,7 @@ class MessagesResource(SyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant
@@ -708,8 +707,8 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel id.
 
-          engagement_status: One or more of `read`, `seen`, `interacted`, `link_clicked`, `archived`. Limits
-              results to messages with the given engagement status(es).
+          engagement_status: One or more engagement statuses. Limits results to messages with the given
+              engagement status(es).
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
@@ -718,8 +717,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           source: Limits the results to only items of the source workflow.
 
-          status: One or more of `queued`, `sent`, `delivered`, `delivery_attempted`,
-              `undelivered`, `bounced`, `not_sent`. Limits results to messages with the given
+          status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
 
           tenant: Limits the results to items with the corresponding tenant, or where the tenant

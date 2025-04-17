@@ -9,4 +9,4 @@ __all__ = ["OneSignalChannelData"]
 
 class OneSignalChannelData(BaseModel):
     player_ids: List[str]
-    """The OneSignal player IDs"""
+    """A list of OneSignal player IDs."""

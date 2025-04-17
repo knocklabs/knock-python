@@ -11,8 +11,10 @@ __all__ = ["Tenant"]
 
 class Tenant(BaseModel):
     id: str
+    """The unique identifier for the tenant."""
 
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.

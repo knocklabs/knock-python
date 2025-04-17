@@ -8,22 +8,30 @@ from typing_extensions import Required, TypeAlias, TypedDict
 __all__ = [
     "DiscordChannelDataParam",
     "Connection",
-    "ConnectionChannelConnection",
-    "ConnectionIncomingWebhookConnection",
+    "ConnectionDiscordChannelConnection",
+    "ConnectionDiscordIncomingWebhookConnection",
+    "ConnectionDiscordIncomingWebhookConnectionIncomingWebhook",
 ]
 
 
-class ConnectionChannelConnection(TypedDict, total=False):
+class ConnectionDiscordChannelConnection(TypedDict, total=False):
     channel_id: Required[str]
-    """The Discord channel ID"""
+    """Discord channel ID."""
 
 
-class ConnectionIncomingWebhookConnection(TypedDict, total=False):
+class ConnectionDiscordIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
     url: Required[str]
+    """Incoming webhook URL."""
 
 
-Connection: TypeAlias = Union[ConnectionChannelConnection, ConnectionIncomingWebhookConnection]
+class ConnectionDiscordIncomingWebhookConnection(TypedDict, total=False):
+    incoming_webhook: Required[ConnectionDiscordIncomingWebhookConnectionIncomingWebhook]
+    """Discord incoming webhook object."""
+
+
+Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDiscordIncomingWebhookConnection]
 
 
 class DiscordChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
+    """List of Discord channel connections."""

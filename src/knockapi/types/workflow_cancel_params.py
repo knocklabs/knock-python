@@ -10,15 +10,17 @@ __all__ = ["WorkflowCancelParams"]
 
 class WorkflowCancelParams(TypedDict, total=False):
     cancellation_key: Required[str]
-    """
-    The cancellation key supplied to the workflow trigger endpoint to use for
-    cancelling one or more workflow runs.
+    """The cancellation key provided during the initial notify call.
+
+    If used in a cancel request, will cancel the notification for the recipients
+    specified in the cancel request.
     """
 
     recipients: Optional[List[str]]
-    """
-    An optional list of recipients to cancel the workflow for using the cancellation
-    key.
+    """A list of recipients to cancel the notification for.
+
+    If omitted, cancels for all recipients associated with the cancellation key.
     """
 
     tenant: Optional[str]
+    """The unique identifier for the tenant."""

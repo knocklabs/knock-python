@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -13,18 +13,22 @@ __all__ = ["Activity"]
 
 class Activity(BaseModel):
     id: Optional[str] = None
+    """Unique identifier for the activity."""
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
+    """The type name of the schema."""
 
     actor: Optional[Recipient] = None
-    """A recipient, which is either a user or an object"""
+    """A recipient, which is either a user or an object."""
 
-    data: Optional[object] = None
-    """The data associated with the activity"""
+    data: Optional[Dict[str, object]] = None
+    """The data associated with the activity."""
 
     inserted_at: Optional[datetime] = None
+    """Timestamp when the resource was created."""
 
     recipient: Optional[Recipient] = None
-    """A recipient, which is either a user or an object"""
+    """A recipient, which is either a user or an object."""
 
     updated_at: Optional[datetime] = None
+    """The timestamp when the resource was last updated."""

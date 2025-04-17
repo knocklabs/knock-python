@@ -10,6 +10,7 @@ __all__ = ["Condition"]
 
 class Condition(TypedDict, total=False):
     argument: Required[Optional[str]]
+    """The argument value to compare against in the condition."""
 
     operator: Required[
         Literal[
@@ -30,7 +31,10 @@ class Condition(TypedDict, total=False):
             "is_timestamp_before",
             "is_timestamp_between",
             "is_audience_member",
+            "is_not_audience_member",
         ]
     ]
+    """The operator to use in the condition evaluation."""
 
     variable: Required[str]
+    """The variable to be evaluated in the condition."""

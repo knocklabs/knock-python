@@ -65,10 +65,10 @@ class MsTeamsResource(SyncAPIResource):
     ) -> MsTeamCheckAuthResponse:
         """
         Check if a connection to Microsoft Teams has been authorized for a given
-        Microsoft Teams tenant object
+        Microsoft Teams tenant object.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 
@@ -108,15 +108,15 @@ class MsTeamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListChannelsResponse:
-        """Get a list of the Microsoft Teams channels within a team.
+        """List the Microsoft Teams channels within a team.
 
-        By default, archived
-        and private channels are excluded from the results.
+        By default, archived and
+        private channels are excluded from the results.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
-          team_id: The ID of the Microsoft Teams team to list channels from
+          team_id: Microsoft Teams team ID.
 
           extra_headers: Send extra headers
 
@@ -160,11 +160,13 @@ class MsTeamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListTeamsResponse:
-        """
-        Get a list of teams belonging to the Microsoft Entra tenant
+        """Get a list of teams belonging to the Microsoft Entra tenant.
+
+        By default,
+        archived and private channels are excluded from the results.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 
@@ -207,10 +209,10 @@ class MsTeamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object
+        Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 
@@ -272,10 +274,10 @@ class AsyncMsTeamsResource(AsyncAPIResource):
     ) -> MsTeamCheckAuthResponse:
         """
         Check if a connection to Microsoft Teams has been authorized for a given
-        Microsoft Teams tenant object
+        Microsoft Teams tenant object.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 
@@ -315,15 +317,15 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListChannelsResponse:
-        """Get a list of the Microsoft Teams channels within a team.
+        """List the Microsoft Teams channels within a team.
 
-        By default, archived
-        and private channels are excluded from the results.
+        By default, archived and
+        private channels are excluded from the results.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
-          team_id: The ID of the Microsoft Teams team to list channels from
+          team_id: Microsoft Teams team ID.
 
           extra_headers: Send extra headers
 
@@ -367,11 +369,13 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MsTeamListTeamsResponse:
-        """
-        Get a list of teams belonging to the Microsoft Entra tenant
+        """Get a list of teams belonging to the Microsoft Entra tenant.
+
+        By default,
+        archived and private channels are excluded from the results.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 
@@ -414,10 +418,10 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object
+        Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.
 
         Args:
-          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference
+          ms_teams_tenant_object: A JSON encoded string containing the Microsoft Teams tenant object reference.
 
           extra_headers: Send extra headers
 

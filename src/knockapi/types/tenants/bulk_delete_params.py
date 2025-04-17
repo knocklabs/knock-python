@@ -10,4 +10,4 @@ __all__ = ["BulkDeleteParams"]
 
 class BulkDeleteParams(TypedDict, total=False):
     tenant_ids: Required[List[str]]
-    """The IDs of the tenants to delete"""
+    """The IDs of the tenants to delete."""

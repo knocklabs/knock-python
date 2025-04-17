@@ -9,4 +9,4 @@ __all__ = ["MsTeamRevokeAccessParams"]
 
 class MsTeamRevokeAccessParams(TypedDict, total=False):
     ms_teams_tenant_object: Required[str]
-    """A JSON encoded string containing the Microsoft Teams tenant object reference"""
+    """A JSON encoded string containing the Microsoft Teams tenant object reference."""

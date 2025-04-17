@@ -15,10 +15,10 @@ __all__ = ["InlineIdentifyUserRequestParam"]
 
 class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     id: Required[str]
-    """The ID of the user to identify. This is an ID that you supply."""
+    """The unique identifier for the user."""
 
     channel_data: Optional[InlineChannelDataRequestParam]
-    """Allows inline setting channel data for a recipient"""
+    """A request to set channel data for a type of channel inline."""
 
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The creation date of the user from your system."""

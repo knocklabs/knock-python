@@ -1,25 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["SlackListChannelsResponse", "SlackChannel"]
-
-
-class SlackChannel(BaseModel):
-    id: str
-
-    context_team_id: str
-
-    is_im: bool
-
-    is_private: bool
-
-    name: str
+__all__ = ["SlackListChannelsResponse"]
 
 
 class SlackListChannelsResponse(BaseModel):
-    next_cursor: Optional[str] = None
+    id: str
+    """A Slack channel ID from the Slack provider."""
 
-    slack_channels: List[SlackChannel]
+    context_team_id: str
+    """The team ID that the Slack channel belongs to."""
+
+    is_im: bool
+    """Whether the Slack channel is an IM channel."""
+
+    is_private: bool
+    """Whether the Slack channel is private."""
+
+    name: str
+    """Slack channel name."""

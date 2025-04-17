@@ -15,13 +15,16 @@ __all__ = ["InlineObjectRequestParam"]
 
 class InlineObjectRequestParamTyped(TypedDict, total=False):
     id: Required[str]
+    """Unique identifier for the object."""
 
     collection: Required[str]
+    """The collection this object belongs to."""
 
     channel_data: Optional[InlineChannelDataRequestParam]
-    """Allows inline setting channel data for a recipient"""
+    """A request to set channel data for a type of channel inline."""
 
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp when the resource was created."""
 
     preferences: Optional[InlinePreferenceSetRequestParam]
     """

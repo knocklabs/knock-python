@@ -9,9 +9,12 @@ __all__ = ["SlackCheckAuthResponse", "Connection"]
 
 class Connection(BaseModel):
     ok: bool
+    """Whether the Slack connection is valid."""
 
     reason: Optional[str] = None
+    """The reason for the Slack connection if it is not valid."""
 
 
 class SlackCheckAuthResponse(BaseModel):
     connection: Connection
+    """A Slack connection object."""

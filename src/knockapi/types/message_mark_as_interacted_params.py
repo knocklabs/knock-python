@@ -10,4 +10,4 @@ __all__ = ["MessageMarkAsInteractedParams"]
 
 class MessageMarkAsInteractedParams(TypedDict, total=False):
     metadata: Dict[str, object]
-    """Metadata about the interaction"""
+    """Metadata about the interaction."""

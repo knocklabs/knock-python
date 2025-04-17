@@ -14,26 +14,32 @@ __all__ = ["TenantRequestParam", "Settings", "SettingsBranding"]
 
 class SettingsBranding(TypedDict, total=False):
     icon_url: Optional[str]
+    """The icon URL for the tenant."""
 
     logo_url: Optional[str]
+    """The logo URL for the tenant."""
 
     primary_color: Optional[str]
+    """The primary color for the tenant."""
 
     primary_color_contrast: Optional[str]
+    """The primary color contrast for the tenant."""
 
 
 class Settings(TypedDict, total=False):
     branding: SettingsBranding
+    """The branding for the tenant."""
 
     preference_set: Optional[PreferenceSetRequestParam]
-    """Set preferences for a recipient"""
+    """A request to set a preference set for a recipient."""
 
 
 class TenantRequestParamTyped(TypedDict, total=False):
     id: Required[str]
+    """The unique identifier for the tenant."""
 
     channel_data: Optional[InlineChannelDataRequestParam]
-    """Allows inline setting channel data for a recipient"""
+    """A request to set channel data for a type of channel inline."""
 
     preferences: Optional[InlinePreferenceSetRequestParam]
     """
@@ -41,6 +47,7 @@ class TenantRequestParamTyped(TypedDict, total=False):
     """
 
     settings: Settings
+    """The settings for the tenant. Includes branding and preference set."""
 
 
 TenantRequestParam: TypeAlias = Union[TenantRequestParamTyped, Dict[str, object]]

@@ -2,17 +2,21 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["UserListParams"]
 
 
 class UserListParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after.."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before.."""
+
+    include: List[Literal["preferences"]]
+    """Includes preferences of the users in the response."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page.."""

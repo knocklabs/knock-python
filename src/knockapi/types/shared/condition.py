@@ -10,6 +10,7 @@ __all__ = ["Condition"]
 
 class Condition(BaseModel):
     argument: Optional[str] = None
+    """The argument value to compare against in the condition."""
 
     operator: Literal[
         "equal_to",
@@ -29,6 +30,9 @@ class Condition(BaseModel):
         "is_timestamp_before",
         "is_timestamp_between",
         "is_audience_member",
+        "is_not_audience_member",
     ]
+    """The operator to use in the condition evaluation."""
 
     variable: str
+    """The variable to be evaluated in the condition."""

@@ -9,3 +9,4 @@ __all__ = ["PushChannelData"]
 
 class PushChannelData(BaseModel):
     tokens: List[str]
+    """A list of push channel tokens."""

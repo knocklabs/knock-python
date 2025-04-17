@@ -10,6 +10,7 @@ import pytest
 from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
 from knockapi.types import BulkOperation
+from knockapi._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,6 +26,27 @@ class TestBulk:
         bulk = client.channels.bulk.update_message_status(
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             action="seen",
+        )
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    def test_method_update_message_status_with_all_params(self, client: Knock) -> None:
+        bulk = client.channels.bulk.update_message_status(
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
+            archived="include",
+            delivery_status="delivered",
+            engagement_status="seen",
+            has_tenant=True,
+            newer_than=parse_datetime("2024-01-01T00:00:00Z"),
+            older_than=parse_datetime("2024-01-01T00:00:00Z"),
+            recipient_ids=["recipient1", "recipient2"],
+            tenants=["tenant1", "tenant2"],
+            trigger_data='{"key":"value"}',
+            workflows=["workflow1", "workflow2"],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -83,6 +105,27 @@ class TestAsyncBulk:
         bulk = await async_client.channels.bulk.update_message_status(
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             action="seen",
+        )
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    async def test_method_update_message_status_with_all_params(self, async_client: AsyncKnock) -> None:
+        bulk = await async_client.channels.bulk.update_message_status(
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            action="seen",
+            archived="include",
+            delivery_status="delivered",
+            engagement_status="seen",
+            has_tenant=True,
+            newer_than=parse_datetime("2024-01-01T00:00:00Z"),
+            older_than=parse_datetime("2024-01-01T00:00:00Z"),
+            recipient_ids=["recipient1", "recipient2"],
+            tenants=["tenant1", "tenant2"],
+            trigger_data='{"key":"value"}',
+            workflows=["workflow1", "workflow2"],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 

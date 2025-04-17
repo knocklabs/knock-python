@@ -12,3 +12,4 @@ __all__ = ["ObjectDeleteSubscriptionsParams"]
 
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
     recipients: Required[List[RecipientRequestParam]]
+    """The recipients of the subscription."""

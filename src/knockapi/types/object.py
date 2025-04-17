@@ -12,14 +12,19 @@ __all__ = ["Object"]
 
 class Object(BaseModel):
     id: str
+    """Unique identifier for the object."""
 
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     collection: str
+    """The collection this object belongs to."""
 
     updated_at: datetime
+    """The timestamp when the resource was last updated."""
 
     created_at: Optional[datetime] = None
+    """Timestamp when the resource was created."""
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.

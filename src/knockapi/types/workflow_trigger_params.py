@@ -21,19 +21,20 @@ class WorkflowTriggerParams(TypedDict, total=False):
     """
 
     cancellation_key: Optional[str]
-    """
-    An optional key that is used in the workflow cancellation endpoint to target a
-    cancellation of any workflow runs associated with this trigger.
+    """The cancellation key provided during the initial notify call.
+
+    If used in a cancel request, will cancel the notification for the recipients
+    specified in the cancel request.
     """
 
-    data: Optional[Dict[str, str]]
-    """An optional map of data to be used in the workflow.
-
-    This data will be available to the workflow as a map in the `data` field.
-    """
+    data: Optional[Dict[str, object]]
+    """An optional map of data to pass into the workflow execution."""
 
     recipients: List[RecipientRequestParam]
-    """The recipients to trigger the workflow for."""
+    """The recipients to trigger the workflow for.
+
+    Cannot exceed 1000 recipients in a single trigger.
+    """
 
     tenant: Optional[InlineTenantRequestParam]
-    """An inline tenant request"""
+    """An request to set a tenant inline."""

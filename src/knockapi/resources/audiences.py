@@ -2,9 +2,16 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
+from ..types import audience_add_members_params, audience_remove_members_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -43,6 +50,7 @@ class AudiencesResource(SyncAPIResource):
         self,
         key: str,
         *,
+        members: Iterable[audience_add_members_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -51,9 +59,11 @@ class AudiencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Add members to an audience
+        Adds one or more members to the specified audience.
 
         Args:
+          members: A list of audience members to add.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -66,6 +76,7 @@ class AudiencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return self._post(
             f"/v1/audiences/{key}/members",
+            body=maybe_transform({"members": members}, audience_add_members_params.AudienceAddMembersParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -84,7 +95,7 @@ class AudiencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AudienceListMembersResponse:
         """
-        List members of an audience
+        Returns a paginated list of members for the specified audience.
 
         Args:
           extra_headers: Send extra headers
@@ -109,6 +120,7 @@ class AudiencesResource(SyncAPIResource):
         self,
         key: str,
         *,
+        members: Iterable[audience_remove_members_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,9 +129,11 @@ class AudiencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Remove members from an audience
+        Removes one or more members from the specified audience.
 
         Args:
+          members: A list of audience members to remove.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,6 +146,7 @@ class AudiencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return self._delete(
             f"/v1/audiences/{key}/members",
+            body=maybe_transform({"members": members}, audience_remove_members_params.AudienceRemoveMembersParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -163,6 +178,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         key: str,
         *,
+        members: Iterable[audience_add_members_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,9 +187,11 @@ class AsyncAudiencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Add members to an audience
+        Adds one or more members to the specified audience.
 
         Args:
+          members: A list of audience members to add.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -186,6 +204,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return await self._post(
             f"/v1/audiences/{key}/members",
+            body=await async_maybe_transform(
+                {"members": members}, audience_add_members_params.AudienceAddMembersParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -204,7 +225,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AudienceListMembersResponse:
         """
-        List members of an audience
+        Returns a paginated list of members for the specified audience.
 
         Args:
           extra_headers: Send extra headers
@@ -229,6 +250,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         key: str,
         *,
+        members: Iterable[audience_remove_members_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,9 +259,11 @@ class AsyncAudiencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Remove members from an audience
+        Removes one or more members from the specified audience.
 
         Args:
+          members: A list of audience members to remove.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,6 +276,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return await self._delete(
             f"/v1/audiences/{key}/members",
+            body=await async_maybe_transform(
+                {"members": members}, audience_remove_members_params.AudienceRemoveMembersParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

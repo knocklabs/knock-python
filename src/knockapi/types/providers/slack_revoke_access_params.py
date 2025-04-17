@@ -9,4 +9,4 @@ __all__ = ["SlackRevokeAccessParams"]
 
 class SlackRevokeAccessParams(TypedDict, total=False):
     access_token_object: Required[str]
-    """A JSON encoded string containing the access token object reference"""
+    """A JSON encoded string containing the access token object reference."""

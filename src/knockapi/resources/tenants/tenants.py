@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from .bulk import (
@@ -12,9 +14,12 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import tenant_list_params
+from ...types import tenant_set_params, tenant_list_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -26,6 +31,8 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.tenant import Tenant
+from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from ...types.recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["TenantsResource", "AsyncTenantsResource"]
 
@@ -59,7 +66,9 @@ class TenantsResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        tenant_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,14 +77,18 @@ class TenantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Tenant]:
         """
-        List tenants
+        List tenants for the current environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          name: Filter tenants by name.
+
+          page_size: The number of items per page.
+
+          tenant_id: Filter tenants by ID.
 
           extra_headers: Send extra headers
 
@@ -97,12 +110,133 @@ class TenantsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "name": name,
                         "page_size": page_size,
+                        "tenant_id": tenant_id,
                     },
                     tenant_list_params.TenantListParams,
                 ),
             ),
             model=Tenant,
+        )
+
+    def delete(
+        self,
+        tenant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """Delete a tenant and all associated data.
+
+        This operation cannot be undone.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return self._delete(
+            f"/v1/tenants/{tenant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
+        )
+
+    def get(
+        self,
+        tenant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Tenant:
+        """
+        Get a tenant by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return self._get(
+            f"/v1/tenants/{tenant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Tenant,
+        )
+
+    def set(
+        self,
+        tenant_id: str,
+        *,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Tenant:
+        """Set or update a tenant's properties and settings.
+
+        This operation allows you to
+        update tenant preferences, channel data, and branding settings.
+
+        Args:
+          channel_data: A request to set channel data for a type of channel inline.
+
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          settings: The settings for the tenant. Includes branding and preference set.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return self._put(
+            f"/v1/tenants/{tenant_id}",
+            body=maybe_transform(
+                {
+                    "channel_data": channel_data,
+                    "preferences": preferences,
+                    "settings": settings,
+                },
+                tenant_set_params.TenantSetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Tenant,
         )
 
 
@@ -135,7 +269,9 @@ class AsyncTenantsResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        tenant_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,14 +280,18 @@ class AsyncTenantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Tenant, AsyncEntriesCursor[Tenant]]:
         """
-        List tenants
+        List tenants for the current environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          name: Filter tenants by name.
+
+          page_size: The number of items per page.
+
+          tenant_id: Filter tenants by ID.
 
           extra_headers: Send extra headers
 
@@ -173,12 +313,133 @@ class AsyncTenantsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "name": name,
                         "page_size": page_size,
+                        "tenant_id": tenant_id,
                     },
                     tenant_list_params.TenantListParams,
                 ),
             ),
             model=Tenant,
+        )
+
+    async def delete(
+        self,
+        tenant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """Delete a tenant and all associated data.
+
+        This operation cannot be undone.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return await self._delete(
+            f"/v1/tenants/{tenant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
+        )
+
+    async def get(
+        self,
+        tenant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Tenant:
+        """
+        Get a tenant by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return await self._get(
+            f"/v1/tenants/{tenant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Tenant,
+        )
+
+    async def set(
+        self,
+        tenant_id: str,
+        *,
+        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Tenant:
+        """Set or update a tenant's properties and settings.
+
+        This operation allows you to
+        update tenant preferences, channel data, and branding settings.
+
+        Args:
+          channel_data: A request to set channel data for a type of channel inline.
+
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          settings: The settings for the tenant. Includes branding and preference set.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not tenant_id:
+            raise ValueError(f"Expected a non-empty value for `tenant_id` but received {tenant_id!r}")
+        return await self._put(
+            f"/v1/tenants/{tenant_id}",
+            body=await async_maybe_transform(
+                {
+                    "channel_data": channel_data,
+                    "preferences": preferences,
+                    "settings": settings,
+                },
+                tenant_set_params.TenantSetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Tenant,
         )
 
 
@@ -188,6 +449,15 @@ class TenantsResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             tenants.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            tenants.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            tenants.get,
+        )
+        self.set = to_raw_response_wrapper(
+            tenants.set,
         )
 
     @cached_property
@@ -202,6 +472,15 @@ class AsyncTenantsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             tenants.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            tenants.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            tenants.get,
+        )
+        self.set = async_to_raw_response_wrapper(
+            tenants.set,
+        )
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
@@ -215,6 +494,15 @@ class TenantsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             tenants.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            tenants.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            tenants.get,
+        )
+        self.set = to_streamed_response_wrapper(
+            tenants.set,
+        )
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
@@ -227,6 +515,15 @@ class AsyncTenantsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             tenants.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            tenants.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            tenants.get,
+        )
+        self.set = async_to_streamed_response_wrapper(
+            tenants.set,
         )
 
     @cached_property

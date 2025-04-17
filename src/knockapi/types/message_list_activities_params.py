@@ -9,13 +9,13 @@ __all__ = ["MessageListActivitiesParams"]
 
 class MessageListActivitiesParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page."""
 
     trigger_data: str
-    """The trigger data to filter activities by"""
+    """The trigger data to filter activities by."""

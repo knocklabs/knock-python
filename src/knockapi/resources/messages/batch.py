@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Optional
 
 import httpx
 
@@ -28,6 +28,7 @@ from ...types.messages import (
     batch_mark_as_seen_params,
     batch_mark_as_unread_params,
     batch_mark_as_unseen_params,
+    batch_mark_as_interacted_params,
 )
 from ...types.messages.batch_archive_response import BatchArchiveResponse
 from ...types.messages.batch_unarchive_response import BatchUnarchiveResponse
@@ -73,7 +74,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchArchiveResponse:
         """
-        Marks one or more messages as archived
+        Marks the given messages as archived.
 
         Args:
           extra_headers: Send extra headers
@@ -96,7 +97,7 @@ class BatchResource(SyncAPIResource):
     def get_content(
         self,
         *,
-        message_ids: Iterable[object],
+        message_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,10 +106,10 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchGetContentResponse:
         """
-        Get the contents of multiple messages
+        Get the contents of multiple messages in a single request.
 
         Args:
-          message_ids: The IDs of the messages to fetch contents of
+          message_ids: The IDs of the messages to fetch contents of.
 
           extra_headers: Send extra headers
 
@@ -133,6 +134,8 @@ class BatchResource(SyncAPIResource):
     def mark_as_interacted(
         self,
         *,
+        message_ids: List[str],
+        metadata: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -140,9 +143,31 @@ class BatchResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsInteractedResponse:
-        """Marks one or more messages as interacted"""
+        """
+        Marks the given messages as interacted with.
+
+        Args:
+          message_ids: The message IDs to batch mark as interacted with.
+
+          metadata: Metadata about the interaction.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._post(
             "/v1/messages/batch/interacted",
+            body=maybe_transform(
+                {
+                    "message_ids": message_ids,
+                    "metadata": metadata,
+                },
+                batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -161,7 +186,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsReadResponse:
         """
-        Marks one or more messages as read
+        Marks the given messages as read.
 
         Args:
           extra_headers: Send extra headers
@@ -193,7 +218,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsSeenResponse:
         """
-        Marks one or more messages as seen
+        Marks the given messages as seen.
 
         Args:
           extra_headers: Send extra headers
@@ -225,7 +250,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsUnreadResponse:
         """
-        Marks one or more messages as unread
+        Marks the given messages as unread.
 
         Args:
           extra_headers: Send extra headers
@@ -257,7 +282,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsUnseenResponse:
         """
-        Marks one or more messages as unseen
+        Marks the given messages as unseen.
 
         Args:
           extra_headers: Send extra headers
@@ -289,7 +314,7 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchUnarchiveResponse:
         """
-        Marks one or more messages as unarchived
+        Marks the given messages as unarchived.
 
         Args:
           extra_headers: Send extra headers
@@ -342,7 +367,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchArchiveResponse:
         """
-        Marks one or more messages as archived
+        Marks the given messages as archived.
 
         Args:
           extra_headers: Send extra headers
@@ -365,7 +390,7 @@ class AsyncBatchResource(AsyncAPIResource):
     async def get_content(
         self,
         *,
-        message_ids: Iterable[object],
+        message_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -374,10 +399,10 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchGetContentResponse:
         """
-        Get the contents of multiple messages
+        Get the contents of multiple messages in a single request.
 
         Args:
-          message_ids: The IDs of the messages to fetch contents of
+          message_ids: The IDs of the messages to fetch contents of.
 
           extra_headers: Send extra headers
 
@@ -404,6 +429,8 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_interacted(
         self,
         *,
+        message_ids: List[str],
+        metadata: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -411,9 +438,31 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsInteractedResponse:
-        """Marks one or more messages as interacted"""
+        """
+        Marks the given messages as interacted with.
+
+        Args:
+          message_ids: The message IDs to batch mark as interacted with.
+
+          metadata: Metadata about the interaction.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._post(
             "/v1/messages/batch/interacted",
+            body=await async_maybe_transform(
+                {
+                    "message_ids": message_ids,
+                    "metadata": metadata,
+                },
+                batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -432,7 +481,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsReadResponse:
         """
-        Marks one or more messages as read
+        Marks the given messages as read.
 
         Args:
           extra_headers: Send extra headers
@@ -466,7 +515,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsSeenResponse:
         """
-        Marks one or more messages as seen
+        Marks the given messages as seen.
 
         Args:
           extra_headers: Send extra headers
@@ -500,7 +549,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsUnreadResponse:
         """
-        Marks one or more messages as unread
+        Marks the given messages as unread.
 
         Args:
           extra_headers: Send extra headers
@@ -534,7 +583,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchMarkAsUnseenResponse:
         """
-        Marks one or more messages as unseen
+        Marks the given messages as unseen.
 
         Args:
           extra_headers: Send extra headers
@@ -568,7 +617,7 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BatchUnarchiveResponse:
         """
-        Marks one or more messages as unarchived
+        Marks the given messages as unarchived.
 
         Args:
           extra_headers: Send extra headers

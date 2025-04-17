@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -16,12 +16,23 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
+from .feeds import (
+    FeedsResource,
+    AsyncFeedsResource,
+    FeedsResourceWithRawResponse,
+    AsyncFeedsResourceWithRawResponse,
+    FeedsResourceWithStreamingResponse,
+    AsyncFeedsResourceWithStreamingResponse,
+)
 from ...types import (
     user_list_params,
     user_merge_params,
     user_update_params,
     user_list_messages_params,
     user_list_schedules_params,
+    user_get_preferences_params,
+    user_set_preferences_params,
+    user_set_channel_data_params,
     user_list_subscriptions_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -44,14 +55,20 @@ from ...types.message import Message
 from ...types.schedule import Schedule
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
+from ...types.recipients.preference_set import PreferenceSet
 from ...types.user_list_preferences_response import UserListPreferencesResponse
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from ...types.recipients.preference_set_channel_types_param import PreferenceSetChannelTypesParam
 from ...types.recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
 
 class UsersResource(SyncAPIResource):
+    @cached_property
+    def feeds(self) -> FeedsResource:
+        return FeedsResource(self._client)
+
     @cached_property
     def bulk(self) -> BulkResource:
         return BulkResource(self._client)
@@ -90,10 +107,12 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Identify a user
+        Create or update a user with the provided identification data.
 
         Args:
-          channel_data: Allows inline setting channel data for a recipient
+          channel_data: A request to set channel data for a type of channel inline.
+
+          created_at: The creation date of the user from your system.
 
           preferences: Inline set preferences for a recipient, where the key is the preference set name
 
@@ -128,6 +147,7 @@ class UsersResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -137,14 +157,16 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[User]:
         """
-        Returns a list of users
+        Retrieve a paginated list of users in the environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after..
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before..
 
-          page_size: The page size to fetch
+          include: Includes preferences of the users in the response.
+
+          page_size: The number of items per page..
 
           extra_headers: Send extra headers
 
@@ -166,6 +188,7 @@ class UsersResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "page_size": page_size,
                     },
                     user_list_params.UserListParams,
@@ -186,7 +209,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Deletes a user
+        Permanently delete a user and all associated data.
 
         Args:
           extra_headers: Send extra headers
@@ -219,7 +242,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Returns a user
+        Retrieve a specific user by their ID.
 
         Args:
           extra_headers: Send extra headers
@@ -253,7 +276,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
         """
-        Get channel data for a user
+        Retrieves the channel data for a specific user and channel ID.
 
         Args:
           extra_headers: Send extra headers
@@ -274,6 +297,50 @@ class UsersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    def get_preferences(
+        self,
+        user_id: str,
+        preference_set_id: str,
+        *,
+        tenant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """
+        Retrieves a specific preference set for a user identified by the preference set
+        ID.
+
+        Args:
+          tenant: The unique identifier for the tenant.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
+        return self._get(
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"tenant": tenant}, user_get_preferences_params.UserGetPreferencesParams),
+            ),
+            cast_to=PreferenceSet,
         )
 
     def list_messages(
@@ -302,35 +369,37 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Message]:
-        """
-        Returns a paginated list of messages for a user
+        """Returns a paginated list of messages for a specific user.
+
+        Allows filtering by
+        message status and provides various sorting options.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          channel_id: The channel ID
+          channel_id: The unique identifier for the channel.
 
-          engagement_status: The engagement status of the message
+          engagement_status: The engagement status to filter messages by.
 
-          message_ids: The message IDs to filter messages by
+          message_ids: The message IDs to filter messages by.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          source: The source of the message (workflow key)
+          source: The source of the message (workflow key).
 
-          status: The status of the message
+          status: The delivery status to filter messages by.
 
-          tenant: The tenant ID
+          tenant: The unique identifier for the tenant.
 
           trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
 
-          workflow_categories: The workflow categories to filter messages by
+          workflow_categories: The workflow categories to filter messages by.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by
+          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
 
-          workflow_run_id: The workflow run ID to filter messages by
+          workflow_run_id: The workflow run ID to filter messages by.
 
           extra_headers: Send extra headers
 
@@ -384,7 +453,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> UserListPreferencesResponse:
         """
-        List preference sets for a user
+        Retrieves a list of all preference sets for a specific user.
 
         Args:
           extra_headers: Send extra headers
@@ -421,19 +490,21 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Schedule]:
-        """
-        List schedules for a user
+        """Returns a paginated list of schedules for a specific user.
+
+        Can be filtered by
+        workflow and tenant.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for
+          tenant: The ID of the tenant to list schedules for.
 
-          workflow: The ID of the workflow to list schedules for
+          workflow: The ID of the workflow to list schedules for.
 
           extra_headers: Send extra headers
 
@@ -473,6 +544,7 @@ class UsersResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         objects: List[user_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -482,17 +554,21 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Subscription]:
-        """
-        List subscriptions for a user
+        """Retrieves a paginated list of subscriptions for a specific user.
+
+        Allows
+        filtering by objects and includes optional preference data.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          objects: Objects to filter by
+          include: Includes preferences of the recipient subscribers in the response.
 
-          page_size: The page size to fetch
+          objects: Objects to filter by.
+
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -516,6 +592,7 @@ class UsersResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "objects": objects,
                         "page_size": page_size,
                     },
@@ -529,7 +606,7 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
-        from_user_id: str | NotGiven = NOT_GIVEN,
+        from_user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,9 +615,12 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Merges two users together
+        Merge two users together, where the user specified with the `from_user_id` param
+        will be merged into the user specified by `user_id`.
 
         Args:
+          from_user_id: The user ID to merge from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -565,6 +645,7 @@ class UsersResource(SyncAPIResource):
         user_id: str,
         channel_id: str,
         *,
+        data: user_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -573,9 +654,11 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
         """
-        Sets channel data for a user
+        Updates or creates channel data for a specific user and channel ID.
 
         Args:
+          data: Channel data for a given channel type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -590,10 +673,68 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._put(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
+            body=maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    def set_preferences(
+        self,
+        user_id: str,
+        preference_set_id: str,
+        *,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """Updates a complete preference set for a user.
+
+        This is a destructive operation
+        that will replace the existing preference set for the user.
+
+        Args:
+          categories: A setting for a preference set, where the key in the object is the category, and
+              the values are the preference settings for that category.
+
+          channel_types: Channel type preferences.
+
+          workflows: A setting for a preference set, where the key in the object is the workflow key,
+              and the values are the preference settings for that workflow.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
+        return self._put(
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
+            body=maybe_transform(
+                {
+                    "categories": categories,
+                    "channel_types": channel_types,
+                    "workflows": workflows,
+                },
+                user_set_preferences_params.UserSetPreferencesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PreferenceSet,
         )
 
     def unset_channel_data(
@@ -609,7 +750,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Unsets channel data for a user
+        Deletes channel data for a specific user and channel ID.
 
         Args:
           extra_headers: Send extra headers
@@ -634,6 +775,10 @@ class UsersResource(SyncAPIResource):
 
 
 class AsyncUsersResource(AsyncAPIResource):
+    @cached_property
+    def feeds(self) -> AsyncFeedsResource:
+        return AsyncFeedsResource(self._client)
+
     @cached_property
     def bulk(self) -> AsyncBulkResource:
         return AsyncBulkResource(self._client)
@@ -672,10 +817,12 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Identify a user
+        Create or update a user with the provided identification data.
 
         Args:
-          channel_data: Allows inline setting channel data for a recipient
+          channel_data: A request to set channel data for a type of channel inline.
+
+          created_at: The creation date of the user from your system.
 
           preferences: Inline set preferences for a recipient, where the key is the preference set name
 
@@ -710,6 +857,7 @@ class AsyncUsersResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -719,14 +867,16 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[User, AsyncEntriesCursor[User]]:
         """
-        Returns a list of users
+        Retrieve a paginated list of users in the environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after..
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before..
 
-          page_size: The page size to fetch
+          include: Includes preferences of the users in the response.
+
+          page_size: The number of items per page..
 
           extra_headers: Send extra headers
 
@@ -748,6 +898,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "page_size": page_size,
                     },
                     user_list_params.UserListParams,
@@ -768,7 +919,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Deletes a user
+        Permanently delete a user and all associated data.
 
         Args:
           extra_headers: Send extra headers
@@ -801,7 +952,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Returns a user
+        Retrieve a specific user by their ID.
 
         Args:
           extra_headers: Send extra headers
@@ -835,7 +986,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
         """
-        Get channel data for a user
+        Retrieves the channel data for a specific user and channel ID.
 
         Args:
           extra_headers: Send extra headers
@@ -856,6 +1007,52 @@ class AsyncUsersResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    async def get_preferences(
+        self,
+        user_id: str,
+        preference_set_id: str,
+        *,
+        tenant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """
+        Retrieves a specific preference set for a user identified by the preference set
+        ID.
+
+        Args:
+          tenant: The unique identifier for the tenant.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
+        return await self._get(
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"tenant": tenant}, user_get_preferences_params.UserGetPreferencesParams
+                ),
+            ),
+            cast_to=PreferenceSet,
         )
 
     def list_messages(
@@ -884,35 +1081,37 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
-        """
-        Returns a paginated list of messages for a user
+        """Returns a paginated list of messages for a specific user.
+
+        Allows filtering by
+        message status and provides various sorting options.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          channel_id: The channel ID
+          channel_id: The unique identifier for the channel.
 
-          engagement_status: The engagement status of the message
+          engagement_status: The engagement status to filter messages by.
 
-          message_ids: The message IDs to filter messages by
+          message_ids: The message IDs to filter messages by.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          source: The source of the message (workflow key)
+          source: The source of the message (workflow key).
 
-          status: The status of the message
+          status: The delivery status to filter messages by.
 
-          tenant: The tenant ID
+          tenant: The unique identifier for the tenant.
 
           trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
 
-          workflow_categories: The workflow categories to filter messages by
+          workflow_categories: The workflow categories to filter messages by.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by
+          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
 
-          workflow_run_id: The workflow run ID to filter messages by
+          workflow_run_id: The workflow run ID to filter messages by.
 
           extra_headers: Send extra headers
 
@@ -966,7 +1165,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> UserListPreferencesResponse:
         """
-        List preference sets for a user
+        Retrieves a list of all preference sets for a specific user.
 
         Args:
           extra_headers: Send extra headers
@@ -1003,19 +1202,21 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
-        """
-        List schedules for a user
+        """Returns a paginated list of schedules for a specific user.
+
+        Can be filtered by
+        workflow and tenant.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for
+          tenant: The ID of the tenant to list schedules for.
 
-          workflow: The ID of the workflow to list schedules for
+          workflow: The ID of the workflow to list schedules for.
 
           extra_headers: Send extra headers
 
@@ -1055,6 +1256,7 @@ class AsyncUsersResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
+        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         objects: List[user_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1064,17 +1266,21 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
-        """
-        List subscriptions for a user
+        """Retrieves a paginated list of subscriptions for a specific user.
+
+        Allows
+        filtering by objects and includes optional preference data.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          objects: Objects to filter by
+          include: Includes preferences of the recipient subscribers in the response.
 
-          page_size: The page size to fetch
+          objects: Objects to filter by.
+
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -1098,6 +1304,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "objects": objects,
                         "page_size": page_size,
                     },
@@ -1111,7 +1318,7 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
-        from_user_id: str | NotGiven = NOT_GIVEN,
+        from_user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1120,9 +1327,12 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> User:
         """
-        Merges two users together
+        Merge two users together, where the user specified with the `from_user_id` param
+        will be merged into the user specified by `user_id`.
 
         Args:
+          from_user_id: The user ID to merge from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1147,6 +1357,7 @@ class AsyncUsersResource(AsyncAPIResource):
         user_id: str,
         channel_id: str,
         *,
+        data: user_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1155,9 +1366,11 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
         """
-        Sets channel data for a user
+        Updates or creates channel data for a specific user and channel ID.
 
         Args:
+          data: Channel data for a given channel type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1172,10 +1385,68 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._put(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
+            body=await async_maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    async def set_preferences(
+        self,
+        user_id: str,
+        preference_set_id: str,
+        *,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """Updates a complete preference set for a user.
+
+        This is a destructive operation
+        that will replace the existing preference set for the user.
+
+        Args:
+          categories: A setting for a preference set, where the key in the object is the category, and
+              the values are the preference settings for that category.
+
+          channel_types: Channel type preferences.
+
+          workflows: A setting for a preference set, where the key in the object is the workflow key,
+              and the values are the preference settings for that workflow.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not preference_set_id:
+            raise ValueError(f"Expected a non-empty value for `preference_set_id` but received {preference_set_id!r}")
+        return await self._put(
+            f"/v1/users/{user_id}/preferences/{preference_set_id}",
+            body=await async_maybe_transform(
+                {
+                    "categories": categories,
+                    "channel_types": channel_types,
+                    "workflows": workflows,
+                },
+                user_set_preferences_params.UserSetPreferencesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PreferenceSet,
         )
 
     async def unset_channel_data(
@@ -1191,7 +1462,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Unsets channel data for a user
+        Deletes channel data for a specific user and channel ID.
 
         Args:
           extra_headers: Send extra headers
@@ -1234,6 +1505,9 @@ class UsersResourceWithRawResponse:
         self.get_channel_data = to_raw_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = to_raw_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = to_raw_response_wrapper(
             users.list_messages,
         )
@@ -1252,9 +1526,16 @@ class UsersResourceWithRawResponse:
         self.set_channel_data = to_raw_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = to_raw_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = to_raw_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> FeedsResourceWithRawResponse:
+        return FeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
@@ -1280,6 +1561,9 @@ class AsyncUsersResourceWithRawResponse:
         self.get_channel_data = async_to_raw_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = async_to_raw_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = async_to_raw_response_wrapper(
             users.list_messages,
         )
@@ -1298,9 +1582,16 @@ class AsyncUsersResourceWithRawResponse:
         self.set_channel_data = async_to_raw_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = async_to_raw_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = async_to_raw_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> AsyncFeedsResourceWithRawResponse:
+        return AsyncFeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
@@ -1326,6 +1617,9 @@ class UsersResourceWithStreamingResponse:
         self.get_channel_data = to_streamed_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = to_streamed_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = to_streamed_response_wrapper(
             users.list_messages,
         )
@@ -1344,9 +1638,16 @@ class UsersResourceWithStreamingResponse:
         self.set_channel_data = to_streamed_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = to_streamed_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = to_streamed_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> FeedsResourceWithStreamingResponse:
+        return FeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
@@ -1372,6 +1673,9 @@ class AsyncUsersResourceWithStreamingResponse:
         self.get_channel_data = async_to_streamed_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = async_to_streamed_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = async_to_streamed_response_wrapper(
             users.list_messages,
         )
@@ -1390,9 +1694,16 @@ class AsyncUsersResourceWithStreamingResponse:
         self.set_channel_data = async_to_streamed_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = async_to_streamed_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = async_to_streamed_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> AsyncFeedsResourceWithStreamingResponse:
+        return AsyncFeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:

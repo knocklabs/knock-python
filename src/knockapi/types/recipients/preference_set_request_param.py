@@ -8,33 +8,49 @@ from typing_extensions import TypeAlias, TypedDict
 from ..shared_params.condition import Condition
 from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
-__all__ = ["PreferenceSetRequestParam", "Categories", "CategoriesUnionMember1", "Workflows", "WorkflowsUnionMember1"]
+__all__ = [
+    "PreferenceSetRequestParam",
+    "Categories",
+    "CategoriesPreferenceSetWorkflowCategorySettingObject",
+    "Workflows",
+    "WorkflowsPreferenceSetWorkflowCategorySettingObject",
+]
 
 
-class CategoriesUnionMember1(TypedDict, total=False):
+class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences"""
+    """Channel type preferences."""
 
-    conditions: Iterable[Condition]
-
-
-Categories: TypeAlias = Union[bool, CategoriesUnionMember1]
+    conditions: Optional[Iterable[Condition]]
+    """A list of conditions to apply to a channel type."""
 
 
-class WorkflowsUnionMember1(TypedDict, total=False):
+Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
+
+
+class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences"""
+    """Channel type preferences."""
 
-    conditions: Iterable[Condition]
+    conditions: Optional[Iterable[Condition]]
+    """A list of conditions to apply to a channel type."""
 
 
-Workflows: TypeAlias = Union[bool, WorkflowsUnionMember1]
+Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySettingObject]
 
 
 class PreferenceSetRequestParam(TypedDict, total=False):
     categories: Optional[Dict[str, Categories]]
+    """
+    A setting for a preference set, where the key in the object is the category, and
+    the values are the preference settings for that category.
+    """
 
     channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences"""
+    """Channel type preferences."""
 
     workflows: Optional[Dict[str, Workflows]]
+    """
+    A setting for a preference set, where the key in the object is the workflow key,
+    and the values are the preference settings for that workflow.
+    """

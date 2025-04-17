@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,26 +8,29 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageEvent", "Recipient", "RecipientUnionMember1"]
+__all__ = ["MessageEvent", "Recipient", "RecipientObjectReference"]
 
 
-class RecipientUnionMember1(BaseModel):
+class RecipientObjectReference(BaseModel):
     id: str
-    """An object identifier"""
+    """An identifier for the recipient object."""
 
     collection: str
-    """The collection the object belongs to"""
+    """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+Recipient: TypeAlias = Union[str, RecipientObjectReference]
 
 
 class MessageEvent(BaseModel):
     id: str
+    """The unique identifier for the message event."""
 
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     inserted_at: datetime
+    """Timestamp when the event was created."""
 
     recipient: Recipient
     """
@@ -36,20 +39,23 @@ class MessageEvent(BaseModel):
     """
 
     type: Literal[
-        "message.queued",
-        "message.sent",
-        "message.delivered",
-        "message.undelivered",
-        "message.bounced",
-        "message.read",
-        "message.unread",
-        "message.link_clicked",
-        "message.interacted",
-        "message.seen",
-        "message.unseen",
         "message.archived",
+        "message.bounced",
+        "message.delivered",
+        "message.delivery_attempted",
+        "message.interacted",
+        "message.link_clicked",
+        "message.not_sent",
+        "message.queued",
+        "message.read",
+        "message.seen",
+        "message.sent",
         "message.unarchived",
+        "message.undelivered",
+        "message.unread",
+        "message.unseen",
     ]
+    """The type of event that occurred."""
 
-    data: Optional[object] = None
-    """The data associated with the event. Only present for some event types"""
+    data: Optional[Dict[str, object]] = None
+    """The data associated with the message event. Only present for some event types."""

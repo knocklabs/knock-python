@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["UserMergeParams"]
 
 
 class UserMergeParams(TypedDict, total=False):
-    from_user_id: str
+    from_user_id: Required[str]
+    """The user ID to merge from."""

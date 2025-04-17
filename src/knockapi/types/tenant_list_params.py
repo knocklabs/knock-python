@@ -9,10 +9,16 @@ __all__ = ["TenantListParams"]
 
 class TenantListParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before."""
+
+    name: str
+    """Filter tenants by name."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page."""
+
+    tenant_id: str
+    """Filter tenants by ID."""

@@ -9,37 +9,55 @@ from ..._models import BaseModel
 from ..shared.condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
 
-__all__ = ["PreferenceSet", "Categories", "CategoriesUnionMember1", "Workflows", "WorkflowsUnionMember1"]
+__all__ = [
+    "PreferenceSet",
+    "Categories",
+    "CategoriesPreferenceSetWorkflowCategorySettingObject",
+    "Workflows",
+    "WorkflowsPreferenceSetWorkflowCategorySettingObject",
+]
 
 
-class CategoriesUnionMember1(BaseModel):
+class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
     channel_types: Optional[PreferenceSetChannelTypes] = None
-    """Channel type preferences"""
+    """Channel type preferences."""
 
     conditions: Optional[List[Condition]] = None
+    """A list of conditions to apply to a channel type."""
 
 
-Categories: TypeAlias = Union[bool, CategoriesUnionMember1]
+Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
 
 
-class WorkflowsUnionMember1(BaseModel):
+class WorkflowsPreferenceSetWorkflowCategorySettingObject(BaseModel):
     channel_types: Optional[PreferenceSetChannelTypes] = None
-    """Channel type preferences"""
+    """Channel type preferences."""
 
     conditions: Optional[List[Condition]] = None
+    """A list of conditions to apply to a channel type."""
 
 
-Workflows: TypeAlias = Union[bool, WorkflowsUnionMember1]
+Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySettingObject]
 
 
 class PreferenceSet(BaseModel):
     id: str
+    """Unique identifier for the preference set."""
 
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     categories: Optional[Dict[str, Categories]] = None
+    """
+    A setting for a preference set, where the key in the object is the category, and
+    the values are the preference settings for that category.
+    """
 
     channel_types: Optional[PreferenceSetChannelTypes] = None
-    """Channel type preferences"""
+    """Channel type preferences."""
 
     workflows: Optional[Dict[str, Workflows]] = None
+    """
+    A setting for a preference set, where the key in the object is the workflow key,
+    and the values are the preference settings for that workflow.
+    """

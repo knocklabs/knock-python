@@ -11,7 +11,7 @@ __all__ = ["MsTeamListTeamsParams", "QueryOptions"]
 
 class MsTeamListTeamsParams(TypedDict, total=False):
     ms_teams_tenant_object: Required[str]
-    """A JSON encoded string containing the Microsoft Teams tenant object reference"""
+    """A JSON encoded string containing the Microsoft Teams tenant object reference."""
 
     query_options: QueryOptions
 
@@ -20,23 +20,23 @@ class QueryOptions(TypedDict, total=False):
     filter: Annotated[str, PropertyInfo(alias="$filter")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to filter teams
+    to the Microsoft Graph API to filter teams.
     """
 
     select: Annotated[str, PropertyInfo(alias="$select")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to select fields on a team
+    to the Microsoft Graph API to select fields on a team.
     """
 
     skiptoken: Annotated[str, PropertyInfo(alias="$skiptoken")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to retrieve the next page of results
+    to the Microsoft Graph API to retrieve the next page of results.
     """
 
     top: Annotated[int, PropertyInfo(alias="$top")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to limit the number of teams returned
+    to the Microsoft Graph API to limit the number of teams returned.
     """

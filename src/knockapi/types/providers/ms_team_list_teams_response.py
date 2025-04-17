@@ -11,13 +11,21 @@ __all__ = ["MsTeamListTeamsResponse", "MsTeamsTeam"]
 
 class MsTeamsTeam(BaseModel):
     id: str
+    """Microsoft Teams team ID."""
 
     display_name: str = FieldInfo(alias="displayName")
+    """Microsoft Teams team display name."""
 
     description: Optional[str] = None
+    """Microsoft Teams team description."""
 
 
 class MsTeamListTeamsResponse(BaseModel):
     ms_teams_teams: List[MsTeamsTeam]
+    """List of Microsoft Teams teams."""
 
     skip_token: Optional[str] = None
+    """
+    [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
+    to the Microsoft Graph API to retrieve the next page of results.
+    """

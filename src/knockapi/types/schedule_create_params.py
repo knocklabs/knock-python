@@ -1,0 +1,50 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Dict, List, Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+
+from .._utils import PropertyInfo
+from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from .inline_tenant_request_param import InlineTenantRequestParam
+
+__all__ = ["ScheduleCreateParams", "Recipient", "RecipientObjectReference"]
+
+
+class ScheduleCreateParams(TypedDict, total=False):
+    recipients: Required[List[Recipient]]
+    """The recipients to trigger the workflow for.
+
+    Cannot exceed 1000 recipients in a single trigger.
+    """
+
+    repeats: Required[Iterable[ScheduleRepeatRuleParam]]
+    """The repeat rule for the schedule."""
+
+    workflow: Required[str]
+    """The key of the workflow."""
+
+    data: Optional[Dict[str, object]]
+    """An optional map of data to pass into the workflow execution."""
+
+    ending_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """The ending date and time for the schedule."""
+
+    scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """The starting date and time for the schedule."""
+
+    tenant: Optional[InlineTenantRequestParam]
+    """An request to set a tenant inline."""
+
+
+class RecipientObjectReference(TypedDict, total=False):
+    id: Required[str]
+    """An identifier for the recipient object."""
+
+    collection: Required[str]
+    """The collection the recipient object belongs to."""
+
+
+Recipient: TypeAlias = Union[str, RecipientObjectReference]

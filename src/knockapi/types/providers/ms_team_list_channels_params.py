@@ -11,10 +11,10 @@ __all__ = ["MsTeamListChannelsParams", "QueryOptions"]
 
 class MsTeamListChannelsParams(TypedDict, total=False):
     ms_teams_tenant_object: Required[str]
-    """A JSON encoded string containing the Microsoft Teams tenant object reference"""
+    """A JSON encoded string containing the Microsoft Teams tenant object reference."""
 
     team_id: Required[str]
-    """The ID of the Microsoft Teams team to list channels from"""
+    """Microsoft Teams team ID."""
 
     query_options: QueryOptions
 
@@ -23,11 +23,11 @@ class QueryOptions(TypedDict, total=False):
     filter: Annotated[str, PropertyInfo(alias="$filter")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to filter channels
+    to the Microsoft Graph API to filter channels.
     """
 
     select: Annotated[str, PropertyInfo(alias="$select")]
     """
     [OData param](https://learn.microsoft.com/en-us/graph/query-parameters) passed
-    to the Microsoft Graph API to select fields on a channel
+    to the Microsoft Graph API to select specific properties.
     """

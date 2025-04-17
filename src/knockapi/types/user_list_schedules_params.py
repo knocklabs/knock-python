@@ -9,16 +9,16 @@ __all__ = ["UserListSchedulesParams"]
 
 class UserListSchedulesParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page."""
 
     tenant: str
-    """The ID of the tenant to list schedules for"""
+    """The ID of the tenant to list schedules for."""
 
     workflow: str
-    """The ID of the workflow to list schedules for"""
+    """The ID of the workflow to list schedules for."""

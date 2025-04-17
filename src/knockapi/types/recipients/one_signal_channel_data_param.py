@@ -10,4 +10,4 @@ __all__ = ["OneSignalChannelDataParam"]
 
 class OneSignalChannelDataParam(TypedDict, total=False):
     player_ids: Required[List[str]]
-    """The OneSignal player IDs"""
+    """A list of OneSignal player IDs."""

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -14,27 +14,42 @@ __all__ = ["Schedule"]
 
 class Schedule(BaseModel):
     id: str
+    """Unique identifier for the schedule."""
 
     inserted_at: datetime
+    """Timestamp when the resource was created."""
 
     recipient: Recipient
-    """A recipient, which is either a user or an object"""
+    """A recipient, which is either a user or an object."""
 
     repeats: List[ScheduleRepeatRule]
+    """The repeat rule for the schedule."""
 
     updated_at: datetime
+    """The timestamp when the resource was last updated."""
 
     workflow: str
+    """The workflow the schedule is applied to."""
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
+    """The type name of the schema."""
 
     actor: Optional[Recipient] = None
-    """A recipient, which is either a user or an object"""
+    """A recipient, which is either a user or an object."""
 
-    data: Optional[object] = None
+    data: Optional[Dict[str, object]] = None
+    """An optional map of data to pass into the workflow execution."""
 
     last_occurrence_at: Optional[datetime] = None
+    """The last occurrence of the schedule."""
 
     next_occurrence_at: Optional[datetime] = None
+    """The next occurrence of the schedule."""
 
     tenant: Optional[str] = None
+    """The tenant to trigger the workflow for.
+
+    Triggering with a tenant will use any tenant-level overrides associated with the
+    tenant object, and all messages produced from workflow runs will be tagged with
+    the tenant.
+    """

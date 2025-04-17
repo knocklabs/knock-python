@@ -5,20 +5,33 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["DiscordChannelData", "Connection", "ConnectionChannelConnection", "ConnectionIncomingWebhookConnection"]
+__all__ = [
+    "DiscordChannelData",
+    "Connection",
+    "ConnectionDiscordChannelConnection",
+    "ConnectionDiscordIncomingWebhookConnection",
+    "ConnectionDiscordIncomingWebhookConnectionIncomingWebhook",
+]
 
 
-class ConnectionChannelConnection(BaseModel):
+class ConnectionDiscordChannelConnection(BaseModel):
     channel_id: str
-    """The Discord channel ID"""
+    """Discord channel ID."""
 
 
-class ConnectionIncomingWebhookConnection(BaseModel):
+class ConnectionDiscordIncomingWebhookConnectionIncomingWebhook(BaseModel):
     url: str
+    """Incoming webhook URL."""
 
 
-Connection: TypeAlias = Union[ConnectionChannelConnection, ConnectionIncomingWebhookConnection]
+class ConnectionDiscordIncomingWebhookConnection(BaseModel):
+    incoming_webhook: ConnectionDiscordIncomingWebhookConnectionIncomingWebhook
+    """Discord incoming webhook object."""
+
+
+Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDiscordIncomingWebhookConnection]
 
 
 class DiscordChannelData(BaseModel):
     connections: List[Connection]
+    """List of Discord channel connections."""

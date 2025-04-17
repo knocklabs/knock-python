@@ -25,7 +25,7 @@ from knockapi import Knock, AsyncKnock, APIResponseValidationError
 from knockapi._types import Omit
 from knockapi._models import BaseModel, FinalRequestOptions
 from knockapi._constants import RAW_RESPONSE_HEADER
-from knockapi._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from knockapi._exceptions import KnockError, APIStatusError, APITimeoutError, APIResponseValidationError
 from knockapi._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -339,6 +339,16 @@ class TestKnock:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = Knock(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+
+        with pytest.raises(KnockError):
+            with update_env(**{"KNOCK_API_KEY": Omit()}):
+                client2 = Knock(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Knock(
@@ -1111,6 +1121,16 @@ class TestAsyncKnock:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = AsyncKnock(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+
+        with pytest.raises(KnockError):
+            with update_env(**{"KNOCK_API_KEY": Omit()}):
+                client2 = AsyncKnock(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncKnock(

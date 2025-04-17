@@ -35,7 +35,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
+from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.activity import Activity
@@ -96,34 +96,34 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Message]:
         """
-        Returns a paginated list of messages
+        Returns a paginated list of messages for the current environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          channel_id: The channel ID
+          channel_id: The unique identifier for the channel.
 
-          engagement_status: The engagement status of the message
+          engagement_status: The engagement status to filter messages by.
 
-          message_ids: The message IDs to filter messages by
+          message_ids: The message IDs to filter messages by.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          source: The source of the message (workflow key)
+          source: The source of the message (workflow key).
 
-          status: The status of the message
+          status: The delivery status to filter messages by.
 
-          tenant: The tenant ID
+          tenant: The unique identifier for the tenant.
 
           trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
 
-          workflow_categories: The workflow categories to filter messages by
+          workflow_categories: The workflow categories to filter messages by.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by
+          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
 
-          workflow_run_id: The workflow run ID to filter messages by
+          workflow_run_id: The workflow run ID to filter messages by.
 
           extra_headers: Send extra headers
 
@@ -174,8 +174,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Archives a message
+        """Archives a message for the current user.
+
+        Archived messages are hidden from the
+        default message list but can still be accessed and unarchived later.
 
         Args:
           extra_headers: Send extra headers
@@ -208,7 +210,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Retrieves a single message
+        Retrieves a specific message by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -241,7 +243,8 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageGetContentResponse:
         """
-        Get the contents of a message
+        Returns the fully rendered contents of a message, where the response depends on
+        which channel the message was sent through.
 
         Args:
           extra_headers: Send extra headers
@@ -276,18 +279,18 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncItemsCursor[Activity]:
+    ) -> SyncEntriesCursor[Activity]:
         """
-        Get activities for a message
+        Returns a paginated list of activities for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          trigger_data: The trigger data to filter activities by
+          trigger_data: The trigger data to filter activities by.
 
           extra_headers: Send extra headers
 
@@ -301,7 +304,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=SyncItemsCursor[Activity],
+            page=SyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -335,14 +338,14 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[MessageDeliveryLog]:
         """
-        Get delivery logs for a message
+        Returns a paginated list of delivery logs for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -389,14 +392,14 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[MessageEvent]:
         """
-        Get events for a message
+        Returns a paginated list of events for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -440,11 +443,14 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as interacted with
+        """Marks a message as interacted with by the current user.
+
+        This can include any
+        user action on the message, with optional metadata about the specific
+        interaction.
 
         Args:
-          metadata: Metadata about the interaction
+          metadata: Metadata about the interaction.
 
           extra_headers: Send extra headers
 
@@ -478,8 +484,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as read
+        """Marks a message as read for the current user.
+
+        This indicates that the user has
+        read the message content.
 
         Args:
           extra_headers: Send extra headers
@@ -511,8 +519,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as seen
+        """Marks a message as seen for the current user.
+
+        This indicates that the user has
+        viewed the message in their feed or inbox.
 
         Args:
           extra_headers: Send extra headers
@@ -545,7 +555,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Marks a message as unread
+        Marks a message as unread for the current user, reversing the read state.
 
         Args:
           extra_headers: Send extra headers
@@ -578,7 +588,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Marks a message as unseen
+        Marks a message as unseen for the current user, reversing the seen state.
 
         Args:
           extra_headers: Send extra headers
@@ -611,7 +621,8 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Unarchives a message
+        Removes a message from the archived state, making it visible in the default
+        message list again.
 
         Args:
           extra_headers: Send extra headers
@@ -683,34 +694,34 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
         """
-        Returns a paginated list of messages
+        Returns a paginated list of messages for the current environment.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          channel_id: The channel ID
+          channel_id: The unique identifier for the channel.
 
-          engagement_status: The engagement status of the message
+          engagement_status: The engagement status to filter messages by.
 
-          message_ids: The message IDs to filter messages by
+          message_ids: The message IDs to filter messages by.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          source: The source of the message (workflow key)
+          source: The source of the message (workflow key).
 
-          status: The status of the message
+          status: The delivery status to filter messages by.
 
-          tenant: The tenant ID
+          tenant: The unique identifier for the tenant.
 
           trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
 
-          workflow_categories: The workflow categories to filter messages by
+          workflow_categories: The workflow categories to filter messages by.
 
-          workflow_recipient_run_id: The workflow recipient run ID to filter messages by
+          workflow_recipient_run_id: The workflow recipient run ID to filter messages by.
 
-          workflow_run_id: The workflow run ID to filter messages by
+          workflow_run_id: The workflow run ID to filter messages by.
 
           extra_headers: Send extra headers
 
@@ -761,8 +772,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Archives a message
+        """Archives a message for the current user.
+
+        Archived messages are hidden from the
+        default message list but can still be accessed and unarchived later.
 
         Args:
           extra_headers: Send extra headers
@@ -795,7 +808,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Retrieves a single message
+        Retrieves a specific message by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -828,7 +841,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageGetContentResponse:
         """
-        Get the contents of a message
+        Returns the fully rendered contents of a message, where the response depends on
+        which channel the message was sent through.
 
         Args:
           extra_headers: Send extra headers
@@ -863,18 +877,18 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Activity, AsyncItemsCursor[Activity]]:
+    ) -> AsyncPaginator[Activity, AsyncEntriesCursor[Activity]]:
         """
-        Get activities for a message
+        Returns a paginated list of activities for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
-          trigger_data: The trigger data to filter activities by
+          trigger_data: The trigger data to filter activities by.
 
           extra_headers: Send extra headers
 
@@ -888,7 +902,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=AsyncItemsCursor[Activity],
+            page=AsyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -922,14 +936,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[MessageDeliveryLog, AsyncEntriesCursor[MessageDeliveryLog]]:
         """
-        Get delivery logs for a message
+        Returns a paginated list of delivery logs for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -976,14 +990,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[MessageEvent, AsyncEntriesCursor[MessageEvent]]:
         """
-        Get events for a message
+        Returns a paginated list of events for the specified message.
 
         Args:
-          after: The cursor to fetch entries after
+          after: The cursor to fetch entries after.
 
-          before: The cursor to fetch entries before
+          before: The cursor to fetch entries before.
 
-          page_size: The page size to fetch
+          page_size: The number of items per page.
 
           extra_headers: Send extra headers
 
@@ -1027,11 +1041,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as interacted with
+        """Marks a message as interacted with by the current user.
+
+        This can include any
+        user action on the message, with optional metadata about the specific
+        interaction.
 
         Args:
-          metadata: Metadata about the interaction
+          metadata: Metadata about the interaction.
 
           extra_headers: Send extra headers
 
@@ -1065,8 +1082,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as read
+        """Marks a message as read for the current user.
+
+        This indicates that the user has
+        read the message content.
 
         Args:
           extra_headers: Send extra headers
@@ -1098,8 +1117,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as seen
+        """Marks a message as seen for the current user.
+
+        This indicates that the user has
+        viewed the message in their feed or inbox.
 
         Args:
           extra_headers: Send extra headers
@@ -1132,7 +1153,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Marks a message as unread
+        Marks a message as unread for the current user, reversing the read state.
 
         Args:
           extra_headers: Send extra headers
@@ -1165,7 +1186,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Marks a message as unseen
+        Marks a message as unseen for the current user, reversing the seen state.
 
         Args:
           extra_headers: Send extra headers
@@ -1198,7 +1219,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
         """
-        Unarchives a message
+        Removes a message from the archived state, making it visible in the default
+        message list again.
 
         Args:
           extra_headers: Send extra headers

@@ -1,79 +1,41 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
-from ..shared.condition import Condition
+from .preference_set_channel_type_setting import PreferenceSetChannelTypeSetting
 
-__all__ = [
-    "PreferenceSetChannelTypes",
-    "Chat",
-    "ChatConditions",
-    "Email",
-    "EmailConditions",
-    "HTTP",
-    "HTTPConditions",
-    "InAppFeed",
-    "InAppFeedConditions",
-    "Push",
-    "PushConditions",
-    "SMS",
-    "SMSConditions",
-]
+__all__ = ["PreferenceSetChannelTypes", "Chat", "Email", "HTTP", "InAppFeed", "Push", "SMS"]
 
+Chat: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-class ChatConditions(BaseModel):
-    conditions: List[Condition]
+Email: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
+HTTP: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-Chat: TypeAlias = Union[bool, ChatConditions]
+InAppFeed: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
+Push: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
-class EmailConditions(BaseModel):
-    conditions: List[Condition]
-
-
-Email: TypeAlias = Union[bool, EmailConditions]
-
-
-class HTTPConditions(BaseModel):
-    conditions: List[Condition]
-
-
-HTTP: TypeAlias = Union[bool, HTTPConditions]
-
-
-class InAppFeedConditions(BaseModel):
-    conditions: List[Condition]
-
-
-InAppFeed: TypeAlias = Union[bool, InAppFeedConditions]
-
-
-class PushConditions(BaseModel):
-    conditions: List[Condition]
-
-
-Push: TypeAlias = Union[bool, PushConditions]
-
-
-class SMSConditions(BaseModel):
-    conditions: List[Condition]
-
-
-SMS: TypeAlias = Union[bool, SMSConditions]
+SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
 
 class PreferenceSetChannelTypes(BaseModel):
     chat: Optional[Chat] = None
+    """Whether the channel type is enabled for the preference set."""
 
     email: Optional[Email] = None
+    """Whether the channel type is enabled for the preference set."""
 
     http: Optional[HTTP] = None
+    """Whether the channel type is enabled for the preference set."""
 
     in_app_feed: Optional[InAppFeed] = None
+    """Whether the channel type is enabled for the preference set."""
 
     push: Optional[Push] = None
+    """Whether the channel type is enabled for the preference set."""
 
     sms: Optional[SMS] = None
+    """Whether the channel type is enabled for the preference set."""

@@ -2,38 +2,27 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Required, TypedDict
 
-__all__ = ["ScheduleListParams", "Recipient", "RecipientUnionMember1"]
+__all__ = ["ScheduleListParams"]
 
 
 class ScheduleListParams(TypedDict, total=False):
     workflow: Required[str]
-    """Filter by workflow"""
+    """Filter by workflow key."""
 
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page."""
 
-    recipients: List[Recipient]
-    """Filter by recipient"""
+    recipients: List[str]
+    """Filter by recipient IDs."""
 
     tenant: str
-    """Filter by tenant"""
-
-
-class RecipientUnionMember1(TypedDict, total=False):
-    id: Required[str]
-    """An object identifier"""
-
-    collection: Required[str]
-    """The collection the object belongs to"""
-
-
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+    """Filter by tenant ID."""

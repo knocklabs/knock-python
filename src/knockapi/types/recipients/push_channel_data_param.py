@@ -10,3 +10,4 @@ __all__ = ["PushChannelDataParam"]
 
 class PushChannelDataParam(TypedDict, total=False):
     tokens: Required[List[str]]
+    """A list of push channel tokens."""

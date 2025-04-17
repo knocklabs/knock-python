@@ -2,79 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Union
+from typing_extensions import TypeAlias, TypedDict
 
-from ..shared_params.condition import Condition
+from .preference_set_channel_type_setting_param import PreferenceSetChannelTypeSettingParam
 
-__all__ = [
-    "PreferenceSetChannelTypesParam",
-    "Chat",
-    "ChatConditions",
-    "Email",
-    "EmailConditions",
-    "HTTP",
-    "HTTPConditions",
-    "InAppFeed",
-    "InAppFeedConditions",
-    "Push",
-    "PushConditions",
-    "SMS",
-    "SMSConditions",
-]
+__all__ = ["PreferenceSetChannelTypesParam", "Chat", "Email", "HTTP", "InAppFeed", "Push", "SMS"]
 
+Chat: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
-class ChatConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
+Email: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
+HTTP: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
-Chat: TypeAlias = Union[bool, ChatConditions]
+InAppFeed: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
+Push: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
-class EmailConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
-
-
-Email: TypeAlias = Union[bool, EmailConditions]
-
-
-class HTTPConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
-
-
-HTTP: TypeAlias = Union[bool, HTTPConditions]
-
-
-class InAppFeedConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
-
-
-InAppFeed: TypeAlias = Union[bool, InAppFeedConditions]
-
-
-class PushConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
-
-
-Push: TypeAlias = Union[bool, PushConditions]
-
-
-class SMSConditions(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
-
-
-SMS: TypeAlias = Union[bool, SMSConditions]
+SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
 
 class PreferenceSetChannelTypesParam(TypedDict, total=False):
     chat: Chat
+    """Whether the channel type is enabled for the preference set."""
 
     email: Email
+    """Whether the channel type is enabled for the preference set."""
 
     http: HTTP
+    """Whether the channel type is enabled for the preference set."""
 
     in_app_feed: InAppFeed
+    """Whether the channel type is enabled for the preference set."""
 
     push: Push
+    """Whether the channel type is enabled for the preference set."""
 
     sms: SMS
+    """Whether the channel type is enabled for the preference set."""

@@ -24,4 +24,4 @@ Data: TypeAlias = Union[
 
 class ChannelDataRequestParam(TypedDict, total=False):
     data: Required[Data]
-    """Channel data for push providers"""
+    """Channel data for a given channel type."""

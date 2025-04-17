@@ -15,16 +15,19 @@ __all__ = ["Subscription"]
 
 class Subscription(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     inserted_at: datetime
+    """Timestamp when the resource was created."""
 
     object: Object
-    """A custom-object entity which belongs to a collection."""
+    """A custom object entity which belongs to a collection."""
 
     recipient: Recipient
-    """A recipient, which is either a user or an object"""
+    """A recipient, which is either a user or an object."""
 
     updated_at: datetime
+    """The timestamp when the resource was last updated."""
 
     properties: Optional[Dict[str, builtins.object]] = None
-    """The custom properties associated with the subscription"""
+    """The custom properties associated with the recipients of the subscription."""

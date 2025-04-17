@@ -19,8 +19,10 @@ Data: TypeAlias = Union[PushChannelData, SlackChannelData, MsTeamsChannelData, D
 
 class ChannelData(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
+    """The type name of the schema."""
 
     channel_id: str
+    """The unique identifier for the channel."""
 
     data: Data
-    """Channel data for push providers"""
+    """Channel data for a given channel type."""

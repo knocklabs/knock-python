@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,82 +8,83 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Message", "Actor", "ActorUnionMember1", "Recipient", "RecipientUnionMember1", "Source"]
+__all__ = ["Message", "Actor", "ActorObjectReference", "Recipient", "RecipientObjectReference", "Source"]
 
 
-class ActorUnionMember1(BaseModel):
+class ActorObjectReference(BaseModel):
     id: str
-    """An object identifier"""
+    """An identifier for the recipient object."""
 
     collection: str
-    """The collection the object belongs to"""
+    """The collection the recipient object belongs to."""
 
 
-Actor: TypeAlias = Union[str, ActorUnionMember1]
+Actor: TypeAlias = Union[str, ActorObjectReference]
 
 
-class RecipientUnionMember1(BaseModel):
+class RecipientObjectReference(BaseModel):
     id: str
-    """An object identifier"""
+    """An identifier for the recipient object."""
 
     collection: str
-    """The collection the object belongs to"""
+    """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+Recipient: TypeAlias = Union[str, RecipientObjectReference]
 
 
 class Source(BaseModel):
     api_typename: str = FieldInfo(alias="__typename")
 
     categories: List[str]
-    """The workflow categories"""
+    """The categories associated with the message."""
 
     key: str
-    """The workflow key"""
+    """The key of the source that triggered the message."""
 
     version_id: str
-    """The source version ID"""
+    """The id of the version of the source that triggered the message."""
 
 
 class Message(BaseModel):
     id: Optional[str] = None
-    """The message ID"""
+    """The unique identifier for the message."""
 
     api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
+    """The type name of the schema."""
 
     actors: Optional[List[Actor]] = None
-    """A list of actor representations associated with the message (up to 10)"""
+    """A list of messages."""
 
     archived_at: Optional[datetime] = None
-    """Timestamp when message was archived"""
+    """Timestamp when the message was archived."""
 
     channel_id: Optional[str] = None
-    """Channel ID associated with the message"""
+    """The id for the channel the message was sent through."""
 
     clicked_at: Optional[datetime] = None
-    """Timestamp when message was clicked"""
+    """Timestamp when the message was clicked."""
 
-    data: Optional[object] = None
-    """Additional message data"""
+    data: Optional[Dict[str, object]] = None
+    """The data associated with the message."""
 
     engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
-    """List of engagement statuses"""
+    """A list of engagement statuses."""
 
     inserted_at: Optional[datetime] = None
-    """Timestamp of creation"""
+    """Timestamp when the resource was created."""
 
     interacted_at: Optional[datetime] = None
-    """Timestamp when message was interacted with"""
+    """Timestamp when the message was interacted with."""
 
     link_clicked_at: Optional[datetime] = None
-    """Timestamp when a link in the message was clicked"""
+    """Timestamp when a link in the message was clicked."""
 
-    metadata: Optional[object] = None
-    """Message metadata"""
+    metadata: Optional[Dict[str, object]] = None
+    """The metadata associated with the message."""
 
     read_at: Optional[datetime] = None
-    """Timestamp when message was read"""
+    """Timestamp when the message was read."""
 
     recipient: Optional[Recipient] = None
     """
@@ -92,24 +93,28 @@ class Message(BaseModel):
     """
 
     scheduled_at: Optional[datetime] = None
-    """Timestamp when message was scheduled for"""
+    """Timestamp when the message was scheduled to be sent."""
 
     seen_at: Optional[datetime] = None
-    """Timestamp when message was seen"""
+    """Timestamp when the message was seen."""
 
     source: Optional[Source] = None
-    """Source information"""
+    """The source that triggered the message."""
 
     status: Optional[
         Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
     ] = None
-    """Message delivery status"""
+    """The message delivery status.
+
+    Can be one of: queued, sent, delivered, delivery_attempted, undelivered,
+    not_sent, bounced.
+    """
 
     tenant: Optional[str] = None
-    """Tenant ID that the message belongs to"""
+    """The id for the tenant set for the message."""
 
     updated_at: Optional[datetime] = None
-    """Timestamp of last update"""
+    """The timestamp when the resource was last updated."""
 
     workflow: Optional[str] = None
-    """Workflow key used to create the message"""
+    """The key of the worklfow that generated the message."""

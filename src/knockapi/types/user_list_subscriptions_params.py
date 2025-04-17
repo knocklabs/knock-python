@@ -3,31 +3,34 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["UserListSubscriptionsParams", "Object", "ObjectUnionMember1"]
+__all__ = ["UserListSubscriptionsParams", "Object", "ObjectObjectReference"]
 
 
 class UserListSubscriptionsParams(TypedDict, total=False):
     after: str
-    """The cursor to fetch entries after"""
+    """The cursor to fetch entries after."""
 
     before: str
-    """The cursor to fetch entries before"""
+    """The cursor to fetch entries before."""
+
+    include: List[Literal["preferences"]]
+    """Includes preferences of the recipient subscribers in the response."""
 
     objects: List[Object]
-    """Objects to filter by"""
+    """Objects to filter by."""
 
     page_size: int
-    """The page size to fetch"""
+    """The number of items per page."""
 
 
-class ObjectUnionMember1(TypedDict, total=False):
+class ObjectObjectReference(TypedDict, total=False):
     id: Required[str]
-    """An object identifier"""
+    """An identifier for the recipient object."""
 
     collection: Required[str]
-    """The collection the object belongs to"""
+    """The collection the recipient object belongs to."""
 
 
-Object: TypeAlias = Union[str, ObjectUnionMember1]
+Object: TypeAlias = Union[str, ObjectObjectReference]

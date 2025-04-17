@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
-__all__ = ["UserListSubscriptionsParams", "Object", "ObjectObjectReference"]
+__all__ = ["UserListSubscriptionsParams", "Object", "ObjectRecipientReference"]
 
 
 class UserListSubscriptionsParams(TypedDict, total=False):
@@ -25,12 +25,12 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     """The number of items per page."""
 
 
-class ObjectObjectReference(TypedDict, total=False):
-    id: Required[str]
+class ObjectRecipientReference(TypedDict, total=False):
+    id: str
     """An identifier for the recipient object."""
 
-    collection: Required[str]
+    collection: str
     """The collection the recipient object belongs to."""
 
 
-Object: TypeAlias = Union[str, ObjectObjectReference]
+Object: TypeAlias = Union[str, ObjectRecipientReference]

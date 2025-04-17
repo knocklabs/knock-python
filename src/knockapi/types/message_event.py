@@ -8,18 +8,18 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageEvent", "Recipient", "RecipientObjectReference"]
+__all__ = ["MessageEvent", "Recipient", "RecipientRecipientReference"]
 
 
-class RecipientObjectReference(BaseModel):
-    id: str
+class RecipientRecipientReference(BaseModel):
+    id: Optional[str] = None
     """An identifier for the recipient object."""
 
-    collection: str
+    collection: Optional[str] = None
     """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientRecipientReference]
 
 
 class MessageEvent(BaseModel):

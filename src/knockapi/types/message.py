@@ -8,29 +8,29 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Message", "Actor", "ActorObjectReference", "Recipient", "RecipientObjectReference", "Source"]
+__all__ = ["Message", "Actor", "ActorRecipientReference", "Recipient", "RecipientRecipientReference", "Source"]
 
 
-class ActorObjectReference(BaseModel):
-    id: str
+class ActorRecipientReference(BaseModel):
+    id: Optional[str] = None
     """An identifier for the recipient object."""
 
-    collection: str
+    collection: Optional[str] = None
     """The collection the recipient object belongs to."""
 
 
-Actor: TypeAlias = Union[str, ActorObjectReference]
+Actor: TypeAlias = Union[str, ActorRecipientReference]
 
 
-class RecipientObjectReference(BaseModel):
-    id: str
+class RecipientRecipientReference(BaseModel):
+    id: Optional[str] = None
     """An identifier for the recipient object."""
 
-    collection: str
+    collection: Optional[str] = None
     """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientRecipientReference]
 
 
 class Source(BaseModel):

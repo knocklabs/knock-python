@@ -10,7 +10,7 @@ from .._utils import PropertyInfo
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
-__all__ = ["ScheduleCreateParams", "Recipient", "RecipientObjectReference"]
+__all__ = ["ScheduleCreateParams", "Recipient", "RecipientRecipientReference"]
 
 
 class ScheduleCreateParams(TypedDict, total=False):
@@ -39,12 +39,12 @@ class ScheduleCreateParams(TypedDict, total=False):
     """An request to set a tenant inline."""
 
 
-class RecipientObjectReference(TypedDict, total=False):
-    id: Required[str]
+class RecipientRecipientReference(TypedDict, total=False):
+    id: str
     """An identifier for the recipient object."""
 
-    collection: Required[str]
+    collection: str
     """The collection the recipient object belongs to."""
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+Recipient: TypeAlias = Union[str, RecipientRecipientReference]

@@ -123,10 +123,13 @@ class TestGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
@@ -223,10 +226,13 @@ class TestGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
@@ -323,10 +329,13 @@ class TestGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
@@ -501,10 +510,13 @@ class TestAsyncGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
@@ -601,10 +613,13 @@ class TestAsyncGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
@@ -701,10 +716,13 @@ class TestAsyncGuides:
             guide_id="323e4567-e89b-12d3-a456-426614174000",
             guide_key="guide_12345",
             guide_step_ref="step_12345",
-            content="content_12345",
-            data="data_12345",
+            content={
+                "body": "Guide content body",
+                "title": "Guide Title",
+            },
+            data={"product_id": "product_123"},
             is_final=True,
-            metadata="metadata_12345",
+            metadata={"source": "onboarding"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])

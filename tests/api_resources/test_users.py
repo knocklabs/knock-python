@@ -46,19 +46,21 @@ class TestUsers:
     def test_method_update_with_all_params(self, client: Knock) -> None:
         user = client.users.update(
             user_id="user_id",
-            channel_data={
-                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+            channel_data=[
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
                         "_typename": "PushChannelData",
-                        "tokens": ["push_token_xxx"],
-                    }
+                        "tokens": ["push_token_123"],
+                    },
                 }
-            },
+            ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            preferences={
-                "default": {
+            preferences=[
+                {
+                    "id": "default",
                     "categories": {
-                        "transactional": {
+                        "marketing": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
@@ -74,7 +76,8 @@ class TestUsers:
                                     "variable": "recipient.property",
                                 }
                             ],
-                        }
+                        },
+                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -104,7 +107,7 @@ class TestUsers:
                         }
                     },
                 }
-            },
+            ],
         )
         assert_matches_type(User, user, path=["response"])
 
@@ -1028,19 +1031,21 @@ class TestAsyncUsers:
     async def test_method_update_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.update(
             user_id="user_id",
-            channel_data={
-                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+            channel_data=[
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
                         "_typename": "PushChannelData",
-                        "tokens": ["push_token_xxx"],
-                    }
+                        "tokens": ["push_token_123"],
+                    },
                 }
-            },
+            ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            preferences={
-                "default": {
+            preferences=[
+                {
+                    "id": "default",
                     "categories": {
-                        "transactional": {
+                        "marketing": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
@@ -1056,7 +1061,8 @@ class TestAsyncUsers:
                                     "variable": "recipient.property",
                                 }
                             ],
-                        }
+                        },
+                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -1086,7 +1092,7 @@ class TestAsyncUsers:
                         }
                     },
                 }
-            },
+            ],
         )
         assert_matches_type(User, user, path=["response"])
 

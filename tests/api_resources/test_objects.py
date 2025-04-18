@@ -818,16 +818,18 @@ class TestObjects:
         object_ = client.objects.set(
             collection="collection",
             object_id="object_id",
-            channel_data={
-                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+            channel_data=[
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
-                    }
+                    },
                 }
-            },
-            preferences={
-                "default": {
+            ],
+            preferences=[
+                {
+                    "id": "default",
                     "categories": {
                         "transactional": {
                             "channel_types": {
@@ -875,7 +877,7 @@ class TestObjects:
                         }
                     },
                 }
-            },
+            ],
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -2035,16 +2037,18 @@ class TestAsyncObjects:
         object_ = await async_client.objects.set(
             collection="collection",
             object_id="object_id",
-            channel_data={
-                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+            channel_data=[
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
-                    }
+                    },
                 }
-            },
-            preferences={
-                "default": {
+            ],
+            preferences=[
+                {
+                    "id": "default",
                     "categories": {
                         "transactional": {
                             "channel_types": {
@@ -2092,7 +2096,7 @@ class TestAsyncObjects:
                         }
                     },
                 }
-            },
+            ],
         )
         assert_matches_type(Object, object_, path=["response"])
 

@@ -13,6 +13,7 @@ from knockapi.types import (
     Object,
     Message,
     Schedule,
+    ObjectListPreferencesResponse,
     ObjectAddSubscriptionsResponse,
     ObjectDeleteSubscriptionsResponse,
 )
@@ -581,6 +582,66 @@ class TestObjects:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.list_messages(
                 collection="projects",
+                object_id="",
+            )
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    def test_method_list_preferences(self, client: Knock) -> None:
+        object_ = client.objects.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        )
+        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    def test_raw_response_list_preferences(self, client: Knock) -> None:
+        response = client.objects.with_raw_response.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = response.parse()
+        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    def test_streaming_response_list_preferences(self, client: Knock) -> None:
+        with client.objects.with_streaming_response.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = response.parse()
+            assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    def test_path_params_list_preferences(self, client: Knock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            client.objects.with_raw_response.list_preferences(
+                collection="",
+                object_id="object_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            client.objects.with_raw_response.list_preferences(
+                collection="collection",
                 object_id="",
             )
 
@@ -1738,6 +1799,66 @@ class TestAsyncObjects:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.list_messages(
                 collection="projects",
+                object_id="",
+            )
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    async def test_method_list_preferences(self, async_client: AsyncKnock) -> None:
+        object_ = await async_client.objects.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        )
+        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    async def test_raw_response_list_preferences(self, async_client: AsyncKnock) -> None:
+        response = await async_client.objects.with_raw_response.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = await response.parse()
+        assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    async def test_streaming_response_list_preferences(self, async_client: AsyncKnock) -> None:
+        async with async_client.objects.with_streaming_response.list_preferences(
+            collection="collection",
+            object_id="object_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = await response.parse()
+            assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(
+        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    )
+    @parametrize
+    async def test_path_params_list_preferences(self, async_client: AsyncKnock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            await async_client.objects.with_raw_response.list_preferences(
+                collection="",
+                object_id="object_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            await async_client.objects.with_raw_response.list_preferences(
+                collection="collection",
                 object_id="",
             )
 

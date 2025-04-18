@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import audiences, schedules, workflows, bulk_operations
+from .resources import audiences, workflows, bulk_operations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import KnockError, APIStatusError
 from ._base_client import (
@@ -38,6 +38,8 @@ from .resources.tenants import tenants
 from .resources.channels import channels
 from .resources.messages import messages
 from .resources.providers import providers
+from .resources.schedules import schedules
+from .resources.integrations import integrations
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Knock", "AsyncKnock", "Client", "AsyncClient"]
 
@@ -49,6 +51,7 @@ class Knock(SyncAPIClient):
     bulk_operations: bulk_operations.BulkOperationsResource
     messages: messages.MessagesResource
     providers: providers.ProvidersResource
+    integrations: integrations.IntegrationsResource
     workflows: workflows.WorkflowsResource
     schedules: schedules.SchedulesResource
     channels: channels.ChannelsResource
@@ -116,6 +119,7 @@ class Knock(SyncAPIClient):
         self.bulk_operations = bulk_operations.BulkOperationsResource(self)
         self.messages = messages.MessagesResource(self)
         self.providers = providers.ProvidersResource(self)
+        self.integrations = integrations.IntegrationsResource(self)
         self.workflows = workflows.WorkflowsResource(self)
         self.schedules = schedules.SchedulesResource(self)
         self.channels = channels.ChannelsResource(self)
@@ -235,6 +239,7 @@ class AsyncKnock(AsyncAPIClient):
     bulk_operations: bulk_operations.AsyncBulkOperationsResource
     messages: messages.AsyncMessagesResource
     providers: providers.AsyncProvidersResource
+    integrations: integrations.AsyncIntegrationsResource
     workflows: workflows.AsyncWorkflowsResource
     schedules: schedules.AsyncSchedulesResource
     channels: channels.AsyncChannelsResource
@@ -302,6 +307,7 @@ class AsyncKnock(AsyncAPIClient):
         self.bulk_operations = bulk_operations.AsyncBulkOperationsResource(self)
         self.messages = messages.AsyncMessagesResource(self)
         self.providers = providers.AsyncProvidersResource(self)
+        self.integrations = integrations.AsyncIntegrationsResource(self)
         self.workflows = workflows.AsyncWorkflowsResource(self)
         self.schedules = schedules.AsyncSchedulesResource(self)
         self.channels = channels.AsyncChannelsResource(self)
@@ -422,6 +428,7 @@ class KnockWithRawResponse:
         self.bulk_operations = bulk_operations.BulkOperationsResourceWithRawResponse(client.bulk_operations)
         self.messages = messages.MessagesResourceWithRawResponse(client.messages)
         self.providers = providers.ProvidersResourceWithRawResponse(client.providers)
+        self.integrations = integrations.IntegrationsResourceWithRawResponse(client.integrations)
         self.workflows = workflows.WorkflowsResourceWithRawResponse(client.workflows)
         self.schedules = schedules.SchedulesResourceWithRawResponse(client.schedules)
         self.channels = channels.ChannelsResourceWithRawResponse(client.channels)
@@ -436,6 +443,7 @@ class AsyncKnockWithRawResponse:
         self.bulk_operations = bulk_operations.AsyncBulkOperationsResourceWithRawResponse(client.bulk_operations)
         self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
         self.providers = providers.AsyncProvidersResourceWithRawResponse(client.providers)
+        self.integrations = integrations.AsyncIntegrationsResourceWithRawResponse(client.integrations)
         self.workflows = workflows.AsyncWorkflowsResourceWithRawResponse(client.workflows)
         self.schedules = schedules.AsyncSchedulesResourceWithRawResponse(client.schedules)
         self.channels = channels.AsyncChannelsResourceWithRawResponse(client.channels)
@@ -450,6 +458,7 @@ class KnockWithStreamedResponse:
         self.bulk_operations = bulk_operations.BulkOperationsResourceWithStreamingResponse(client.bulk_operations)
         self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
         self.providers = providers.ProvidersResourceWithStreamingResponse(client.providers)
+        self.integrations = integrations.IntegrationsResourceWithStreamingResponse(client.integrations)
         self.workflows = workflows.WorkflowsResourceWithStreamingResponse(client.workflows)
         self.schedules = schedules.SchedulesResourceWithStreamingResponse(client.schedules)
         self.channels = channels.ChannelsResourceWithStreamingResponse(client.channels)
@@ -464,6 +473,7 @@ class AsyncKnockWithStreamedResponse:
         self.bulk_operations = bulk_operations.AsyncBulkOperationsResourceWithStreamingResponse(client.bulk_operations)
         self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
         self.providers = providers.AsyncProvidersResourceWithStreamingResponse(client.providers)
+        self.integrations = integrations.AsyncIntegrationsResourceWithStreamingResponse(client.integrations)
         self.workflows = workflows.AsyncWorkflowsResourceWithStreamingResponse(client.workflows)
         self.schedules = schedules.AsyncSchedulesResourceWithStreamingResponse(client.schedules)
         self.channels = channels.AsyncChannelsResourceWithStreamingResponse(client.channels)

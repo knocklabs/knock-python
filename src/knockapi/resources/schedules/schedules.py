@@ -7,39 +7,51 @@ from datetime import datetime
 
 import httpx
 
-from ..types import (
+from .bulk import (
+    BulkResource,
+    AsyncBulkResource,
+    BulkResourceWithRawResponse,
+    AsyncBulkResourceWithRawResponse,
+    BulkResourceWithStreamingResponse,
+    AsyncBulkResourceWithStreamingResponse,
+)
+from ...types import (
     schedule_list_params,
     schedule_create_params,
     schedule_delete_params,
     schedule_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.schedule import Schedule
-from ..types.recipient_request_param import RecipientRequestParam
-from ..types.schedule_create_response import ScheduleCreateResponse
-from ..types.schedule_delete_response import ScheduleDeleteResponse
-from ..types.schedule_update_response import ScheduleUpdateResponse
-from ..types.schedule_repeat_rule_param import ScheduleRepeatRuleParam
-from ..types.inline_tenant_request_param import InlineTenantRequestParam
+from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.schedule import Schedule
+from ...types.recipient_request_param import RecipientRequestParam
+from ...types.schedule_create_response import ScheduleCreateResponse
+from ...types.schedule_delete_response import ScheduleDeleteResponse
+from ...types.schedule_update_response import ScheduleUpdateResponse
+from ...types.schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from ...types.inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["SchedulesResource", "AsyncSchedulesResource"]
 
 
 class SchedulesResource(SyncAPIResource):
+    @cached_property
+    def bulk(self) -> BulkResource:
+        return BulkResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> SchedulesResourceWithRawResponse:
         """
@@ -291,6 +303,10 @@ class SchedulesResource(SyncAPIResource):
 
 
 class AsyncSchedulesResource(AsyncAPIResource):
+    @cached_property
+    def bulk(self) -> AsyncBulkResource:
+        return AsyncBulkResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncSchedulesResourceWithRawResponse:
         """
@@ -560,6 +576,10 @@ class SchedulesResourceWithRawResponse:
             schedules.delete,
         )
 
+    @cached_property
+    def bulk(self) -> BulkResourceWithRawResponse:
+        return BulkResourceWithRawResponse(self._schedules.bulk)
+
 
 class AsyncSchedulesResourceWithRawResponse:
     def __init__(self, schedules: AsyncSchedulesResource) -> None:
@@ -577,6 +597,10 @@ class AsyncSchedulesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             schedules.delete,
         )
+
+    @cached_property
+    def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        return AsyncBulkResourceWithRawResponse(self._schedules.bulk)
 
 
 class SchedulesResourceWithStreamingResponse:
@@ -596,6 +620,10 @@ class SchedulesResourceWithStreamingResponse:
             schedules.delete,
         )
 
+    @cached_property
+    def bulk(self) -> BulkResourceWithStreamingResponse:
+        return BulkResourceWithStreamingResponse(self._schedules.bulk)
+
 
 class AsyncSchedulesResourceWithStreamingResponse:
     def __init__(self, schedules: AsyncSchedulesResource) -> None:
@@ -613,3 +641,7 @@ class AsyncSchedulesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             schedules.delete,
         )
+
+    @cached_property
+    def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        return AsyncBulkResourceWithStreamingResponse(self._schedules.bulk)

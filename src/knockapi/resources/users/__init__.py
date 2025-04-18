@@ -24,6 +24,14 @@ from .users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
+from .guides import (
+    GuidesResource,
+    AsyncGuidesResource,
+    GuidesResourceWithRawResponse,
+    AsyncGuidesResourceWithRawResponse,
+    GuidesResourceWithStreamingResponse,
+    AsyncGuidesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "FeedsResource",
@@ -32,6 +40,12 @@ __all__ = [
     "AsyncFeedsResourceWithRawResponse",
     "FeedsResourceWithStreamingResponse",
     "AsyncFeedsResourceWithStreamingResponse",
+    "GuidesResource",
+    "AsyncGuidesResource",
+    "GuidesResourceWithRawResponse",
+    "AsyncGuidesResourceWithRawResponse",
+    "GuidesResourceWithStreamingResponse",
+    "AsyncGuidesResourceWithStreamingResponse",
     "BulkResource",
     "AsyncBulkResource",
     "BulkResourceWithRawResponse",

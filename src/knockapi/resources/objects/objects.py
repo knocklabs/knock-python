@@ -48,6 +48,7 @@ from ...types.recipient_request_param import RecipientRequestParam
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
 from ...types.recipients.preference_set import PreferenceSet
+from ...types.object_list_preferences_response import ObjectListPreferencesResponse
 from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
 from ...types.object_delete_subscriptions_response import ObjectDeleteSubscriptionsResponse
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -493,6 +494,42 @@ class ObjectsResource(SyncAPIResource):
                 ),
             ),
             model=Message,
+        )
+
+    def list_preferences(
+        self,
+        collection: str,
+        object_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ObjectListPreferencesResponse:
+        """
+        Returns a paginated list of preference sets for the specified object.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        return self._get(
+            f"/v1/objects/{collection}/{object_id}/preferences",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ObjectListPreferencesResponse,
         )
 
     def list_schedules(
@@ -1266,6 +1303,42 @@ class AsyncObjectsResource(AsyncAPIResource):
             model=Message,
         )
 
+    async def list_preferences(
+        self,
+        collection: str,
+        object_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ObjectListPreferencesResponse:
+        """
+        Returns a paginated list of preference sets for the specified object.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        return await self._get(
+            f"/v1/objects/{collection}/{object_id}/preferences",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ObjectListPreferencesResponse,
+        )
+
     def list_schedules(
         self,
         collection: str,
@@ -1627,6 +1700,9 @@ class ObjectsResourceWithRawResponse:
         self.list_messages = to_raw_response_wrapper(
             objects.list_messages,
         )
+        self.list_preferences = to_raw_response_wrapper(
+            objects.list_preferences,
+        )
         self.list_schedules = to_raw_response_wrapper(
             objects.list_schedules,
         )
@@ -1678,6 +1754,9 @@ class AsyncObjectsResourceWithRawResponse:
         )
         self.list_messages = async_to_raw_response_wrapper(
             objects.list_messages,
+        )
+        self.list_preferences = async_to_raw_response_wrapper(
+            objects.list_preferences,
         )
         self.list_schedules = async_to_raw_response_wrapper(
             objects.list_schedules,
@@ -1731,6 +1810,9 @@ class ObjectsResourceWithStreamingResponse:
         self.list_messages = to_streamed_response_wrapper(
             objects.list_messages,
         )
+        self.list_preferences = to_streamed_response_wrapper(
+            objects.list_preferences,
+        )
         self.list_schedules = to_streamed_response_wrapper(
             objects.list_schedules,
         )
@@ -1782,6 +1864,9 @@ class AsyncObjectsResourceWithStreamingResponse:
         )
         self.list_messages = async_to_streamed_response_wrapper(
             objects.list_messages,
+        )
+        self.list_preferences = async_to_streamed_response_wrapper(
+            objects.list_preferences,
         )
         self.list_schedules = async_to_streamed_response_wrapper(
             objects.list_schedules,

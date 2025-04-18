@@ -24,6 +24,14 @@ from .feeds import (
     FeedsResourceWithStreamingResponse,
     AsyncFeedsResourceWithStreamingResponse,
 )
+from .guides import (
+    GuidesResource,
+    AsyncGuidesResource,
+    GuidesResourceWithRawResponse,
+    AsyncGuidesResourceWithRawResponse,
+    GuidesResourceWithStreamingResponse,
+    AsyncGuidesResourceWithStreamingResponse,
+)
 from ...types import (
     user_list_params,
     user_merge_params,
@@ -68,6 +76,10 @@ class UsersResource(SyncAPIResource):
     @cached_property
     def feeds(self) -> FeedsResource:
         return FeedsResource(self._client)
+
+    @cached_property
+    def guides(self) -> GuidesResource:
+        return GuidesResource(self._client)
 
     @cached_property
     def bulk(self) -> BulkResource:
@@ -782,6 +794,10 @@ class AsyncUsersResource(AsyncAPIResource):
     @cached_property
     def feeds(self) -> AsyncFeedsResource:
         return AsyncFeedsResource(self._client)
+
+    @cached_property
+    def guides(self) -> AsyncGuidesResource:
+        return AsyncGuidesResource(self._client)
 
     @cached_property
     def bulk(self) -> AsyncBulkResource:
@@ -1546,6 +1562,10 @@ class UsersResourceWithRawResponse:
         return FeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
+    def guides(self) -> GuidesResourceWithRawResponse:
+        return GuidesResourceWithRawResponse(self._users.guides)
+
+    @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
         return BulkResourceWithRawResponse(self._users.bulk)
 
@@ -1600,6 +1620,10 @@ class AsyncUsersResourceWithRawResponse:
     @cached_property
     def feeds(self) -> AsyncFeedsResourceWithRawResponse:
         return AsyncFeedsResourceWithRawResponse(self._users.feeds)
+
+    @cached_property
+    def guides(self) -> AsyncGuidesResourceWithRawResponse:
+        return AsyncGuidesResourceWithRawResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
@@ -1658,6 +1682,10 @@ class UsersResourceWithStreamingResponse:
         return FeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
+    def guides(self) -> GuidesResourceWithStreamingResponse:
+        return GuidesResourceWithStreamingResponse(self._users.guides)
+
+    @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
         return BulkResourceWithStreamingResponse(self._users.bulk)
 
@@ -1712,6 +1740,10 @@ class AsyncUsersResourceWithStreamingResponse:
     @cached_property
     def feeds(self) -> AsyncFeedsResourceWithStreamingResponse:
         return AsyncFeedsResourceWithStreamingResponse(self._users.feeds)
+
+    @cached_property
+    def guides(self) -> AsyncGuidesResourceWithStreamingResponse:
+        return AsyncGuidesResourceWithStreamingResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:

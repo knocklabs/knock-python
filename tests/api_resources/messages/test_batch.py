@@ -32,7 +32,7 @@ class TestBatch:
     @parametrize
     def test_method_archive(self, client: Knock) -> None:
         batch = client.messages.batch.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
@@ -42,7 +42,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_archive(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_archive(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -163,7 +163,7 @@ class TestBatch:
     @parametrize
     def test_method_mark_as_read(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
@@ -173,7 +173,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_mark_as_read(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -187,7 +187,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_mark_as_read(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,7 +203,7 @@ class TestBatch:
     @parametrize
     def test_method_mark_as_seen(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
@@ -213,7 +213,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_mark_as_seen(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -227,7 +227,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_mark_as_seen(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,7 +243,7 @@ class TestBatch:
     @parametrize
     def test_method_mark_as_unread(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
@@ -253,7 +253,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_mark_as_unread(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -267,7 +267,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_mark_as_unread(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,7 +283,7 @@ class TestBatch:
     @parametrize
     def test_method_mark_as_unseen(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
@@ -293,7 +293,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_mark_as_unseen(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -307,7 +307,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_mark_as_unseen(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -323,7 +323,7 @@ class TestBatch:
     @parametrize
     def test_method_unarchive(self, client: Knock) -> None:
         batch = client.messages.batch.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
@@ -333,7 +333,7 @@ class TestBatch:
     @parametrize
     def test_raw_response_unarchive(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -347,7 +347,7 @@ class TestBatch:
     @parametrize
     def test_streaming_response_unarchive(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -367,7 +367,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_archive(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
@@ -377,7 +377,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -391,7 +391,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.archive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -498,7 +498,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_mark_as_read(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
@@ -508,7 +508,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -522,7 +522,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_read(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -538,7 +538,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_mark_as_seen(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
@@ -548,7 +548,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -562,7 +562,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_seen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -578,7 +578,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_mark_as_unread(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
@@ -588,7 +588,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -602,7 +602,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_unread(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -618,7 +618,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
@@ -628,7 +628,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -642,7 +642,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_unseen(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -658,7 +658,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
@@ -668,7 +668,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         )
 
         assert response.is_closed is True
@@ -682,7 +682,7 @@ class TestAsyncBatch:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.unarchive(
-            message_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            message_ids=["11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

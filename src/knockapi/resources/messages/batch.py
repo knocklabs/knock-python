@@ -77,6 +77,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as archived.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -189,6 +191,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as read.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -221,6 +225,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as seen.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -253,6 +259,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as unread.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -285,6 +293,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as unseen.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -317,6 +327,8 @@ class BatchResource(SyncAPIResource):
         Marks the given messages as unarchived.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -370,6 +382,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as archived.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -484,6 +498,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as read.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -518,6 +534,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as seen.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -552,6 +570,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as unread.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -586,6 +606,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as unseen.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -620,6 +642,8 @@ class AsyncBatchResource(AsyncAPIResource):
         Marks the given messages as unarchived.
 
         Args:
+          message_ids: The message IDs to update the status of.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

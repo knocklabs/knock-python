@@ -10,3 +10,4 @@ __all__ = ["BatchUnarchiveParams"]
 
 class BatchUnarchiveParams(TypedDict, total=False):
     message_ids: Required[List[str]]
+    """The message IDs to update the status of."""

@@ -10,3 +10,4 @@ __all__ = ["BatchMarkAsUnreadParams"]
 
 class BatchMarkAsUnreadParams(TypedDict, total=False):
     message_ids: Required[List[str]]
+    """The message IDs to update the status of."""

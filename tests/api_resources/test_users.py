@@ -60,24 +60,21 @@ class TestUsers:
                 {
                     "id": "default",
                     "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                }
-                            ],
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
                         },
-                        "transactional": True,
+                        "conditions": [
+                            {
+                                "argument": "some_property",
+                                "operator": "equal_to",
+                                "variable": "recipient.property",
+                            }
+                        ],
                     },
                     "channel_types": {
                         "chat": True,
@@ -1045,24 +1042,21 @@ class TestAsyncUsers:
                 {
                     "id": "default",
                     "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                }
-                            ],
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
                         },
-                        "transactional": True,
+                        "conditions": [
+                            {
+                                "argument": "some_property",
+                                "operator": "equal_to",
+                                "variable": "recipient.property",
+                            }
+                        ],
                     },
                     "channel_types": {
                         "chat": True,

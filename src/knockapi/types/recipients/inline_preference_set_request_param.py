@@ -48,11 +48,8 @@ class InlinePreferenceSetRequestParamItem(TypedDict, total=False):
     id: Required[str]
     """The ID of the preference set"""
 
-    categories: Optional[Dict[str, InlinePreferenceSetRequestParamItemCategories]]
-    """
-    An object where the key is the category and the values are the preference
-    settings for that category.
-    """
+    categories: InlinePreferenceSetRequestParamItemCategories
+    """Workflow or category preferences within a preference set"""
 
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""

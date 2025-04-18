@@ -67,6 +67,7 @@ class BulkResource(SyncAPIResource):
         has_tenant: bool | NotGiven = NOT_GIVEN,
         newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
         older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        recipient_gids: List[str] | NotGiven = NOT_GIVEN,
         recipient_ids: List[str] | NotGiven = NOT_GIVEN,
         tenants: List[str] | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
@@ -100,6 +101,8 @@ class BulkResource(SyncAPIResource):
           older_than: The timestamp to filter messages by. Only include messages created before this
               timestamp.
 
+          recipient_gids: The recipient GIDs to filter messages by.
+
           recipient_ids: The recipient IDs to filter messages by.
 
           tenants: The tenant IDs to filter messages by.
@@ -130,6 +133,7 @@ class BulkResource(SyncAPIResource):
                     "has_tenant": has_tenant,
                     "newer_than": newer_than,
                     "older_than": older_than,
+                    "recipient_gids": recipient_gids,
                     "recipient_ids": recipient_ids,
                     "tenants": tenants,
                     "trigger_data": trigger_data,
@@ -183,6 +187,7 @@ class AsyncBulkResource(AsyncAPIResource):
         has_tenant: bool | NotGiven = NOT_GIVEN,
         newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
         older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        recipient_gids: List[str] | NotGiven = NOT_GIVEN,
         recipient_ids: List[str] | NotGiven = NOT_GIVEN,
         tenants: List[str] | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
@@ -216,6 +221,8 @@ class AsyncBulkResource(AsyncAPIResource):
           older_than: The timestamp to filter messages by. Only include messages created before this
               timestamp.
 
+          recipient_gids: The recipient GIDs to filter messages by.
+
           recipient_ids: The recipient IDs to filter messages by.
 
           tenants: The tenant IDs to filter messages by.
@@ -246,6 +253,7 @@ class AsyncBulkResource(AsyncAPIResource):
                     "has_tenant": has_tenant,
                     "newer_than": newer_than,
                     "older_than": older_than,
+                    "recipient_gids": recipient_gids,
                     "recipient_ids": recipient_ids,
                     "tenants": tenants,
                     "trigger_data": trigger_data,

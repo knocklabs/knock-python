@@ -18,7 +18,7 @@ class ObjectListSchedulesParams(TypedDict, total=False):
     """The number of items per page."""
 
     tenant: str
-    """The ID of the tenant to list schedules for."""
+    """Filter schedules by tenant id."""
 
     workflow: str
-    """The ID of the workflow to list schedules for."""
+    """Filter schedules by workflow id."""

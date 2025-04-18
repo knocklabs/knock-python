@@ -444,19 +444,6 @@ class TestObjects:
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
     )
     @parametrize
-    def test_method_get_preferences_with_all_params(self, client: Knock) -> None:
-        object_ = client.objects.get_preferences(
-            collection="collection",
-            object_id="object_id",
-            preference_set_id="default",
-            tenant="tenant",
-        )
-        assert_matches_type(PreferenceSet, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
     def test_raw_response_get_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get_preferences(
             collection="collection",
@@ -770,7 +757,14 @@ class TestObjects:
         object_ = client.objects.set(
             collection="collection",
             object_id="object_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             preferences={
                 "default": {
                     "categories": {
@@ -882,7 +876,10 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -895,7 +892,10 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -908,7 +908,10 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
 
         assert response.is_closed is True
@@ -925,7 +928,10 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -945,7 +951,10 @@ class TestObjects:
                 collection="",
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
@@ -953,7 +962,10 @@ class TestObjects:
                 collection="collection",
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
@@ -961,7 +973,10 @@ class TestObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
     @pytest.mark.skip(
@@ -1586,19 +1601,6 @@ class TestAsyncObjects:
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
     )
     @parametrize
-    async def test_method_get_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
-        object_ = await async_client.objects.get_preferences(
-            collection="collection",
-            object_id="object_id",
-            preference_set_id="default",
-            tenant="tenant",
-        )
-        assert_matches_type(PreferenceSet, object_, path=["response"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
-    @parametrize
     async def test_raw_response_get_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get_preferences(
             collection="collection",
@@ -1912,7 +1914,14 @@ class TestAsyncObjects:
         object_ = await async_client.objects.set(
             collection="collection",
             object_id="object_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             preferences={
                 "default": {
                     "categories": {
@@ -2024,7 +2033,10 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -2037,7 +2049,10 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -2050,7 +2065,10 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
 
         assert response.is_closed is True
@@ -2067,7 +2085,10 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2087,7 +2108,10 @@ class TestAsyncObjects:
                 collection="",
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
@@ -2095,7 +2119,10 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
@@ -2103,7 +2130,10 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
     @pytest.mark.skip(

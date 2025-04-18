@@ -46,7 +46,14 @@ class TestUsers:
     def test_method_update_with_all_params(self, client: Knock) -> None:
         user = client.users.update(
             user_id="user_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             preferences={
                 "default": {
@@ -735,7 +742,10 @@ class TestUsers:
         user = client.users.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -747,7 +757,10 @@ class TestUsers:
         user = client.users.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -759,7 +772,10 @@ class TestUsers:
         response = client.users.with_raw_response.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
 
         assert response.is_closed is True
@@ -775,7 +791,10 @@ class TestUsers:
         with client.users.with_streaming_response.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -794,14 +813,20 @@ class TestUsers:
             client.users.with_raw_response.set_channel_data(
                 user_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.users.with_raw_response.set_channel_data(
                 user_id="user_id",
                 channel_id="",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
     @pytest.mark.skip(
@@ -1003,7 +1028,14 @@ class TestAsyncUsers:
     async def test_method_update_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.update(
             user_id="user_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             preferences={
                 "default": {
@@ -1692,7 +1724,10 @@ class TestAsyncUsers:
         user = await async_client.users.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -1704,7 +1739,10 @@ class TestAsyncUsers:
         user = await async_client.users.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
         assert_matches_type(ChannelData, user, path=["response"])
 
@@ -1716,7 +1754,10 @@ class TestAsyncUsers:
         response = await async_client.users.with_raw_response.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         )
 
         assert response.is_closed is True
@@ -1732,7 +1773,10 @@ class TestAsyncUsers:
         async with async_client.users.with_streaming_response.set_channel_data(
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={"tokens": ["push_token_1"]},
+            data={
+                "_typename": "PushChannelData",
+                "tokens": ["push_token_1"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1751,14 +1795,20 @@ class TestAsyncUsers:
             await async_client.users.with_raw_response.set_channel_data(
                 user_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.users.with_raw_response.set_channel_data(
                 user_id="user_id",
                 channel_id="",
-                data={"tokens": ["push_token_1"]},
+                data={
+                    "_typename": "PushChannelData",
+                    "tokens": ["push_token_1"],
+                },
             )
 
     @pytest.mark.skip(

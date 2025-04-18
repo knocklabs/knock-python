@@ -20,7 +20,6 @@ from ...types import (
     object_list_params,
     object_list_messages_params,
     object_list_schedules_params,
-    object_get_preferences_params,
     object_set_preferences_params,
     object_set_channel_data_params,
     object_add_subscriptions_params,
@@ -358,7 +357,6 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         preference_set_id: str,
         *,
-        tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -370,8 +368,6 @@ class ObjectsResource(SyncAPIResource):
         Returns the preference set for the specified object.
 
         Args:
-          tenant: The unique identifier for the tenant.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -389,11 +385,7 @@ class ObjectsResource(SyncAPIResource):
         return self._get(
             f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"tenant": tenant}, object_get_preferences_params.ObjectGetPreferencesParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=PreferenceSet,
         )
@@ -445,7 +437,7 @@ class ObjectsResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: Limits the results to only items of the source workflow.
+          source: Key of the source that triggered the message to limit results to.
 
           status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
@@ -530,9 +522,9 @@ class ObjectsResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for.
+          tenant: Filter schedules by tenant id.
 
-          workflow: The ID of the workflow to list schedules for.
+          workflow: Filter schedules by workflow id.
 
           extra_headers: Send extra headers
 
@@ -598,7 +590,7 @@ class ObjectsResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          include: Includes preferences of the recipient subscribers in the response.
+          include: Additional fields to include in the response.
 
           mode: Mode of the request.
 
@@ -1136,7 +1128,6 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         preference_set_id: str,
         *,
-        tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1148,8 +1139,6 @@ class AsyncObjectsResource(AsyncAPIResource):
         Returns the preference set for the specified object.
 
         Args:
-          tenant: The unique identifier for the tenant.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1167,13 +1156,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         return await self._get(
             f"/v1/objects/{collection}/{object_id}/preferences/{preference_set_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"tenant": tenant}, object_get_preferences_params.ObjectGetPreferencesParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=PreferenceSet,
         )
@@ -1225,7 +1208,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: Limits the results to only items of the source workflow.
+          source: Key of the source that triggered the message to limit results to.
 
           status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
@@ -1310,9 +1293,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for.
+          tenant: Filter schedules by tenant id.
 
-          workflow: The ID of the workflow to list schedules for.
+          workflow: Filter schedules by workflow id.
 
           extra_headers: Send extra headers
 
@@ -1378,7 +1361,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          include: Includes preferences of the recipient subscribers in the response.
+          include: Additional fields to include in the response.
 
           mode: Mode of the request.
 

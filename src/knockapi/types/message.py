@@ -70,7 +70,7 @@ class Message(BaseModel):
     """Timestamp when the message was clicked."""
 
     data: Optional[Dict[str, object]] = None
-    """Data from the activities linked to the message"""
+    """Data from the activities linked to the message."""
 
     engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
     """A list of engagement statuses."""
@@ -117,4 +117,4 @@ class Message(BaseModel):
     """The timestamp when the resource was last updated."""
 
     workflow: Optional[str] = None
-    """The key of the worklfow that generated the message."""
+    """The key of the workflow that generated the message."""

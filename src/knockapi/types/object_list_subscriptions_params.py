@@ -16,7 +16,7 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     """The cursor to fetch entries before."""
 
     include: List[Literal["preferences"]]
-    """Includes preferences of the recipient subscribers in the response."""
+    """Additional fields to include in the response."""
 
     mode: Literal["recipient", "object"]
     """Mode of the request."""

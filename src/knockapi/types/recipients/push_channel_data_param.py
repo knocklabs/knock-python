@@ -3,11 +3,16 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["PushChannelDataParam"]
 
 
 class PushChannelDataParam(TypedDict, total=False):
+    _typename: Required[Annotated[Literal["PushChannelData"], PropertyInfo(alias="__typename")]]
+    """The typename of the schema."""
+
     tokens: Required[List[str]]
     """A list of push channel tokens."""

@@ -389,7 +389,7 @@ class UsersResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: Limits the results to only items of the source workflow.
+          source: Key of the source that triggered the message to limit results to.
 
           status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).
@@ -1105,7 +1105,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          source: Limits the results to only items of the source workflow.
+          source: Key of the source that triggered the message to limit results to.
 
           status: One or more delivery statuses. Limits results to messages with the given
               delivery status(es).

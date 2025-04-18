@@ -35,7 +35,7 @@ class MessageListParams(TypedDict, total=False):
     """The number of items per page."""
 
     source: str
-    """Limits the results to only items of the source workflow."""
+    """Key of the source that triggered the message to limit results to."""
 
     status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
     """One or more delivery statuses.

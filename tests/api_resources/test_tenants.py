@@ -183,7 +183,14 @@ class TestTenants:
     def test_method_set_with_all_params(self, client: Knock) -> None:
         tenant = client.tenants.set(
             tenant_id="tenant_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             preferences={
                 "default": {
                     "categories": {
@@ -503,7 +510,14 @@ class TestAsyncTenants:
     async def test_method_set_with_all_params(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.set(
             tenant_id="tenant_id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_xxx"]}}},
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_xxx"],
+                    }
+                }
+            },
             preferences={
                 "default": {
                     "categories": {

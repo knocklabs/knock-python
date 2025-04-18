@@ -38,6 +38,9 @@ class BulkUpdateMessageStatusParams(TypedDict, total=False):
     Only include messages created before this timestamp.
     """
 
+    recipient_gids: List[str]
+    """The recipient GIDs to filter messages by."""
+
     recipient_ids: List[str]
     """The recipient IDs to filter messages by."""
 

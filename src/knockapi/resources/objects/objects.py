@@ -618,9 +618,9 @@ class ObjectsResource(SyncAPIResource):
     ) -> SyncEntriesCursor[Subscription]:
         """List subscriptions for an object.
 
-        Either list all subscriptions that belong to
-        the object, or all subscriptions that this object has. Determined by the `mode`
-        query parameter.
+        Eitherlist the recipients that subscribe to
+        the provided object, or list the objects that the provided object is subscribed
+        to. Determined by the `mode` query parameter.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1425,9 +1425,9 @@ class AsyncObjectsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
         """List subscriptions for an object.
 
-        Either list all subscriptions that belong to
-        the object, or all subscriptions that this object has. Determined by the `mode`
-        query parameter.
+        Eitherlist the recipients that subscribe to
+        the provided object, or list the objects that the provided object is subscribed
+        to. Determined by the `mode` query parameter.
 
         Args:
           after: The cursor to fetch entries after.

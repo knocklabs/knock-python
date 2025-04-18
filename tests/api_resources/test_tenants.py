@@ -196,29 +196,23 @@ class TestTenants:
                 {
                     "id": "default",
                     "categories": {
-                        "channel_types": {
-                            "chat": True,
-                            "email": True,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
-                            "sms": {
-                                "conditions": [
-                                    {
-                                        "argument": "US",
-                                        "operator": "equal_to",
-                                        "variable": "recipient.country_code",
-                                    }
-                                ]
+                        "transactional": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": False,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
                             },
-                        },
-                        "conditions": [
-                            {
-                                "argument": "some_property",
-                                "operator": "equal_to",
-                                "variable": "recipient.property",
-                            }
-                        ],
+                            "conditions": [
+                                {
+                                    "argument": "some_property",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.property",
+                                }
+                            ],
+                        }
                     },
                     "channel_types": {
                         "chat": True,
@@ -531,29 +525,23 @@ class TestAsyncTenants:
                 {
                     "id": "default",
                     "categories": {
-                        "channel_types": {
-                            "chat": True,
-                            "email": True,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
-                            "sms": {
-                                "conditions": [
-                                    {
-                                        "argument": "US",
-                                        "operator": "equal_to",
-                                        "variable": "recipient.country_code",
-                                    }
-                                ]
+                        "transactional": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": False,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
                             },
-                        },
-                        "conditions": [
-                            {
-                                "argument": "some_property",
-                                "operator": "equal_to",
-                                "variable": "recipient.property",
-                            }
-                        ],
+                            "conditions": [
+                                {
+                                    "argument": "some_property",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.property",
+                                }
+                            ],
+                        }
                     },
                     "channel_types": {
                         "chat": True,

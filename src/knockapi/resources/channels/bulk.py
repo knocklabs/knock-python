@@ -79,12 +79,12 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Bulk update messages for a specific channel.
+        """Bulk update the status of messages for a specific channel.
 
-        The channel is specified by the
-        `channel_id` parameter. The action to perform is specified by the `action`
-        parameter, where the action is a status change action (e.g. `archive`,
-        `unarchive`).
+        The channel is
+        specified by the `channel_id` parameter. The action to perform is specified by
+        the `action` parameter, where the action is a status change action (e.g.
+        `archive`, `unarchive`).
 
         Args:
           archived: The archived status to filter messages by.
@@ -199,12 +199,12 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Bulk update messages for a specific channel.
+        """Bulk update the status of messages for a specific channel.
 
-        The channel is specified by the
-        `channel_id` parameter. The action to perform is specified by the `action`
-        parameter, where the action is a status change action (e.g. `archive`,
-        `unarchive`).
+        The channel is
+        specified by the `channel_id` parameter. The action to perform is specified by
+        the `action` parameter, where the action is a status change action (e.g.
+        `archive`, `unarchive`).
 
         Args:
           archived: The archived status to filter messages by.

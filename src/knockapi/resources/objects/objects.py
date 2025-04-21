@@ -198,7 +198,9 @@ class ObjectsResource(SyncAPIResource):
         """Add subscriptions for an object.
 
         If a subscription already exists, it will be
-        updated. Can accept inline-identifications for recipients.
+        updated. This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `recipient`
 
         Args:
           recipients: The recipients of the subscription.
@@ -1005,7 +1007,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         """Add subscriptions for an object.
 
         If a subscription already exists, it will be
-        updated. Can accept inline-identifications for recipients.
+        updated. This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `recipient`
 
         Args:
           recipients: The recipients of the subscription.

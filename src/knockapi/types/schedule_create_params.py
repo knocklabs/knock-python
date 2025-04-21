@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .recipient_reference_param import RecipientReferenceParam
+from .recipient_request_param import RecipientRequestParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
@@ -15,7 +15,7 @@ __all__ = ["ScheduleCreateParams"]
 
 
 class ScheduleCreateParams(TypedDict, total=False):
-    recipients: Required[List[RecipientReferenceParam]]
+    recipients: Required[List[RecipientRequestParam]]
     """The recipients to trigger the workflow for.
 
     Can inline identify users, objects, or use a list of user IDs. Limited to 1,000

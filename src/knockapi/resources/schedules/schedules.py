@@ -37,6 +37,7 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schedule import Schedule
+from ...types.recipient_request_param import RecipientRequestParam
 from ...types.schedule_create_response import ScheduleCreateResponse
 from ...types.schedule_delete_response import ScheduleDeleteResponse
 from ...types.schedule_update_response import ScheduleUpdateResponse
@@ -74,7 +75,7 @@ class SchedulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: List[RecipientRequestParam],
         repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -90,7 +91,10 @@ class SchedulesResource(SyncAPIResource):
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
-        timing, and data. Schedules can be one-time or recurring.
+        timing, and data. Schedules can be one-time or recurring. This endpoint also
+        handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
@@ -156,6 +160,9 @@ class SchedulesResource(SyncAPIResource):
         """
         Updates one or more existing schedules with new timing, data, or other
         properties. All specified schedule IDs will be updated with the same values.
+        This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
 
         Args:
           schedule_ids: A list of schedule IDs.
@@ -328,7 +335,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: List[RecipientRequestParam],
         repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -344,7 +351,10 @@ class AsyncSchedulesResource(AsyncAPIResource):
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
-        timing, and data. Schedules can be one-time or recurring.
+        timing, and data. Schedules can be one-time or recurring. This endpoint also
+        handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
@@ -410,6 +420,9 @@ class AsyncSchedulesResource(AsyncAPIResource):
         """
         Updates one or more existing schedules with new timing, data, or other
         properties. All specified schedule IDs will be updated with the same values.
+        This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
 
         Args:
           schedule_ids: A list of schedule IDs.

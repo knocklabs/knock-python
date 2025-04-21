@@ -1,25 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .recipient_reference import RecipientReference
 
-__all__ = ["MessageEvent", "Recipient", "RecipientObjectReference"]
-
-
-class RecipientObjectReference(BaseModel):
-    id: Optional[str] = None
-    """An identifier for the recipient object."""
-
-    collection: Optional[str] = None
-    """The collection the recipient object belongs to."""
-
-
-Recipient: TypeAlias = Union[str, RecipientObjectReference]
+__all__ = ["MessageEvent"]
 
 
 class MessageEvent(BaseModel):
@@ -32,7 +22,7 @@ class MessageEvent(BaseModel):
     inserted_at: datetime
     """Timestamp when the event was created."""
 
-    recipient: Recipient
+    recipient: RecipientReference
     """
     A reference to a recipient, either a user identifier (string) or an object
     reference (ID, collection).

@@ -41,6 +41,7 @@ from ...types.recipient_request_param import RecipientRequestParam
 from ...types.schedule_create_response import ScheduleCreateResponse
 from ...types.schedule_delete_response import ScheduleDeleteResponse
 from ...types.schedule_update_response import ScheduleUpdateResponse
+from ...types.recipient_reference_param import RecipientReferenceParam
 from ...types.schedule_repeat_rule_param import ScheduleRepeatRuleParam
 from ...types.inline_tenant_request_param import InlineTenantRequestParam
 
@@ -74,7 +75,7 @@ class SchedulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        recipients: List[schedule_create_params.Recipient],
+        recipients: List[RecipientReferenceParam],
         repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -329,7 +330,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        recipients: List[schedule_create_params.Recipient],
+        recipients: List[RecipientReferenceParam],
         repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,

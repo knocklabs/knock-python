@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["ObjectListSubscriptionsParams", "Object", "ObjectObjectReference", "Recipient", "RecipientObjectReference"]
+from .recipient_reference_param import RecipientReferenceParam
+
+__all__ = ["ObjectListSubscriptionsParams"]
 
 
 class ObjectListSubscriptionsParams(TypedDict, total=False):
@@ -21,33 +23,11 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     mode: Literal["recipient", "object"]
     """Mode of the request."""
 
-    objects: List[Object]
+    objects: List[RecipientReferenceParam]
     """Objects to filter by (only used if mode is `recipient`)."""
 
     page_size: int
     """The number of items per page."""
 
-    recipients: List[Recipient]
+    recipients: List[RecipientReferenceParam]
     """Recipients to filter by (only used if mode is `object`)."""
-
-
-class ObjectObjectReference(TypedDict, total=False):
-    id: str
-    """An identifier for the recipient object."""
-
-    collection: str
-    """The collection the recipient object belongs to."""
-
-
-Object: TypeAlias = Union[str, ObjectObjectReference]
-
-
-class RecipientObjectReference(TypedDict, total=False):
-    id: str
-    """An identifier for the recipient object."""
-
-    collection: str
-    """The collection the recipient object belongs to."""
-
-
-Recipient: TypeAlias = Union[str, RecipientObjectReference]

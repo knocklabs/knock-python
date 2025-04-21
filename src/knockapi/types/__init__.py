@@ -21,6 +21,7 @@ from .object_list_params import ObjectListParams as ObjectListParams
 from .tenant_list_params import TenantListParams as TenantListParams
 from .user_update_params import UserUpdateParams as UserUpdateParams
 from .message_list_params import MessageListParams as MessageListParams
+from .recipient_reference import RecipientReference as RecipientReference
 from .message_delivery_log import MessageDeliveryLog as MessageDeliveryLog
 from .schedule_list_params import ScheduleListParams as ScheduleListParams
 from .schedule_repeat_rule import ScheduleRepeatRule as ScheduleRepeatRule
@@ -38,6 +39,7 @@ from .schedule_create_response import ScheduleCreateResponse as ScheduleCreateRe
 from .schedule_delete_response import ScheduleDeleteResponse as ScheduleDeleteResponse
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
 from .workflow_cancel_response import WorkflowCancelResponse as WorkflowCancelResponse
+from .recipient_reference_param import RecipientReferenceParam as RecipientReferenceParam
 from .user_list_messages_params import UserListMessagesParams as UserListMessagesParams
 from .workflow_trigger_response import WorkflowTriggerResponse as WorkflowTriggerResponse
 from .message_list_events_params import MessageListEventsParams as MessageListEventsParams

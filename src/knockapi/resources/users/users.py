@@ -63,6 +63,7 @@ from ...types.message import Message
 from ...types.schedule import Schedule
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
+from ...types.recipient_reference_param import RecipientReferenceParam
 from ...types.recipients.preference_set import PreferenceSet
 from ...types.user_list_preferences_response import UserListPreferencesResponse
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -561,7 +562,7 @@ class UsersResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[user_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
+        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1281,7 +1282,7 @@ class AsyncUsersResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[user_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
+        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

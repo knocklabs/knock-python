@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["UserListSubscriptionsParams", "Object", "ObjectObjectReference"]
+from .recipient_reference_param import RecipientReferenceParam
+
+__all__ = ["UserListSubscriptionsParams"]
 
 
 class UserListSubscriptionsParams(TypedDict, total=False):
@@ -18,19 +20,8 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     include: List[Literal["preferences"]]
     """Associated resources to include in the response."""
 
-    objects: List[Object]
+    objects: List[RecipientReferenceParam]
     """Only return subscriptions for the given recipients."""
 
     page_size: int
     """The number of items per page."""
-
-
-class ObjectObjectReference(TypedDict, total=False):
-    id: str
-    """An identifier for the recipient object."""
-
-    collection: str
-    """The collection the recipient object belongs to."""
-
-
-Object: TypeAlias = Union[str, ObjectObjectReference]

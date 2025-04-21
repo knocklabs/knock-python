@@ -4,17 +4,18 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .recipient_reference_param import RecipientReferenceParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
-__all__ = ["ScheduleCreateParams", "Recipient", "RecipientObjectReference"]
+__all__ = ["ScheduleCreateParams"]
 
 
 class ScheduleCreateParams(TypedDict, total=False):
-    recipients: Required[List[Recipient]]
+    recipients: Required[List[RecipientReferenceParam]]
     """The recipients to trigger the workflow for.
 
     Can inline identify users, objects, or use a list of user IDs. Limited to 1,000
@@ -38,14 +39,3 @@ class ScheduleCreateParams(TypedDict, total=False):
 
     tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
-
-
-class RecipientObjectReference(TypedDict, total=False):
-    id: str
-    """An identifier for the recipient object."""
-
-    collection: str
-    """The collection the recipient object belongs to."""
-
-
-Recipient: TypeAlias = Union[str, RecipientObjectReference]

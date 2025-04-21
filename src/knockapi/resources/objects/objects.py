@@ -47,6 +47,7 @@ from ...types.schedule import Schedule
 from ...types.recipient_request_param import RecipientRequestParam
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
+from ...types.recipient_reference_param import RecipientReferenceParam
 from ...types.recipients.preference_set import PreferenceSet
 from ...types.object_list_preferences_response import ObjectListPreferencesResponse
 from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
@@ -606,9 +607,9 @@ class ObjectsResource(SyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
+        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[object_list_subscriptions_params.Recipient] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1413,9 +1414,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
+        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[object_list_subscriptions_params.Recipient] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

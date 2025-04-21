@@ -9,10 +9,10 @@ __all__ = ["GuideGetChannelParams"]
 
 class GuideGetChannelParams(TypedDict, total=False):
     data: str
-    """The data to filter guides by."""
+    """The data (JSON encoded object) to use for targeting and rendering guides."""
 
     tenant: str
-    """The tenant ID to filter guides by."""
+    """The tenant ID to use for targeting and rendering guides."""
 
     type: str
     """The type of guides to filter by."""

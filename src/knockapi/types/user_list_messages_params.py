@@ -19,10 +19,7 @@ class UserListMessagesParams(TypedDict, total=False):
     """Limits the results to items with the corresponding channel ID."""
 
     engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
-    """One or more engagement statuses.
-
-    Limits results to messages with the given engagement status(es).
-    """
+    """Limits the results to messages with the given engagement status."""
 
     message_ids: List[str]
     """Limits the results to only the message ids given (max 50).
@@ -35,28 +32,29 @@ class UserListMessagesParams(TypedDict, total=False):
     """The number of items per page."""
 
     source: str
-    """Key of the source that triggered the message to limit results to."""
+    """Limits the results to messages triggered by the given workflow key."""
 
     status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-    """One or more delivery statuses.
-
-    Limits results to messages with the given delivery status(es).
-    """
+    """Limits the results to messages with the given delivery status."""
 
     tenant: str
-    """
-    Limits the results to items with the corresponding tenant, or where the tenant
-    is empty.
-    """
+    """Limits the results to items with the corresponding tenant."""
 
     trigger_data: str
-    """Limits the results to only items that were generated with the given data."""
+    """Limits the results to only messages that were generated with the given data.
+
+    See [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+    more information.
+    """
 
     workflow_categories: List[str]
-    """Limits the results to only items related to any of the provided categories."""
+    """Limits the results to messages related to any of the provided categories."""
 
     workflow_recipient_run_id: str
     """Limits the results to messages for a specific recipient's workflow run."""
 
     workflow_run_id: str
-    """Limits the results to messages triggered by the top-level workflow run ID."""
+    """
+    Limits the results to messages associated with the top-level workflow run ID
+    returned by the workflow trigger request.
+    """

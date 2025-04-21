@@ -73,9 +73,9 @@ class GuidesResource(SyncAPIResource):
         Returns a list of eligible in-app guides for a specific user and channel.
 
         Args:
-          data: The data to filter guides by.
+          data: The data (JSON encoded object) to use for targeting and rendering guides.
 
-          tenant: The tenant ID to filter guides by.
+          tenant: The tenant ID to use for targeting and rendering guides.
 
           type: The type of guides to filter by.
 
@@ -384,9 +384,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         Returns a list of eligible in-app guides for a specific user and channel.
 
         Args:
-          data: The data to filter guides by.
+          data: The data (JSON encoded object) to use for targeting and rendering guides.
 
-          tenant: The tenant ID to filter guides by.
+          tenant: The tenant ID to use for targeting and rendering guides.
 
           type: The type of guides to filter by.
 

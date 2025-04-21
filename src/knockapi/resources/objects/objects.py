@@ -433,29 +433,29 @@ class ObjectsResource(SyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel ID.
 
-          engagement_status: One or more engagement statuses. Limits results to messages with the given
-              engagement status(es).
+          engagement_status: Limits the results to messages with the given engagement status.
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: Key of the source that triggered the message to limit results to.
+          source: Limits the results to messages triggered by the given workflow key.
 
-          status: One or more delivery statuses. Limits results to messages with the given
-              delivery status(es).
+          status: Limits the results to messages with the given delivery status.
 
-          tenant: Limits the results to items with the corresponding tenant, or where the tenant
-              is empty.
+          tenant: Limits the results to items with the corresponding tenant.
 
-          trigger_data: Limits the results to only items that were generated with the given data.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          workflow_categories: Limits the results to only items related to any of the provided categories.
+          workflow_categories: Limits the results to messages related to any of the provided categories.
 
           workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 
@@ -1242,29 +1242,29 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel ID.
 
-          engagement_status: One or more engagement statuses. Limits results to messages with the given
-              engagement status(es).
+          engagement_status: Limits the results to messages with the given engagement status.
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: Key of the source that triggered the message to limit results to.
+          source: Limits the results to messages triggered by the given workflow key.
 
-          status: One or more delivery statuses. Limits results to messages with the given
-              delivery status(es).
+          status: Limits the results to messages with the given delivery status.
 
-          tenant: Limits the results to items with the corresponding tenant, or where the tenant
-              is empty.
+          tenant: Limits the results to items with the corresponding tenant.
 
-          trigger_data: Limits the results to only items that were generated with the given data.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          workflow_categories: Limits the results to only items related to any of the provided categories.
+          workflow_categories: Limits the results to messages related to any of the provided categories.
 
           workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 

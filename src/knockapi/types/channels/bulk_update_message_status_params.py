@@ -13,42 +13,38 @@ __all__ = ["BulkUpdateMessageStatusParams"]
 
 class BulkUpdateMessageStatusParams(TypedDict, total=False):
     archived: Literal["exclude", "include", "only"]
-    """The archived status to filter messages by."""
+    """Limits the results to messages with the given archived status."""
 
     delivery_status: Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
-    """The delivery status to filter messages by."""
+    """Limits the results to messages with the given delivery status."""
 
     engagement_status: Literal[
         "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
     ]
-    """The engagement status to filter messages by."""
+    """Limits the results to messages with the given engagement status."""
 
     has_tenant: bool
-    """Whether to include only messages that have a tenant or not."""
+    """Limits the results to messages that have a tenant or not."""
 
     newer_than: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The timestamp to filter messages by.
-
-    Only include messages created after this timestamp.
-    """
 
     older_than: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The timestamp to filter messages by.
-
-    Only include messages created before this timestamp.
-    """
 
     recipient_gids: List[str]
-    """The recipient GIDs to filter messages by."""
+    """Limits the results to messages with the given recipient GIDs."""
 
     recipient_ids: List[str]
-    """The recipient IDs to filter messages by."""
+    """Limits the results to messages with the given recipient IDs."""
 
     tenants: List[str]
-    """The tenant IDs to filter messages by."""
+    """Limits the results to messages with the given tenant IDs."""
 
     trigger_data: str
-    """The trigger data to filter messages by. Must be a valid JSON object."""
+    """Limits the results to only messages that were generated with the given data.
+
+    See [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+    more information.
+    """
 
     workflows: List[str]
-    """The workflow keys to filter messages by."""
+    """Limits the results to messages with the given workflow keys."""

@@ -105,29 +105,29 @@ class MessagesResource(SyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel ID.
 
-          engagement_status: One or more engagement statuses. Limits results to messages with the given
-              engagement status(es).
+          engagement_status: Limits the results to messages with the given engagement status.
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: Key of the source that triggered the message to limit results to.
+          source: Limits the results to messages triggered by the given workflow key.
 
-          status: One or more delivery statuses. Limits results to messages with the given
-              delivery status(es).
+          status: Limits the results to messages with the given delivery status.
 
-          tenant: Limits the results to items with the corresponding tenant, or where the tenant
-              is empty.
+          tenant: Limits the results to items with the corresponding tenant.
 
-          trigger_data: Limits the results to only items that were generated with the given data.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          workflow_categories: Limits the results to only items related to any of the provided categories.
+          workflow_categories: Limits the results to messages related to any of the provided categories.
 
           workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 
@@ -178,10 +178,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Archives a message for the current user.
+        """Archives a message for the user.
 
-        Archived messages are hidden from the
-        default message list but can still be accessed and unarchived later.
+        Archived messages are hidden from the default
+        message list in the feed but can still be accessed and unarchived later.
 
         Args:
           extra_headers: Send extra headers
@@ -447,11 +447,13 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as interacted with by the current user.
+        """Marks a message as `interacted` with by the user.
 
-        This can include any
-        user action on the message, with optional metadata about the specific
-        interaction.
+        This can include any user
+        action on the message, with optional metadata about the specific interaction.
+        Cannot include more than 5 key-value pairs, must not contain nested data. Read
+        more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           metadata: Metadata about the interaction.
@@ -488,10 +490,11 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as read for the current user.
+        """Marks a message as `read`.
 
-        This indicates that the user has
-        read the message content.
+        This indicates that the user has read the message
+        content. Read more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -523,10 +526,11 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as seen for the current user.
+        """Marks a message as `seen`.
 
-        This indicates that the user has
-        viewed the message in their feed or inbox.
+        This indicates that the user has viewed the message
+        in their feed or inbox. Read more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -558,8 +562,11 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as unread for the current user, reversing the read state.
+        """Marks a message as `unread`.
+
+        This reverses the `read` state. Read more about
+        message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -591,8 +598,11 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as unseen for the current user, reversing the seen state.
+        """Marks a message as `unseen`.
+
+        This reverses the `seen` state. Read more about
+        message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -626,7 +636,7 @@ class MessagesResource(SyncAPIResource):
     ) -> Message:
         """
         Removes a message from the archived state, making it visible in the default
-        message list again.
+        message list in the feed again.
 
         Args:
           extra_headers: Send extra headers
@@ -707,29 +717,29 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           channel_id: Limits the results to items with the corresponding channel ID.
 
-          engagement_status: One or more engagement statuses. Limits results to messages with the given
-              engagement status(es).
+          engagement_status: Limits the results to messages with the given engagement status.
 
           message_ids: Limits the results to only the message ids given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          source: Key of the source that triggered the message to limit results to.
+          source: Limits the results to messages triggered by the given workflow key.
 
-          status: One or more delivery statuses. Limits results to messages with the given
-              delivery status(es).
+          status: Limits the results to messages with the given delivery status.
 
-          tenant: Limits the results to items with the corresponding tenant, or where the tenant
-              is empty.
+          tenant: Limits the results to items with the corresponding tenant.
 
-          trigger_data: Limits the results to only items that were generated with the given data.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          workflow_categories: Limits the results to only items related to any of the provided categories.
+          workflow_categories: Limits the results to messages related to any of the provided categories.
 
           workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
 
-          workflow_run_id: Limits the results to messages triggered by the top-level workflow run ID.
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 
@@ -780,10 +790,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Archives a message for the current user.
+        """Archives a message for the user.
 
-        Archived messages are hidden from the
-        default message list but can still be accessed and unarchived later.
+        Archived messages are hidden from the default
+        message list in the feed but can still be accessed and unarchived later.
 
         Args:
           extra_headers: Send extra headers
@@ -1049,11 +1059,13 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as interacted with by the current user.
+        """Marks a message as `interacted` with by the user.
 
-        This can include any
-        user action on the message, with optional metadata about the specific
-        interaction.
+        This can include any user
+        action on the message, with optional metadata about the specific interaction.
+        Cannot include more than 5 key-value pairs, must not contain nested data. Read
+        more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           metadata: Metadata about the interaction.
@@ -1090,10 +1102,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as read for the current user.
+        """Marks a message as `read`.
 
-        This indicates that the user has
-        read the message content.
+        This indicates that the user has read the message
+        content. Read more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -1125,10 +1138,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """Marks a message as seen for the current user.
+        """Marks a message as `seen`.
 
-        This indicates that the user has
-        viewed the message in their feed or inbox.
+        This indicates that the user has viewed the message
+        in their feed or inbox. Read more about message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -1160,8 +1174,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as unread for the current user, reversing the read state.
+        """Marks a message as `unread`.
+
+        This reverses the `read` state. Read more about
+        message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -1193,8 +1210,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Message:
-        """
-        Marks a message as unseen for the current user, reversing the seen state.
+        """Marks a message as `unseen`.
+
+        This reverses the `seen` state. Read more about
+        message engagement statuses
+        [here](/send-notifications/message-statuses#engagement-status).
 
         Args:
           extra_headers: Send extra headers
@@ -1228,7 +1248,7 @@ class AsyncMessagesResource(AsyncAPIResource):
     ) -> Message:
         """
         Removes a message from the archived state, making it visible in the default
-        message list again.
+        message list in the feed again.
 
         Args:
           extra_headers: Send extra headers

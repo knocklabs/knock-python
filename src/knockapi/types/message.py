@@ -19,10 +19,10 @@ class Source(BaseModel):
     """The categories associated with the message."""
 
     key: str
-    """The key of the source that triggered the message."""
+    """The key of the workflow that triggered the message."""
 
     version_id: str
-    """The ID of the version of the source that triggered the message."""
+    """The ID of the version of the workflow that triggered the message."""
 
 
 class Message(BaseModel):
@@ -49,7 +49,14 @@ class Message(BaseModel):
     """Timestamp when the message was clicked."""
 
     data: Optional[Dict[str, object]] = None
-    """Data from the activities linked to the message."""
+    """Data associated with the message’s workflow run.
+
+    Includes the workflow trigger request’s `data` payload merged with any
+    additional data returned by a
+    [fetch function](/designing-workflows/fetch-function). For messages produced
+    after a [batch step](/designing-workflows/batch-function), includes the payload
+    `data` from the most-recent trigger request (the final `activity` in the batch).
+    """
 
     engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
     """A list of engagement statuses."""
@@ -82,7 +89,7 @@ class Message(BaseModel):
     """Timestamp when the message was seen."""
 
     source: Optional[Source] = None
-    """The source that triggered the message."""
+    """The workflow that triggered the message."""
 
     status: Optional[
         Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]

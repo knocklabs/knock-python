@@ -87,29 +87,25 @@ class BulkResource(SyncAPIResource):
         `archive`, `unarchive`).
 
         Args:
-          archived: The archived status to filter messages by.
+          archived: Limits the results to messages with the given archived status.
 
-          delivery_status: The delivery status to filter messages by.
+          delivery_status: Limits the results to messages with the given delivery status.
 
-          engagement_status: The engagement status to filter messages by.
+          engagement_status: Limits the results to messages with the given engagement status.
 
-          has_tenant: Whether to include only messages that have a tenant or not.
+          has_tenant: Limits the results to messages that have a tenant or not.
 
-          newer_than: The timestamp to filter messages by. Only include messages created after this
-              timestamp.
+          recipient_gids: Limits the results to messages with the given recipient GIDs.
 
-          older_than: The timestamp to filter messages by. Only include messages created before this
-              timestamp.
+          recipient_ids: Limits the results to messages with the given recipient IDs.
 
-          recipient_gids: The recipient GIDs to filter messages by.
+          tenants: Limits the results to messages with the given tenant IDs.
 
-          recipient_ids: The recipient IDs to filter messages by.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          tenants: The tenant IDs to filter messages by.
-
-          trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
-
-          workflows: The workflow keys to filter messages by.
+          workflows: Limits the results to messages with the given workflow keys.
 
           extra_headers: Send extra headers
 
@@ -207,29 +203,25 @@ class AsyncBulkResource(AsyncAPIResource):
         `archive`, `unarchive`).
 
         Args:
-          archived: The archived status to filter messages by.
+          archived: Limits the results to messages with the given archived status.
 
-          delivery_status: The delivery status to filter messages by.
+          delivery_status: Limits the results to messages with the given delivery status.
 
-          engagement_status: The engagement status to filter messages by.
+          engagement_status: Limits the results to messages with the given engagement status.
 
-          has_tenant: Whether to include only messages that have a tenant or not.
+          has_tenant: Limits the results to messages that have a tenant or not.
 
-          newer_than: The timestamp to filter messages by. Only include messages created after this
-              timestamp.
+          recipient_gids: Limits the results to messages with the given recipient GIDs.
 
-          older_than: The timestamp to filter messages by. Only include messages created before this
-              timestamp.
+          recipient_ids: Limits the results to messages with the given recipient IDs.
 
-          recipient_gids: The recipient GIDs to filter messages by.
+          tenants: Limits the results to messages with the given tenant IDs.
 
-          recipient_ids: The recipient IDs to filter messages by.
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
 
-          tenants: The tenant IDs to filter messages by.
-
-          trigger_data: The trigger data to filter messages by. Must be a valid JSON object.
-
-          workflows: The workflow keys to filter messages by.
+          workflows: Limits the results to messages with the given workflow keys.
 
           extra_headers: Send extra headers
 

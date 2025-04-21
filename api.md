@@ -360,9 +360,15 @@ Methods:
 
 ## Bulk
 
+Types:
+
+```python
+from knockapi.types.schedules import BulkCreateSchedulesRequest
+```
+
 Methods:
 
-- <code title="post /v1/schedules/bulk/create">client.schedules.bulk.<a href="./src/knockapi/resources/schedules/bulk.py">create</a>() -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+- <code title="post /v1/schedules/bulk/create">client.schedules.bulk.<a href="./src/knockapi/resources/schedules/bulk.py">create</a>(\*\*<a href="src/knockapi/types/schedules/bulk_create_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
 # Channels
 

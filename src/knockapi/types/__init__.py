@@ -32,6 +32,7 @@ from .schedule_delete_params import ScheduleDeleteParams as ScheduleDeleteParams
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams
 from .tenant_delete_response import TenantDeleteResponse as TenantDeleteResponse
 from .workflow_cancel_params import WorkflowCancelParams as WorkflowCancelParams
+from .recipient_request_param import RecipientRequestParam as RecipientRequestParam
 from .workflow_trigger_params import WorkflowTriggerParams as WorkflowTriggerParams
 from .schedule_create_response import ScheduleCreateResponse as ScheduleCreateResponse
 from .schedule_delete_response import ScheduleDeleteResponse as ScheduleDeleteResponse

@@ -37,6 +37,7 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schedule import Schedule
+from ...types.recipient_request_param import RecipientRequestParam
 from ...types.schedule_create_response import ScheduleCreateResponse
 from ...types.schedule_delete_response import ScheduleDeleteResponse
 from ...types.schedule_update_response import ScheduleUpdateResponse
@@ -139,7 +140,7 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[schedule_update_params.Actor] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
@@ -394,7 +395,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[schedule_update_params.Actor] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,

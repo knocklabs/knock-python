@@ -44,6 +44,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.object import Object
 from ...types.message import Message
 from ...types.schedule import Schedule
+from ...types.recipient_request_param import RecipientRequestParam
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
 from ...types.recipients.preference_set import PreferenceSet
@@ -184,7 +185,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[object_add_subscriptions_params.Recipient],
+        recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,7 +236,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[object_delete_subscriptions_params.Recipient],
+        recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -991,7 +992,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[object_add_subscriptions_params.Recipient],
+        recipients: List[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1042,7 +1043,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[object_delete_subscriptions_params.Recipient],
+        recipients: List[RecipientRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

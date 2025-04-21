@@ -2,18 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Required, TypedDict
 
-from .inline_object_request_param import InlineObjectRequestParam
-from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
+from .recipient_request_param import RecipientRequestParam
 
-__all__ = ["ObjectDeleteSubscriptionsParams", "Recipient"]
+__all__ = ["ObjectDeleteSubscriptionsParams"]
 
 
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
-    recipients: Required[List[Recipient]]
+    recipients: Required[List[RecipientRequestParam]]
     """The recipients of the subscription."""
-
-
-Recipient: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]

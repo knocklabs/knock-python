@@ -36,14 +36,14 @@ class Message(BaseModel):
     """One or more actors that are associated with this message.
 
     Note: this is a list that can contain up to 10 actors if the message is produced
-    from a batch.
+    from a [batch](/designing-workflows/batch-function).
     """
 
     archived_at: Optional[datetime] = None
     """Timestamp when the message was archived."""
 
     channel_id: Optional[str] = None
-    """The id for the channel the message was sent through."""
+    """The ID for the channel the message was sent through."""
 
     clicked_at: Optional[datetime] = None
     """Timestamp when the message was clicked."""
@@ -97,7 +97,10 @@ class Message(BaseModel):
     """The message delivery status."""
 
     tenant: Optional[str] = None
-    """The id for the tenant set for the message."""
+    """The ID of the `tenant` associated with the message.
+
+    Only present when a `tenant` is provided on a workflow trigger request.
+    """
 
     updated_at: Optional[datetime] = None
     """The timestamp when the resource was last updated."""

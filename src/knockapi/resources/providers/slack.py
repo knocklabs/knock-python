@@ -22,6 +22,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.providers import slack_check_auth_params, slack_list_channels_params, slack_revoke_access_params
 from ...types.providers.slack_check_auth_response import SlackCheckAuthResponse
 from ...types.providers.slack_list_channels_response import SlackListChannelsResponse
+from ...types.providers.slack_revoke_access_response import SlackRevokeAccessResponse
 
 __all__ = ["SlackResource", "AsyncSlackResource"]
 
@@ -147,7 +148,7 @@ class SlackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.
 
@@ -175,7 +176,7 @@ class SlackResource(SyncAPIResource):
                     {"access_token_object": access_token_object}, slack_revoke_access_params.SlackRevokeAccessParams
                 ),
             ),
-            cast_to=str,
+            cast_to=SlackRevokeAccessResponse,
         )
 
 
@@ -300,7 +301,7 @@ class AsyncSlackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.
 
@@ -328,7 +329,7 @@ class AsyncSlackResource(AsyncAPIResource):
                     {"access_token_object": access_token_object}, slack_revoke_access_params.SlackRevokeAccessParams
                 ),
             ),
-            cast_to=str,
+            cast_to=SlackRevokeAccessResponse,
         )
 
 

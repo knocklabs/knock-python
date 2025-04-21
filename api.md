@@ -9,7 +9,7 @@ from knockapi.types import Condition
 Types:
 
 ```python
-from knockapi.types import Recipient, RecipientRequest
+from knockapi.types import Recipient
 ```
 
 ## Subscriptions

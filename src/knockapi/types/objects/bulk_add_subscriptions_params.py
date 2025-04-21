@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, List, Union, Iterable, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
-from ..recipient_request_param import RecipientRequestParam
+from ..inline_object_request_param import InlineObjectRequestParam
+from ..inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
-__all__ = ["BulkAddSubscriptionsParams", "Subscription"]
+__all__ = ["BulkAddSubscriptionsParams", "Subscription", "SubscriptionRecipient"]
 
 
 class BulkAddSubscriptionsParams(TypedDict, total=False):
@@ -15,11 +16,14 @@ class BulkAddSubscriptionsParams(TypedDict, total=False):
     """A list of subscriptions."""
 
 
+SubscriptionRecipient: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]
+
+
 class Subscription(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the subscription."""
 
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[List[SubscriptionRecipient]]
     """The recipients of the subscription."""
 
     properties: Optional[Dict[str, object]]

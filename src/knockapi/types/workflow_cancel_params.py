@@ -2,22 +2,30 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["WorkflowCancelParams"]
+from .inline_object_request_param import InlineObjectRequestParam
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
+
+__all__ = ["WorkflowCancelParams", "Recipient"]
 
 
 class WorkflowCancelParams(TypedDict, total=False):
     cancellation_key: Required[str]
-    """The cancellation key provided during the initial notify call.
-
-    If used in a cancel request, will cancel the notification for the recipients
-    specified in the cancel request.
+    """
+    An optional key that is used to reference a specific workflow trigger request
+    when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
+    request. Must be provided while triggering a workflow in order to enable
+    subsequent cancellation. Should be unique across trigger requests to avoid
+    unintentional cancellations.
     """
 
-    recipients: Optional[List[str]]
+    recipients: Optional[List[Recipient]]
     """A list of recipients to cancel the notification for.
 
     If omitted, cancels for all recipients associated with the cancellation key.
     """
+
+
+Recipient: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]

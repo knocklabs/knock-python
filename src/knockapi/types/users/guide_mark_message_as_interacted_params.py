@@ -34,4 +34,4 @@ class GuideMarkMessageAsInteractedParams(TypedDict, total=False):
     """The metadata of the guide."""
 
     tenant: Optional[str]
-    """The tenant id of the guide."""
+    """The tenant ID of the guide."""

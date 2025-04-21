@@ -43,7 +43,7 @@ class Source(BaseModel):
     """The key of the source that triggered the message."""
 
     version_id: str
-    """The id of the version of the source that triggered the message."""
+    """The ID of the version of the source that triggered the message."""
 
 
 class Message(BaseModel):
@@ -93,7 +93,7 @@ class Message(BaseModel):
     recipient: Optional[Recipient] = None
     """
     A reference to a recipient, either a user identifier (string) or an object
-    reference (id, collection).
+    reference (ID, collection).
     """
 
     scheduled_at: Optional[datetime] = None

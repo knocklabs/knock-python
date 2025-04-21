@@ -4,21 +4,22 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .recipient_request_param import RecipientRequestParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from .inline_object_request_param import InlineObjectRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
-__all__ = ["ScheduleUpdateParams"]
+__all__ = ["ScheduleUpdateParams", "Actor"]
 
 
 class ScheduleUpdateParams(TypedDict, total=False):
     schedule_ids: Required[List[str]]
     """A list of schedule IDs."""
 
-    actor: Optional[RecipientRequestParam]
+    actor: Optional[Actor]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -40,3 +41,6 @@ class ScheduleUpdateParams(TypedDict, total=False):
 
     tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
+
+
+Actor: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]

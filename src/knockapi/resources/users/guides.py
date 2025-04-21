@@ -152,7 +152,7 @@ class GuidesResource(SyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 
@@ -230,7 +230,7 @@ class GuidesResource(SyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 
@@ -308,7 +308,7 @@ class GuidesResource(SyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 
@@ -463,7 +463,7 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 
@@ -541,7 +541,7 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 
@@ -619,7 +619,7 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           metadata: The metadata of the guide.
 
-          tenant: The tenant id of the guide.
+          tenant: The tenant ID of the guide.
 
           extra_headers: Send extra headers
 

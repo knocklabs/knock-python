@@ -2,24 +2,25 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, List, Union, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
-from .recipient_request_param import RecipientRequestParam
+from .inline_object_request_param import InlineObjectRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
-__all__ = ["WorkflowTriggerParams"]
+__all__ = ["WorkflowTriggerParams", "Recipient", "Actor"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[List[Recipient]]
     """The recipients to trigger the workflow for.
 
-    Can inline identify users, objects, or use a list of user ids. Cannot exceed
-    1000 recipients in a single trigger.
+    Can inline identify users, objects, or use a list of user IDs. Limited to 1,000
+    recipients in a single trigger.
     """
 
-    actor: Optional[RecipientRequestParam]
+    actor: Optional[Actor]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -28,10 +29,12 @@ class WorkflowTriggerParams(TypedDict, total=False):
     """
 
     cancellation_key: Optional[str]
-    """The cancellation key provided during the initial notify call.
-
-    If used in a cancel request, will cancel the notification for the recipients
-    specified in the cancel request.
+    """
+    An optional key that is used to reference a specific workflow trigger request
+    when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
+    request. Must be provided while triggering a workflow in order to enable
+    subsequent cancellation. Should be unique across trigger requests to avoid
+    unintentional cancellations.
     """
 
     data: Optional[Dict[str, object]]
@@ -39,3 +42,8 @@ class WorkflowTriggerParams(TypedDict, total=False):
 
     tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
+
+
+Recipient: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]
+
+Actor: TypeAlias = Union[str, InlineIdentifyUserRequestParam, InlineObjectRequestParam]

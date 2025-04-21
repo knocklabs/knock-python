@@ -49,7 +49,7 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Creates up to 1000 schedules in a single asynchronous bulk operation.
+        """Creates up to 1,000 schedules in a single asynchronous bulk operation.
 
         The list
         of schedules can include inline-identifications for each recipient, tenant, and
@@ -94,7 +94,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Creates up to 1000 schedules in a single asynchronous bulk operation.
+        """Creates up to 1,000 schedules in a single asynchronous bulk operation.
 
         The list
         of schedules can include inline-identifications for each recipient, tenant, and

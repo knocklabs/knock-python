@@ -16,7 +16,7 @@ class MessageListParams(TypedDict, total=False):
     """The cursor to fetch entries before."""
 
     channel_id: str
-    """Limits the results to items with the corresponding channel id."""
+    """Limits the results to items with the corresponding channel ID."""
 
     engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
     """One or more engagement statuses.

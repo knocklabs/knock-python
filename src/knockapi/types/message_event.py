@@ -35,7 +35,7 @@ class MessageEvent(BaseModel):
     recipient: Recipient
     """
     A reference to a recipient, either a user identifier (string) or an object
-    reference (id, collection).
+    reference (ID, collection).
     """
 
     type: Literal[

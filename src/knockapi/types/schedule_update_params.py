@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .recipient_request_param import RecipientRequestParam
+from .recipient_reference_param import RecipientReferenceParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
@@ -18,12 +18,10 @@ class ScheduleUpdateParams(TypedDict, total=False):
     schedule_ids: Required[List[str]]
     """A list of schedule IDs."""
 
-    actor: Optional[RecipientRequestParam]
-    """Specifies a recipient in a request.
-
-    This can either be a user identifier (string), an inline user request (object),
-    or an inline object request, which is determined by the presence of a
-    `collection` property.
+    actor: Optional[RecipientReferenceParam]
+    """
+    A reference to a recipient, either a user identifier (string) or an object
+    reference (ID, collection).
     """
 
     data: Optional[Dict[str, object]]

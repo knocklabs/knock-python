@@ -49,11 +49,11 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Creates up to 1,000 schedules in a single asynchronous bulk operation.
+        """Bulk creates up to 1,000 schedules at a time.
 
-        The list
-        of schedules can include inline-identifications for each recipient, tenant, and
-        actor specified on a schedule.
+        This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
         """
         return self._post(
             "/v1/schedules/bulk/create",
@@ -94,11 +94,11 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Creates up to 1,000 schedules in a single asynchronous bulk operation.
+        """Bulk creates up to 1,000 schedules at a time.
 
-        The list
-        of schedules can include inline-identifications for each recipient, tenant, and
-        actor specified on a schedule.
+        This endpoint also handles
+        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
+        for the `actor`, `recipient`, and `tenant` fields.
         """
         return await self._post(
             "/v1/schedules/bulk/create",

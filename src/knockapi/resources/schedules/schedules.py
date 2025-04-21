@@ -37,7 +37,6 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schedule import Schedule
-from ...types.recipient_request_param import RecipientRequestParam
 from ...types.schedule_create_response import ScheduleCreateResponse
 from ...types.schedule_delete_response import ScheduleDeleteResponse
 from ...types.schedule_update_response import ScheduleUpdateResponse
@@ -141,7 +140,7 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
@@ -161,9 +160,8 @@ class SchedulesResource(SyncAPIResource):
         Args:
           schedule_ids: A list of schedule IDs.
 
-          actor: Specifies a recipient in a request. This can either be a user identifier
-              (string), an inline user request (object), or an inline object request, which is
-              determined by the presence of a `collection` property.
+          actor: A reference to a recipient, either a user identifier (string) or an object
+              reference (ID, collection).
 
           data: An optional map of data to pass into the workflow execution.
 
@@ -396,7 +394,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         schedule_ids: List[str],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
@@ -416,9 +414,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
         Args:
           schedule_ids: A list of schedule IDs.
 
-          actor: Specifies a recipient in a request. This can either be a user identifier
-              (string), an inline user request (object), or an inline object request, which is
-              determined by the presence of a `collection` property.
+          actor: A reference to a recipient, either a user identifier (string) or an object
+              reference (ID, collection).
 
           data: An optional map of data to pass into the workflow execution.
 

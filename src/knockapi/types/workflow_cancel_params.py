@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Required, TypedDict
 
-from .recipient_request_param import RecipientRequestParam
+from .recipient_reference_param import RecipientReferenceParam
 
 __all__ = ["WorkflowCancelParams"]
 
@@ -20,7 +20,7 @@ class WorkflowCancelParams(TypedDict, total=False):
     unintentional cancellations.
     """
 
-    recipients: Optional[List[RecipientRequestParam]]
+    recipients: Optional[List[RecipientReferenceParam]]
     """A list of recipients to cancel the notification for.
 
     If omitted, cancels for all recipients associated with the cancellation key.

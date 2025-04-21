@@ -198,7 +198,7 @@ class ObjectsResource(SyncAPIResource):
         """Add subscriptions for an object.
 
         If a subscription already exists, it will be
-        updated.
+        updated. Can accept inline-identifications for recipients.
 
         Args:
           recipients: The recipients of the subscription.
@@ -237,7 +237,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: List[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -619,7 +619,7 @@ class ObjectsResource(SyncAPIResource):
     ) -> SyncEntriesCursor[Subscription]:
         """List subscriptions for an object.
 
-        Eitherlist the recipients that subscribe to
+        Either list the recipients that subscribe to
         the provided object, or list the objects that the provided object is subscribed
         to. Determined by the `mode` query parameter.
 
@@ -1005,7 +1005,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         """Add subscriptions for an object.
 
         If a subscription already exists, it will be
-        updated.
+        updated. Can accept inline-identifications for recipients.
 
         Args:
           recipients: The recipients of the subscription.
@@ -1044,7 +1044,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: List[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1426,7 +1426,7 @@ class AsyncObjectsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
         """List subscriptions for an object.
 
-        Eitherlist the recipients that subscribe to
+        Either list the recipients that subscribe to
         the provided object, or list the objects that the provided object is subscribed
         to. Determined by the `mode` query parameter.
 

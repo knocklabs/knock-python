@@ -240,7 +240,7 @@ class TestObjects:
         object_ = client.objects.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
@@ -252,7 +252,7 @@ class TestObjects:
         response = client.objects.with_raw_response.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         )
 
         assert response.is_closed is True
@@ -268,7 +268,7 @@ class TestObjects:
         with client.objects.with_streaming_response.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -287,14 +287,14 @@ class TestObjects:
             client.objects.with_raw_response.delete_subscriptions(
                 collection="",
                 object_id="object_id",
-                recipients=[{"id": "user_1"}],
+                recipients=["user_123"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.delete_subscriptions(
                 collection="collection",
                 object_id="",
-                recipients=[{"id": "user_1"}],
+                recipients=["user_123"],
             )
 
     @pytest.mark.skip(
@@ -1459,7 +1459,7 @@ class TestAsyncObjects:
         object_ = await async_client.objects.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
@@ -1471,7 +1471,7 @@ class TestAsyncObjects:
         response = await async_client.objects.with_raw_response.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         )
 
         assert response.is_closed is True
@@ -1487,7 +1487,7 @@ class TestAsyncObjects:
         async with async_client.objects.with_streaming_response.delete_subscriptions(
             collection="collection",
             object_id="object_id",
-            recipients=[{"id": "user_1"}],
+            recipients=["user_123"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1506,14 +1506,14 @@ class TestAsyncObjects:
             await async_client.objects.with_raw_response.delete_subscriptions(
                 collection="",
                 object_id="object_id",
-                recipients=[{"id": "user_1"}],
+                recipients=["user_123"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.delete_subscriptions(
                 collection="collection",
                 object_id="",
-                recipients=[{"id": "user_1"}],
+                recipients=["user_123"],
             )
 
     @pytest.mark.skip(

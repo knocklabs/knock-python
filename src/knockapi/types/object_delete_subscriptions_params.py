@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from .recipient_request_param import RecipientRequestParam
+from .recipient_reference_param import RecipientReferenceParam
 
 __all__ = ["ObjectDeleteSubscriptionsParams"]
 
 
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[List[RecipientReferenceParam]]
     """The recipients of the subscription."""

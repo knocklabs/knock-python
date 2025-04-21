@@ -25,6 +25,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.recipient_request_param import RecipientRequestParam
+from ..types.recipient_reference_param import RecipientReferenceParam
 from ..types.workflow_trigger_response import WorkflowTriggerResponse
 from ..types.inline_tenant_request_param import InlineTenantRequestParam
 
@@ -56,7 +57,7 @@ class WorkflowsResource(SyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientRequestParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,7 +198,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientRequestParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

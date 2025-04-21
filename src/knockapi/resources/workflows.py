@@ -130,7 +130,7 @@ class WorkflowsResource(SyncAPIResource):
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
-              or use a list of user IDs. Limited to 1,000 recipients in a single trigger.
+              or use a list of user IDs. Limited to 1,000 recipients.
 
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is
@@ -273,7 +273,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
-              or use a list of user IDs. Limited to 1,000 recipients in a single trigger.
+              or use a list of user IDs. Limited to 1,000 recipients.
 
           actor: Specifies a recipient in a request. This can either be a user identifier
               (string), an inline user request (object), or an inline object request, which is

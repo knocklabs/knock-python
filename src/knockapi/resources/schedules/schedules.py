@@ -98,7 +98,7 @@ class SchedulesResource(SyncAPIResource):
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
-              or use a list of user IDs. Limited to 1,000 recipients in a single trigger.
+              or use a list of user IDs. Limited to 1,000 recipients.
 
           repeats: The repeat rule for the schedule.
 
@@ -358,7 +358,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
 
         Args:
           recipients: The recipients to trigger the workflow for. Can inline identify users, objects,
-              or use a list of user IDs. Limited to 1,000 recipients in a single trigger.
+              or use a list of user IDs. Limited to 1,000 recipients.
 
           repeats: The repeat rule for the schedule.
 

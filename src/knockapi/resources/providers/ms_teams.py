@@ -27,6 +27,7 @@ from ...types.providers import (
 from ...types.providers.ms_team_check_auth_response import MsTeamCheckAuthResponse
 from ...types.providers.ms_team_list_teams_response import MsTeamListTeamsResponse
 from ...types.providers.ms_team_list_channels_response import MsTeamListChannelsResponse
+from ...types.providers.ms_team_revoke_access_response import MsTeamRevokeAccessResponse
 
 __all__ = ["MsTeamsResource", "AsyncMsTeamsResource"]
 
@@ -207,7 +208,7 @@ class MsTeamsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> MsTeamRevokeAccessResponse:
         """
         Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.
 
@@ -236,7 +237,7 @@ class MsTeamsResource(SyncAPIResource):
                     ms_team_revoke_access_params.MsTeamRevokeAccessParams,
                 ),
             ),
-            cast_to=str,
+            cast_to=MsTeamRevokeAccessResponse,
         )
 
 
@@ -416,7 +417,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> MsTeamRevokeAccessResponse:
         """
         Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.
 
@@ -445,7 +446,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
                     ms_team_revoke_access_params.MsTeamRevokeAccessParams,
                 ),
             ),
-            cast_to=str,
+            cast_to=MsTeamRevokeAccessResponse,
         )
 
 

@@ -13,6 +13,7 @@ from knockapi.types.providers import (
     MsTeamCheckAuthResponse,
     MsTeamListTeamsResponse,
     MsTeamListChannelsResponse,
+    MsTeamRevokeAccessResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -229,7 +230,7 @@ class TestMsTeams:
             channel_id="channel_id",
             ms_teams_tenant_object="ms_teams_tenant_object",
         )
-        assert_matches_type(str, ms_team, path=["response"])
+        assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -244,7 +245,7 @@ class TestMsTeams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ms_team = response.parse()
-        assert_matches_type(str, ms_team, path=["response"])
+        assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -259,7 +260,7 @@ class TestMsTeams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ms_team = response.parse()
-            assert_matches_type(str, ms_team, path=["response"])
+            assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -486,7 +487,7 @@ class TestAsyncMsTeams:
             channel_id="channel_id",
             ms_teams_tenant_object="ms_teams_tenant_object",
         )
-        assert_matches_type(str, ms_team, path=["response"])
+        assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -501,7 +502,7 @@ class TestAsyncMsTeams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ms_team = await response.parse()
-        assert_matches_type(str, ms_team, path=["response"])
+        assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -516,7 +517,7 @@ class TestAsyncMsTeams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ms_team = await response.parse()
-            assert_matches_type(str, ms_team, path=["response"])
+            assert_matches_type(MsTeamRevokeAccessResponse, ms_team, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -4,19 +4,22 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
+from ..tenant_request_param import TenantRequestParam
 from ..recipient_request_param import RecipientRequestParam
 from ..schedule_repeat_rule_param import ScheduleRepeatRuleParam
-from ..inline_tenant_request_param import InlineTenantRequestParam
 
-__all__ = ["BulkCreateParams", "Schedule"]
+__all__ = ["BulkCreateParams", "Schedule", "ScheduleTenant"]
 
 
 class BulkCreateParams(TypedDict, total=False):
     schedules: Required[Iterable[Schedule]]
     """A list of schedules."""
+
+
+ScheduleTenant: TypeAlias = Union[str, TenantRequestParam]
 
 
 class Schedule(TypedDict, total=False):
@@ -51,5 +54,10 @@ class Schedule(TypedDict, total=False):
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The starting date and time for the schedule."""
 
-    tenant: Optional[InlineTenantRequestParam]
-    """An request to set a tenant inline."""
+    tenant: Optional[ScheduleTenant]
+    """The tenant to trigger the workflow for.
+
+    Triggering with a tenant will use any tenant-level overrides associated with the
+    tenant object, and all messages produced from workflow runs will be tagged with
+    the tenant.
+    """

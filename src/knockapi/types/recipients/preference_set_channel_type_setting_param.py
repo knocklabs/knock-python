@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..shared_params.condition import Condition
+from ..condition_param import ConditionParam
 
 __all__ = ["PreferenceSetChannelTypeSettingParam"]
 
 
 class PreferenceSetChannelTypeSettingParam(TypedDict, total=False):
-    conditions: Required[Iterable[Condition]]
+    conditions: Required[Iterable[ConditionParam]]
     """A list of conditions to apply to a channel type."""

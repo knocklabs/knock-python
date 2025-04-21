@@ -6,7 +6,7 @@ from typing_extensions import TypeAlias
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..shared.condition import Condition
+from ..condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
 
 __all__ = [

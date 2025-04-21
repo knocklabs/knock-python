@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["Condition"]
+__all__ = ["ConditionParam"]
 
 
-class Condition(TypedDict, total=False):
+class ConditionParam(TypedDict, total=False):
     argument: Required[Optional[str]]
     """The argument value to compare against in the condition."""
 

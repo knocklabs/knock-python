@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-from ..shared_params.condition import Condition
+from ..condition_param import ConditionParam
 from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
 __all__ = [
@@ -22,7 +22,7 @@ class InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategory
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
-    conditions: Optional[Iterable[Condition]]
+    conditions: Optional[Iterable[ConditionParam]]
     """A list of conditions to apply to a channel type."""
 
 
@@ -35,7 +35,7 @@ class InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategoryS
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
-    conditions: Optional[Iterable[Condition]]
+    conditions: Optional[Iterable[ConditionParam]]
     """A list of conditions to apply to a channel type."""
 
 

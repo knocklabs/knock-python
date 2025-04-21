@@ -1,4 +1,6 @@
-# Shared Types
+# Shared
+
+Types:
 
 ```python
 from knockapi.types import Condition
@@ -359,12 +361,6 @@ Methods:
 - <code title="delete /v1/schedules">client.schedules.<a href="./src/knockapi/resources/schedules/schedules.py">delete</a>(\*\*<a href="src/knockapi/types/schedule_delete_params.py">params</a>) -> <a href="./src/knockapi/types/schedule_delete_response.py">ScheduleDeleteResponse</a></code>
 
 ## Bulk
-
-Types:
-
-```python
-from knockapi.types.schedules import BulkCreateSchedulesRequest
-```
 
 Methods:
 

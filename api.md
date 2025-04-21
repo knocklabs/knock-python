@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from knockapi.types import Condition
+from knockapi.types import Condition, PageInfo
 ```
 
 # Recipients

@@ -9,6 +9,7 @@ from .message import Message as Message
 from .activity import Activity as Activity
 from .schedule import Schedule as Schedule
 from .condition import Condition as Condition
+from .page_info import PageInfo as PageInfo
 from .recipient import Recipient as Recipient
 from .message_event import MessageEvent as MessageEvent
 from .bulk_operation import BulkOperation as BulkOperation

@@ -13,7 +13,6 @@ from knockapi.types import (
     User,
     Message,
     Schedule,
-    UserUpdateResponse,
     UserListPreferencesResponse,
 )
 from knockapi._utils import parse_datetime
@@ -38,7 +37,7 @@ class TestUsers:
         user = client.users.update(
             user_id="user_id",
         )
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -116,7 +115,7 @@ class TestUsers:
             ],
             timezone="America/New_York",
         )
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -130,7 +129,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -144,7 +143,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserUpdateResponse, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1035,7 +1034,7 @@ class TestAsyncUsers:
         user = await async_client.users.update(
             user_id="user_id",
         )
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1113,7 +1112,7 @@ class TestAsyncUsers:
             ],
             timezone="America/New_York",
         )
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1127,7 +1126,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserUpdateResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1141,7 +1140,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserUpdateResponse, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

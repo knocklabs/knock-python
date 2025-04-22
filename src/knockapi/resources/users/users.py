@@ -61,7 +61,6 @@ from ...types.user import User
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.schedule import Schedule
-from ...types.user_update_response import UserUpdateResponse
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
 from ...types.recipients.preference_set import PreferenceSet
@@ -124,7 +123,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserUpdateResponse:
+    ) -> User:
         """Create or update a user with the provided identification data.
 
         When you identify
@@ -140,7 +139,7 @@ class UsersResource(SyncAPIResource):
 
           email: The primary email address for the user.
 
-          locale: The locale of the user. Used for [message localization](/concepts/translations)
+          locale: The locale of the user. Used for [message localization](/concepts/translations).
 
           name: Display name of the user.
 
@@ -152,7 +151,7 @@ class UsersResource(SyncAPIResource):
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
               Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients)
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -183,7 +182,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdateResponse,
+            cast_to=User,
         )
 
     def list(
@@ -875,7 +874,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserUpdateResponse:
+    ) -> User:
         """Create or update a user with the provided identification data.
 
         When you identify
@@ -891,7 +890,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           email: The primary email address for the user.
 
-          locale: The locale of the user. Used for [message localization](/concepts/translations)
+          locale: The locale of the user. Used for [message localization](/concepts/translations).
 
           name: Display name of the user.
 
@@ -903,7 +902,7 @@ class AsyncUsersResource(AsyncAPIResource):
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
               Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients)
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -934,7 +933,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdateResponse,
+            cast_to=User,
         )
 
     def list(

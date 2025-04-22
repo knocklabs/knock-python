@@ -29,7 +29,6 @@ from .schedule_list_params import ScheduleListParams as ScheduleListParams
 from .schedule_repeat_rule import ScheduleRepeatRule as ScheduleRepeatRule
 from .tenant_request_param import TenantRequestParam as TenantRequestParam
 from .user_delete_response import UserDeleteResponse as UserDeleteResponse
-from .user_update_response import UserUpdateResponse as UserUpdateResponse
 from .object_delete_response import ObjectDeleteResponse as ObjectDeleteResponse
 from .schedule_create_params import ScheduleCreateParams as ScheduleCreateParams
 from .schedule_delete_params import ScheduleDeleteParams as ScheduleDeleteParams

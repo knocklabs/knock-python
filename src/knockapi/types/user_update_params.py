@@ -27,7 +27,10 @@ class UserUpdateParams(TypedDict, total=False):
     """The primary email address for the user."""
 
     locale: Optional[str]
-    """The locale of the user. Used for [message localization](/concepts/translations)"""
+    """The locale of the user.
+
+    Used for [message localization](/concepts/translations).
+    """
 
     name: Optional[str]
     """Display name of the user."""
@@ -49,5 +52,5 @@ class UserUpdateParams(TypedDict, total=False):
     Must be a valid
     [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     Used for
-    [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients)
+    [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """

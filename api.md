@@ -62,7 +62,6 @@ from knockapi.types import (
     IdentifyUserRequest,
     InlineIdentifyUserRequest,
     User,
-    UserUpdateResponse,
     UserDeleteResponse,
     UserListPreferencesResponse,
     UserUnsetChannelDataResponse,
@@ -71,7 +70,7 @@ from knockapi.types import (
 
 Methods:
 
-- <code title="put /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">update</a>(user_id, \*\*<a href="src/knockapi/types/user_update_params.py">params</a>) -> <a href="./src/knockapi/types/user_update_response.py">UserUpdateResponse</a></code>
+- <code title="put /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">update</a>(user_id, \*\*<a href="src/knockapi/types/user_update_params.py">params</a>) -> <a href="./src/knockapi/types/user.py">User</a></code>
 - <code title="get /v1/users">client.users.<a href="./src/knockapi/resources/users/users.py">list</a>(\*\*<a href="src/knockapi/types/user_list_params.py">params</a>) -> <a href="./src/knockapi/types/user.py">SyncEntriesCursor[User]</a></code>
 - <code title="delete /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">delete</a>(user_id) -> str</code>
 - <code title="get /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">get</a>(user_id) -> <a href="./src/knockapi/types/user.py">User</a></code>

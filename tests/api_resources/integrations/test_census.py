@@ -38,7 +38,7 @@ class TestCensus:
             id="id",
             jsonrpc="jsonrpc",
             method="method",
-            params={},
+            params={"foo": "bar"},
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
@@ -101,7 +101,7 @@ class TestAsyncCensus:
             id="id",
             jsonrpc="jsonrpc",
             method="method",
-            params={},
+            params={"foo": "bar"},
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 

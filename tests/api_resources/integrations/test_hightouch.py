@@ -38,7 +38,7 @@ class TestHightouch:
             id="id",
             jsonrpc="jsonrpc",
             method="method",
-            params={},
+            params={"foo": "bar"},
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
@@ -101,7 +101,7 @@ class TestAsyncHightouch:
             id="id",
             jsonrpc="jsonrpc",
             method="method",
-            params={},
+            params={"foo": "bar"},
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 

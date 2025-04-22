@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, TypedDict
 
 __all__ = ["CensusCustomDestinationParams"]
@@ -17,5 +18,5 @@ class CensusCustomDestinationParams(TypedDict, total=False):
     method: Required[str]
     """The method name to execute."""
 
-    params: object
+    params: Dict[str, object]
     """The parameters for the method."""

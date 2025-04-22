@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -50,7 +52,7 @@ class CensusResource(SyncAPIResource):
         id: str,
         jsonrpc: str,
         method: str,
-        params: object | NotGiven = NOT_GIVEN,
+        params: Dict[str, object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,7 +124,7 @@ class AsyncCensusResource(AsyncAPIResource):
         id: str,
         jsonrpc: str,
         method: str,
-        params: object | NotGiven = NOT_GIVEN,
+        params: Dict[str, object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

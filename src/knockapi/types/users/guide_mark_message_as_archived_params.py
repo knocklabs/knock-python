@@ -21,10 +21,10 @@ class GuideMarkMessageAsArchivedParams(TypedDict, total=False):
     guide_step_ref: Required[str]
     """The step reference of the guide."""
 
-    content: object
+    content: Dict[str, object]
     """The content of the guide."""
 
-    data: object
+    data: Dict[str, object]
     """The data of the guide."""
 
     is_final: bool

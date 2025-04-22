@@ -14,7 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ...pagination import SyncItemsCursor, AsyncItemsCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.activity import Activity
 from ...types.messages import activity_list_params
@@ -56,7 +56,7 @@ class ActivitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Activity]:
+    ) -> SyncItemsCursor[Activity]:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -81,7 +81,7 @@ class ActivitiesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=SyncEntriesCursor[Activity],
+            page=SyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -135,7 +135,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Activity, AsyncEntriesCursor[Activity]]:
+    ) -> AsyncPaginator[Activity, AsyncItemsCursor[Activity]]:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -160,7 +160,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
-            page=AsyncEntriesCursor[Activity],
+            page=AsyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

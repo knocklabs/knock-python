@@ -213,7 +213,6 @@ from knockapi.types import (
     MessageDeliveryLog,
     MessageEvent,
     MessageGetContentResponse,
-    MessageListActivitiesResponse,
 )
 ```
 
@@ -223,7 +222,7 @@ Methods:
 - <code title="put /v1/messages/{message_id}/archived">client.messages.<a href="./src/knockapi/resources/messages/messages.py">archive</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
 - <code title="get /v1/messages/{message_id}">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
 - <code title="get /v1/messages/{message_id}/content">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get_content</a>(message_id) -> <a href="./src/knockapi/types/message_get_content_response.py">MessageGetContentResponse</a></code>
-- <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knockapi/types/message_list_activities_params.py">params</a>) -> <a href="./src/knockapi/types/message_list_activities_response.py">MessageListActivitiesResponse</a></code>
+- <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knockapi/types/message_list_activities_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncItemsCursor[Activity]</a></code>
 - <code title="get /v1/messages/{message_id}/delivery_logs">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_delivery_logs</a>(message_id, \*\*<a href="src/knockapi/types/message_list_delivery_logs_params.py">params</a>) -> <a href="./src/knockapi/types/message_delivery_log.py">SyncEntriesCursor[MessageDeliveryLog]</a></code>
 - <code title="get /v1/messages/{message_id}/events">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_events</a>(message_id, \*\*<a href="src/knockapi/types/message_list_events_params.py">params</a>) -> <a href="./src/knockapi/types/message_event.py">SyncEntriesCursor[MessageEvent]</a></code>
 - <code title="put /v1/messages/{message_id}/interacted">client.messages.<a href="./src/knockapi/resources/messages/messages.py">mark_as_interacted</a>(message_id, \*\*<a href="src/knockapi/types/message_mark_as_interacted_params.py">params</a>) -> <a href="./src/knockapi/types/message.py">Message</a></code>
@@ -265,7 +264,7 @@ Methods:
 
 Methods:
 
-- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncEntriesCursor[Activity]</a></code>
+- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncItemsCursor[Activity]</a></code>
 
 # Providers
 

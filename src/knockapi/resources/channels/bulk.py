@@ -51,7 +51,7 @@ class BulkResource(SyncAPIResource):
     def update_message_status(
         self,
         channel_id: str,
-        status: Literal[
+        action: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
@@ -86,8 +86,6 @@ class BulkResource(SyncAPIResource):
         `archive`, `unarchive`).
 
         Args:
-          status: The target status to be applied to the messages.
-
           archived: Limits the results to messages with the given archived status.
 
           delivery_status: Limits the results to messages with the given delivery status.
@@ -120,10 +118,10 @@ class BulkResource(SyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        if not status:
-            raise ValueError(f"Expected a non-empty value for `status` but received {status!r}")
+        if not action:
+            raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return self._post(
-            f"/v1/channels/{channel_id}/messages/bulk/{status}",
+            f"/v1/channels/{channel_id}/messages/bulk/{action}",
             body=maybe_transform(
                 {
                     "archived": archived,
@@ -169,7 +167,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def update_message_status(
         self,
         channel_id: str,
-        status: Literal[
+        action: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
@@ -204,8 +202,6 @@ class AsyncBulkResource(AsyncAPIResource):
         `archive`, `unarchive`).
 
         Args:
-          status: The target status to be applied to the messages.
-
           archived: Limits the results to messages with the given archived status.
 
           delivery_status: Limits the results to messages with the given delivery status.
@@ -238,10 +234,10 @@ class AsyncBulkResource(AsyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        if not status:
-            raise ValueError(f"Expected a non-empty value for `status` but received {status!r}")
+        if not action:
+            raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return await self._post(
-            f"/v1/channels/{channel_id}/messages/bulk/{status}",
+            f"/v1/channels/{channel_id}/messages/bulk/{action}",
             body=await async_maybe_transform(
                 {
                     "archived": archived,

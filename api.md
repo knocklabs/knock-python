@@ -378,7 +378,7 @@ Methods:
 
 Methods:
 
-- <code title="post /v1/channels/{channel_id}/messages/bulk/{status}">client.channels.bulk.<a href="./src/knockapi/resources/channels/bulk.py">update_message_status</a>(channel_id, status, \*\*<a href="src/knockapi/types/channels/bulk_update_message_status_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+- <code title="post /v1/channels/{channel_id}/messages/bulk/{action}">client.channels.bulk.<a href="./src/knockapi/resources/channels/bulk.py">update_message_status</a>(channel_id, action, \*\*<a href="src/knockapi/types/channels/bulk_update_message_status_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
 # Audiences
 

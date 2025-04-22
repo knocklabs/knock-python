@@ -13,6 +13,7 @@ from knockapi.types import (
     User,
     Message,
     Schedule,
+    UserUpdateResponse,
     UserListPreferencesResponse,
 )
 from knockapi._utils import parse_datetime
@@ -37,7 +38,7 @@ class TestUsers:
         user = client.users.update(
             user_id="user_id",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -46,6 +47,7 @@ class TestUsers:
     def test_method_update_with_all_params(self, client: Knock) -> None:
         user = client.users.update(
             user_id="user_id",
+            avatar="avatar",
             channel_data=[
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
@@ -56,6 +58,10 @@ class TestUsers:
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            email="jane@ingen.net",
+            locale="locale",
+            name="Jane Doe",
+            phone_number="phone_number",
             preferences=[
                 {
                     "id": "default",
@@ -108,8 +114,9 @@ class TestUsers:
                     },
                 }
             ],
+            timezone="America/New_York",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -123,7 +130,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -137,7 +144,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserUpdateResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -451,6 +458,12 @@ class TestUsers:
             before="before",
             channel_id="channel_id",
             engagement_status=["seen"],
+            inserted_at={
+                "gt": "gt",
+                "gte": "gte",
+                "lt": "lt",
+                "lte": "lte",
+            },
             message_ids=["string"],
             page_size=0,
             source="source",
@@ -638,7 +651,7 @@ class TestUsers:
             after="after",
             before="before",
             include=["preferences"],
-            objects=["user_123"],
+            objects=["string"],
             page_size=0,
         )
         assert_matches_type(SyncEntriesCursor[Subscription], user, path=["response"])
@@ -1022,7 +1035,7 @@ class TestAsyncUsers:
         user = await async_client.users.update(
             user_id="user_id",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1031,6 +1044,7 @@ class TestAsyncUsers:
     async def test_method_update_with_all_params(self, async_client: AsyncKnock) -> None:
         user = await async_client.users.update(
             user_id="user_id",
+            avatar="avatar",
             channel_data=[
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
@@ -1041,6 +1055,10 @@ class TestAsyncUsers:
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            email="jane@ingen.net",
+            locale="locale",
+            name="Jane Doe",
+            phone_number="phone_number",
             preferences=[
                 {
                     "id": "default",
@@ -1093,8 +1111,9 @@ class TestAsyncUsers:
                     },
                 }
             ],
+            timezone="America/New_York",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1108,7 +1127,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdateResponse, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1122,7 +1141,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserUpdateResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1436,6 +1455,12 @@ class TestAsyncUsers:
             before="before",
             channel_id="channel_id",
             engagement_status=["seen"],
+            inserted_at={
+                "gt": "gt",
+                "gte": "gte",
+                "lt": "lt",
+                "lte": "lte",
+            },
             message_ids=["string"],
             page_size=0,
             source="source",
@@ -1623,7 +1648,7 @@ class TestAsyncUsers:
             after="after",
             before="before",
             include=["preferences"],
-            objects=["user_123"],
+            objects=["string"],
             page_size=0,
         )
         assert_matches_type(AsyncEntriesCursor[Subscription], user, path=["response"])

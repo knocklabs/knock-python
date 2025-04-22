@@ -19,9 +19,10 @@ class AudienceMember(BaseModel):
     """Timestamp when the resource was created."""
 
     user: User
-    """A user who can receive notifications in Knock.
-
-    They are always referenced by your internal identifier.
+    """
+    A [User](/concepts/users) represents an individual in your system who can
+    receive notifications through Knock. Users are the most common recipients of
+    notifications and are always referenced by your internal identifier.
     """
 
     user_id: str

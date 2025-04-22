@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["MessageListParams"]
+__all__ = ["MessageListParams", "InsertedAt"]
 
 
 class MessageListParams(TypedDict, total=False):
@@ -21,8 +21,10 @@ class MessageListParams(TypedDict, total=False):
     engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
     """Limits the results to messages with the given engagement status."""
 
+    inserted_at: InsertedAt
+
     message_ids: List[str]
-    """Limits the results to only the message ids given (max 50).
+    """Limits the results to only the message IDs given (max 50).
 
     Note: when using this option, the results will be subject to any other filters
     applied to the query.
@@ -58,3 +60,17 @@ class MessageListParams(TypedDict, total=False):
     Limits the results to messages associated with the top-level workflow run ID
     returned by the workflow trigger request.
     """
+
+
+class InsertedAt(TypedDict, total=False):
+    gt: str
+    """Limits the results to messages inserted after the given date."""
+
+    gte: str
+    """Limits the results to messages inserted after or on the given date."""
+
+    lt: str
+    """Limits the results to messages inserted before the given date."""
+
+    lte: str
+    """Limits the results to messages inserted before or on the given date."""

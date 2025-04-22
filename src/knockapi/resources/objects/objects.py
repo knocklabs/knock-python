@@ -404,6 +404,7 @@ class ObjectsResource(SyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -435,7 +436,7 @@ class ObjectsResource(SyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -483,6 +484,7 @@ class ObjectsResource(SyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,
@@ -692,8 +694,8 @@ class ObjectsResource(SyncAPIResource):
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
-        This operation is used to identify objects with their properties and channel
-        data.
+        This operation is used to identify objects with their properties, as well as
+        optional preferences and channel data.
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
@@ -1213,6 +1215,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -1244,7 +1247,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -1292,6 +1295,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,
@@ -1501,8 +1505,8 @@ class AsyncObjectsResource(AsyncAPIResource):
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
-        This operation is used to identify objects with their properties and channel
-        data.
+        This operation is used to identify objects with their properties, as well as
+        optional preferences and channel data.
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.

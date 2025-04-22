@@ -62,6 +62,7 @@ from knockapi.types import (
     IdentifyUserRequest,
     InlineIdentifyUserRequest,
     User,
+    UserUpdateResponse,
     UserDeleteResponse,
     UserListPreferencesResponse,
     UserUnsetChannelDataResponse,
@@ -70,7 +71,7 @@ from knockapi.types import (
 
 Methods:
 
-- <code title="put /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">update</a>(user_id, \*\*<a href="src/knockapi/types/user_update_params.py">params</a>) -> <a href="./src/knockapi/types/user.py">User</a></code>
+- <code title="put /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">update</a>(user_id, \*\*<a href="src/knockapi/types/user_update_params.py">params</a>) -> <a href="./src/knockapi/types/user_update_response.py">UserUpdateResponse</a></code>
 - <code title="get /v1/users">client.users.<a href="./src/knockapi/resources/users/users.py">list</a>(\*\*<a href="src/knockapi/types/user_list_params.py">params</a>) -> <a href="./src/knockapi/types/user.py">SyncEntriesCursor[User]</a></code>
 - <code title="delete /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">delete</a>(user_id) -> str</code>
 - <code title="get /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">get</a>(user_id) -> <a href="./src/knockapi/types/user.py">User</a></code>
@@ -371,14 +372,6 @@ Methods:
 Methods:
 
 - <code title="post /v1/schedules/bulk/create">client.schedules.bulk.<a href="./src/knockapi/resources/schedules/bulk.py">create</a>(\*\*<a href="src/knockapi/types/schedules/bulk_create_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
-
-# Channels
-
-## Bulk
-
-Methods:
-
-- <code title="post /v1/channels/{channel_id}/messages/bulk/{action}">client.channels.bulk.<a href="./src/knockapi/resources/channels/bulk.py">update_message_status</a>(channel_id, action, \*\*<a href="src/knockapi/types/channels/bulk_update_message_status_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
 # Audiences
 

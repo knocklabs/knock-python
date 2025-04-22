@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-from .recipient_reference_param import RecipientReferenceParam
-
 __all__ = ["UserListSubscriptionsParams"]
 
 
@@ -20,8 +18,8 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     include: List[Literal["preferences"]]
     """Associated resources to include in the response."""
 
-    objects: List[RecipientReferenceParam]
-    """Only return subscriptions for the given recipients."""
+    objects: List[str]
+    """Only returns subscriptions for the specified object GIDs."""
 
     page_size: int
     """The number of items per page."""

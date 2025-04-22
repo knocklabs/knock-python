@@ -59,5 +59,8 @@ class BulkOperation(BaseModel):
     failed_at: Optional[datetime] = None
     """Timestamp when the bulk operation failed."""
 
+    progress_path: Optional[str] = None
+    """The URI to the bulk operation's progress."""
+
     started_at: Optional[datetime] = None
     """Timestamp when the bulk operation was started."""

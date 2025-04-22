@@ -61,9 +61,9 @@ from ...types.user import User
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.schedule import Schedule
+from ...types.user_update_response import UserUpdateResponse
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
-from ...types.recipient_reference_param import RecipientReferenceParam
 from ...types.recipients.preference_set import PreferenceSet
 from ...types.user_list_preferences_response import UserListPreferencesResponse
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -109,25 +109,50 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
+        avatar: Optional[str] | NotGiven = NOT_GIVEN,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
         created_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        email: Optional[str] | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> User:
-        """
-        Create or update a user with the provided identification data.
+    ) -> UserUpdateResponse:
+        """Create or update a user with the provided identification data.
+
+        When you identify
+        an existing user, the system merges the properties you specific with what is
+        currently set on the user, updating only the fields included in your requests.
 
         Args:
+          avatar: URL to the user's avatar image.
+
           channel_data: A request to set channel data for a type of channel inline.
 
           created_at: The creation date of the user from your system.
 
+          email: The primary email address for the user.
+
+          locale: The locale of the user. Used for [message localization](/concepts/translations)
+
+          name: Display name of the user.
+
+          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+              user (required for SMS channels).
+
           preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the user. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients)
 
           extra_headers: Send extra headers
 
@@ -143,16 +168,22 @@ class UsersResource(SyncAPIResource):
             f"/v1/users/{user_id}",
             body=maybe_transform(
                 {
+                    "avatar": avatar,
                     "channel_data": channel_data,
                     "created_at": created_at,
+                    "email": email,
+                    "locale": locale,
+                    "name": name,
+                    "phone_number": phone_number,
                     "preferences": preferences,
+                    "timezone": timezone,
                 },
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserUpdateResponse,
         )
 
     def list(
@@ -169,8 +200,10 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[User]:
-        """
-        Retrieve a paginated list of users in the environment.
+        """Retrieve a paginated list of users in the environment.
+
+        Defaults to 50 users per
+        page.
 
         Args:
           after: The cursor to fetch entries after.
@@ -365,6 +398,7 @@ class UsersResource(SyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -385,7 +419,8 @@ class UsersResource(SyncAPIResource):
         """Returns a paginated list of messages for a specific user.
 
         Allows filtering by
-        message status and provides various sorting options.
+        message status and provides various sorting options. Messages outside the
+        account's retention window will not be included in the results.
 
         Args:
           after: The cursor to fetch entries after.
@@ -396,7 +431,7 @@ class UsersResource(SyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -442,6 +477,7 @@ class UsersResource(SyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,
@@ -507,10 +543,8 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Schedule]:
-        """Returns a paginated list of schedules for a specific user.
-
-        Can be filtered by
-        workflow and tenant.
+        """
+        Returns a paginated list of schedules for a specific user, in descending order.
 
         Args:
           after: The cursor to fetch entries after.
@@ -519,9 +553,9 @@ class UsersResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for.
+          tenant: The tenant ID to filter schedules for.
 
-          workflow: The ID of the workflow to list schedules for.
+          workflow: The workflow key to filter schedules for.
 
           extra_headers: Send extra headers
 
@@ -562,7 +596,7 @@ class UsersResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -571,10 +605,9 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[Subscription]:
-        """Retrieves a paginated list of subscriptions for a specific user.
-
-        Allows
-        filtering by objects and includes optional preference data.
+        """
+        Retrieves a paginated list of subscriptions for a specific user, in descending
+        order.
 
         Args:
           after: The cursor to fetch entries after.
@@ -583,7 +616,7 @@ class UsersResource(SyncAPIResource):
 
           include: Associated resources to include in the response.
 
-          objects: Only return subscriptions for the given recipients.
+          objects: Only returns subscriptions for the specified object GIDs.
 
           page_size: The number of items per page.
 
@@ -827,25 +860,50 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
+        avatar: Optional[str] | NotGiven = NOT_GIVEN,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
         created_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        email: Optional[str] | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> User:
-        """
-        Create or update a user with the provided identification data.
+    ) -> UserUpdateResponse:
+        """Create or update a user with the provided identification data.
+
+        When you identify
+        an existing user, the system merges the properties you specific with what is
+        currently set on the user, updating only the fields included in your requests.
 
         Args:
+          avatar: URL to the user's avatar image.
+
           channel_data: A request to set channel data for a type of channel inline.
 
           created_at: The creation date of the user from your system.
 
+          email: The primary email address for the user.
+
+          locale: The locale of the user. Used for [message localization](/concepts/translations)
+
+          name: Display name of the user.
+
+          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+              user (required for SMS channels).
+
           preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the user. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients)
 
           extra_headers: Send extra headers
 
@@ -861,16 +919,22 @@ class AsyncUsersResource(AsyncAPIResource):
             f"/v1/users/{user_id}",
             body=await async_maybe_transform(
                 {
+                    "avatar": avatar,
                     "channel_data": channel_data,
                     "created_at": created_at,
+                    "email": email,
+                    "locale": locale,
+                    "name": name,
+                    "phone_number": phone_number,
                     "preferences": preferences,
+                    "timezone": timezone,
                 },
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserUpdateResponse,
         )
 
     def list(
@@ -887,8 +951,10 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[User, AsyncEntriesCursor[User]]:
-        """
-        Retrieve a paginated list of users in the environment.
+        """Retrieve a paginated list of users in the environment.
+
+        Defaults to 50 users per
+        page.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1085,6 +1151,7 @@ class AsyncUsersResource(AsyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -1105,7 +1172,8 @@ class AsyncUsersResource(AsyncAPIResource):
         """Returns a paginated list of messages for a specific user.
 
         Allows filtering by
-        message status and provides various sorting options.
+        message status and provides various sorting options. Messages outside the
+        account's retention window will not be included in the results.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1116,7 +1184,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -1162,6 +1230,7 @@ class AsyncUsersResource(AsyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,
@@ -1227,10 +1296,8 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
-        """Returns a paginated list of schedules for a specific user.
-
-        Can be filtered by
-        workflow and tenant.
+        """
+        Returns a paginated list of schedules for a specific user, in descending order.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1239,9 +1306,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          tenant: The ID of the tenant to list schedules for.
+          tenant: The tenant ID to filter schedules for.
 
-          workflow: The ID of the workflow to list schedules for.
+          workflow: The workflow key to filter schedules for.
 
           extra_headers: Send extra headers
 
@@ -1282,7 +1349,7 @@ class AsyncUsersResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1291,10 +1358,9 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
-        """Retrieves a paginated list of subscriptions for a specific user.
-
-        Allows
-        filtering by objects and includes optional preference data.
+        """
+        Retrieves a paginated list of subscriptions for a specific user, in descending
+        order.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1303,7 +1369,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           include: Associated resources to include in the response.
 
-          objects: Only return subscriptions for the given recipients.
+          objects: Only returns subscriptions for the specified object GIDs.
 
           page_size: The number of items per page.
 

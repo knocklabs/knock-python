@@ -90,6 +90,7 @@ class MessagesResource(SyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: message_list_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -119,7 +120,7 @@ class MessagesResource(SyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -163,6 +164,7 @@ class MessagesResource(SyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,
@@ -706,6 +708,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         channel_id: str | NotGiven = NOT_GIVEN,
         engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
         | NotGiven = NOT_GIVEN,
+        inserted_at: message_list_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -735,7 +738,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           engagement_status: Limits the results to messages with the given engagement status.
 
-          message_ids: Limits the results to only the message ids given (max 50). Note: when using this
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
@@ -779,6 +782,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                         "before": before,
                         "channel_id": channel_id,
                         "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
                         "message_ids": message_ids,
                         "page_size": page_size,
                         "source": source,

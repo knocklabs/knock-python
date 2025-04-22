@@ -22,13 +22,13 @@ class Activity(BaseModel):
     """A recipient of a notification, which is either a user or an object."""
 
     data: Optional[Dict[str, object]] = None
-    """The data associated with the activity."""
+    """The workflow trigger `data` payload associated with the activity."""
 
     inserted_at: Optional[datetime] = None
-    """Timestamp when the resource was created."""
+    """Timestamp when the activity was created."""
 
     recipient: Optional[Recipient] = None
     """A recipient of a notification, which is either a user or an object."""
 
     updated_at: Optional[datetime] = None
-    """The timestamp when the resource was last updated."""
+    """Timestamp when the activity was last updated."""

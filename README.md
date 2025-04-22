@@ -156,19 +156,16 @@ from knockapi import Knock
 
 client = Knock()
 
-preference_set = client.users.set_preferences(
-    user_id="user_id",
-    preference_set_id="default",
-    channel_types={
-        "chat": True,
-        "email": True,
-        "http": True,
-        "in_app_feed": True,
-        "push": True,
-        "sms": True,
+page = client.users.list_messages(
+    user_id="user-123",
+    inserted_at={
+        "gt": "gt",
+        "gte": "gte",
+        "lt": "lt",
+        "lte": "lte",
     },
 )
-print(preference_set.channel_types)
+print(page.entries)
 ```
 
 ## Handling errors

@@ -263,15 +263,9 @@ Methods:
 
 ## Activities
 
-Types:
-
-```python
-from knockapi.types.messages import ActivityListResponse
-```
-
 Methods:
 
-- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/messages/activity_list_response.py">ActivityListResponse</a></code>
+- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncEntriesCursor[Activity]</a></code>
 
 # Providers
 

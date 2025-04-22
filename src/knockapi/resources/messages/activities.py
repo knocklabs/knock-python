@@ -5,10 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -17,9 +14,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.activity import Activity
 from ...types.messages import activity_list_params
-from ...types.messages.activity_list_response import ActivityListResponse
 
 __all__ = ["ActivitiesResource", "AsyncActivitiesResource"]
 
@@ -58,7 +56,7 @@ class ActivitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivityListResponse:
+    ) -> SyncEntriesCursor[Activity]:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -81,8 +79,9 @@ class ActivitiesResource(SyncAPIResource):
         """
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
+            page=SyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,7 +97,7 @@ class ActivitiesResource(SyncAPIResource):
                     activity_list_params.ActivityListParams,
                 ),
             ),
-            cast_to=ActivityListResponse,
+            model=Activity,
         )
 
 
@@ -122,7 +121,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
         """
         return AsyncActivitiesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         message_id: str,
         *,
@@ -136,7 +135,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivityListResponse:
+    ) -> AsyncPaginator[Activity, AsyncEntriesCursor[Activity]]:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -159,14 +158,15 @@ class AsyncActivitiesResource(AsyncAPIResource):
         """
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/v1/messages/{message_id}/activities",
+            page=AsyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -176,7 +176,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
                     activity_list_params.ActivityListParams,
                 ),
             ),
-            cast_to=ActivityListResponse,
+            model=Activity,
         )
 
 

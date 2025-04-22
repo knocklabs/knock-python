@@ -213,6 +213,7 @@ from knockapi.types import (
     MessageDeliveryLog,
     MessageEvent,
     MessageGetContentResponse,
+    MessageListActivitiesResponse,
 )
 ```
 
@@ -222,7 +223,7 @@ Methods:
 - <code title="put /v1/messages/{message_id}/archived">client.messages.<a href="./src/knockapi/resources/messages/messages.py">archive</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
 - <code title="get /v1/messages/{message_id}">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
 - <code title="get /v1/messages/{message_id}/content">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get_content</a>(message_id) -> <a href="./src/knockapi/types/message_get_content_response.py">MessageGetContentResponse</a></code>
-- <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knockapi/types/message_list_activities_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncEntriesCursor[Activity]</a></code>
+- <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knockapi/types/message_list_activities_params.py">params</a>) -> <a href="./src/knockapi/types/message_list_activities_response.py">MessageListActivitiesResponse</a></code>
 - <code title="get /v1/messages/{message_id}/delivery_logs">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_delivery_logs</a>(message_id, \*\*<a href="src/knockapi/types/message_list_delivery_logs_params.py">params</a>) -> <a href="./src/knockapi/types/message_delivery_log.py">SyncEntriesCursor[MessageDeliveryLog]</a></code>
 - <code title="get /v1/messages/{message_id}/events">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_events</a>(message_id, \*\*<a href="src/knockapi/types/message_list_events_params.py">params</a>) -> <a href="./src/knockapi/types/message_event.py">SyncEntriesCursor[MessageEvent]</a></code>
 - <code title="put /v1/messages/{message_id}/interacted">client.messages.<a href="./src/knockapi/resources/messages/messages.py">mark_as_interacted</a>(message_id, \*\*<a href="src/knockapi/types/message_mark_as_interacted_params.py">params</a>) -> <a href="./src/knockapi/types/message.py">Message</a></code>
@@ -259,6 +260,18 @@ Methods:
 - <code title="post /v1/messages/batch/unread">client.messages.batch.<a href="./src/knockapi/resources/messages/batch.py">mark_as_unread</a>(\*\*<a href="src/knockapi/types/messages/batch_mark_as_unread_params.py">params</a>) -> <a href="./src/knockapi/types/messages/batch_mark_as_unread_response.py">BatchMarkAsUnreadResponse</a></code>
 - <code title="post /v1/messages/batch/unseen">client.messages.batch.<a href="./src/knockapi/resources/messages/batch.py">mark_as_unseen</a>(\*\*<a href="src/knockapi/types/messages/batch_mark_as_unseen_params.py">params</a>) -> <a href="./src/knockapi/types/messages/batch_mark_as_unseen_response.py">BatchMarkAsUnseenResponse</a></code>
 - <code title="post /v1/messages/batch/unarchived">client.messages.batch.<a href="./src/knockapi/resources/messages/batch.py">unarchive</a>(\*\*<a href="src/knockapi/types/messages/batch_unarchive_params.py">params</a>) -> <a href="./src/knockapi/types/messages/batch_unarchive_response.py">BatchUnarchiveResponse</a></code>
+
+## Activities
+
+Types:
+
+```python
+from knockapi.types.messages import ActivityListResponse
+```
+
+Methods:
+
+- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/messages/activity_list_response.py">ActivityListResponse</a></code>
 
 # Providers
 
@@ -297,7 +310,7 @@ Methods:
 
 - <code title="get /v1/providers/ms-teams/{channel_id}/auth_check">client.providers.ms_teams.<a href="./src/knockapi/resources/providers/ms_teams.py">check_auth</a>(channel_id, \*\*<a href="src/knockapi/types/providers/ms_team_check_auth_params.py">params</a>) -> <a href="./src/knockapi/types/providers/ms_team_check_auth_response.py">MsTeamCheckAuthResponse</a></code>
 - <code title="get /v1/providers/ms-teams/{channel_id}/channels">client.providers.ms_teams.<a href="./src/knockapi/resources/providers/ms_teams.py">list_channels</a>(channel_id, \*\*<a href="src/knockapi/types/providers/ms_team_list_channels_params.py">params</a>) -> <a href="./src/knockapi/types/providers/ms_team_list_channels_response.py">MsTeamListChannelsResponse</a></code>
-- <code title="get /v1/providers/ms-teams/{channel_id}/teams">client.providers.ms_teams.<a href="./src/knockapi/resources/providers/ms_teams.py">list_teams</a>(channel_id, \*\*<a href="src/knockapi/types/providers/ms_team_list_teams_params.py">params</a>) -> <a href="./src/knockapi/types/providers/ms_team_list_teams_response.py">MsTeamListTeamsResponse</a></code>
+- <code title="get /v1/providers/ms-teams/{channel_id}/teams">client.providers.ms_teams.<a href="./src/knockapi/resources/providers/ms_teams.py">list_teams</a>(channel_id, \*\*<a href="src/knockapi/types/providers/ms_team_list_teams_params.py">params</a>) -> <a href="./src/knockapi/types/providers/ms_team_list_teams_response.py">SyncMsTeamsPagination[MsTeamListTeamsResponse]</a></code>
 - <code title="put /v1/providers/ms-teams/{channel_id}/revoke_access">client.providers.ms_teams.<a href="./src/knockapi/resources/providers/ms_teams.py">revoke_access</a>(channel_id, \*\*<a href="src/knockapi/types/providers/ms_team_revoke_access_params.py">params</a>) -> <a href="./src/knockapi/types/providers/ms_team_revoke_access_response.py">MsTeamRevokeAccessResponse</a></code>
 
 # Integrations

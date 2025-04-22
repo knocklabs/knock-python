@@ -17,7 +17,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncMsTeamsPagination, AsyncMsTeamsPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.providers import (
     ms_team_check_auth_params,
     ms_team_list_teams_params,
@@ -160,7 +161,7 @@ class MsTeamsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MsTeamListTeamsResponse:
+    ) -> SyncMsTeamsPagination[MsTeamListTeamsResponse]:
         """Get a list of teams belonging to the Microsoft Entra tenant.
 
         By default,
@@ -179,8 +180,9 @@ class MsTeamsResource(SyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/v1/providers/ms-teams/{channel_id}/teams",
+            page=SyncMsTeamsPagination[MsTeamListTeamsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +196,7 @@ class MsTeamsResource(SyncAPIResource):
                     ms_team_list_teams_params.MsTeamListTeamsParams,
                 ),
             ),
-            cast_to=MsTeamListTeamsResponse,
+            model=MsTeamListTeamsResponse,
         )
 
     def revoke_access(
@@ -357,7 +359,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
             cast_to=MsTeamListChannelsResponse,
         )
 
-    async def list_teams(
+    def list_teams(
         self,
         channel_id: str,
         *,
@@ -369,7 +371,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MsTeamListTeamsResponse:
+    ) -> AsyncPaginator[MsTeamListTeamsResponse, AsyncMsTeamsPagination[MsTeamListTeamsResponse]]:
         """Get a list of teams belonging to the Microsoft Entra tenant.
 
         By default,
@@ -388,14 +390,15 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/v1/providers/ms-teams/{channel_id}/teams",
+            page=AsyncMsTeamsPagination[MsTeamListTeamsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "ms_teams_tenant_object": ms_teams_tenant_object,
                         "query_options": query_options,
@@ -403,7 +406,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
                     ms_team_list_teams_params.MsTeamListTeamsParams,
                 ),
             ),
-            cast_to=MsTeamListTeamsResponse,
+            model=MsTeamListTeamsResponse,
         )
 
     async def revoke_access(

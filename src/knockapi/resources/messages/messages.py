@@ -28,6 +28,14 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
+from .activities import (
+    ActivitiesResource,
+    AsyncActivitiesResource,
+    ActivitiesResourceWithRawResponse,
+    AsyncActivitiesResourceWithRawResponse,
+    ActivitiesResourceWithStreamingResponse,
+    AsyncActivitiesResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -38,10 +46,10 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
-from ...types.activity import Activity
 from ...types.message_event import MessageEvent
 from ...types.message_delivery_log import MessageDeliveryLog
 from ...types.message_get_content_response import MessageGetContentResponse
+from ...types.message_list_activities_response import MessageListActivitiesResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -50,6 +58,10 @@ class MessagesResource(SyncAPIResource):
     @cached_property
     def batch(self) -> BatchResource:
         return BatchResource(self._client)
+
+    @cached_property
+    def activities(self) -> ActivitiesResource:
+        return ActivitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
@@ -283,7 +295,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Activity]:
+    ) -> MessageListActivitiesResponse:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -306,9 +318,8 @@ class MessagesResource(SyncAPIResource):
         """
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/v1/messages/{message_id}/activities",
-            page=SyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,7 +335,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_activities_params.MessageListActivitiesParams,
                 ),
             ),
-            model=Activity,
+            cast_to=MessageListActivitiesResponse,
         )
 
     def list_delivery_logs(
@@ -664,6 +675,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         return AsyncBatchResource(self._client)
 
     @cached_property
+    def activities(self) -> AsyncActivitiesResource:
+        return AsyncActivitiesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -881,7 +896,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageGetContentResponse,
         )
 
-    def list_activities(
+    async def list_activities(
         self,
         message_id: str,
         *,
@@ -895,7 +910,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Activity, AsyncEntriesCursor[Activity]]:
+    ) -> MessageListActivitiesResponse:
         """
         Returns a paginated list of activities for the specified message.
 
@@ -918,15 +933,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/v1/messages/{message_id}/activities",
-            page=AsyncEntriesCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -936,7 +950,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_activities_params.MessageListActivitiesParams,
                 ),
             ),
-            model=Activity,
+            cast_to=MessageListActivitiesResponse,
         )
 
     def list_delivery_logs(
@@ -1318,6 +1332,10 @@ class MessagesResourceWithRawResponse:
     def batch(self) -> BatchResourceWithRawResponse:
         return BatchResourceWithRawResponse(self._messages.batch)
 
+    @cached_property
+    def activities(self) -> ActivitiesResourceWithRawResponse:
+        return ActivitiesResourceWithRawResponse(self._messages.activities)
+
 
 class AsyncMessagesResourceWithRawResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -1366,6 +1384,10 @@ class AsyncMessagesResourceWithRawResponse:
     @cached_property
     def batch(self) -> AsyncBatchResourceWithRawResponse:
         return AsyncBatchResourceWithRawResponse(self._messages.batch)
+
+    @cached_property
+    def activities(self) -> AsyncActivitiesResourceWithRawResponse:
+        return AsyncActivitiesResourceWithRawResponse(self._messages.activities)
 
 
 class MessagesResourceWithStreamingResponse:
@@ -1416,6 +1438,10 @@ class MessagesResourceWithStreamingResponse:
     def batch(self) -> BatchResourceWithStreamingResponse:
         return BatchResourceWithStreamingResponse(self._messages.batch)
 
+    @cached_property
+    def activities(self) -> ActivitiesResourceWithStreamingResponse:
+        return ActivitiesResourceWithStreamingResponse(self._messages.activities)
+
 
 class AsyncMessagesResourceWithStreamingResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -1464,3 +1490,7 @@ class AsyncMessagesResourceWithStreamingResponse:
     @cached_property
     def batch(self) -> AsyncBatchResourceWithStreamingResponse:
         return AsyncBatchResourceWithStreamingResponse(self._messages.batch)
+
+    @cached_property
+    def activities(self) -> AsyncActivitiesResourceWithStreamingResponse:
+        return AsyncActivitiesResourceWithStreamingResponse(self._messages.activities)

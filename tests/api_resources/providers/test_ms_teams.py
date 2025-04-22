@@ -9,6 +9,7 @@ import pytest
 
 from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
+from knockapi.pagination import SyncMsTeamsPagination, AsyncMsTeamsPagination
 from knockapi.types.providers import (
     MsTeamCheckAuthResponse,
     MsTeamListTeamsResponse,
@@ -159,7 +160,7 @@ class TestMsTeams:
             channel_id="channel_id",
             ms_teams_tenant_object="ms_teams_tenant_object",
         )
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(SyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -176,7 +177,7 @@ class TestMsTeams:
                 "top": 0,
             },
         )
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(SyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -191,7 +192,7 @@ class TestMsTeams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ms_team = response.parse()
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(SyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -206,7 +207,7 @@ class TestMsTeams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ms_team = response.parse()
-            assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+            assert_matches_type(SyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +417,7 @@ class TestAsyncMsTeams:
             channel_id="channel_id",
             ms_teams_tenant_object="ms_teams_tenant_object",
         )
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(AsyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -433,7 +434,7 @@ class TestAsyncMsTeams:
                 "top": 0,
             },
         )
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(AsyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -448,7 +449,7 @@ class TestAsyncMsTeams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ms_team = await response.parse()
-        assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+        assert_matches_type(AsyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -463,7 +464,7 @@ class TestAsyncMsTeams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ms_team = await response.parse()
-            assert_matches_type(MsTeamListTeamsResponse, ms_team, path=["response"])
+            assert_matches_type(AsyncMsTeamsPagination[MsTeamListTeamsResponse], ms_team, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

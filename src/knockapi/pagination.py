@@ -15,6 +15,8 @@ __all__ = [
     "AsyncItemsCursor",
     "SyncSlackChannelsCursor",
     "AsyncSlackChannelsCursor",
+    "SyncMsTeamsPagination",
+    "AsyncMsTeamsPagination",
 ]
 
 _T = TypeVar("_T")
@@ -158,3 +160,43 @@ class AsyncSlackChannelsCursor(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"query_options.cursor": next_cursor})
+
+
+class SyncMsTeamsPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    skip_token: Optional[str] = None
+    ms_teams_teams: List[_T]
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        ms_teams_teams = self.ms_teams_teams
+        if not ms_teams_teams:
+            return []
+        return ms_teams_teams
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        skip_token = self.skip_token
+        if not skip_token:
+            return None
+
+        return PageInfo(params={"query_options.$skiptoken": skip_token})
+
+
+class AsyncMsTeamsPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    skip_token: Optional[str] = None
+    ms_teams_teams: List[_T]
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        ms_teams_teams = self.ms_teams_teams
+        if not ms_teams_teams:
+            return []
+        return ms_teams_teams
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        skip_token = self.skip_token
+        if not skip_token:
+            return None
+
+        return PageInfo(params={"query_options.$skiptoken": skip_token})

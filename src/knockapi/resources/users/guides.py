@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -122,7 +122,7 @@ class GuidesResource(SyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -200,7 +200,7 @@ class GuidesResource(SyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -278,7 +278,7 @@ class GuidesResource(SyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -433,7 +433,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -511,7 +511,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -589,7 +589,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         content: object | NotGiven = NOT_GIVEN,
         data: object | NotGiven = NOT_GIVEN,
         is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         tenant: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["GuideMarkMessageAsInteractedParams"]
@@ -30,7 +30,7 @@ class GuideMarkMessageAsInteractedParams(TypedDict, total=False):
     is_final: bool
     """Whether the guide is final."""
 
-    metadata: object
+    metadata: Dict[str, object]
     """The metadata of the guide."""
 
     tenant: Optional[str]

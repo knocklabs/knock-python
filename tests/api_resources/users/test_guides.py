@@ -129,7 +129,7 @@ class TestGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
@@ -232,7 +232,7 @@ class TestGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
@@ -335,7 +335,7 @@ class TestGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
@@ -516,7 +516,7 @@ class TestAsyncGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
@@ -619,7 +619,7 @@ class TestAsyncGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
@@ -722,7 +722,7 @@ class TestAsyncGuides:
             },
             data={"product_id": "product_123"},
             is_final=True,
-            metadata={"source": "onboarding"},
+            metadata={"source": "bar"},
             tenant="tenant_12345",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])

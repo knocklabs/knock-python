@@ -35,6 +35,7 @@ from ._base_client import (
 from .resources.users import users
 from .resources.objects import objects
 from .resources.tenants import tenants
+from .resources.channels import channels
 from .resources.messages import messages
 from .resources.providers import providers
 from .resources.schedules import schedules
@@ -53,6 +54,7 @@ class Knock(SyncAPIClient):
     integrations: integrations.IntegrationsResource
     workflows: workflows.WorkflowsResource
     schedules: schedules.SchedulesResource
+    channels: channels.ChannelsResource
     audiences: audiences.AudiencesResource
     with_raw_response: KnockWithRawResponse
     with_streaming_response: KnockWithStreamedResponse
@@ -120,6 +122,7 @@ class Knock(SyncAPIClient):
         self.integrations = integrations.IntegrationsResource(self)
         self.workflows = workflows.WorkflowsResource(self)
         self.schedules = schedules.SchedulesResource(self)
+        self.channels = channels.ChannelsResource(self)
         self.audiences = audiences.AudiencesResource(self)
         self.with_raw_response = KnockWithRawResponse(self)
         self.with_streaming_response = KnockWithStreamedResponse(self)
@@ -239,6 +242,7 @@ class AsyncKnock(AsyncAPIClient):
     integrations: integrations.AsyncIntegrationsResource
     workflows: workflows.AsyncWorkflowsResource
     schedules: schedules.AsyncSchedulesResource
+    channels: channels.AsyncChannelsResource
     audiences: audiences.AsyncAudiencesResource
     with_raw_response: AsyncKnockWithRawResponse
     with_streaming_response: AsyncKnockWithStreamedResponse
@@ -306,6 +310,7 @@ class AsyncKnock(AsyncAPIClient):
         self.integrations = integrations.AsyncIntegrationsResource(self)
         self.workflows = workflows.AsyncWorkflowsResource(self)
         self.schedules = schedules.AsyncSchedulesResource(self)
+        self.channels = channels.AsyncChannelsResource(self)
         self.audiences = audiences.AsyncAudiencesResource(self)
         self.with_raw_response = AsyncKnockWithRawResponse(self)
         self.with_streaming_response = AsyncKnockWithStreamedResponse(self)
@@ -426,6 +431,7 @@ class KnockWithRawResponse:
         self.integrations = integrations.IntegrationsResourceWithRawResponse(client.integrations)
         self.workflows = workflows.WorkflowsResourceWithRawResponse(client.workflows)
         self.schedules = schedules.SchedulesResourceWithRawResponse(client.schedules)
+        self.channels = channels.ChannelsResourceWithRawResponse(client.channels)
         self.audiences = audiences.AudiencesResourceWithRawResponse(client.audiences)
 
 
@@ -440,6 +446,7 @@ class AsyncKnockWithRawResponse:
         self.integrations = integrations.AsyncIntegrationsResourceWithRawResponse(client.integrations)
         self.workflows = workflows.AsyncWorkflowsResourceWithRawResponse(client.workflows)
         self.schedules = schedules.AsyncSchedulesResourceWithRawResponse(client.schedules)
+        self.channels = channels.AsyncChannelsResourceWithRawResponse(client.channels)
         self.audiences = audiences.AsyncAudiencesResourceWithRawResponse(client.audiences)
 
 
@@ -454,6 +461,7 @@ class KnockWithStreamedResponse:
         self.integrations = integrations.IntegrationsResourceWithStreamingResponse(client.integrations)
         self.workflows = workflows.WorkflowsResourceWithStreamingResponse(client.workflows)
         self.schedules = schedules.SchedulesResourceWithStreamingResponse(client.schedules)
+        self.channels = channels.ChannelsResourceWithStreamingResponse(client.channels)
         self.audiences = audiences.AudiencesResourceWithStreamingResponse(client.audiences)
 
 
@@ -468,6 +476,7 @@ class AsyncKnockWithStreamedResponse:
         self.integrations = integrations.AsyncIntegrationsResourceWithStreamingResponse(client.integrations)
         self.workflows = workflows.AsyncWorkflowsResourceWithStreamingResponse(client.workflows)
         self.schedules = schedules.AsyncSchedulesResourceWithStreamingResponse(client.schedules)
+        self.channels = channels.AsyncChannelsResourceWithStreamingResponse(client.channels)
         self.audiences = audiences.AsyncAudiencesResourceWithStreamingResponse(client.audiences)
 
 

@@ -372,6 +372,14 @@ Methods:
 
 - <code title="post /v1/schedules/bulk/create">client.schedules.bulk.<a href="./src/knockapi/resources/schedules/bulk.py">create</a>(\*\*<a href="src/knockapi/types/schedules/bulk_create_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
+# Channels
+
+## Bulk
+
+Methods:
+
+- <code title="post /v1/channels/{channel_id}/messages/bulk/{status}">client.channels.bulk.<a href="./src/knockapi/resources/channels/bulk.py">update_message_status</a>(channel_id, status, \*\*<a href="src/knockapi/types/channels/bulk_update_message_status_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+
 # Audiences
 
 Types:

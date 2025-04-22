@@ -24,6 +24,14 @@ from .tenants import (
     TenantsResourceWithStreamingResponse,
     AsyncTenantsResourceWithStreamingResponse,
 )
+from .channels import (
+    ChannelsResource,
+    AsyncChannelsResource,
+    ChannelsResourceWithRawResponse,
+    AsyncChannelsResourceWithRawResponse,
+    ChannelsResourceWithStreamingResponse,
+    AsyncChannelsResourceWithStreamingResponse,
+)
 from .messages import (
     MessagesResource,
     AsyncMessagesResource,
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncSchedulesResourceWithRawResponse",
     "SchedulesResourceWithStreamingResponse",
     "AsyncSchedulesResourceWithStreamingResponse",
+    "ChannelsResource",
+    "AsyncChannelsResource",
+    "ChannelsResourceWithRawResponse",
+    "AsyncChannelsResourceWithRawResponse",
+    "ChannelsResourceWithStreamingResponse",
+    "AsyncChannelsResourceWithStreamingResponse",
     "AudiencesResource",
     "AsyncAudiencesResource",
     "AudiencesResourceWithRawResponse",

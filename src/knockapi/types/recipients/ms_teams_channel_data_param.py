@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Union, Iterable, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = [
     "MsTeamsChannelDataParam",
@@ -42,6 +44,9 @@ Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeam
 
 
 class MsTeamsChannelDataParam(TypedDict, total=False):
+    _typename: Required[Annotated[Literal["MsTeamsChannelData"], PropertyInfo(alias="__typename")]]
+    """The typename of the schema."""
+
     connections: Required[Iterable[Connection]]
     """List of Microsoft Teams connections."""
 

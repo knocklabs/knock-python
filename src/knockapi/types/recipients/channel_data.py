@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import TypeAlias
+from typing_extensions import Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .push_channel_data import PushChannelData
 from .slack_channel_data import SlackChannelData
@@ -14,7 +15,10 @@ from .one_signal_channel_data import OneSignalChannelData
 
 __all__ = ["ChannelData", "Data"]
 
-Data: TypeAlias = Union[PushChannelData, SlackChannelData, MsTeamsChannelData, DiscordChannelData, OneSignalChannelData]
+Data: TypeAlias = Annotated[
+    Union[PushChannelData, SlackChannelData, MsTeamsChannelData, DiscordChannelData, OneSignalChannelData],
+    PropertyInfo(discriminator="api_typename"),
+]
 
 
 class ChannelData(BaseModel):

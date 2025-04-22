@@ -1,22 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, TypeAlias
+
+from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
 __all__ = [
     "SlackChannelData",
-    "Token",
     "Connection",
     "ConnectionSlackTokenConnection",
     "ConnectionSlackIncomingWebhookConnection",
+    "Token",
 ]
-
-
-class Token(BaseModel):
-    access_token: Optional[str] = None
-    """A Slack access token."""
 
 
 class ConnectionSlackTokenConnection(BaseModel):
@@ -38,9 +35,17 @@ class ConnectionSlackIncomingWebhookConnection(BaseModel):
 Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackIncomingWebhookConnection]
 
 
+class Token(BaseModel):
+    access_token: Optional[str] = None
+    """A Slack access token."""
+
+
 class SlackChannelData(BaseModel):
+    api_typename: Literal["SlackChannelData"] = FieldInfo(alias="__typename")
+    """The typename of the schema."""
+
+    connections: List[Connection]
+    """List of Slack channel connections."""
+
     token: Optional[Token] = None
     """A Slack connection token."""
-
-    connections: Optional[List[Connection]] = None
-    """List of Slack channel connections."""

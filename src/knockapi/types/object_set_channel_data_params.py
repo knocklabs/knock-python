@@ -15,8 +15,6 @@ __all__ = ["ObjectSetChannelDataParams", "Data"]
 
 
 class ObjectSetChannelDataParams(TypedDict, total=False):
-    object_id: Required[str]
-
     data: Required[Data]
     """Channel data for a given channel type."""
 

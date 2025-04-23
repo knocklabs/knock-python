@@ -947,8 +947,8 @@ class TestObjects:
     def test_method_set_channel_data(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -963,8 +963,8 @@ class TestObjects:
     def test_method_set_channel_data_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -979,8 +979,8 @@ class TestObjects:
     def test_raw_response_set_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -999,8 +999,8 @@ class TestObjects:
     def test_streaming_response_set_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -1019,22 +1019,22 @@ class TestObjects:
     )
     @parametrize
     def test_path_params_set_channel_data(self, client: Knock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.with_raw_response.set_channel_data(
-                collection="collection",
+                collection="",
+                object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                object_id="",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                 },
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             client.objects.with_raw_response.set_channel_data(
-                collection="",
+                collection="collection",
+                object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                object_id="object_id",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
@@ -1044,8 +1044,8 @@ class TestObjects:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             client.objects.with_raw_response.set_channel_data(
                 collection="collection",
-                channel_id="",
                 object_id="object_id",
+                channel_id="",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
@@ -2176,8 +2176,8 @@ class TestAsyncObjects:
     async def test_method_set_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -2192,8 +2192,8 @@ class TestAsyncObjects:
     async def test_method_set_channel_data_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -2208,8 +2208,8 @@ class TestAsyncObjects:
     async def test_raw_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -2228,8 +2228,8 @@ class TestAsyncObjects:
     async def test_streaming_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set_channel_data(
             collection="collection",
-            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             object_id="object_id",
+            channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
@@ -2248,22 +2248,22 @@ class TestAsyncObjects:
     )
     @parametrize
     async def test_path_params_set_channel_data(self, async_client: AsyncKnock) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
-                collection="collection",
+                collection="",
+                object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                object_id="",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                 },
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
-                collection="",
+                collection="collection",
+                object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                object_id="object_id",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
@@ -2273,8 +2273,8 @@ class TestAsyncObjects:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
             await async_client.objects.with_raw_response.set_channel_data(
                 collection="collection",
-                channel_id="",
                 object_id="object_id",
+                channel_id="",
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],

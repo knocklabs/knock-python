@@ -741,9 +741,9 @@ class ObjectsResource(SyncAPIResource):
     def set_channel_data(
         self,
         collection: str,
+        object_id: str,
         channel_id: str,
         *,
-        object_id: str,
         data: object_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -766,10 +766,10 @@ class ObjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._put(
@@ -1564,9 +1564,9 @@ class AsyncObjectsResource(AsyncAPIResource):
     async def set_channel_data(
         self,
         collection: str,
+        object_id: str,
         channel_id: str,
         *,
-        object_id: str,
         data: object_set_channel_data_params.Data,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1589,10 +1589,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._put(

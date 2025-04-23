@@ -28,10 +28,13 @@ InlineChannelDataRequestParamItemData: TypeAlias = Union[
 
 class InlineChannelDataRequestParamItem(TypedDict, total=False):
     channel_id: Required[str]
-    """The ID of the channel to associate data with"""
+    """The ID of the channel to associate data with."""
 
     data: Required[InlineChannelDataRequestParamItemData]
     """Channel data for a given channel type."""
+
+    provider: Required[str]
+    """The provider identifier (must match the data.type value)"""
 
 
 InlineChannelDataRequestParam: TypeAlias = List[InlineChannelDataRequestParamItem]

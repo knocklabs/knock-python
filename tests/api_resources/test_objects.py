@@ -831,6 +831,7 @@ class TestObjects:
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
                     },
+                    "provider": "push_fcm",
                 }
             ],
             preferences=[
@@ -2056,6 +2057,7 @@ class TestAsyncObjects:
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
                     },
+                    "provider": "push_fcm",
                 }
             ],
             preferences=[

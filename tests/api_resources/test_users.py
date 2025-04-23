@@ -54,6 +54,7 @@ class TestUsers:
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
                     },
+                    "provider": "push_fcm",
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -1051,6 +1052,7 @@ class TestAsyncUsers:
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
                     },
+                    "provider": "push_fcm",
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),

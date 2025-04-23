@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -680,7 +680,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        channel_data: Optional[Iterable[InlineChannelDataRequestParam]] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
@@ -697,8 +697,7 @@ class ObjectsResource(SyncAPIResource):
         optional preferences and channel data.
 
         Args:
-          channel_data: An optional set of [channel data](/managing-recipients/setting-channel-data) for
-              the object. This is a list of `ChannelData` objects.
+          channel_data: A request to set channel data for a type of channel inline.
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
@@ -1504,7 +1503,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        channel_data: Optional[Iterable[InlineChannelDataRequestParam]] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1521,8 +1520,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         optional preferences and channel data.
 
         Args:
-          channel_data: An optional set of [channel data](/managing-recipients/setting-channel-data) for
-              the object. This is a list of `ChannelData` objects.
+          channel_data: A request to set channel data for a type of channel inline.
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).

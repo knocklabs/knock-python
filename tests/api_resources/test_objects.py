@@ -825,16 +825,14 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_data=[
-                [
-                    {
-                        "channel_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "data": {
-                            "_typename": "PushChannelData",
-                            "tokens": ["push_token_1"],
-                        },
-                        "provider": "push_fcm",
-                    }
-                ]
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_123"],
+                    },
+                    "provider": "push_fcm",
+                }
             ],
             locale="en-US",
             preferences=[
@@ -2056,16 +2054,14 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_data=[
-                [
-                    {
-                        "channel_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "data": {
-                            "_typename": "PushChannelData",
-                            "tokens": ["push_token_1"],
-                        },
-                        "provider": "push_fcm",
-                    }
-                ]
+                {
+                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+                    "data": {
+                        "_typename": "PushChannelData",
+                        "tokens": ["push_token_123"],
+                    },
+                    "provider": "push_fcm",
+                }
             ],
             locale="en-US",
             preferences=[

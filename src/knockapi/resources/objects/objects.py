@@ -325,7 +325,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> Optional[ChannelData]:
         """
         Returns the channel data for the specified object and channel.
 
@@ -751,7 +751,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> Optional[ChannelData]:
         """
         Sets the channel data for the specified object and channel.
 
@@ -1148,7 +1148,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> Optional[ChannelData]:
         """
         Returns the channel data for the specified object and channel.
 
@@ -1574,7 +1574,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> Optional[ChannelData]:
         """
         Sets the channel data for the specified object and channel.
 

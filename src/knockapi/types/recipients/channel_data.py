@@ -1,11 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
-from typing_extensions import Annotated, TypeAlias
+from typing import List, Union
+from typing_extensions import TypeAlias
 
-from pydantic import Field as FieldInfo
-
-from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .push_channel_data import PushChannelData
 from .slack_channel_data import SlackChannelData
@@ -13,20 +10,22 @@ from .discord_channel_data import DiscordChannelData
 from .ms_teams_channel_data import MsTeamsChannelData
 from .one_signal_channel_data import OneSignalChannelData
 
-__all__ = ["ChannelData", "Data"]
+__all__ = ["ChannelData", "ChannelDataItem", "ChannelDataItemData"]
 
-Data: TypeAlias = Annotated[
-    Union[PushChannelData, SlackChannelData, MsTeamsChannelData, DiscordChannelData, OneSignalChannelData],
-    PropertyInfo(discriminator="api_typename"),
+ChannelDataItemData: TypeAlias = Union[
+    PushChannelData, OneSignalChannelData, SlackChannelData, MsTeamsChannelData, DiscordChannelData
 ]
 
 
-class ChannelData(BaseModel):
-    api_typename: str = FieldInfo(alias="__typename")
-    """The typename of the schema."""
-
+class ChannelDataItem(BaseModel):
     channel_id: str
-    """The unique identifier for the channel."""
+    """The ID of the channel to associate data with."""
 
-    data: Data
+    data: ChannelDataItemData
     """Channel data for a given channel type."""
+
+    provider: str
+    """The provider identifier (must match the data.type value)"""
+
+
+ChannelData: TypeAlias = List[ChannelDataItem]

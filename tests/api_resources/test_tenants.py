@@ -189,6 +189,7 @@ class TestTenants:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }
@@ -519,6 +520,7 @@ class TestAsyncTenants:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }

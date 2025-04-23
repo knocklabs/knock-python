@@ -830,6 +830,7 @@ class TestObjects:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }
@@ -952,6 +953,7 @@ class TestObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -968,6 +970,7 @@ class TestObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -984,6 +987,7 @@ class TestObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
 
@@ -1004,6 +1008,7 @@ class TestObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         ) as response:
             assert not response.is_closed
@@ -1027,6 +1032,7 @@ class TestObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -1038,6 +1044,7 @@ class TestObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -1049,6 +1056,7 @@ class TestObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -2059,6 +2067,7 @@ class TestAsyncObjects:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }
@@ -2181,6 +2190,7 @@ class TestAsyncObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -2197,6 +2207,7 @@ class TestAsyncObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -2213,6 +2224,7 @@ class TestAsyncObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
 
@@ -2233,6 +2245,7 @@ class TestAsyncObjects:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         ) as response:
             assert not response.is_closed
@@ -2256,6 +2269,7 @@ class TestAsyncObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -2267,6 +2281,7 @@ class TestAsyncObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -2278,6 +2293,7 @@ class TestAsyncObjects:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 

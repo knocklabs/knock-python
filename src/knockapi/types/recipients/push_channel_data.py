@@ -16,3 +16,6 @@ class PushChannelData(BaseModel):
 
     tokens: List[str]
     """A list of push channel tokens."""
+
+    type: Literal["push_fcm", "push_apns", "push_expo"]
+    """The push provider type"""

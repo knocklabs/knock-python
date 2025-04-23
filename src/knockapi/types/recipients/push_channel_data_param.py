@@ -16,3 +16,6 @@ class PushChannelDataParam(TypedDict, total=False):
 
     tokens: Required[List[str]]
     """A list of push channel tokens."""
+
+    type: Required[Literal["push_fcm", "push_apns", "push_expo"]]
+    """The push provider type"""

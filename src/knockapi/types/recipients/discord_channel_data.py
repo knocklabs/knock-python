@@ -40,3 +40,6 @@ class DiscordChannelData(BaseModel):
 
     connections: List[Connection]
     """List of Discord channel connections."""
+
+    type: Literal["chat_discord"]
+    """The channel type identifier"""

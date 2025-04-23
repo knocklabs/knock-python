@@ -47,5 +47,8 @@ class SlackChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
     """List of Slack channel connections."""
 
+    type: Required[Literal["chat_slack"]]
+    """The channel type identifier"""
+
     token: Optional[Token]
     """A Slack connection token."""

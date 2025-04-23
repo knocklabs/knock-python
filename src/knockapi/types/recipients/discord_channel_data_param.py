@@ -40,3 +40,6 @@ class DiscordChannelDataParam(TypedDict, total=False):
 
     connections: Required[Iterable[Connection]]
     """List of Discord channel connections."""
+
+    type: Required[Literal["chat_discord"]]
+    """The channel type identifier"""

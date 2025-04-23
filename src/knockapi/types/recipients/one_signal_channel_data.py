@@ -16,3 +16,6 @@ class OneSignalChannelData(BaseModel):
 
     player_ids: List[str]
     """A list of OneSignal player IDs."""
+
+    type: Literal["push_one_signal"]
+    """The channel type identifier"""

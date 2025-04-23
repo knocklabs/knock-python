@@ -47,5 +47,8 @@ class SlackChannelData(BaseModel):
     connections: List[Connection]
     """List of Slack channel connections."""
 
+    type: Literal["chat_slack"]
+    """The channel type identifier"""
+
     token: Optional[Token] = None
     """A Slack connection token."""

@@ -50,5 +50,8 @@ class MsTeamsChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
     """List of Microsoft Teams connections."""
 
+    type: Required[Literal["chat_ms_teams"]]
+    """The channel type identifier"""
+
     ms_teams_tenant_id: Optional[str]
     """Microsoft Teams tenant ID."""

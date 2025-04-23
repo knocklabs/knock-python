@@ -50,5 +50,8 @@ class MsTeamsChannelData(BaseModel):
     connections: List[Connection]
     """List of Microsoft Teams connections."""
 
+    type: Literal["chat_ms_teams"]
+    """The channel type identifier"""
+
     ms_teams_tenant_id: Optional[str] = None
     """Microsoft Teams tenant ID."""

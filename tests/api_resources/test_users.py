@@ -53,6 +53,7 @@ class TestUsers:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }
@@ -761,6 +762,7 @@ class TestUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -776,6 +778,7 @@ class TestUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -791,6 +794,7 @@ class TestUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
 
@@ -810,6 +814,7 @@ class TestUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         ) as response:
             assert not response.is_closed
@@ -832,6 +837,7 @@ class TestUsers:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -842,6 +848,7 @@ class TestUsers:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -1051,6 +1058,7 @@ class TestAsyncUsers:
                     "data": {
                         "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
+                        "type": "push_fcm",
                     },
                     "provider": "push_fcm",
                 }
@@ -1759,6 +1767,7 @@ class TestAsyncUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -1774,6 +1783,7 @@ class TestAsyncUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
         assert_matches_type(ChannelData, user, path=["response"])
@@ -1789,6 +1799,7 @@ class TestAsyncUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         )
 
@@ -1808,6 +1819,7 @@ class TestAsyncUsers:
             data={
                 "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
+                "type": "push_fcm",
             },
         ) as response:
             assert not response.is_closed
@@ -1830,6 +1842,7 @@ class TestAsyncUsers:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 
@@ -1840,6 +1853,7 @@ class TestAsyncUsers:
                 data={
                     "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
+                    "type": "push_fcm",
                 },
             )
 

@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["ObjectUnsetChannelDataResponse"]
+__all__ = ["ObjectDeleteResponse"]
 
-ObjectUnsetChannelDataResponse: TypeAlias = str
+ObjectDeleteResponse: TypeAlias = str

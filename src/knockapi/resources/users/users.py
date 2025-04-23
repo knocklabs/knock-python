@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,6 +15,14 @@ from .bulk import (
     AsyncBulkResourceWithRawResponse,
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
+)
+from .feeds import (
+    FeedsResource,
+    AsyncFeedsResource,
+    FeedsResourceWithRawResponse,
+    AsyncFeedsResourceWithRawResponse,
+    FeedsResourceWithStreamingResponse,
+    AsyncFeedsResourceWithStreamingResponse,
 )
 from .guides import (
     GuidesResource,
@@ -30,6 +38,8 @@ from ...types import (
     user_update_params,
     user_list_messages_params,
     user_list_schedules_params,
+    user_get_preferences_params,
+    user_set_preferences_params,
     user_set_channel_data_params,
     user_list_subscriptions_params,
 )
@@ -50,14 +60,20 @@ from ...types.message import Message
 from ...types.schedule import Schedule
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
+from ...types.recipients.preference_set import PreferenceSet
 from ...types.user_list_preferences_response import UserListPreferencesResponse
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from ...types.recipients.preference_set_channel_types_param import PreferenceSetChannelTypesParam
 from ...types.recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
 
 class UsersResource(SyncAPIResource):
+    @cached_property
+    def feeds(self) -> FeedsResource:
+        return FeedsResource(self._client)
+
     @cached_property
     def guides(self) -> GuidesResource:
         return GuidesResource(self._client)
@@ -323,6 +339,50 @@ class UsersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    def get_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        tenant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """
+        Retrieves a specific preference set for a user identified by the preference set
+        ID.
+
+        Args:
+          tenant: The unique identifier for the tenant.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/v1/users/{user_id}/preferences/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"tenant": tenant}, user_get_preferences_params.UserGetPreferencesParams),
+            ),
+            cast_to=PreferenceSet,
         )
 
     def list_messages(
@@ -666,6 +726,63 @@ class UsersResource(SyncAPIResource):
             cast_to=ChannelData,
         )
 
+    def set_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """Updates a complete preference set for a user.
+
+        This is a destructive operation
+        that will replace the existing preference set for the user.
+
+        Args:
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
+
+          channel_types: Channel type preferences.
+
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._put(
+            f"/v1/users/{user_id}/preferences/{id}",
+            body=maybe_transform(
+                {
+                    "categories": categories,
+                    "channel_types": channel_types,
+                    "workflows": workflows,
+                },
+                user_set_preferences_params.UserSetPreferencesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PreferenceSet,
+        )
+
     def unset_channel_data(
         self,
         user_id: str,
@@ -704,6 +821,10 @@ class UsersResource(SyncAPIResource):
 
 
 class AsyncUsersResource(AsyncAPIResource):
+    @cached_property
+    def feeds(self) -> AsyncFeedsResource:
+        return AsyncFeedsResource(self._client)
+
     @cached_property
     def guides(self) -> AsyncGuidesResource:
         return AsyncGuidesResource(self._client)
@@ -969,6 +1090,52 @@ class AsyncUsersResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChannelData,
+        )
+
+    async def get_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        tenant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """
+        Retrieves a specific preference set for a user identified by the preference set
+        ID.
+
+        Args:
+          tenant: The unique identifier for the tenant.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/v1/users/{user_id}/preferences/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"tenant": tenant}, user_get_preferences_params.UserGetPreferencesParams
+                ),
+            ),
+            cast_to=PreferenceSet,
         )
 
     def list_messages(
@@ -1312,6 +1479,63 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=ChannelData,
         )
 
+    async def set_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreferenceSet:
+        """Updates a complete preference set for a user.
+
+        This is a destructive operation
+        that will replace the existing preference set for the user.
+
+        Args:
+          categories: An object where the key is the category and the values are the preference
+              settings for that category.
+
+          channel_types: Channel type preferences.
+
+          workflows: An object where the key is the workflow key and the values are the preference
+              settings for that workflow.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._put(
+            f"/v1/users/{user_id}/preferences/{id}",
+            body=await async_maybe_transform(
+                {
+                    "categories": categories,
+                    "channel_types": channel_types,
+                    "workflows": workflows,
+                },
+                user_set_preferences_params.UserSetPreferencesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PreferenceSet,
+        )
+
     async def unset_channel_data(
         self,
         user_id: str,
@@ -1368,6 +1592,9 @@ class UsersResourceWithRawResponse:
         self.get_channel_data = to_raw_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = to_raw_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = to_raw_response_wrapper(
             users.list_messages,
         )
@@ -1386,9 +1613,16 @@ class UsersResourceWithRawResponse:
         self.set_channel_data = to_raw_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = to_raw_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = to_raw_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> FeedsResourceWithRawResponse:
+        return FeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> GuidesResourceWithRawResponse:
@@ -1418,6 +1652,9 @@ class AsyncUsersResourceWithRawResponse:
         self.get_channel_data = async_to_raw_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = async_to_raw_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = async_to_raw_response_wrapper(
             users.list_messages,
         )
@@ -1436,9 +1673,16 @@ class AsyncUsersResourceWithRawResponse:
         self.set_channel_data = async_to_raw_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = async_to_raw_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = async_to_raw_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> AsyncFeedsResourceWithRawResponse:
+        return AsyncFeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> AsyncGuidesResourceWithRawResponse:
@@ -1468,6 +1712,9 @@ class UsersResourceWithStreamingResponse:
         self.get_channel_data = to_streamed_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = to_streamed_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = to_streamed_response_wrapper(
             users.list_messages,
         )
@@ -1486,9 +1733,16 @@ class UsersResourceWithStreamingResponse:
         self.set_channel_data = to_streamed_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = to_streamed_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = to_streamed_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> FeedsResourceWithStreamingResponse:
+        return FeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> GuidesResourceWithStreamingResponse:
@@ -1518,6 +1772,9 @@ class AsyncUsersResourceWithStreamingResponse:
         self.get_channel_data = async_to_streamed_response_wrapper(
             users.get_channel_data,
         )
+        self.get_preferences = async_to_streamed_response_wrapper(
+            users.get_preferences,
+        )
         self.list_messages = async_to_streamed_response_wrapper(
             users.list_messages,
         )
@@ -1536,9 +1793,16 @@ class AsyncUsersResourceWithStreamingResponse:
         self.set_channel_data = async_to_streamed_response_wrapper(
             users.set_channel_data,
         )
+        self.set_preferences = async_to_streamed_response_wrapper(
+            users.set_preferences,
+        )
         self.unset_channel_data = async_to_streamed_response_wrapper(
             users.unset_channel_data,
         )
+
+    @cached_property
+    def feeds(self) -> AsyncFeedsResourceWithStreamingResponse:
+        return AsyncFeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> AsyncGuidesResourceWithStreamingResponse:

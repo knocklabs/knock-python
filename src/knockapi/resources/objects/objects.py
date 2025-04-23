@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -15,13 +15,7 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import (
-    object_list_params,
-    object_set_channel_data_params,
-    object_add_subscriptions_params,
-    object_list_subscriptions_params,
-    object_delete_subscriptions_params,
-)
+from ...types import object_set_params, object_list_params, object_list_messages_params, object_list_schedules_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -35,13 +29,10 @@ from ..._response import (
 from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.object import Object
-from ...types.recipient_request_param import RecipientRequestParam
-from ...types.recipients.channel_data import ChannelData
-from ...types.recipients.subscription import Subscription
-from ...types.recipient_reference_param import RecipientReferenceParam
-from ...types.object_list_preferences_response import ObjectListPreferencesResponse
-from ...types.object_add_subscriptions_response import ObjectAddSubscriptionsResponse
-from ...types.object_delete_subscriptions_response import ObjectDeleteSubscriptionsResponse
+from ...types.message import Message
+from ...types.schedule import Schedule
+from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from ...types.recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["ObjectsResource", "AsyncObjectsResource"]
 
@@ -130,32 +121,24 @@ class ObjectsResource(SyncAPIResource):
             model=Object,
         )
 
-    def add_subscriptions(
+    def delete(
         self,
         collection: str,
-        object_id: str,
+        id: str,
         *,
-        recipients: List[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectAddSubscriptionsResponse:
-        """Add subscriptions for an object.
+    ) -> str:
+        """Permanently removes an object from the specified collection.
 
-        If a subscription already exists, it will be
-        updated. This endpoint also handles
-        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
-        for the `recipient`.
+        This operation
+        cannot be undone.
 
         Args:
-          recipients: The recipients of the subscription.
-
-          properties: The custom properties associated with the recipients of the subscription.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -166,82 +149,32 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return self._post(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            body=maybe_transform(
-                {
-                    "recipients": recipients,
-                    "properties": properties,
-                },
-                object_add_subscriptions_params.ObjectAddSubscriptionsParams,
-            ),
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._delete(
+            f"/v1/objects/{collection}/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ObjectAddSubscriptionsResponse,
+            cast_to=str,
         )
 
-    def delete_subscriptions(
+    def get(
         self,
         collection: str,
-        object_id: str,
+        id: str,
         *,
-        recipients: List[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectDeleteSubscriptionsResponse:
-        """Delete subscriptions for the specified recipients from an object.
+    ) -> Object:
+        """Retrieves a specific object by its ID from the specified collection.
 
         Returns the
-        list of deleted subscriptions.
-
-        Args:
-          recipients: The recipients of the subscription.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return self._delete(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            body=maybe_transform(
-                {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectDeleteSubscriptionsResponse,
-        )
-
-    def get_channel_data(
-        self,
-        collection: str,
-        object_id: str,
-        channel_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
-        """
-        Returns the channel data for the specified object and channel.
+        object with all its properties.
 
         Args:
           extra_headers: Send extra headers
@@ -254,93 +187,79 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            f"/v1/objects/{collection}/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelData,
+            cast_to=Object,
         )
 
-    def list_preferences(
+    def list_messages(
         self,
         collection: str,
-        object_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectListPreferencesResponse:
-        """
-        Returns a paginated list of preference sets for the specified object.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectListPreferencesResponse,
-        )
-
-    def list_subscriptions(
-        self,
-        collection: str,
-        object_id: str,
+        id: str,
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        channel_id: str | NotGiven = NOT_GIVEN,
+        engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
+        | NotGiven = NOT_GIVEN,
+        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
+        message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        source: str | NotGiven = NOT_GIVEN,
+        status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
+        | NotGiven = NOT_GIVEN,
+        tenant: str | NotGiven = NOT_GIVEN,
+        trigger_data: str | NotGiven = NOT_GIVEN,
+        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
+        workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Subscription]:
-        """List subscriptions for an object.
-
-        Either list the recipients that subscribe to
-        the provided object, or list the objects that the provided object is subscribed
-        to. Determined by the `mode` query parameter.
+    ) -> SyncEntriesCursor[Message]:
+        """
+        Returns a paginated list of messages for a specific object in the given
+        collection. Allows filtering by message status and provides various sorting
+        options.
 
         Args:
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          include: Additional fields to include in the response.
+          channel_id: Limits the results to items with the corresponding channel ID.
 
-          mode: Mode of the request.
+          engagement_status: Limits the results to messages with the given engagement status.
 
-          objects: Objects to filter by (only used if mode is `recipient`).
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
+              option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          recipients: Recipients to filter by (only used if mode is `object`).
+          source: Limits the results to messages triggered by the given workflow key.
+
+          status: Limits the results to messages with the given delivery status.
+
+          tenant: Limits the results to items with the corresponding tenant.
+
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
+
+          workflow_categories: Limits the results to messages related to any of the provided categories.
+
+          workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
+
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 
@@ -352,11 +271,11 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            page=SyncEntriesCursor[Subscription],
+            f"/v1/objects/{collection}/{id}/messages",
+            page=SyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,37 +285,55 @@ class ObjectsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
-                        "mode": mode,
-                        "objects": objects,
+                        "channel_id": channel_id,
+                        "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
+                        "message_ids": message_ids,
                         "page_size": page_size,
-                        "recipients": recipients,
+                        "source": source,
+                        "status": status,
+                        "tenant": tenant,
+                        "trigger_data": trigger_data,
+                        "workflow_categories": workflow_categories,
+                        "workflow_recipient_run_id": workflow_recipient_run_id,
+                        "workflow_run_id": workflow_run_id,
                     },
-                    object_list_subscriptions_params.ObjectListSubscriptionsParams,
+                    object_list_messages_params.ObjectListMessagesParams,
                 ),
             ),
-            model=Subscription,
+            model=Message,
         )
 
-    def set_channel_data(
+    def list_schedules(
         self,
         collection: str,
-        object_id: str,
-        channel_id: str,
+        id: str,
         *,
-        data: object_set_channel_data_params.Data,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        tenant: str | NotGiven = NOT_GIVEN,
+        workflow: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> SyncEntriesCursor[Schedule]:
         """
-        Sets the channel data for the specified object and channel.
+        Returns a paginated list of schedules for an object.
 
         Args:
-          data: Channel data for a given channel type.
+          after: The cursor to fetch entries after.
+
+          before: The cursor to fetch entries before.
+
+          page_size: The number of items per page.
+
+          tenant: Filter schedules by tenant id.
+
+          workflow: Filter schedules by workflow id.
 
           extra_headers: Send extra headers
 
@@ -408,56 +345,91 @@ class ObjectsResource(SyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/v1/objects/{collection}/{id}/schedules",
+            page=SyncEntriesCursor[Schedule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "page_size": page_size,
+                        "tenant": tenant,
+                        "workflow": workflow,
+                    },
+                    object_list_schedules_params.ObjectListSchedulesParams,
+                ),
+            ),
+            model=Schedule,
+        )
+
+    def set(
+        self,
+        collection: str,
+        id: str,
+        *,
+        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
+        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Object:
+        """
+        Creates a new object or updates an existing one in the specified collection.
+        This operation is used to identify objects with their properties, as well as
+        optional preferences and channel data.
+
+        Args:
+          channel_data: A request to set channel data for a type of channel inline.
+
+          locale: The locale of the object. Used for
+              [message localization](/concepts/translations).
+
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the object. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
-            body=maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
+            f"/v1/objects/{collection}/{id}",
+            body=maybe_transform(
+                {
+                    "channel_data": channel_data,
+                    "locale": locale,
+                    "preferences": preferences,
+                    "timezone": timezone,
+                },
+                object_set_params.ObjectSetParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelData,
-        )
-
-    def unset_channel_data(
-        self,
-        collection: str,
-        object_id: str,
-        channel_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Unsets the channel data for the specified object and channel.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return self._delete(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=str,
+            cast_to=Object,
         )
 
 
@@ -545,32 +517,24 @@ class AsyncObjectsResource(AsyncAPIResource):
             model=Object,
         )
 
-    async def add_subscriptions(
+    async def delete(
         self,
         collection: str,
-        object_id: str,
+        id: str,
         *,
-        recipients: List[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectAddSubscriptionsResponse:
-        """Add subscriptions for an object.
+    ) -> str:
+        """Permanently removes an object from the specified collection.
 
-        If a subscription already exists, it will be
-        updated. This endpoint also handles
-        [inline identifications](/managing-recipients/identifying-recipients#inline-identifying-recipients)
-        for the `recipient`.
+        This operation
+        cannot be undone.
 
         Args:
-          recipients: The recipients of the subscription.
-
-          properties: The custom properties associated with the recipients of the subscription.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -581,82 +545,32 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return await self._post(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            body=await async_maybe_transform(
-                {
-                    "recipients": recipients,
-                    "properties": properties,
-                },
-                object_add_subscriptions_params.ObjectAddSubscriptionsParams,
-            ),
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._delete(
+            f"/v1/objects/{collection}/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ObjectAddSubscriptionsResponse,
+            cast_to=str,
         )
 
-    async def delete_subscriptions(
+    async def get(
         self,
         collection: str,
-        object_id: str,
+        id: str,
         *,
-        recipients: List[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectDeleteSubscriptionsResponse:
-        """Delete subscriptions for the specified recipients from an object.
+    ) -> Object:
+        """Retrieves a specific object by its ID from the specified collection.
 
         Returns the
-        list of deleted subscriptions.
-
-        Args:
-          recipients: The recipients of the subscription.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return await self._delete(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            body=await async_maybe_transform(
-                {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectDeleteSubscriptionsResponse,
-        )
-
-    async def get_channel_data(
-        self,
-        collection: str,
-        object_id: str,
-        channel_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
-        """
-        Returns the channel data for the specified object and channel.
+        object with all its properties.
 
         Args:
           extra_headers: Send extra headers
@@ -669,93 +583,79 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            f"/v1/objects/{collection}/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelData,
+            cast_to=Object,
         )
 
-    async def list_preferences(
+    def list_messages(
         self,
         collection: str,
-        object_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ObjectListPreferencesResponse:
-        """
-        Returns a paginated list of preference sets for the specified object.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return await self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ObjectListPreferencesResponse,
-        )
-
-    def list_subscriptions(
-        self,
-        collection: str,
-        object_id: str,
+        id: str,
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        channel_id: str | NotGiven = NOT_GIVEN,
+        engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
+        | NotGiven = NOT_GIVEN,
+        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
+        message_ids: List[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        source: str | NotGiven = NOT_GIVEN,
+        status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
+        | NotGiven = NOT_GIVEN,
+        tenant: str | NotGiven = NOT_GIVEN,
+        trigger_data: str | NotGiven = NOT_GIVEN,
+        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
+        workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
-        """List subscriptions for an object.
-
-        Either list the recipients that subscribe to
-        the provided object, or list the objects that the provided object is subscribed
-        to. Determined by the `mode` query parameter.
+    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
+        """
+        Returns a paginated list of messages for a specific object in the given
+        collection. Allows filtering by message status and provides various sorting
+        options.
 
         Args:
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          include: Additional fields to include in the response.
+          channel_id: Limits the results to items with the corresponding channel ID.
 
-          mode: Mode of the request.
+          engagement_status: Limits the results to messages with the given engagement status.
 
-          objects: Objects to filter by (only used if mode is `recipient`).
+          message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
+              option, the results will be subject to any other filters applied to the query.
 
           page_size: The number of items per page.
 
-          recipients: Recipients to filter by (only used if mode is `object`).
+          source: Limits the results to messages triggered by the given workflow key.
+
+          status: Limits the results to messages with the given delivery status.
+
+          tenant: Limits the results to items with the corresponding tenant.
+
+          trigger_data: Limits the results to only messages that were generated with the given data. See
+              [trigger data filtering](/api-reference/overview/trigger-data-filtering) for
+              more information.
+
+          workflow_categories: Limits the results to messages related to any of the provided categories.
+
+          workflow_recipient_run_id: Limits the results to messages for a specific recipient's workflow run.
+
+          workflow_run_id: Limits the results to messages associated with the top-level workflow run ID
+              returned by the workflow trigger request.
 
           extra_headers: Send extra headers
 
@@ -767,11 +667,11 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
-            page=AsyncEntriesCursor[Subscription],
+            f"/v1/objects/{collection}/{id}/messages",
+            page=AsyncEntriesCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -781,37 +681,55 @@ class AsyncObjectsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
-                        "mode": mode,
-                        "objects": objects,
+                        "channel_id": channel_id,
+                        "engagement_status": engagement_status,
+                        "inserted_at": inserted_at,
+                        "message_ids": message_ids,
                         "page_size": page_size,
-                        "recipients": recipients,
+                        "source": source,
+                        "status": status,
+                        "tenant": tenant,
+                        "trigger_data": trigger_data,
+                        "workflow_categories": workflow_categories,
+                        "workflow_recipient_run_id": workflow_recipient_run_id,
+                        "workflow_run_id": workflow_run_id,
                     },
-                    object_list_subscriptions_params.ObjectListSubscriptionsParams,
+                    object_list_messages_params.ObjectListMessagesParams,
                 ),
             ),
-            model=Subscription,
+            model=Message,
         )
 
-    async def set_channel_data(
+    def list_schedules(
         self,
         collection: str,
-        object_id: str,
-        channel_id: str,
+        id: str,
         *,
-        data: object_set_channel_data_params.Data,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        tenant: str | NotGiven = NOT_GIVEN,
+        workflow: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChannelData:
+    ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
         """
-        Sets the channel data for the specified object and channel.
+        Returns a paginated list of schedules for an object.
 
         Args:
-          data: Channel data for a given channel type.
+          after: The cursor to fetch entries after.
+
+          before: The cursor to fetch entries before.
+
+          page_size: The number of items per page.
+
+          tenant: Filter schedules by tenant id.
+
+          workflow: Filter schedules by workflow id.
 
           extra_headers: Send extra headers
 
@@ -823,56 +741,91 @@ class AsyncObjectsResource(AsyncAPIResource):
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/v1/objects/{collection}/{id}/schedules",
+            page=AsyncEntriesCursor[Schedule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "page_size": page_size,
+                        "tenant": tenant,
+                        "workflow": workflow,
+                    },
+                    object_list_schedules_params.ObjectListSchedulesParams,
+                ),
+            ),
+            model=Schedule,
+        )
+
+    async def set(
+        self,
+        collection: str,
+        id: str,
+        *,
+        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
+        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Object:
+        """
+        Creates a new object or updates an existing one in the specified collection.
+        This operation is used to identify objects with their properties, as well as
+        optional preferences and channel data.
+
+        Args:
+          channel_data: A request to set channel data for a type of channel inline.
+
+          locale: The locale of the object. Used for
+              [message localization](/concepts/translations).
+
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the object. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
-            body=await async_maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
+            f"/v1/objects/{collection}/{id}",
+            body=await async_maybe_transform(
+                {
+                    "channel_data": channel_data,
+                    "locale": locale,
+                    "preferences": preferences,
+                    "timezone": timezone,
+                },
+                object_set_params.ObjectSetParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelData,
-        )
-
-    async def unset_channel_data(
-        self,
-        collection: str,
-        object_id: str,
-        channel_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Unsets the channel data for the specified object and channel.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not collection:
-            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
-        if not object_id:
-            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        if not channel_id:
-            raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
-        return await self._delete(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=str,
+            cast_to=Object,
         )
 
 
@@ -883,26 +836,20 @@ class ObjectsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             objects.list,
         )
-        self.add_subscriptions = to_raw_response_wrapper(
-            objects.add_subscriptions,
+        self.delete = to_raw_response_wrapper(
+            objects.delete,
         )
-        self.delete_subscriptions = to_raw_response_wrapper(
-            objects.delete_subscriptions,
+        self.get = to_raw_response_wrapper(
+            objects.get,
         )
-        self.get_channel_data = to_raw_response_wrapper(
-            objects.get_channel_data,
+        self.list_messages = to_raw_response_wrapper(
+            objects.list_messages,
         )
-        self.list_preferences = to_raw_response_wrapper(
-            objects.list_preferences,
+        self.list_schedules = to_raw_response_wrapper(
+            objects.list_schedules,
         )
-        self.list_subscriptions = to_raw_response_wrapper(
-            objects.list_subscriptions,
-        )
-        self.set_channel_data = to_raw_response_wrapper(
-            objects.set_channel_data,
-        )
-        self.unset_channel_data = to_raw_response_wrapper(
-            objects.unset_channel_data,
+        self.set = to_raw_response_wrapper(
+            objects.set,
         )
 
     @cached_property
@@ -917,26 +864,20 @@ class AsyncObjectsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             objects.list,
         )
-        self.add_subscriptions = async_to_raw_response_wrapper(
-            objects.add_subscriptions,
+        self.delete = async_to_raw_response_wrapper(
+            objects.delete,
         )
-        self.delete_subscriptions = async_to_raw_response_wrapper(
-            objects.delete_subscriptions,
+        self.get = async_to_raw_response_wrapper(
+            objects.get,
         )
-        self.get_channel_data = async_to_raw_response_wrapper(
-            objects.get_channel_data,
+        self.list_messages = async_to_raw_response_wrapper(
+            objects.list_messages,
         )
-        self.list_preferences = async_to_raw_response_wrapper(
-            objects.list_preferences,
+        self.list_schedules = async_to_raw_response_wrapper(
+            objects.list_schedules,
         )
-        self.list_subscriptions = async_to_raw_response_wrapper(
-            objects.list_subscriptions,
-        )
-        self.set_channel_data = async_to_raw_response_wrapper(
-            objects.set_channel_data,
-        )
-        self.unset_channel_data = async_to_raw_response_wrapper(
-            objects.unset_channel_data,
+        self.set = async_to_raw_response_wrapper(
+            objects.set,
         )
 
     @cached_property
@@ -951,26 +892,20 @@ class ObjectsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             objects.list,
         )
-        self.add_subscriptions = to_streamed_response_wrapper(
-            objects.add_subscriptions,
+        self.delete = to_streamed_response_wrapper(
+            objects.delete,
         )
-        self.delete_subscriptions = to_streamed_response_wrapper(
-            objects.delete_subscriptions,
+        self.get = to_streamed_response_wrapper(
+            objects.get,
         )
-        self.get_channel_data = to_streamed_response_wrapper(
-            objects.get_channel_data,
+        self.list_messages = to_streamed_response_wrapper(
+            objects.list_messages,
         )
-        self.list_preferences = to_streamed_response_wrapper(
-            objects.list_preferences,
+        self.list_schedules = to_streamed_response_wrapper(
+            objects.list_schedules,
         )
-        self.list_subscriptions = to_streamed_response_wrapper(
-            objects.list_subscriptions,
-        )
-        self.set_channel_data = to_streamed_response_wrapper(
-            objects.set_channel_data,
-        )
-        self.unset_channel_data = to_streamed_response_wrapper(
-            objects.unset_channel_data,
+        self.set = to_streamed_response_wrapper(
+            objects.set,
         )
 
     @cached_property
@@ -985,26 +920,20 @@ class AsyncObjectsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             objects.list,
         )
-        self.add_subscriptions = async_to_streamed_response_wrapper(
-            objects.add_subscriptions,
+        self.delete = async_to_streamed_response_wrapper(
+            objects.delete,
         )
-        self.delete_subscriptions = async_to_streamed_response_wrapper(
-            objects.delete_subscriptions,
+        self.get = async_to_streamed_response_wrapper(
+            objects.get,
         )
-        self.get_channel_data = async_to_streamed_response_wrapper(
-            objects.get_channel_data,
+        self.list_messages = async_to_streamed_response_wrapper(
+            objects.list_messages,
         )
-        self.list_preferences = async_to_streamed_response_wrapper(
-            objects.list_preferences,
+        self.list_schedules = async_to_streamed_response_wrapper(
+            objects.list_schedules,
         )
-        self.list_subscriptions = async_to_streamed_response_wrapper(
-            objects.list_subscriptions,
-        )
-        self.set_channel_data = async_to_streamed_response_wrapper(
-            objects.set_channel_data,
-        )
-        self.unset_channel_data = async_to_streamed_response_wrapper(
-            objects.unset_channel_data,
+        self.set = async_to_streamed_response_wrapper(
+            objects.set,
         )
 
     @cached_property

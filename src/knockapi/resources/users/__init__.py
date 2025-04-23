@@ -8,6 +8,14 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
+from .feeds import (
+    FeedsResource,
+    AsyncFeedsResource,
+    FeedsResourceWithRawResponse,
+    AsyncFeedsResourceWithRawResponse,
+    FeedsResourceWithStreamingResponse,
+    AsyncFeedsResourceWithStreamingResponse,
+)
 from .users import (
     UsersResource,
     AsyncUsersResource,
@@ -26,6 +34,12 @@ from .guides import (
 )
 
 __all__ = [
+    "FeedsResource",
+    "AsyncFeedsResource",
+    "FeedsResourceWithRawResponse",
+    "AsyncFeedsResourceWithRawResponse",
+    "FeedsResourceWithStreamingResponse",
+    "AsyncFeedsResourceWithStreamingResponse",
     "GuidesResource",
     "AsyncGuidesResource",
     "GuidesResourceWithRawResponse",

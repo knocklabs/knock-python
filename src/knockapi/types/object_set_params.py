@@ -15,7 +15,22 @@ class ObjectSetParams(TypedDict, total=False):
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""
 
+    locale: Optional[str]
+    """The locale of the object.
+
+    Used for [message localization](/concepts/translations).
+    """
+
     preferences: Optional[InlinePreferenceSetRequestParam]
     """
     Inline set preferences for a recipient, where the key is the preference set name
+    """
+
+    timezone: Optional[str]
+    """The timezone of the object.
+
+    Must be a valid
+    [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used for
+    [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """

@@ -681,7 +681,9 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -697,7 +699,15 @@ class ObjectsResource(SyncAPIResource):
         Args:
           channel_data: A request to set channel data for a type of channel inline.
 
+          locale: The locale of the object. Used for
+              [message localization](/concepts/translations).
+
           preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the object. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -716,7 +726,9 @@ class ObjectsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "channel_data": channel_data,
+                    "locale": locale,
                     "preferences": preferences,
+                    "timezone": timezone,
                 },
                 object_set_params.ObjectSetParams,
             ),
@@ -1492,7 +1504,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1508,7 +1522,15 @@ class AsyncObjectsResource(AsyncAPIResource):
         Args:
           channel_data: A request to set channel data for a type of channel inline.
 
+          locale: The locale of the object. Used for
+              [message localization](/concepts/translations).
+
           preferences: Inline set preferences for a recipient, where the key is the preference set name
+
+          timezone: The timezone of the object. Must be a valid
+              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used for
+              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -1527,7 +1549,9 @@ class AsyncObjectsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "channel_data": channel_data,
+                    "locale": locale,
                     "preferences": preferences,
+                    "timezone": timezone,
                 },
                 object_set_params.ObjectSetParams,
             ),

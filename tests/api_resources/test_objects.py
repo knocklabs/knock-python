@@ -834,6 +834,7 @@ class TestObjects:
                     "provider": "push_fcm",
                 }
             ],
+            locale="en-US",
             preferences=[
                 {
                     "id": "default",
@@ -885,6 +886,7 @@ class TestObjects:
                     },
                 }
             ],
+            timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])
 
@@ -2060,6 +2062,7 @@ class TestAsyncObjects:
                     "provider": "push_fcm",
                 }
             ],
+            locale="en-US",
             preferences=[
                 {
                     "id": "default",
@@ -2111,6 +2114,7 @@ class TestAsyncObjects:
                     },
                 }
             ],
+            timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])
 

@@ -16,8 +16,6 @@ from .bulk_operation import BulkOperation as BulkOperation
 from .audience_member import AudienceMember as AudienceMember
 from .condition_param import ConditionParam as ConditionParam
 from .user_list_params import UserListParams as UserListParams
-from .object_set_params import ObjectSetParams as ObjectSetParams
-from .tenant_set_params import TenantSetParams as TenantSetParams
 from .user_merge_params import UserMergeParams as UserMergeParams
 from .object_list_params import ObjectListParams as ObjectListParams
 from .tenant_list_params import TenantListParams as TenantListParams
@@ -29,11 +27,9 @@ from .schedule_list_params import ScheduleListParams as ScheduleListParams
 from .schedule_repeat_rule import ScheduleRepeatRule as ScheduleRepeatRule
 from .tenant_request_param import TenantRequestParam as TenantRequestParam
 from .user_delete_response import UserDeleteResponse as UserDeleteResponse
-from .object_delete_response import ObjectDeleteResponse as ObjectDeleteResponse
 from .schedule_create_params import ScheduleCreateParams as ScheduleCreateParams
 from .schedule_delete_params import ScheduleDeleteParams as ScheduleDeleteParams
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams
-from .tenant_delete_response import TenantDeleteResponse as TenantDeleteResponse
 from .workflow_cancel_params import WorkflowCancelParams as WorkflowCancelParams
 from .recipient_request_param import RecipientRequestParam as RecipientRequestParam
 from .workflow_trigger_params import WorkflowTriggerParams as WorkflowTriggerParams
@@ -50,14 +46,9 @@ from .user_list_schedules_params import UserListSchedulesParams as UserListSched
 from .audience_add_members_params import AudienceAddMembersParams as AudienceAddMembersParams
 from .inline_object_request_param import InlineObjectRequestParam as InlineObjectRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam as InlineTenantRequestParam
-from .object_list_messages_params import ObjectListMessagesParams as ObjectListMessagesParams
-from .user_get_preferences_params import UserGetPreferencesParams as UserGetPreferencesParams
-from .user_set_preferences_params import UserSetPreferencesParams as UserSetPreferencesParams
 from .message_get_content_response import MessageGetContentResponse as MessageGetContentResponse
-from .object_list_schedules_params import ObjectListSchedulesParams as ObjectListSchedulesParams
 from .user_set_channel_data_params import UserSetChannelDataParams as UserSetChannelDataParams
 from .audience_add_members_response import AudienceAddMembersResponse as AudienceAddMembersResponse
-from .object_set_preferences_params import ObjectSetPreferencesParams as ObjectSetPreferencesParams
 from .audience_list_members_response import AudienceListMembersResponse as AudienceListMembersResponse
 from .audience_remove_members_params import AudienceRemoveMembersParams as AudienceRemoveMembersParams
 from .message_list_activities_params import MessageListActivitiesParams as MessageListActivitiesParams

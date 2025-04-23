@@ -75,28 +75,13 @@ Methods:
 - <code title="delete /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">delete</a>(user_id) -> str</code>
 - <code title="get /v1/users/{user_id}">client.users.<a href="./src/knockapi/resources/users/users.py">get</a>(user_id) -> <a href="./src/knockapi/types/user.py">User</a></code>
 - <code title="get /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">get_channel_data</a>(user_id, channel_id) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
-- <code title="get /v1/users/{user_id}/preferences/{preference_set_id}">client.users.<a href="./src/knockapi/resources/users/users.py">get_preferences</a>(user_id, preference_set_id, \*\*<a href="src/knockapi/types/user_get_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="get /v1/users/{user_id}/messages">client.users.<a href="./src/knockapi/resources/users/users.py">list_messages</a>(user_id, \*\*<a href="src/knockapi/types/user_list_messages_params.py">params</a>) -> <a href="./src/knockapi/types/message.py">SyncEntriesCursor[Message]</a></code>
 - <code title="get /v1/users/{user_id}/preferences">client.users.<a href="./src/knockapi/resources/users/users.py">list_preferences</a>(user_id) -> <a href="./src/knockapi/types/user_list_preferences_response.py">UserListPreferencesResponse</a></code>
 - <code title="get /v1/users/{user_id}/schedules">client.users.<a href="./src/knockapi/resources/users/users.py">list_schedules</a>(user_id, \*\*<a href="src/knockapi/types/user_list_schedules_params.py">params</a>) -> <a href="./src/knockapi/types/schedule.py">SyncEntriesCursor[Schedule]</a></code>
 - <code title="get /v1/users/{user_id}/subscriptions">client.users.<a href="./src/knockapi/resources/users/users.py">list_subscriptions</a>(user_id, \*\*<a href="src/knockapi/types/user_list_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/subscription.py">SyncEntriesCursor[Subscription]</a></code>
 - <code title="post /v1/users/{user_id}/merge">client.users.<a href="./src/knockapi/resources/users/users.py">merge</a>(user_id, \*\*<a href="src/knockapi/types/user_merge_params.py">params</a>) -> <a href="./src/knockapi/types/user.py">User</a></code>
 - <code title="put /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_channel_data</a>(user_id, channel_id, \*\*<a href="src/knockapi/types/user_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
-- <code title="put /v1/users/{user_id}/preferences/{preference_set_id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_preferences</a>(user_id, preference_set_id, \*\*<a href="src/knockapi/types/user_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">unset_channel_data</a>(user_id, channel_id) -> str</code>
-
-## Feeds
-
-Types:
-
-```python
-from knockapi.types.users import FeedGetSettingsResponse, FeedListItemsResponse
-```
-
-Methods:
-
-- <code title="get /v1/users/{user_id}/feeds/{channel_id}/settings">client.users.feeds.<a href="./src/knockapi/resources/users/feeds.py">get_settings</a>(user_id, channel_id) -> <a href="./src/knockapi/types/users/feed_get_settings_response.py">FeedGetSettingsResponse</a></code>
-- <code title="get /v1/users/{user_id}/feeds/{channel_id}">client.users.feeds.<a href="./src/knockapi/resources/users/feeds.py">list_items</a>(user_id, channel_id, \*\*<a href="src/knockapi/types/users/feed_list_items_params.py">params</a>) -> <a href="./src/knockapi/types/users/feed_list_items_response.py">SyncEntriesCursor[FeedListItemsResponse]</a></code>
 
 ## Guides
 
@@ -134,7 +119,6 @@ Types:
 from knockapi.types import (
     InlineObjectRequest,
     Object,
-    ObjectDeleteResponse,
     ObjectAddSubscriptionsResponse,
     ObjectDeleteSubscriptionsResponse,
     ObjectListPreferencesResponse,
@@ -145,19 +129,12 @@ from knockapi.types import (
 Methods:
 
 - <code title="get /v1/objects/{collection}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">list</a>(collection, \*\*<a href="src/knockapi/types/object_list_params.py">params</a>) -> <a href="./src/knockapi/types/object.py">SyncEntriesCursor[Object]</a></code>
-- <code title="delete /v1/objects/{collection}/{object_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">delete</a>(collection, object_id) -> str</code>
 - <code title="post /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knockapi/resources/objects/objects.py">add_subscriptions</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_add_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/object_add_subscriptions_response.py">ObjectAddSubscriptionsResponse</a></code>
 - <code title="delete /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knockapi/resources/objects/objects.py">delete_subscriptions</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_delete_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/object_delete_subscriptions_response.py">ObjectDeleteSubscriptionsResponse</a></code>
-- <code title="get /v1/objects/{collection}/{object_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">get</a>(collection, object_id) -> <a href="./src/knockapi/types/object.py">Object</a></code>
 - <code title="get /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">get_channel_data</a>(collection, object_id, channel_id) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
-- <code title="get /v1/objects/{collection}/{object_id}/preferences/{preference_set_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">get_preferences</a>(collection, object_id, preference_set_id) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
-- <code title="get /v1/objects/{collection}/{object_id}/messages">client.objects.<a href="./src/knockapi/resources/objects/objects.py">list_messages</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_list_messages_params.py">params</a>) -> <a href="./src/knockapi/types/message.py">SyncEntriesCursor[Message]</a></code>
 - <code title="get /v1/objects/{collection}/{object_id}/preferences">client.objects.<a href="./src/knockapi/resources/objects/objects.py">list_preferences</a>(collection, object_id) -> <a href="./src/knockapi/types/object_list_preferences_response.py">ObjectListPreferencesResponse</a></code>
-- <code title="get /v1/objects/{collection}/{object_id}/schedules">client.objects.<a href="./src/knockapi/resources/objects/objects.py">list_schedules</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_list_schedules_params.py">params</a>) -> <a href="./src/knockapi/types/schedule.py">SyncEntriesCursor[Schedule]</a></code>
 - <code title="get /v1/objects/{collection}/{object_id}/subscriptions">client.objects.<a href="./src/knockapi/resources/objects/objects.py">list_subscriptions</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_list_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/subscription.py">SyncEntriesCursor[Subscription]</a></code>
-- <code title="put /v1/objects/{collection}/{object_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set</a>(collection, object_id, \*\*<a href="src/knockapi/types/object_set_params.py">params</a>) -> <a href="./src/knockapi/types/object.py">Object</a></code>
 - <code title="put /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_channel_data</a>(collection, object_id, channel_id, \*\*<a href="src/knockapi/types/object_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
-- <code title="put /v1/objects/{collection}/{object_id}/preferences/{preference_set_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_preferences</a>(collection, object_id, preference_set_id, \*\*<a href="src/knockapi/types/object_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">unset_channel_data</a>(collection, object_id, channel_id) -> str</code>
 
 ## Bulk
@@ -173,15 +150,12 @@ Methods:
 Types:
 
 ```python
-from knockapi.types import InlineTenantRequest, Tenant, TenantRequest, TenantDeleteResponse
+from knockapi.types import InlineTenantRequest, Tenant, TenantRequest
 ```
 
 Methods:
 
 - <code title="get /v1/tenants">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">list</a>(\*\*<a href="src/knockapi/types/tenant_list_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">SyncEntriesCursor[Tenant]</a></code>
-- <code title="delete /v1/tenants/{tenant_id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">delete</a>(tenant_id) -> str</code>
-- <code title="get /v1/tenants/{tenant_id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">get</a>(tenant_id) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
-- <code title="put /v1/tenants/{tenant_id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">set</a>(tenant_id, \*\*<a href="src/knockapi/types/tenant_set_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
 
 ## Bulk
 

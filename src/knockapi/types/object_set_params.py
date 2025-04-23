@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Iterable, Optional
 from typing_extensions import TypedDict
 
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -12,8 +12,11 @@ __all__ = ["ObjectSetParams"]
 
 
 class ObjectSetParams(TypedDict, total=False):
-    channel_data: Optional[InlineChannelDataRequestParam]
-    """A request to set channel data for a type of channel inline."""
+    channel_data: Optional[Iterable[InlineChannelDataRequestParam]]
+    """
+    An optional set of [channel data](/managing-recipients/setting-channel-data) for
+    the object. This is a list of `ChannelData` objects.
+    """
 
     locale: Optional[str]
     """The locale of the object.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -325,7 +325,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
 
@@ -680,7 +680,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[Iterable[InlineChannelDataRequestParam]] | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
@@ -697,7 +697,8 @@ class ObjectsResource(SyncAPIResource):
         optional preferences and channel data.
 
         Args:
-          channel_data: A request to set channel data for a type of channel inline.
+          channel_data: An optional set of [channel data](/managing-recipients/setting-channel-data) for
+              the object. This is a list of `ChannelData` objects.
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
@@ -751,7 +752,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Sets the channel data for the specified object and channel.
 
@@ -1148,7 +1149,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
 
@@ -1503,7 +1504,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
+        channel_data: Optional[Iterable[InlineChannelDataRequestParam]] | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1520,7 +1521,8 @@ class AsyncObjectsResource(AsyncAPIResource):
         optional preferences and channel data.
 
         Args:
-          channel_data: A request to set channel data for a type of channel inline.
+          channel_data: An optional set of [channel data](/managing-recipients/setting-channel-data) for
+              the object. This is a list of `ChannelData` objects.
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
@@ -1574,7 +1576,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Sets the channel data for the specified object and channel.
 

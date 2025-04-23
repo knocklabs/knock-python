@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -314,7 +314,7 @@ class TestUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -329,7 +329,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -344,7 +344,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(Optional[ChannelData], user, path=["response"])
+            assert_matches_type(ChannelData, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -763,7 +763,7 @@ class TestUsers:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -778,7 +778,7 @@ class TestUsers:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -797,7 +797,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -816,7 +816,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(Optional[ChannelData], user, path=["response"])
+            assert_matches_type(ChannelData, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1312,7 +1312,7 @@ class TestAsyncUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1327,7 +1327,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1342,7 +1342,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(Optional[ChannelData], user, path=["response"])
+            assert_matches_type(ChannelData, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1761,7 +1761,7 @@ class TestAsyncUsers:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1776,7 +1776,7 @@ class TestAsyncUsers:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1795,7 +1795,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(Optional[ChannelData], user, path=["response"])
+        assert_matches_type(ChannelData, user, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1814,7 +1814,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(Optional[ChannelData], user, path=["response"])
+            assert_matches_type(ChannelData, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -367,7 +367,7 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -383,7 +383,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = response.parse()
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -399,7 +399,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = response.parse()
-            assert_matches_type(Optional[ChannelData], object_, path=["response"])
+            assert_matches_type(ChannelData, object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -825,14 +825,16 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
-                    "data": {
-                        "_typename": "PushChannelData",
-                        "tokens": ["push_token_123"],
-                    },
-                    "provider": "push_fcm",
-                }
+                [
+                    {
+                        "channel_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "data": {
+                            "_typename": "PushChannelData",
+                            "tokens": ["push_token_1"],
+                        },
+                        "provider": "push_fcm",
+                    }
+                ]
             ],
             locale="en-US",
             preferences=[
@@ -954,7 +956,7 @@ class TestObjects:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -970,7 +972,7 @@ class TestObjects:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -990,7 +992,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = response.parse()
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1010,7 +1012,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = response.parse()
-            assert_matches_type(Optional[ChannelData], object_, path=["response"])
+            assert_matches_type(ChannelData, object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1596,7 +1598,7 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1612,7 +1614,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = await response.parse()
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -1628,7 +1630,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = await response.parse()
-            assert_matches_type(Optional[ChannelData], object_, path=["response"])
+            assert_matches_type(ChannelData, object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2054,14 +2056,16 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
-                    "data": {
-                        "_typename": "PushChannelData",
-                        "tokens": ["push_token_123"],
-                    },
-                    "provider": "push_fcm",
-                }
+                [
+                    {
+                        "channel_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "data": {
+                            "_typename": "PushChannelData",
+                            "tokens": ["push_token_1"],
+                        },
+                        "provider": "push_fcm",
+                    }
+                ]
             ],
             locale="en-US",
             preferences=[
@@ -2183,7 +2187,7 @@ class TestAsyncObjects:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -2199,7 +2203,7 @@ class TestAsyncObjects:
                 "tokens": ["push_token_1"],
             },
         )
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -2219,7 +2223,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = await response.parse()
-        assert_matches_type(Optional[ChannelData], object_, path=["response"])
+        assert_matches_type(ChannelData, object_, path=["response"])
 
     @pytest.mark.skip(
         reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
@@ -2239,7 +2243,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = await response.parse()
-            assert_matches_type(Optional[ChannelData], object_, path=["response"])
+            assert_matches_type(ChannelData, object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

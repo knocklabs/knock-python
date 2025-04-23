@@ -316,7 +316,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Retrieves the channel data for a specific user and channel ID.
 
@@ -698,7 +698,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Updates or creates channel data for a specific user and channel ID.
 
@@ -1067,7 +1067,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Retrieves the channel data for a specific user and channel ID.
 
@@ -1451,7 +1451,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelData]:
+    ) -> ChannelData:
         """
         Updates or creates channel data for a specific user and channel ID.
 

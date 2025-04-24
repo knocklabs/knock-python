@@ -194,7 +194,7 @@ class TestTenants:
                     "provider": "push_fcm",
                 }
             ],
-            preferences=[],
+            preferences={},
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",
@@ -475,7 +475,7 @@ class TestAsyncTenants:
                     "provider": "push_fcm",
                 }
             ],
-            preferences=[],
+            preferences={},
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",

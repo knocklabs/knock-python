@@ -841,7 +841,13 @@ class TestObjects:
                 }
             ],
             locale="en-US",
-            preferences=[],
+            preferences=[
+                {
+                    "channel_types": {"email": True},
+                    "id": "default",
+                    "workflows": {"dinosaurs-loose": {"channel_types": {"email": True}}},
+                }
+            ],
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])
@@ -2026,7 +2032,13 @@ class TestAsyncObjects:
                 }
             ],
             locale="en-US",
-            preferences=[],
+            preferences=[
+                {
+                    "channel_types": {"email": True},
+                    "id": "default",
+                    "workflows": {"dinosaurs-loose": {"channel_types": {"email": True}}},
+                }
+            ],
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])

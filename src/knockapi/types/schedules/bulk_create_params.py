@@ -7,7 +7,9 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from ..recipient_request_param import RecipientRequestParam
 from ..schedule_repeat_rule_param import ScheduleRepeatRuleParam
+from ..inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["BulkCreateParams", "Schedule"]
 
@@ -21,7 +23,7 @@ class Schedule(TypedDict, total=False):
     workflow: Required[str]
     """The key of the workflow."""
 
-    actor: Optional["RecipientRequestParam"]
+    actor: Optional[RecipientRequestParam]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -35,7 +37,7 @@ class Schedule(TypedDict, total=False):
     ending_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The ending date and time for the schedule."""
 
-    recipient: "RecipientRequestParam"
+    recipient: RecipientRequestParam
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -49,9 +51,5 @@ class Schedule(TypedDict, total=False):
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The starting date and time for the schedule."""
 
-    tenant: Optional["InlineTenantRequestParam"]
+    tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
-
-
-from ..recipient_request_param import RecipientRequestParam
-from ..inline_tenant_request_param import InlineTenantRequestParam

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ..recipient_request_param import RecipientRequestParam
+
 __all__ = ["BulkAddSubscriptionsParams", "Subscription"]
 
 
@@ -14,7 +16,7 @@ class BulkAddSubscriptionsParams(TypedDict, total=False):
 
 
 class Subscription(TypedDict, total=False):
-    recipients: Required[List["RecipientRequestParam"]]
+    recipients: Required[List[RecipientRequestParam]]
     """The recipients of the subscription.
 
     You can subscribe up to 100 recipients to an object at a time.
@@ -22,6 +24,3 @@ class Subscription(TypedDict, total=False):
 
     properties: Optional[Dict[str, object]]
     """The custom properties associated with the subscription relationship."""
-
-
-from ..recipient_request_param import RecipientRequestParam

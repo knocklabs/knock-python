@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -112,7 +112,7 @@ class UsersResource(SyncAPIResource):
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Iterable[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -863,7 +863,7 @@ class AsyncUsersResource(AsyncAPIResource):
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Iterable[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

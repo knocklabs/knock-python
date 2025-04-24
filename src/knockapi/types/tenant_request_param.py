@@ -7,6 +7,7 @@ from typing_extensions import Required, TypeAlias, TypedDict
 
 from .recipients.preference_set_request_param import PreferenceSetRequestParam
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["TenantRequestParam", "Settings", "SettingsBranding"]
 
@@ -46,7 +47,7 @@ class TenantRequestParamTyped(TypedDict, total=False):
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""
 
-    preferences: Optional["InlinePreferenceSetRequestParam"]
+    preferences: Optional[InlinePreferenceSetRequestParam]
     """A list of objects that specify the preferences for the user."""
 
     settings: Settings
@@ -54,5 +55,3 @@ class TenantRequestParamTyped(TypedDict, total=False):
 
 
 TenantRequestParam: TypeAlias = Union[TenantRequestParamTyped, Dict[str, object]]
-
-from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam

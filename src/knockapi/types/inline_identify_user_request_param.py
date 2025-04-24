@@ -8,6 +8,7 @@ from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["InlineIdentifyUserRequestParam"]
 
@@ -22,10 +23,8 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The creation date of the user from your system."""
 
-    preferences: Optional["InlinePreferenceSetRequestParam"]
+    preferences: Optional[InlinePreferenceSetRequestParam]
     """A list of objects that specify the preferences for the user."""
 
 
 InlineIdentifyUserRequestParam: TypeAlias = Union[InlineIdentifyUserRequestParamTyped, Dict[str, object]]
-
-from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam

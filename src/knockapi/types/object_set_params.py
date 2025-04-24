@@ -6,6 +6,7 @@ from typing import Optional
 from typing_extensions import TypedDict
 
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
+from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["ObjectSetParams"]
 
@@ -20,7 +21,7 @@ class ObjectSetParams(TypedDict, total=False):
     Used for [message localization](/concepts/translations).
     """
 
-    preferences: "InlinePreferenceSetRequestParam"
+    preferences: Optional[InlinePreferenceSetRequestParam]
     """A list of objects that specify the preferences for the user."""
 
     timezone: Optional[str]
@@ -31,6 +32,3 @@ class ObjectSetParams(TypedDict, total=False):
     Used for
     [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """
-
-
-from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam

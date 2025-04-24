@@ -63,7 +63,13 @@ class TestUsers:
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[[]],
+            preferences=[
+                {
+                    "channel_types": {"email": True},
+                    "id": "default",
+                    "workflows": {"dinosaurs-loose": {"channel_types": {"email": True}}},
+                }
+            ],
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])
@@ -1012,7 +1018,13 @@ class TestAsyncUsers:
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[[]],
+            preferences=[
+                {
+                    "channel_types": {"email": True},
+                    "id": "default",
+                    "workflows": {"dinosaurs-loose": {"channel_types": {"email": True}}},
+                }
+            ],
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])

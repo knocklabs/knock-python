@@ -247,10 +247,10 @@ class TestTenants:
             ],
             settings={
                 "branding": {
-                    "icon_url": "https://example.com/icon.png",
-                    "logo_url": "https://example.com/logo.png",
-                    "primary_color": "#000000",
-                    "primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://example.com/trex_silhouette_icon.png",
+                    "logo_url": "https://example.com/amber_fossil_logo.png",
+                    "primary_color": "#DF1A22",
+                    "primary_color_contrast": "#FFDE00",
                 },
                 "preference_set": {
                     "categories": {
@@ -578,10 +578,10 @@ class TestAsyncTenants:
             ],
             settings={
                 "branding": {
-                    "icon_url": "https://example.com/icon.png",
-                    "logo_url": "https://example.com/logo.png",
-                    "primary_color": "#000000",
-                    "primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://example.com/trex_silhouette_icon.png",
+                    "logo_url": "https://example.com/amber_fossil_logo.png",
+                    "primary_color": "#DF1A22",
+                    "primary_color_contrast": "#FFDE00",
                 },
                 "preference_set": {
                     "categories": {

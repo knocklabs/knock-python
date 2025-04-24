@@ -59,9 +59,9 @@ class TestUsers:
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            email="jane@ingen.net",
+            email="ian.malcolm@chaos.theory",
             locale="locale",
-            name="Jane Doe",
+            name="Dr. Ian Malcolm",
             phone_number="phone_number",
             preferences=[
                 {
@@ -1059,9 +1059,9 @@ class TestAsyncUsers:
                 }
             ],
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            email="jane@ingen.net",
+            email="ian.malcolm@chaos.theory",
             locale="locale",
-            name="Jane Doe",
+            name="Dr. Ian Malcolm",
             phone_number="phone_number",
             preferences=[
                 {

@@ -46,7 +46,7 @@ InlinePreferenceSetRequestParamItemWorkflows: TypeAlias = Union[
 
 class InlinePreferenceSetRequestParamItem(TypedDict, total=False):
     id: Required[str]
-    """The ID of the preference set"""
+    """Unique identifier for the preference set."""
 
     categories: Optional[Dict[str, InlinePreferenceSetRequestParamItemCategories]]
     """

@@ -27,7 +27,7 @@ class InlineObjectRequestParamTyped(TypedDict, total=False):
     """Timestamp when the resource was created."""
 
     preferences: Optional[InlinePreferenceSetRequestParam]
-    """Inline set preferences for a recipient."""
+    """Inline set preferences for a recipient, where the key is the preference set id."""
 
 
 InlineObjectRequestParam: TypeAlias = Union[InlineObjectRequestParamTyped, Dict[str, object]]

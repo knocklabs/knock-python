@@ -17,7 +17,7 @@ class TenantSetParams(TypedDict, total=False):
     """A request to set channel data for a type of channel inline."""
 
     preferences: Optional[InlinePreferenceSetRequestParam]
-    """Inline set preferences for a recipient."""
+    """Inline set preferences for a recipient, where the key is the preference set id."""
 
     settings: Settings
     """The settings for the tenant. Includes branding and preference set."""

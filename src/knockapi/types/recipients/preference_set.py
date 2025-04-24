@@ -3,8 +3,6 @@
 from typing import Dict, List, Union, Optional
 from typing_extensions import TypeAlias
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 from ..condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
@@ -43,9 +41,6 @@ Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySetting
 class PreferenceSet(BaseModel):
     id: str
     """Unique identifier for the preference set."""
-
-    api_typename: str = FieldInfo(alias="__typename")
-    """The typename of the schema."""
 
     categories: Optional[Dict[str, Categories]] = None
     """

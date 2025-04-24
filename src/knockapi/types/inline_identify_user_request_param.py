@@ -24,7 +24,7 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     """The creation date of the user from your system."""
 
     preferences: Optional[InlinePreferenceSetRequestParam]
-    """Inline set preferences for a recipient."""
+    """Inline set preferences for a recipient, where the key is the preference set id."""
 
 
 InlineIdentifyUserRequestParam: TypeAlias = Union[InlineIdentifyUserRequestParamTyped, Dict[str, object]]

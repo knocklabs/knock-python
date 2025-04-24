@@ -1,9 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
-
-from pydantic import Field as FieldInfo
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -44,11 +42,5 @@ class SlackChannelData(BaseModel):
     connections: List[Connection]
     """List of Slack channel connections."""
 
-    type: Literal["chat_slack"]
-    """The type of provider."""
-
     token: Optional[Token] = None
     """A Slack connection token."""
-
-    api_typename: Optional[Literal["SlackChannelData"]] = FieldInfo(alias="__typename", default=None)
-    """The typename of the schema."""

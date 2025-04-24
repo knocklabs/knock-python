@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
     "SlackChannelDataParam",
@@ -44,11 +42,5 @@ class SlackChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
     """List of Slack channel connections."""
 
-    type: Required[Literal["chat_slack"]]
-    """The type of provider."""
-
     token: Optional[Token]
     """A Slack connection token."""
-
-    _typename: Annotated[Literal["SlackChannelData"], PropertyInfo(alias="__typename")]
-    """The typename of the schema."""

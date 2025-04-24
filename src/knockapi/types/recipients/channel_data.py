@@ -3,8 +3,6 @@
 from typing import Union, Optional
 from typing_extensions import Literal, TypeAlias
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 from .push_channel_data import PushChannelData
 from .slack_channel_data import SlackChannelData
@@ -24,17 +22,16 @@ class ChannelData(BaseModel):
     data: Data
     """Channel data for a given channel type."""
 
-    provider: Literal[
-        "push_fcm",
-        "push_apns",
-        "push_expo",
-        "push_one_signal",
-        "chat_slack",
-        "chat_ms_teams",
-        "chat_discord",
-        "http_knock_webhook",
-    ]
+    provider: Optional[
+        Literal[
+            "push_fcm",
+            "push_apns",
+            "push_expo",
+            "push_one_signal",
+            "chat_slack",
+            "chat_ms_teams",
+            "chat_discord",
+            "http_knock_webhook",
+        ]
+    ] = None
     """The type of provider."""
-
-    api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
-    """The typename of the schema."""

@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
     "DiscordChannelDataParam",
@@ -37,9 +35,3 @@ Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDisc
 class DiscordChannelDataParam(TypedDict, total=False):
     connections: Required[Iterable[Connection]]
     """List of Discord channel connections."""
-
-    type: Required[Literal["chat_discord"]]
-    """The type of provider."""
-
-    _typename: Annotated[Literal["DiscordChannelData"], PropertyInfo(alias="__typename")]
-    """The typename of the schema."""

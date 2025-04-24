@@ -1,9 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
-
-from pydantic import Field as FieldInfo
+from typing import List, Union
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -37,9 +35,3 @@ Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDisc
 class DiscordChannelData(BaseModel):
     connections: List[Connection]
     """List of Discord channel connections."""
-
-    type: Literal["chat_discord"]
-    """The type of provider."""
-
-    api_typename: Optional[Literal["DiscordChannelData"]] = FieldInfo(alias="__typename", default=None)
-    """The typename of the schema."""

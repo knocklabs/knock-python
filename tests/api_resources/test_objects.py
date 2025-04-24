@@ -829,18 +829,10 @@ class TestObjects:
         object_ = client.objects.set(
             collection="collection",
             id="id",
-            channel_data={
-                "0": {
-                    "data": {
-                        "tokens": ["push_token_123"],
-                        "type": "push_fcm",
-                        "_typename": "PushChannelData",
-                    }
-                }
-            },
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
             locale="en-US",
             preferences={
-                "0": {
+                "default": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -952,10 +944,7 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -968,11 +957,7 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-                "_typename": "PushChannelData",
-            },
+            data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -985,10 +970,7 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         )
 
         assert response.is_closed is True
@@ -1005,10 +987,7 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1028,10 +1007,7 @@ class TestObjects:
                 collection="",
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
@@ -1039,10 +1015,7 @@ class TestObjects:
                 collection="collection",
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
@@ -1050,10 +1023,7 @@ class TestObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
     @pytest.mark.skip(
@@ -2062,18 +2032,10 @@ class TestAsyncObjects:
         object_ = await async_client.objects.set(
             collection="collection",
             id="id",
-            channel_data={
-                "0": {
-                    "data": {
-                        "tokens": ["push_token_123"],
-                        "type": "push_fcm",
-                        "_typename": "PushChannelData",
-                    }
-                }
-            },
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
             locale="en-US",
             preferences={
-                "0": {
+                "default": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -2185,10 +2147,7 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -2201,11 +2160,7 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-                "_typename": "PushChannelData",
-            },
+            data={"tokens": ["push_token_1"]},
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
@@ -2218,10 +2173,7 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         )
 
         assert response.is_closed is True
@@ -2238,10 +2190,7 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            data={
-                "tokens": ["push_token_1"],
-                "type": "push_fcm",
-            },
+            data={"tokens": ["push_token_1"]},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2261,10 +2210,7 @@ class TestAsyncObjects:
                 collection="",
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
@@ -2272,10 +2218,7 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `channel_id` but received ''"):
@@ -2283,10 +2226,7 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
-                data={
-                    "tokens": ["push_token_1"],
-                    "type": "push_fcm",
-                },
+                data={"tokens": ["push_token_1"]},
             )
 
     @pytest.mark.skip(

@@ -1,9 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
-
-from pydantic import Field as FieldInfo
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -46,12 +44,6 @@ Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeam
 class MsTeamsChannelData(BaseModel):
     connections: List[Connection]
     """List of Microsoft Teams connections."""
-
-    type: Literal["chat_ms_teams"]
-    """The type of provider."""
-
-    api_typename: Optional[Literal["MsTeamsChannelData"]] = FieldInfo(alias="__typename", default=None)
-    """The typename of the schema."""
 
     ms_teams_tenant_id: Optional[str] = None
     """Microsoft Teams tenant ID."""

@@ -42,7 +42,9 @@ class UserUpdateParams(TypedDict, total=False):
     """
 
     preferences: Optional[InlinePreferenceSetRequestParam]
-    """A list of objects that specify the preferences for the user."""
+    """
+    Inline set preferences for a recipient, where the key is the preference set name
+    """
 
     timezone: Optional[str]
     """The timezone of the user.

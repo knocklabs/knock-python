@@ -194,7 +194,57 @@ class TestTenants:
                     "provider": "push_fcm",
                 }
             ],
-            preferences={},
+            preferences=[
+                {
+                    "id": "default",
+                    "categories": {
+                        "transactional": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": False,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
+                            },
+                            "conditions": [
+                                {
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
+                                }
+                            ],
+                        }
+                    },
+                    "channel_types": {
+                        "chat": True,
+                        "email": True,
+                        "http": True,
+                        "in_app_feed": True,
+                        "push": True,
+                        "sms": True,
+                    },
+                    "workflows": {
+                        "dinosaurs-loose": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": True,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
+                            },
+                            "conditions": [
+                                {
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
+                                }
+                            ],
+                        }
+                    },
+                }
+            ],
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",
@@ -475,7 +525,57 @@ class TestAsyncTenants:
                     "provider": "push_fcm",
                 }
             ],
-            preferences={},
+            preferences=[
+                {
+                    "id": "default",
+                    "categories": {
+                        "transactional": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": False,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
+                            },
+                            "conditions": [
+                                {
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
+                                }
+                            ],
+                        }
+                    },
+                    "channel_types": {
+                        "chat": True,
+                        "email": True,
+                        "http": True,
+                        "in_app_feed": True,
+                        "push": True,
+                        "sms": True,
+                    },
+                    "workflows": {
+                        "dinosaurs-loose": {
+                            "channel_types": {
+                                "chat": True,
+                                "email": True,
+                                "http": True,
+                                "in_app_feed": True,
+                                "push": True,
+                                "sms": True,
+                            },
+                            "conditions": [
+                                {
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
+                                }
+                            ],
+                        }
+                    },
+                }
+            ],
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",

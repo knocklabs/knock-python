@@ -686,7 +686,7 @@ class ObjectsResource(SyncAPIResource):
         *,
         channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -706,7 +706,7 @@ class ObjectsResource(SyncAPIResource):
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
 
-          preferences: A list of objects that specify the preferences for the user.
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
 
           timezone: The timezone of the object. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
@@ -1522,7 +1522,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         *,
         channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
         locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1542,7 +1542,7 @@ class AsyncObjectsResource(AsyncAPIResource):
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
 
-          preferences: A list of objects that specify the preferences for the user.
+          preferences: Inline set preferences for a recipient, where the key is the preference set name
 
           timezone: The timezone of the object. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).

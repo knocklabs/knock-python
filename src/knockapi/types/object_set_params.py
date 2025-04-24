@@ -21,7 +21,7 @@ class ObjectSetParams(TypedDict, total=False):
     Used for [message localization](/concepts/translations).
     """
 
-    preferences: InlinePreferenceSetRequestParam
+    preferences: Optional[InlinePreferenceSetRequestParam]
     """
     Inline set preferences for a recipient, where the key is the preference set name
     """

@@ -829,21 +829,18 @@ class TestObjects:
         object_ = client.objects.set(
             collection="collection",
             id="id",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "0": {
                     "data": {
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
+            },
             locale="en-US",
-            preferences=[
-                {
-                    "id": "default",
+            preferences={
+                "0": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -892,7 +889,7 @@ class TestObjects:
                         }
                     },
                 }
-            ],
+            },
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])
@@ -2065,21 +2062,18 @@ class TestAsyncObjects:
         object_ = await async_client.objects.set(
             collection="collection",
             id="id",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "0": {
                     "data": {
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
+            },
             locale="en-US",
-            preferences=[
-                {
-                    "id": "default",
+            preferences={
+                "0": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -2128,7 +2122,7 @@ class TestAsyncObjects:
                         }
                     },
                 }
-            ],
+            },
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])

@@ -183,20 +183,17 @@ class TestTenants:
     def test_method_set_with_all_params(self, client: Knock) -> None:
         tenant = client.tenants.set(
             id="id",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
                     "data": {
                         "tokens": ["push_token_xxx"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
-            preferences=[
-                {
-                    "id": "default",
+            },
+            preferences={
+                "default": {
                     "categories": {
                         "transactional": {
                             "channel_types": {
@@ -228,7 +225,7 @@ class TestTenants:
                         "dinosaurs-loose": {
                             "channel_types": {
                                 "chat": True,
-                                "email": True,
+                                "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
@@ -241,10 +238,11 @@ class TestTenants:
                                     "variable": "specimen.dna_sequence",
                                 }
                             ],
-                        }
+                        },
+                        "welcome-sequence": True,
                     },
                 }
-            ],
+            },
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",
@@ -514,20 +512,17 @@ class TestAsyncTenants:
     async def test_method_set_with_all_params(self, async_client: AsyncKnock) -> None:
         tenant = await async_client.tenants.set(
             id="id",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "97c5837d-c65c-4d54-aa39-080eeb81c69d": {
                     "data": {
                         "tokens": ["push_token_xxx"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
-            preferences=[
-                {
-                    "id": "default",
+            },
+            preferences={
+                "default": {
                     "categories": {
                         "transactional": {
                             "channel_types": {
@@ -559,7 +554,7 @@ class TestAsyncTenants:
                         "dinosaurs-loose": {
                             "channel_types": {
                                 "chat": True,
-                                "email": True,
+                                "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
@@ -572,10 +567,11 @@ class TestAsyncTenants:
                                     "variable": "specimen.dna_sequence",
                                 }
                             ],
-                        }
+                        },
+                        "welcome-sequence": True,
                     },
                 }
-            ],
+            },
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",

@@ -12,6 +12,7 @@ from .ms_teams_channel_data import MsTeamsChannelData as MsTeamsChannelData
 from .one_signal_channel_data import OneSignalChannelData as OneSignalChannelData
 from .push_channel_data_param import PushChannelDataParam as PushChannelDataParam
 from .slack_channel_data_param import SlackChannelDataParam as SlackChannelDataParam
+from .channel_data_request_param import ChannelDataRequestParam as ChannelDataRequestParam
 from .discord_channel_data_param import DiscordChannelDataParam as DiscordChannelDataParam
 from .ms_teams_channel_data_param import MsTeamsChannelDataParam as MsTeamsChannelDataParam
 from .preference_set_channel_types import PreferenceSetChannelTypes as PreferenceSetChannelTypes

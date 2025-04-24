@@ -24,19 +24,19 @@ SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
 class PreferenceSetChannelTypesParam(TypedDict, total=False):
     chat: Chat
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""
 
     email: Email
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""
 
     http: HTTP
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""
 
     in_app_feed: InAppFeed
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""
 
     push: Push
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""
 
     sms: SMS
-    """Either a boolean or a setting for the given channel type."""
+    """Whether the channel type is enabled for the preference set."""

@@ -143,7 +143,7 @@ class UsersResource(SyncAPIResource):
           phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: Inline set preferences for a recipient.
 
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
@@ -894,7 +894,7 @@ class AsyncUsersResource(AsyncAPIResource):
           phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: Inline set preferences for a recipient.
 
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).

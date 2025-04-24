@@ -706,7 +706,7 @@ class ObjectsResource(SyncAPIResource):
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: Inline set preferences for a recipient.
 
           timezone: The timezone of the object. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
@@ -1542,7 +1542,7 @@ class AsyncObjectsResource(AsyncAPIResource):
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: Inline set preferences for a recipient.
 
           timezone: The timezone of the object. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).

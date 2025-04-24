@@ -47,25 +47,22 @@ class TestUsers:
         user = client.users.update(
             user_id="user_id",
             avatar="avatar",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "0": {
                     "data": {
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
+            },
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="ian.malcolm@chaos.theory",
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[
-                {
-                    "id": "default",
+            preferences={
+                "0": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -114,7 +111,7 @@ class TestUsers:
                         }
                     },
                 }
-            ],
+            },
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])
@@ -1047,25 +1044,22 @@ class TestAsyncUsers:
         user = await async_client.users.update(
             user_id="user_id",
             avatar="avatar",
-            channel_data=[
-                {
-                    "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
+            channel_data={
+                "0": {
                     "data": {
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
                         "_typename": "PushChannelData",
-                    },
-                    "provider": "push_fcm",
+                    }
                 }
-            ],
+            },
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="ian.malcolm@chaos.theory",
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[
-                {
-                    "id": "default",
+            preferences={
+                "0": {
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -1114,7 +1108,7 @@ class TestAsyncUsers:
                         }
                     },
                 }
-            ],
+            },
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])

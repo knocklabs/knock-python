@@ -22,9 +22,7 @@ class ObjectSetParams(TypedDict, total=False):
     """
 
     preferences: InlinePreferenceSetRequestParam
-    """
-    Inline set preferences for a recipient, where the key is the preference set name
-    """
+    """Inline set preferences for a recipient."""
 
     timezone: Optional[str]
     """The timezone of the object.

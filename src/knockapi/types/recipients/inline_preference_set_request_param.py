@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ..condition_param import ConditionParam
@@ -10,15 +10,14 @@ from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
 __all__ = [
     "InlinePreferenceSetRequestParam",
-    "InlinePreferenceSetRequestParamItem",
-    "InlinePreferenceSetRequestParamItemCategories",
-    "InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject",
-    "InlinePreferenceSetRequestParamItemWorkflows",
-    "InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject",
+    "Categories",
+    "CategoriesPreferenceSetWorkflowCategorySettingObject",
+    "Workflows",
+    "WorkflowsPreferenceSetWorkflowCategorySettingObject",
 ]
 
 
-class InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
@@ -26,12 +25,10 @@ class InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategory
     """A list of conditions to apply to a channel type."""
 
 
-InlinePreferenceSetRequestParamItemCategories: TypeAlias = Union[
-    bool, InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject
-]
+Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
 
 
-class InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
@@ -39,16 +36,14 @@ class InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategoryS
     """A list of conditions to apply to a channel type."""
 
 
-InlinePreferenceSetRequestParamItemWorkflows: TypeAlias = Union[
-    bool, InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject
-]
+Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySettingObject]
 
 
-class InlinePreferenceSetRequestParamItem(TypedDict, total=False):
+class InlinePreferenceSetRequestParam(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the preference set."""
 
-    categories: Optional[Dict[str, InlinePreferenceSetRequestParamItemCategories]]
+    categories: Optional[Dict[str, Categories]]
     """
     An object where the key is the category and the values are the preference
     settings for that category.
@@ -57,11 +52,8 @@ class InlinePreferenceSetRequestParamItem(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
-    workflows: Optional[Dict[str, InlinePreferenceSetRequestParamItemWorkflows]]
+    workflows: Optional[Dict[str, Workflows]]
     """
     An object where the key is the workflow key and the values are the preference
     settings for that workflow.
     """
-
-
-InlinePreferenceSetRequestParam: TypeAlias = List[InlinePreferenceSetRequestParamItem]

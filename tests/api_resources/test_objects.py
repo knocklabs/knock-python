@@ -841,58 +841,65 @@ class TestObjects:
                 }
             ],
             locale="en-US",
-            preferences=[
-                {
-                    "id": "default",
-                    "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
+            preferences={
+                "id": "id",
+                "categories": {
+                    "marketing": {
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
                         },
-                        "transactional": True,
+                        "conditions": [
+                            {
+                                "argument": "frog_genome",
+                                "operator": "contains",
+                                "variable": "specimen.dna_sequence",
+                            }
+                        ],
                     },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
+                    "transactional": True,
+                },
+                "channel_types": {
+                    "chat": True,
+                    "email": True,
+                    "http": True,
+                    "in_app_feed": True,
+                    "push": True,
+                    "sms": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
                     },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
+                },
+                "workflows": {
+                    "dinosaurs-loose": {
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
+                        },
+                        "conditions": [
+                            {
+                                "argument": "frog_genome",
+                                "operator": "contains",
+                                "variable": "specimen.dna_sequence",
+                            }
+                        ],
                     },
-                }
-            ],
+                    "welcome-sequence": True,
+                },
+            },
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])
@@ -2077,58 +2084,65 @@ class TestAsyncObjects:
                 }
             ],
             locale="en-US",
-            preferences=[
-                {
-                    "id": "default",
-                    "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
+            preferences={
+                "id": "id",
+                "categories": {
+                    "marketing": {
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
                         },
-                        "transactional": True,
+                        "conditions": [
+                            {
+                                "argument": "frog_genome",
+                                "operator": "contains",
+                                "variable": "specimen.dna_sequence",
+                            }
+                        ],
                     },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
+                    "transactional": True,
+                },
+                "channel_types": {
+                    "chat": True,
+                    "email": True,
+                    "http": True,
+                    "in_app_feed": True,
+                    "push": True,
+                    "sms": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
                     },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
+                },
+                "workflows": {
+                    "dinosaurs-loose": {
+                        "channel_types": {
+                            "chat": True,
+                            "email": False,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
+                        },
+                        "conditions": [
+                            {
+                                "argument": "frog_genome",
+                                "operator": "contains",
+                                "variable": "specimen.dna_sequence",
+                            }
+                        ],
                     },
-                }
-            ],
+                    "welcome-sequence": True,
+                },
+            },
             timezone="America/New_York",
         )
         assert_matches_type(Object, object_, path=["response"])

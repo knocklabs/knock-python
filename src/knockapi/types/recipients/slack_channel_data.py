@@ -41,14 +41,14 @@ class Token(BaseModel):
 
 
 class SlackChannelData(BaseModel):
-    api_typename: Literal["SlackChannelData"] = FieldInfo(alias="__typename")
-    """The typename of the schema."""
-
     connections: List[Connection]
     """List of Slack channel connections."""
 
     type: Literal["chat_slack"]
-    """The channel type identifier"""
+    """The type of provider."""
 
     token: Optional[Token] = None
     """A Slack connection token."""
+
+    api_typename: Optional[Literal["SlackChannelData"]] = FieldInfo(alias="__typename", default=None)
+    """The typename of the schema."""

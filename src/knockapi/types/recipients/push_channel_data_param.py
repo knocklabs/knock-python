@@ -11,11 +11,11 @@ __all__ = ["PushChannelDataParam"]
 
 
 class PushChannelDataParam(TypedDict, total=False):
-    _typename: Required[Annotated[Literal["PushChannelData"], PropertyInfo(alias="__typename")]]
-    """The typename of the schema."""
-
     tokens: Required[List[str]]
     """A list of push channel tokens."""
 
     type: Required[Literal["push_fcm", "push_apns", "push_expo"]]
-    """The push provider type"""
+    """The type of provider."""
+
+    _typename: Annotated[Literal["PushChannelData"], PropertyInfo(alias="__typename")]
+    """The typename of the schema."""

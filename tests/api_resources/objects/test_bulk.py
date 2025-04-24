@@ -24,7 +24,7 @@ class TestBulk:
     def test_method_delete(self, client: Knock) -> None:
         bulk = client.objects.bulk.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -35,7 +35,7 @@ class TestBulk:
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestBulk:
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +68,7 @@ class TestBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.bulk.with_raw_response.delete(
                 collection="",
-                object_ids=["string"],
+                object_ids=["obj_123", "obj_456", "obj_789"],
             )
 
     @pytest.mark.skip(
@@ -78,12 +78,7 @@ class TestBulk:
     def test_method_add_subscriptions(self, client: Knock) -> None:
         bulk = client.objects.bulk.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -94,12 +89,7 @@ class TestBulk:
     def test_raw_response_add_subscriptions(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         )
 
         assert response.is_closed is True
@@ -114,12 +104,7 @@ class TestBulk:
     def test_streaming_response_add_subscriptions(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,12 +122,7 @@ class TestBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.bulk.with_raw_response.add_subscriptions(
                 collection="",
-                subscriptions=[
-                    {
-                        "id": "project-1",
-                        "recipients": [{"id": "user_1"}],
-                    }
-                ],
+                subscriptions=[{"recipients": [{"id": "user_1"}]}],
             )
 
     @pytest.mark.skip(
@@ -230,7 +210,7 @@ class TestAsyncBulk:
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -241,7 +221,7 @@ class TestAsyncBulk:
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         )
 
         assert response.is_closed is True
@@ -256,7 +236,7 @@ class TestAsyncBulk:
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.delete(
             collection="collection",
-            object_ids=["string"],
+            object_ids=["obj_123", "obj_456", "obj_789"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -274,7 +254,7 @@ class TestAsyncBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.bulk.with_raw_response.delete(
                 collection="",
-                object_ids=["string"],
+                object_ids=["obj_123", "obj_456", "obj_789"],
             )
 
     @pytest.mark.skip(
@@ -284,12 +264,7 @@ class TestAsyncBulk:
     async def test_method_add_subscriptions(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -300,12 +275,7 @@ class TestAsyncBulk:
     async def test_raw_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         )
 
         assert response.is_closed is True
@@ -320,12 +290,7 @@ class TestAsyncBulk:
     async def test_streaming_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.add_subscriptions(
             collection="projects",
-            subscriptions=[
-                {
-                    "id": "project-1",
-                    "recipients": [{"id": "user_1"}],
-                }
-            ],
+            subscriptions=[{"recipients": [{"id": "user_1"}]}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,12 +308,7 @@ class TestAsyncBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.bulk.with_raw_response.add_subscriptions(
                 collection="",
-                subscriptions=[
-                    {
-                        "id": "project-1",
-                        "recipients": [{"id": "user_1"}],
-                    }
-                ],
+                subscriptions=[{"recipients": [{"id": "user_1"}]}],
             )
 
     @pytest.mark.skip(

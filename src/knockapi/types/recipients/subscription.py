@@ -21,7 +21,7 @@ class Subscription(BaseModel):
     """Timestamp when the resource was created."""
 
     object: Object
-    """A custom object entity which belongs to a collection."""
+    """A custom [Object](/concepts/objects) entity which belongs to a collection."""
 
     recipient: Recipient
     """A recipient of a notification, which is either a user or an object."""
@@ -30,4 +30,4 @@ class Subscription(BaseModel):
     """The timestamp when the resource was last updated."""
 
     properties: Optional[Dict[str, builtins.object]] = None
-    """The custom properties associated with the recipients of the subscription."""
+    """The custom properties associated with the subscription relationship."""

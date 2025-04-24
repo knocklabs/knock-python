@@ -35,11 +35,11 @@ Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDisc
 
 
 class DiscordChannelDataParam(TypedDict, total=False):
-    _typename: Required[Annotated[Literal["DiscordChannelData"], PropertyInfo(alias="__typename")]]
-    """The typename of the schema."""
-
     connections: Required[Iterable[Connection]]
     """List of Discord channel connections."""
 
     type: Required[Literal["chat_discord"]]
-    """The channel type identifier"""
+    """The type of provider."""
+
+    _typename: Annotated[Literal["DiscordChannelData"], PropertyInfo(alias="__typename")]
+    """The typename of the schema."""

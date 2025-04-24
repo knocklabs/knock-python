@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field as FieldInfo
 
@@ -15,6 +15,12 @@ class Tenant(BaseModel):
 
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
+
+    name: Optional[str] = None
+    """An optional name for the tenant."""
+
+    settings: Optional[object] = None
+    """The settings for the tenant. Includes branding and preference set."""
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.

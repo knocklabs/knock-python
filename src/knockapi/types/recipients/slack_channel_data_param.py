@@ -41,14 +41,14 @@ class Token(TypedDict, total=False):
 
 
 class SlackChannelDataParam(TypedDict, total=False):
-    _typename: Required[Annotated[Literal["SlackChannelData"], PropertyInfo(alias="__typename")]]
-    """The typename of the schema."""
-
     connections: Required[Iterable[Connection]]
     """List of Slack channel connections."""
 
     type: Required[Literal["chat_slack"]]
-    """The channel type identifier"""
+    """The type of provider."""
 
     token: Optional[Token]
     """A Slack connection token."""
+
+    _typename: Annotated[Literal["SlackChannelData"], PropertyInfo(alias="__typename")]
+    """The typename of the schema."""

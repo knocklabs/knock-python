@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -200,9 +200,10 @@ class ObjectsResource(SyncAPIResource):
         for the `recipient`.
 
         Args:
-          recipients: The recipients of the subscription.
+          recipients: The recipients of the subscription. You can subscribe up to 100 recipients to an
+              object at a time.
 
-          properties: The custom properties associated with the recipients of the subscription.
+          properties: The custom properties associated with the subscription relationship.
 
           extra_headers: Send extra headers
 
@@ -250,7 +251,8 @@ class ObjectsResource(SyncAPIResource):
         list of deleted subscriptions.
 
         Args:
-          recipients: The recipients of the subscription.
+          recipients: The recipients of the subscription. You can subscribe up to 100 recipients to an
+              object at a time.
 
           extra_headers: Send extra headers
 
@@ -366,7 +368,7 @@ class ObjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PreferenceSet:
         """
-        Returns the preference set for the specified object.
+        Returns the preference set for the specified object and preference set `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -608,7 +610,7 @@ class ObjectsResource(SyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -631,7 +633,9 @@ class ObjectsResource(SyncAPIResource):
 
           include: Additional fields to include in the response.
 
-          mode: Mode of the request.
+          mode: Mode of the request. `recipient` to list the objects that the provided object is
+              subscribed to, `object` to list the recipients that subscribe to the provided
+              object.
 
           objects: Objects to filter by (only used if mode is `recipient`).
 
@@ -752,8 +756,11 @@ class ObjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
-        """
-        Sets the channel data for the specified object and channel.
+        """Sets the channel data for the specified object and channel.
+
+        If no object exists
+        in the current environment for the given `collection` and `object_id`, Knock
+        will create the object as part of this request.
 
         Args:
           data: Channel data for a given channel type.
@@ -797,8 +804,14 @@ class ObjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PreferenceSet:
-        """
-        Updates the preference set for the specified object.
+        """Sets preferences within the given preference set.
+
+        This is a destructive
+        operation and will replace any existing preferences with the preferences given.
+        If no object exists in the current environment for the given `:collection` and
+        `:object_id`, Knock will create the object as part of this request. The
+        preference set `:id` can be either `default` or a `tenant.id`. Learn more about
+        [per-tenant preferences](/preferences/tenant-preferences).
 
         Args:
           categories: An object where the key is the category and the values are the preference
@@ -1023,9 +1036,10 @@ class AsyncObjectsResource(AsyncAPIResource):
         for the `recipient`.
 
         Args:
-          recipients: The recipients of the subscription.
+          recipients: The recipients of the subscription. You can subscribe up to 100 recipients to an
+              object at a time.
 
-          properties: The custom properties associated with the recipients of the subscription.
+          properties: The custom properties associated with the subscription relationship.
 
           extra_headers: Send extra headers
 
@@ -1073,7 +1087,8 @@ class AsyncObjectsResource(AsyncAPIResource):
         list of deleted subscriptions.
 
         Args:
-          recipients: The recipients of the subscription.
+          recipients: The recipients of the subscription. You can subscribe up to 100 recipients to an
+              object at a time.
 
           extra_headers: Send extra headers
 
@@ -1189,7 +1204,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PreferenceSet:
         """
-        Returns the preference set for the specified object.
+        Returns the preference set for the specified object and preference set `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -1431,7 +1446,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1454,7 +1469,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           include: Additional fields to include in the response.
 
-          mode: Mode of the request.
+          mode: Mode of the request. `recipient` to list the objects that the provided object is
+              subscribed to, `object` to list the recipients that subscribe to the provided
+              object.
 
           objects: Objects to filter by (only used if mode is `recipient`).
 
@@ -1575,8 +1592,11 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
-        """
-        Sets the channel data for the specified object and channel.
+        """Sets the channel data for the specified object and channel.
+
+        If no object exists
+        in the current environment for the given `collection` and `object_id`, Knock
+        will create the object as part of this request.
 
         Args:
           data: Channel data for a given channel type.
@@ -1620,8 +1640,14 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PreferenceSet:
-        """
-        Updates the preference set for the specified object.
+        """Sets preferences within the given preference set.
+
+        This is a destructive
+        operation and will replace any existing preferences with the preferences given.
+        If no object exists in the current environment for the given `:collection` and
+        `:object_id`, Knock will create the object as part of this request. The
+        preference set `:id` can be either `default` or a `tenant.id`. Learn more about
+        [per-tenant preferences](/preferences/tenant-preferences).
 
         Args:
           categories: An object where the key is the category and the values are the preference

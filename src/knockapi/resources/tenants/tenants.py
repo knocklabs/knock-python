@@ -198,10 +198,10 @@ class TenantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Tenant:
-        """Set or update a tenant's properties and settings.
+        """Sets a tenant within an environment, performing an upsert operation.
 
-        This operation allows you to
-        update tenant preferences, channel data, and branding settings.
+        Any
+        existing properties will be merged with the incoming properties.
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
@@ -401,10 +401,10 @@ class AsyncTenantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Tenant:
-        """Set or update a tenant's properties and settings.
+        """Sets a tenant within an environment, performing an upsert operation.
 
-        This operation allows you to
-        update tenant preferences, channel data, and branding settings.
+        Any
+        existing properties will be merged with the incoming properties.
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Iterable
 from typing_extensions import Literal, TypedDict
 
 from .recipient_reference_param import RecipientReferenceParam
 
-__all__ = ["ObjectListSubscriptionsParams"]
+__all__ = ["ObjectListSubscriptionsParams", "Object"]
 
 
 class ObjectListSubscriptionsParams(TypedDict, total=False):
@@ -21,9 +21,13 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     """Additional fields to include in the response."""
 
     mode: Literal["recipient", "object"]
-    """Mode of the request."""
+    """Mode of the request.
 
-    objects: List[RecipientReferenceParam]
+    `recipient` to list the objects that the provided object is subscribed to,
+    `object` to list the recipients that subscribe to the provided object.
+    """
+
+    objects: Iterable[Object]
     """Objects to filter by (only used if mode is `recipient`)."""
 
     page_size: int
@@ -31,3 +35,11 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
 
     recipients: List[RecipientReferenceParam]
     """Recipients to filter by (only used if mode is `object`)."""
+
+
+class Object(TypedDict, total=False):
+    id: str
+    """An identifier for the recipient object."""
+
+    collection: str
+    """The collection the recipient object belongs to."""

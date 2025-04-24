@@ -60,7 +60,7 @@ class BulkResource(SyncAPIResource):
         Bulk deletes objects from the specified collection.
 
         Args:
-          object_ids: A list of object IDs.
+          object_ids: List of object IDs to delete.
 
           extra_headers: Send extra headers
 
@@ -74,12 +74,9 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
             f"/v1/objects/{collection}/bulk/delete",
+            body=maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BulkOperation,
         )
@@ -141,7 +138,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk sets objects in the specified collection.
+        Bulk sets up to 1,000 objects at a time in the specified collection.
 
         Args:
           objects: A list of objects.
@@ -202,7 +199,7 @@ class AsyncBulkResource(AsyncAPIResource):
         Bulk deletes objects from the specified collection.
 
         Args:
-          object_ids: A list of object IDs.
+          object_ids: List of object IDs to delete.
 
           extra_headers: Send extra headers
 
@@ -216,12 +213,9 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
             f"/v1/objects/{collection}/bulk/delete",
+            body=await async_maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BulkOperation,
         )
@@ -283,7 +277,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
         """
-        Bulk sets objects in the specified collection.
+        Bulk sets up to 1,000 objects at a time in the specified collection.
 
         Args:
           objects: A list of objects.

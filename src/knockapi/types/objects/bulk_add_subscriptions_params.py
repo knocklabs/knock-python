@@ -16,11 +16,11 @@ class BulkAddSubscriptionsParams(TypedDict, total=False):
 
 
 class Subscription(TypedDict, total=False):
-    id: Required[str]
-    """Unique identifier for the subscription."""
-
     recipients: Required[List[RecipientRequestParam]]
-    """The recipients of the subscription."""
+    """The recipients of the subscription.
+
+    You can subscribe up to 100 recipients to an object at a time.
+    """
 
     properties: Optional[Dict[str, object]]
-    """The custom properties associated with the recipients of the subscription."""
+    """The custom properties associated with the subscription relationship."""

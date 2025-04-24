@@ -12,4 +12,7 @@ __all__ = ["ObjectDeleteSubscriptionsParams"]
 
 class ObjectDeleteSubscriptionsParams(TypedDict, total=False):
     recipients: Required[List[RecipientReferenceParam]]
-    """The recipients of the subscription."""
+    """The recipients of the subscription.
+
+    You can subscribe up to 100 recipients to an object at a time.
+    """

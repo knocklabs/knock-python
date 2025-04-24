@@ -750,7 +750,12 @@ class TestObjects:
             before="before",
             include=["preferences"],
             mode="recipient",
-            objects=["user_123"],
+            objects=[
+                {
+                    "id": "project_123",
+                    "collection": "projects",
+                }
+            ],
             page_size=0,
             recipients=["user_123"],
         )
@@ -828,9 +833,9 @@ class TestObjects:
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
-                        "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
+                        "_typename": "PushChannelData",
                     },
                     "provider": "push_fcm",
                 }
@@ -951,7 +956,6 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -968,9 +972,9 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
+                "_typename": "PushChannelData",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -985,7 +989,6 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -1006,7 +1009,6 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -1030,7 +1032,6 @@ class TestObjects:
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },
@@ -1042,7 +1043,6 @@ class TestObjects:
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },
@@ -1054,7 +1054,6 @@ class TestObjects:
                 object_id="object_id",
                 channel_id="",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },
@@ -1987,7 +1986,12 @@ class TestAsyncObjects:
             before="before",
             include=["preferences"],
             mode="recipient",
-            objects=["user_123"],
+            objects=[
+                {
+                    "id": "project_123",
+                    "collection": "projects",
+                }
+            ],
             page_size=0,
             recipients=["user_123"],
         )
@@ -2065,9 +2069,9 @@ class TestAsyncObjects:
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
-                        "_typename": "PushChannelData",
                         "tokens": ["push_token_123"],
                         "type": "push_fcm",
+                        "_typename": "PushChannelData",
                     },
                     "provider": "push_fcm",
                 }
@@ -2188,7 +2192,6 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -2205,9 +2208,9 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
+                "_typename": "PushChannelData",
             },
         )
         assert_matches_type(ChannelData, object_, path=["response"])
@@ -2222,7 +2225,6 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -2243,7 +2245,6 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             data={
-                "_typename": "PushChannelData",
                 "tokens": ["push_token_1"],
                 "type": "push_fcm",
             },
@@ -2267,7 +2268,6 @@ class TestAsyncObjects:
                 object_id="object_id",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },
@@ -2279,7 +2279,6 @@ class TestAsyncObjects:
                 object_id="",
                 channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },
@@ -2291,7 +2290,6 @@ class TestAsyncObjects:
                 object_id="object_id",
                 channel_id="",
                 data={
-                    "_typename": "PushChannelData",
                     "tokens": ["push_token_1"],
                     "type": "push_fcm",
                 },

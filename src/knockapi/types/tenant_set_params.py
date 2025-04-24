@@ -27,16 +27,22 @@ class TenantSetParams(TypedDict, total=False):
 
 class SettingsBranding(TypedDict, total=False):
     icon_url: Optional[str]
-    """The icon URL for the tenant."""
+    """The icon URL for the tenant.
+
+    Must point to a valid image with an image MIME type.
+    """
 
     logo_url: Optional[str]
-    """The logo URL for the tenant."""
+    """The logo URL for the tenant.
+
+    Must point to a valid image with an image MIME type.
+    """
 
     primary_color: Optional[str]
-    """The primary color for the tenant."""
+    """The primary color for the tenant, provided as a hex value."""
 
     primary_color_contrast: Optional[str]
-    """The primary color contrast for the tenant."""
+    """The primary color contrast for the tenant, provided as a hex value."""
 
 
 class Settings(TypedDict, total=False):

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -11,11 +11,11 @@ __all__ = ["PushChannelData"]
 
 
 class PushChannelData(BaseModel):
-    api_typename: Literal["PushChannelData"] = FieldInfo(alias="__typename")
-    """The typename of the schema."""
-
     tokens: List[str]
     """A list of push channel tokens."""
 
     type: Literal["push_fcm", "push_apns", "push_expo"]
-    """The push provider type"""
+    """The type of provider."""
+
+    api_typename: Optional[Literal["PushChannelData"]] = FieldInfo(alias="__typename", default=None)
+    """The typename of the schema."""

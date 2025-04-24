@@ -187,9 +187,9 @@ class TestTenants:
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
-                        "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
                         "type": "push_fcm",
+                        "_typename": "PushChannelData",
                     },
                     "provider": "push_fcm",
                 }
@@ -518,9 +518,9 @@ class TestAsyncTenants:
                 {
                     "channel_id": "97c5837d-c65c-4d54-aa39-080eeb81c69d",
                     "data": {
-                        "_typename": "PushChannelData",
                         "tokens": ["push_token_xxx"],
                         "type": "push_fcm",
+                        "_typename": "PushChannelData",
                     },
                     "provider": "push_fcm",
                 }

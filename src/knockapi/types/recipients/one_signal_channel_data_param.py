@@ -11,11 +11,11 @@ __all__ = ["OneSignalChannelDataParam"]
 
 
 class OneSignalChannelDataParam(TypedDict, total=False):
-    _typename: Required[Annotated[Literal["OneSignalChannelData"], PropertyInfo(alias="__typename")]]
-    """The typename of the schema."""
-
     player_ids: Required[List[str]]
     """A list of OneSignal player IDs."""
 
     type: Required[Literal["push_one_signal"]]
-    """The channel type identifier"""
+    """The type of provider."""
+
+    _typename: Annotated[Literal["OneSignalChannelData"], PropertyInfo(alias="__typename")]
+    """The typename of the schema."""

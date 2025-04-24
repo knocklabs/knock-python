@@ -44,14 +44,14 @@ Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeam
 
 
 class MsTeamsChannelData(BaseModel):
-    api_typename: Literal["MsTeamsChannelData"] = FieldInfo(alias="__typename")
-    """The typename of the schema."""
-
     connections: List[Connection]
     """List of Microsoft Teams connections."""
 
     type: Literal["chat_ms_teams"]
-    """The channel type identifier"""
+    """The type of provider."""
+
+    api_typename: Optional[Literal["MsTeamsChannelData"]] = FieldInfo(alias="__typename", default=None)
+    """The typename of the schema."""
 
     ms_teams_tenant_id: Optional[str] = None
     """Microsoft Teams tenant ID."""

@@ -12,7 +12,10 @@ __all__ = ["ObjectAddSubscriptionsParams"]
 
 class ObjectAddSubscriptionsParams(TypedDict, total=False):
     recipients: Required[List[RecipientRequestParam]]
-    """The recipients of the subscription."""
+    """The recipients of the subscription.
+
+    You can subscribe up to 100 recipients to an object at a time.
+    """
 
     properties: Optional[Dict[str, object]]
-    """The custom properties associated with the recipients of the subscription."""
+    """The custom properties associated with the subscription relationship."""

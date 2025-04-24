@@ -5,21 +5,18 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Required, TypedDict
 
-from .recipient_request_param import RecipientRequestParam
-from .inline_tenant_request_param import InlineTenantRequestParam
-
 __all__ = ["WorkflowTriggerParams"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[List["RecipientRequestParam"]]
     """The recipients to trigger the workflow for.
 
     Can inline identify users, objects, or use a list of user IDs. Limited to 1,000
     recipients.
     """
 
-    actor: Optional[RecipientRequestParam]
+    actor: Optional["RecipientRequestParam"]
     """Specifies a recipient in a request.
 
     This can either be a user identifier (string), an inline user request (object),
@@ -39,5 +36,9 @@ class WorkflowTriggerParams(TypedDict, total=False):
     data: Optional[Dict[str, object]]
     """An optional map of data to pass into the workflow execution."""
 
-    tenant: Optional[InlineTenantRequestParam]
+    tenant: Optional["InlineTenantRequestParam"]
     """An request to set a tenant inline."""
+
+
+from .recipient_request_param import RecipientRequestParam
+from .inline_tenant_request_param import InlineTenantRequestParam

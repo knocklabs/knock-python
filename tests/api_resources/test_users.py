@@ -63,58 +63,7 @@ class TestUsers:
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[
-                {
-                    "id": "default",
-                    "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        },
-                        "transactional": True,
-                    },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
-                    },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
-                    },
-                }
-            ],
+            preferences=[[]],
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])
@@ -1063,58 +1012,7 @@ class TestAsyncUsers:
             locale="locale",
             name="Dr. Ian Malcolm",
             phone_number="phone_number",
-            preferences=[
-                {
-                    "id": "default",
-                    "categories": {
-                        "marketing": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        },
-                        "transactional": True,
-                    },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
-                    },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
-                    },
-                }
-            ],
+            preferences=[[]],
             timezone="America/New_York",
         )
         assert_matches_type(User, user, path=["response"])

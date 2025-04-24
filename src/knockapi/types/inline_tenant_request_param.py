@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import TypeAlias
 
-from .tenant_request_param import TenantRequestParam
-
 __all__ = ["InlineTenantRequestParam"]
 
-InlineTenantRequestParam: TypeAlias = Union[str, TenantRequestParam]
+InlineTenantRequestParam: TypeAlias = Union[str, "TenantRequestParam"]
+
+from .tenant_request_param import TenantRequestParam

@@ -8,7 +8,6 @@ from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
-from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["InlineObjectRequestParam"]
 
@@ -26,10 +25,10 @@ class InlineObjectRequestParamTyped(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Timestamp when the resource was created."""
 
-    preferences: Optional[InlinePreferenceSetRequestParam]
-    """
-    Inline set preferences for a recipient, where the key is the preference set name
-    """
+    preferences: Optional["InlinePreferenceSetRequestParam"]
+    """A list of objects that specify the preferences for the user."""
 
 
 InlineObjectRequestParam: TypeAlias = Union[InlineObjectRequestParamTyped, Dict[str, object]]
+
+from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam

@@ -206,7 +206,7 @@ class TenantsResource(SyncAPIResource):
         Args:
           channel_data: A request to set channel data for a type of channel inline.
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: A list of objects that specify the preferences for the user.
 
           settings: The settings for the tenant. Includes branding and preference set.
 
@@ -409,7 +409,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         Args:
           channel_data: A request to set channel data for a type of channel inline.
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: A list of objects that specify the preferences for the user.
 
           settings: The settings for the tenant. Includes branding and preference set.
 

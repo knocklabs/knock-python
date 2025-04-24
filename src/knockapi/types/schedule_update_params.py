@@ -9,7 +9,6 @@ from typing_extensions import Required, Annotated, TypedDict
 from .._utils import PropertyInfo
 from .recipient_reference_param import RecipientReferenceParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
-from .inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["ScheduleUpdateParams"]
 
@@ -36,5 +35,8 @@ class ScheduleUpdateParams(TypedDict, total=False):
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The starting date and time for the schedule."""
 
-    tenant: Optional[InlineTenantRequestParam]
+    tenant: Optional["InlineTenantRequestParam"]
     """An request to set a tenant inline."""
+
+
+from .inline_tenant_request_param import InlineTenantRequestParam

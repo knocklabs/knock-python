@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -112,7 +112,7 @@ class UsersResource(SyncAPIResource):
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Iterable[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -143,7 +143,7 @@ class UsersResource(SyncAPIResource):
           phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: A list of objects that specify the preferences for the user.
 
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
@@ -863,7 +863,7 @@ class AsyncUsersResource(AsyncAPIResource):
         locale: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
+        preferences: Iterable[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         timezone: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -894,7 +894,7 @@ class AsyncUsersResource(AsyncAPIResource):
           phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
-          preferences: Inline set preferences for a recipient, where the key is the preference set name
+          preferences: A list of objects that specify the preferences for the user.
 
           timezone: The timezone of the user. Must be a valid
               [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).

@@ -7,15 +7,13 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .recipient_request_param import RecipientRequestParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
-from .inline_tenant_request_param import InlineTenantRequestParam
 
 __all__ = ["ScheduleCreateParams"]
 
 
 class ScheduleCreateParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[List["RecipientRequestParam"]]
     """The recipients to trigger the workflow for.
 
     Can inline identify users, objects, or use a list of user IDs. Limited to 1,000
@@ -37,5 +35,9 @@ class ScheduleCreateParams(TypedDict, total=False):
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The starting date and time for the schedule."""
 
-    tenant: Optional[InlineTenantRequestParam]
+    tenant: Optional["InlineTenantRequestParam"]
     """An request to set a tenant inline."""
+
+
+from .recipient_request_param import RecipientRequestParam
+from .inline_tenant_request_param import InlineTenantRequestParam

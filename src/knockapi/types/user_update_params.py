@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
-from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["UserUpdateParams"]
 
@@ -41,10 +40,8 @@ class UserUpdateParams(TypedDict, total=False):
     user (required for SMS channels).
     """
 
-    preferences: Optional[InlinePreferenceSetRequestParam]
-    """
-    Inline set preferences for a recipient, where the key is the preference set name
-    """
+    preferences: Iterable["InlinePreferenceSetRequestParam"]
+    """A list of objects that specify the preferences for the user."""
 
     timezone: Optional[str]
     """The timezone of the user.
@@ -54,3 +51,6 @@ class UserUpdateParams(TypedDict, total=False):
     Used for
     [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """
+
+
+from .recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam

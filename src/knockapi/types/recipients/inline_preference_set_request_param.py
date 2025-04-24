@@ -2,66 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import TYPE_CHECKING, List
+from typing_extensions import TypeAlias, TypeAliasType
 
-from ..condition_param import ConditionParam
-from .preference_set_channel_types_param import PreferenceSetChannelTypesParam
+from ..._compat import PYDANTIC_V2
 
-__all__ = [
-    "InlinePreferenceSetRequestParam",
-    "InlinePreferenceSetRequestParamItem",
-    "InlinePreferenceSetRequestParamItemCategories",
-    "InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject",
-    "InlinePreferenceSetRequestParamItemWorkflows",
-    "InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject",
-]
+__all__ = ["InlinePreferenceSetRequestParam"]
 
+if TYPE_CHECKING or PYDANTIC_V2:
+    InlinePreferenceSetRequestParam = TypeAliasType(
+        "InlinePreferenceSetRequestParam", List["inline_preference_set_request_param.InlinePreferenceSetRequestParam"]
+    )
+else:
+    InlinePreferenceSetRequestParam: TypeAlias = List[
+        "inline_preference_set_request_param.InlinePreferenceSetRequestParam"
+    ]
 
-class InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
-    channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences."""
-
-    conditions: Optional[Iterable[ConditionParam]]
-    """A list of conditions to apply to a channel type."""
-
-
-InlinePreferenceSetRequestParamItemCategories: TypeAlias = Union[
-    bool, InlinePreferenceSetRequestParamItemCategoriesPreferenceSetWorkflowCategorySettingObject
-]
-
-
-class InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
-    channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences."""
-
-    conditions: Optional[Iterable[ConditionParam]]
-    """A list of conditions to apply to a channel type."""
-
-
-InlinePreferenceSetRequestParamItemWorkflows: TypeAlias = Union[
-    bool, InlinePreferenceSetRequestParamItemWorkflowsPreferenceSetWorkflowCategorySettingObject
-]
-
-
-class InlinePreferenceSetRequestParamItem(TypedDict, total=False):
-    id: Required[str]
-    """Unique identifier for the preference set."""
-
-    categories: Optional[Dict[str, InlinePreferenceSetRequestParamItemCategories]]
-    """
-    An object where the key is the category and the values are the preference
-    settings for that category.
-    """
-
-    channel_types: Optional[PreferenceSetChannelTypesParam]
-    """Channel type preferences."""
-
-    workflows: Optional[Dict[str, InlinePreferenceSetRequestParamItemWorkflows]]
-    """
-    An object where the key is the workflow key and the values are the preference
-    settings for that workflow.
-    """
-
-
-InlinePreferenceSetRequestParam: TypeAlias = List[InlinePreferenceSetRequestParamItem]
+from . import inline_preference_set_request_param

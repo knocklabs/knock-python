@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
@@ -26,8 +26,10 @@ class InlineObjectRequestParamTyped(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Timestamp when the resource was created."""
 
-    preferences: Optional[Iterable[InlinePreferenceSetRequestParam]]
-    """An optional set of [preferences](/concepts/preferences) for the object."""
+    preferences: Optional[InlinePreferenceSetRequestParam]
+    """
+    Inline set preferences for a recipient, where the key is the preference set name
+    """
 
 
 InlineObjectRequestParam: TypeAlias = Union[InlineObjectRequestParamTyped, Dict[str, object]]

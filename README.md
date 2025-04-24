@@ -156,69 +156,16 @@ from knockapi import Knock
 
 client = Knock()
 
-user = client.users.update(
-    user_id="user_id",
-    preferences={
-        "id": "id",
-        "categories": {
-            "marketing": {
-                "channel_types": {
-                    "chat": True,
-                    "email": False,
-                    "http": True,
-                    "in_app_feed": True,
-                    "push": True,
-                    "sms": True,
-                },
-                "conditions": [
-                    {
-                        "argument": "frog_genome",
-                        "operator": "contains",
-                        "variable": "specimen.dna_sequence",
-                    }
-                ],
-            },
-            "transactional": True,
-        },
-        "channel_types": {
-            "chat": True,
-            "email": True,
-            "http": True,
-            "in_app_feed": True,
-            "push": True,
-            "sms": {
-                "conditions": [
-                    {
-                        "argument": "US",
-                        "operator": "equal_to",
-                        "variable": "recipient.country_code",
-                    }
-                ]
-            },
-        },
-        "workflows": {
-            "dinosaurs-loose": {
-                "channel_types": {
-                    "chat": True,
-                    "email": False,
-                    "http": True,
-                    "in_app_feed": True,
-                    "push": True,
-                    "sms": True,
-                },
-                "conditions": [
-                    {
-                        "argument": "frog_genome",
-                        "operator": "contains",
-                        "variable": "specimen.dna_sequence",
-                    }
-                ],
-            },
-            "welcome-sequence": True,
-        },
+page = client.users.list_messages(
+    user_id="user-123",
+    inserted_at={
+        "gt": "gt",
+        "gte": "gte",
+        "lt": "lt",
+        "lte": "lte",
     },
 )
-print(user.preferences)
+print(page.entries)
 ```
 
 ## Handling errors

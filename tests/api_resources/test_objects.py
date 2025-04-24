@@ -856,9 +856,9 @@ class TestObjects:
                             },
                             "conditions": [
                                 {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
                                 }
                             ],
                         },
@@ -884,9 +884,9 @@ class TestObjects:
                             },
                             "conditions": [
                                 {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
                                 }
                             ],
                         }
@@ -1093,9 +1093,9 @@ class TestObjects:
                     },
                     "conditions": [
                         {
-                            "argument": "some_property",
-                            "operator": "equal_to",
-                            "variable": "recipient.property",
+                            "argument": "frog_genome",
+                            "operator": "contains",
+                            "variable": "specimen.dna_sequence",
                         }
                     ],
                 },
@@ -1120,9 +1120,9 @@ class TestObjects:
                     },
                     "conditions": [
                         {
-                            "argument": "some_property",
-                            "operator": "equal_to",
-                            "variable": "recipient.property",
+                            "argument": "frog_genome",
+                            "operator": "contains",
+                            "variable": "specimen.dna_sequence",
                         }
                     ],
                 }
@@ -2092,9 +2092,9 @@ class TestAsyncObjects:
                             },
                             "conditions": [
                                 {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
                                 }
                             ],
                         },
@@ -2120,9 +2120,9 @@ class TestAsyncObjects:
                             },
                             "conditions": [
                                 {
-                                    "argument": "some_property",
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
+                                    "argument": "frog_genome",
+                                    "operator": "contains",
+                                    "variable": "specimen.dna_sequence",
                                 }
                             ],
                         }
@@ -2329,9 +2329,9 @@ class TestAsyncObjects:
                     },
                     "conditions": [
                         {
-                            "argument": "some_property",
-                            "operator": "equal_to",
-                            "variable": "recipient.property",
+                            "argument": "frog_genome",
+                            "operator": "contains",
+                            "variable": "specimen.dna_sequence",
                         }
                     ],
                 },
@@ -2356,9 +2356,9 @@ class TestAsyncObjects:
                     },
                     "conditions": [
                         {
-                            "argument": "some_property",
-                            "operator": "equal_to",
-                            "variable": "recipient.property",
+                            "argument": "frog_genome",
+                            "operator": "contains",
+                            "variable": "specimen.dna_sequence",
                         }
                     ],
                 }

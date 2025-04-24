@@ -105,9 +105,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -120,17 +120,25 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -143,9 +151,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -162,9 +170,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,9 +192,9 @@ class TestGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -194,9 +202,9 @@ class TestGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
     @pytest.mark.skip(
@@ -208,9 +216,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
@@ -223,17 +231,25 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
@@ -246,9 +262,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -265,9 +281,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -287,9 +303,9 @@ class TestGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -297,9 +313,9 @@ class TestGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
     @pytest.mark.skip(
@@ -311,9 +327,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
@@ -326,17 +342,25 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
@@ -349,9 +373,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -368,9 +392,9 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -390,9 +414,9 @@ class TestGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -400,9 +424,9 @@ class TestGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
 
@@ -492,9 +516,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -507,17 +531,25 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -530,9 +562,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -549,9 +581,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -571,9 +603,9 @@ class TestAsyncGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -581,9 +613,9 @@ class TestAsyncGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
     @pytest.mark.skip(
@@ -595,9 +627,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
@@ -610,17 +642,25 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
@@ -633,9 +673,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -652,9 +692,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -674,9 +714,9 @@ class TestAsyncGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -684,9 +724,9 @@ class TestAsyncGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
     @pytest.mark.skip(
@@ -698,9 +738,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
@@ -713,17 +753,25 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
-            data={"product_id": "bar"},
-            is_final=True,
-            metadata={"source": "bar"},
-            tenant="tenant_12345",
+            data={
+                "next_time": "bar",
+                "spots_left": "bar",
+                "tour_id": "bar",
+            },
+            is_final=False,
+            metadata={
+                "cta": "bar",
+                "theme": "bar",
+                "type": "bar",
+            },
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
@@ -736,9 +784,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         )
 
         assert response.is_closed is True
@@ -755,9 +803,9 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="323e4567-e89b-12d3-a456-426614174000",
-            guide_key="guide_12345",
-            guide_step_ref="step_12345",
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -777,9 +825,9 @@ class TestAsyncGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -787,7 +835,7 @@ class TestAsyncGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
-                guide_id="323e4567-e89b-12d3-a456-426614174000",
-                guide_key="guide_12345",
-                guide_step_ref="step_12345",
+                guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+                guide_key="tour_notification",
+                guide_step_ref="lab_tours",
             )

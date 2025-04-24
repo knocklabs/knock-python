@@ -5,8 +5,40 @@ from typing import TYPE_CHECKING, Optional
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .recipients.preference_set import PreferenceSet
 
-__all__ = ["Tenant"]
+__all__ = ["Tenant", "Settings", "SettingsBranding"]
+
+
+class SettingsBranding(BaseModel):
+    icon_url: Optional[str] = None
+    """The icon URL for the tenant.
+
+    Must point to a valid image with an image MIME type.
+    """
+
+    logo_url: Optional[str] = None
+    """The logo URL for the tenant.
+
+    Must point to a valid image with an image MIME type.
+    """
+
+    primary_color: Optional[str] = None
+    """The primary color for the tenant, provided as a hex value."""
+
+    primary_color_contrast: Optional[str] = None
+    """The primary color contrast for the tenant, provided as a hex value."""
+
+
+class Settings(BaseModel):
+    branding: Optional[SettingsBranding] = None
+    """The branding for the tenant."""
+
+    preference_set: Optional[PreferenceSet] = None
+    """
+    A preference set represents a specific set of notification preferences for a
+    recipient. A recipient can have multiple preference sets.
+    """
 
 
 class Tenant(BaseModel):
@@ -19,7 +51,7 @@ class Tenant(BaseModel):
     name: Optional[str] = None
     """An optional name for the tenant."""
 
-    settings: Optional[object] = None
+    settings: Optional[Settings] = None
     """The settings for the tenant. Includes branding and preference set."""
 
     if TYPE_CHECKING:

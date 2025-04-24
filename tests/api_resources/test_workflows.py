@@ -92,7 +92,7 @@ class TestWorkflows:
     def test_method_trigger(self, client: Knock) -> None:
         workflow = client.workflows.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
@@ -103,17 +103,18 @@ class TestWorkflows:
     def test_method_trigger_with_all_params(self, client: Knock) -> None:
         workflow = client.workflows.trigger(
             key="key",
-            recipients=["jhammond"],
-            actor="string",
-            cancellation_key=None,
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
+            actor="mr_dna",
+            cancellation_key="isla_nublar_incident_1993",
             data={
-                "dinosaur_names": "bar",
-                "is_alert": "bar",
-                "park_id": "bar",
+                "affected_areas": "bar",
+                "attraction_id": "bar",
+                "evacuation_protocol": "bar",
+                "message": "bar",
                 "severity": "bar",
-                "welcome_message": "bar",
+                "system_status": "bar",
             },
-            tenant="acme_corp",
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
@@ -124,7 +125,7 @@ class TestWorkflows:
     def test_raw_response_trigger(self, client: Knock) -> None:
         response = client.workflows.with_raw_response.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         )
 
         assert response.is_closed is True
@@ -139,7 +140,7 @@ class TestWorkflows:
     def test_streaming_response_trigger(self, client: Knock) -> None:
         with client.workflows.with_streaming_response.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -157,7 +158,7 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.workflows.with_raw_response.trigger(
                 key="",
-                recipients=["jhammond"],
+                recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
             )
 
 
@@ -237,7 +238,7 @@ class TestAsyncWorkflows:
     async def test_method_trigger(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
@@ -248,17 +249,18 @@ class TestAsyncWorkflows:
     async def test_method_trigger_with_all_params(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.trigger(
             key="key",
-            recipients=["jhammond"],
-            actor="string",
-            cancellation_key=None,
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
+            actor="mr_dna",
+            cancellation_key="isla_nublar_incident_1993",
             data={
-                "dinosaur_names": "bar",
-                "is_alert": "bar",
-                "park_id": "bar",
+                "affected_areas": "bar",
+                "attraction_id": "bar",
+                "evacuation_protocol": "bar",
+                "message": "bar",
                 "severity": "bar",
-                "welcome_message": "bar",
+                "system_status": "bar",
             },
-            tenant="acme_corp",
+            tenant="ingen_isla_nublar",
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
@@ -269,7 +271,7 @@ class TestAsyncWorkflows:
     async def test_raw_response_trigger(self, async_client: AsyncKnock) -> None:
         response = await async_client.workflows.with_raw_response.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         )
 
         assert response.is_closed is True
@@ -284,7 +286,7 @@ class TestAsyncWorkflows:
     async def test_streaming_response_trigger(self, async_client: AsyncKnock) -> None:
         async with async_client.workflows.with_streaming_response.trigger(
             key="key",
-            recipients=["jhammond"],
+            recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,5 +304,5 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.workflows.with_raw_response.trigger(
                 key="",
-                recipients=["jhammond"],
+                recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
             )

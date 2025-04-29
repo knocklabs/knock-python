@@ -3,6 +3,8 @@
 from typing import Union, Optional
 from typing_extensions import Literal, TypeAlias
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 from .push_channel_data import PushChannelData
 from .slack_channel_data import SlackChannelData
@@ -16,6 +18,9 @@ Data: TypeAlias = Union[PushChannelData, SlackChannelData, MsTeamsChannelData, D
 
 
 class ChannelData(BaseModel):
+    api_typename: str = FieldInfo(alias="__typename")
+    """The typename of the schema."""
+
     channel_id: str
     """The unique identifier for the channel."""
 

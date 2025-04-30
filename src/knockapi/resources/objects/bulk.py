@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
 
 import httpx
 
@@ -48,7 +48,7 @@ class BulkResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        body: object,
+        object_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,6 +60,8 @@ class BulkResource(SyncAPIResource):
         Bulk deletes objects from the specified collection.
 
         Args:
+          object_ids: List of object IDs to delete.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,7 +74,7 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
             f"/v1/objects/{collection}/bulk/delete",
-            body=maybe_transform(body, bulk_delete_params.BulkDeleteParams),
+            body=maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -185,7 +187,7 @@ class AsyncBulkResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        body: object,
+        object_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +199,8 @@ class AsyncBulkResource(AsyncAPIResource):
         Bulk deletes objects from the specified collection.
 
         Args:
+          object_ids: List of object IDs to delete.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,7 +213,7 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
             f"/v1/objects/{collection}/bulk/delete",
-            body=await async_maybe_transform(body, bulk_delete_params.BulkDeleteParams),
+            body=await async_maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

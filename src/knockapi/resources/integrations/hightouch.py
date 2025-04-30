@@ -30,7 +30,7 @@ class HightouchResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-python#accessing-raw-response-data-eg-headers
         """
         return HightouchResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class HightouchResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-python#with_streaming_response
         """
         return HightouchResourceWithStreamingResponse(self)
 
@@ -102,7 +102,7 @@ class AsyncHightouchResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-python#accessing-raw-response-data-eg-headers
         """
         return AsyncHightouchResourceWithRawResponse(self)
 
@@ -111,7 +111,7 @@ class AsyncHightouchResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-python#with_streaming_response
         """
         return AsyncHightouchResourceWithStreamingResponse(self)
 

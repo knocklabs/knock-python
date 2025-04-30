@@ -30,7 +30,7 @@ class CensusResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-python#accessing-raw-response-data-eg-headers
         """
         return CensusResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class CensusResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-python#with_streaming_response
         """
         return CensusResourceWithStreamingResponse(self)
 
@@ -102,7 +102,7 @@ class AsyncCensusResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCensusResourceWithRawResponse(self)
 
@@ -111,7 +111,7 @@ class AsyncCensusResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-python#with_streaming_response
         """
         return AsyncCensusResourceWithStreamingResponse(self)
 

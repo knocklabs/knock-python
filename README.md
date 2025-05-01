@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.knock.app](https://docs.knock.a
 
 ```sh
 # install from PyPI
-pip install --pre knockapi
+pip install knockapi
 ```
 
 ## Usage

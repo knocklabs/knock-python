@@ -708,10 +708,10 @@ class ObjectsResource(SyncAPIResource):
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
-          timezone: The timezone of the object. Must be a valid
-              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-              Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+          timezone: The timezone of the object. Must be a
+              valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used
+              for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -1544,10 +1544,10 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
-          timezone: The timezone of the object. Must be a valid
-              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-              Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+          timezone: The timezone of the object. Must be a
+              valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used
+              for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 

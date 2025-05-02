@@ -27,8 +27,8 @@ class ObjectSetParams(TypedDict, total=False):
     timezone: Optional[str]
     """The timezone of the object.
 
-    Must be a valid
-    [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-    Used for
-    [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+    Must be a
+    valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used
+    for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """

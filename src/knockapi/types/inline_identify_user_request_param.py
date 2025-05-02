@@ -23,8 +23,23 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The creation date of the user from your system."""
 
+    email: Optional[str]
+    """The primary email address for the user."""
+
+    name: Optional[str]
+    """Display name of the user."""
+
     preferences: Optional[InlinePreferenceSetRequestParam]
     """Inline set preferences for a recipient, where the key is the preference set id."""
+
+    timezone: Optional[str]
+    """The timezone of the user.
+
+    Must be a
+    valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used
+    for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+    """
 
 
 InlineIdentifyUserRequestParam: TypeAlias = Union[InlineIdentifyUserRequestParamTyped, Dict[str, object]]

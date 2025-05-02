@@ -140,15 +140,15 @@ class UsersResource(SyncAPIResource):
 
           name: Display name of the user.
 
-          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
-          timezone: The timezone of the user. Must be a valid
-              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-              Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+          timezone: The timezone of the user. Must be a
+              valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used
+              for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 
@@ -891,15 +891,15 @@ class AsyncUsersResource(AsyncAPIResource):
 
           name: Display name of the user.
 
-          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+          phone_number: The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
               user (required for SMS channels).
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
-          timezone: The timezone of the user. Must be a valid
-              [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-              Used for
-              [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+          timezone: The timezone of the user. Must be a
+              valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+              Used
+              for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
 
           extra_headers: Send extra headers
 

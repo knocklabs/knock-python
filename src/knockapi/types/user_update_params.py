@@ -37,7 +37,7 @@ class UserUpdateParams(TypedDict, total=False):
 
     phone_number: Optional[str]
     """
-    The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+    The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
     user (required for SMS channels).
     """
 
@@ -47,8 +47,8 @@ class UserUpdateParams(TypedDict, total=False):
     timezone: Optional[str]
     """The timezone of the user.
 
-    Must be a valid
-    [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-    Used for
-    [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+    Must be a
+    valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used
+    for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """

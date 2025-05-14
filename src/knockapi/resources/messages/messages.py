@@ -25,14 +25,6 @@ from ...types import (
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
-from .activities import (
-    ActivitiesResource,
-    AsyncActivitiesResource,
-    ActivitiesResourceWithRawResponse,
-    AsyncActivitiesResourceWithRawResponse,
-    ActivitiesResourceWithStreamingResponse,
-    AsyncActivitiesResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -55,10 +47,6 @@ class MessagesResource(SyncAPIResource):
     @cached_property
     def batch(self) -> BatchResource:
         return BatchResource(self._client)
-
-    @cached_property
-    def activities(self) -> ActivitiesResource:
-        return ActivitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
@@ -673,10 +661,6 @@ class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
     def batch(self) -> AsyncBatchResource:
         return AsyncBatchResource(self._client)
-
-    @cached_property
-    def activities(self) -> AsyncActivitiesResource:
-        return AsyncActivitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
@@ -1335,10 +1319,6 @@ class MessagesResourceWithRawResponse:
     def batch(self) -> BatchResourceWithRawResponse:
         return BatchResourceWithRawResponse(self._messages.batch)
 
-    @cached_property
-    def activities(self) -> ActivitiesResourceWithRawResponse:
-        return ActivitiesResourceWithRawResponse(self._messages.activities)
-
 
 class AsyncMessagesResourceWithRawResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -1387,10 +1367,6 @@ class AsyncMessagesResourceWithRawResponse:
     @cached_property
     def batch(self) -> AsyncBatchResourceWithRawResponse:
         return AsyncBatchResourceWithRawResponse(self._messages.batch)
-
-    @cached_property
-    def activities(self) -> AsyncActivitiesResourceWithRawResponse:
-        return AsyncActivitiesResourceWithRawResponse(self._messages.activities)
 
 
 class MessagesResourceWithStreamingResponse:
@@ -1441,10 +1417,6 @@ class MessagesResourceWithStreamingResponse:
     def batch(self) -> BatchResourceWithStreamingResponse:
         return BatchResourceWithStreamingResponse(self._messages.batch)
 
-    @cached_property
-    def activities(self) -> ActivitiesResourceWithStreamingResponse:
-        return ActivitiesResourceWithStreamingResponse(self._messages.activities)
-
 
 class AsyncMessagesResourceWithStreamingResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -1493,7 +1465,3 @@ class AsyncMessagesResourceWithStreamingResponse:
     @cached_property
     def batch(self) -> AsyncBatchResourceWithStreamingResponse:
         return AsyncBatchResourceWithStreamingResponse(self._messages.batch)
-
-    @cached_property
-    def activities(self) -> AsyncActivitiesResourceWithStreamingResponse:
-        return AsyncActivitiesResourceWithStreamingResponse(self._messages.activities)

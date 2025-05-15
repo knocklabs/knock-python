@@ -829,7 +829,7 @@ class TestObjects:
         object_ = client.objects.set(
             collection="collection",
             id="id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             locale="en-US",
             preferences={
                 "default": {
@@ -2032,7 +2032,7 @@ class TestAsyncObjects:
         object_ = await async_client.objects.set(
             collection="collection",
             id="id",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             locale="en-US",
             preferences={
                 "default": {

@@ -17,6 +17,9 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     id: Required[str]
     """The ID for the user that you set when identifying them in Knock."""
 
+    avatar: Optional[str]
+    """URL to the user's avatar image."""
+
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""
 
@@ -26,8 +29,20 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     email: Optional[str]
     """The primary email address for the user."""
 
+    locale: Optional[str]
+    """The locale of the user.
+
+    Used for [message localization](/concepts/translations).
+    """
+
     name: Optional[str]
     """Display name of the user."""
+
+    phone_number: Optional[str]
+    """
+    The [E.164](https://www.twilio.com/docs/glossary/what-e164) phone number of the
+    user (required for SMS channels).
+    """
 
     preferences: Optional[InlinePreferenceSetRequestParam]
     """Inline set preferences for a recipient, where the key is the preference set id."""

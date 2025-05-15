@@ -16,11 +16,7 @@ __all__ = ["ScheduleCreateParams"]
 
 class ScheduleCreateParams(TypedDict, total=False):
     recipients: Required[List[RecipientRequestParam]]
-    """The recipients to trigger the workflow for.
-
-    Can inline identify users, objects, or use a list of user IDs. Limited to 1,000
-    recipients.
-    """
+    """The recipients to set the schedule for. Limited to 100 recipients per request."""
 
     repeats: Required[Iterable[ScheduleRepeatRuleParam]]
     """The repeat rule for the schedule."""

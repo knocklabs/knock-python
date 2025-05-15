@@ -47,7 +47,7 @@ class TestUsers:
         user = client.users.update(
             user_id="user_id",
             avatar="avatar",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="ian.malcolm@chaos.theory",
             locale="locale",
@@ -1017,7 +1017,7 @@ class TestAsyncUsers:
         user = await async_client.users.update(
             user_id="user_id",
             avatar="avatar",
-            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"data": {"tokens": ["push_token_123"]}}},
+            channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="ian.malcolm@chaos.theory",
             locale="locale",

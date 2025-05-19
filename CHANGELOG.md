@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.1.0 (2025-05-16)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/knocklabs/knock-python/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** api update ([e88471a](https://github.com/knocklabs/knock-python/commit/e88471a8b9c90f68d9ff6438298754f8b63148cc))
+* **api:** api update ([07aa7ef](https://github.com/knocklabs/knock-python/commit/07aa7ef945058ad65a8b7586c74dabf156c69cfb))
+* **api:** removes duplicate activities section ([5e79f8b](https://github.com/knocklabs/knock-python/commit/5e79f8b6dc84a299099052a204f50c8522671d51))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([03d835a](https://github.com/knocklabs/knock-python/commit/03d835a305fe7024814c863ed902481ec509b439))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([aad60e0](https://github.com/knocklabs/knock-python/commit/aad60e07fd672462e4689125a20f4f62a99d18de))
+* **ci:** upload sdks to package manager ([6793aeb](https://github.com/knocklabs/knock-python/commit/6793aeb32db67c2f41dc3c721c64b25471031c13))
+* **internal:** avoid errors for isinstance checks on proxies ([49ba469](https://github.com/knocklabs/knock-python/commit/49ba46929f05e16a4d134ce201d7a10bbfd09b4b))
+* **internal:** version bump ([797719a](https://github.com/knocklabs/knock-python/commit/797719ac713c52ac1abae12df3b3667ee3d536aa))
+
 ## 1.0.0 (2025-05-01)
 
 Full Changelog: [v0.5.14...v1.0.0](https://github.com/knocklabs/knock-python/compare/v0.5.14...v1.0.0)

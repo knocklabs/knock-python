@@ -260,12 +260,6 @@ Methods:
 - <code title="post /v1/messages/batch/unseen">client.messages.batch.<a href="./src/knockapi/resources/messages/batch.py">mark_as_unseen</a>(\*\*<a href="src/knockapi/types/messages/batch_mark_as_unseen_params.py">params</a>) -> <a href="./src/knockapi/types/messages/batch_mark_as_unseen_response.py">BatchMarkAsUnseenResponse</a></code>
 - <code title="post /v1/messages/batch/unarchived">client.messages.batch.<a href="./src/knockapi/resources/messages/batch.py">unarchive</a>(\*\*<a href="src/knockapi/types/messages/batch_unarchive_params.py">params</a>) -> <a href="./src/knockapi/types/messages/batch_unarchive_response.py">BatchUnarchiveResponse</a></code>
 
-## Activities
-
-Methods:
-
-- <code title="get /v1/messages/{message_id}/activities">client.messages.activities.<a href="./src/knockapi/resources/messages/activities.py">list</a>(message_id, \*\*<a href="src/knockapi/types/messages/activity_list_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncItemsCursor[Activity]</a></code>
-
 # Providers
 
 ## Slack

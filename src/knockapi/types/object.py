@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -26,8 +26,5 @@ class Object(BaseModel):
     created_at: Optional[datetime] = None
     """Timestamp when the resource was created."""
 
-    if TYPE_CHECKING:
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
+    properties: Optional[Dict[str, object]] = None
+    """The custom properties associated with the object."""

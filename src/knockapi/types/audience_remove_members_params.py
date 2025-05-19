@@ -20,6 +20,7 @@ class MemberUser(TypedDict, total=False):
 
 class Member(TypedDict, total=False):
     user: Required[MemberUser]
+    """An object containing the user's ID."""
 
     tenant: Optional[str]
     """The unique identifier for the tenant."""

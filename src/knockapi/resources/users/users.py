@@ -392,7 +392,9 @@ class UsersResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         channel_id: str | NotGiven = NOT_GIVEN,
-        engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
+        engagement_status: List[
+            Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
+        ]
         | NotGiven = NOT_GIVEN,
         inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,
@@ -1145,7 +1147,9 @@ class AsyncUsersResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         channel_id: str | NotGiven = NOT_GIVEN,
-        engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
+        engagement_status: List[
+            Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
+        ]
         | NotGiven = NOT_GIVEN,
         inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
         message_ids: List[str] | NotGiven = NOT_GIVEN,

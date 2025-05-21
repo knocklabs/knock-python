@@ -18,7 +18,9 @@ class UserListMessagesParams(TypedDict, total=False):
     channel_id: str
     """Limits the results to items with the corresponding channel ID."""
 
-    engagement_status: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
+    engagement_status: List[
+        Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
+    ]
     """Limits the results to messages with the given engagement status."""
 
     inserted_at: InsertedAt

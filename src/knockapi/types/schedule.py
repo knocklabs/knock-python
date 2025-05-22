@@ -38,7 +38,12 @@ class Schedule(BaseModel):
     """A recipient of a notification, which is either a user or an object."""
 
     data: Optional[Dict[str, object]] = None
-    """An optional map of data to pass into the workflow execution."""
+    """An optional map of data to pass into the workflow execution.
+
+    There is a 1024 byte limit on the size of any single string value (with the
+    exception of [email attachments](/integrations/email/attachments)), and a 10MB
+    limit on the size of the full `data` payload.
+    """
 
     last_occurrence_at: Optional[datetime] = None
     """The last occurrence of the schedule."""

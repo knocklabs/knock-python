@@ -100,7 +100,10 @@ class SchedulesResource(SyncAPIResource):
 
           workflow: The key of the workflow.
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
 
@@ -166,7 +169,10 @@ class SchedulesResource(SyncAPIResource):
           actor: A reference to a recipient, either a user identifier (string) or an object
               reference (ID, collection).
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
 
@@ -359,7 +365,10 @@ class AsyncSchedulesResource(AsyncAPIResource):
 
           workflow: The key of the workflow.
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
 
@@ -425,7 +434,10 @@ class AsyncSchedulesResource(AsyncAPIResource):
           actor: A reference to a recipient, either a user identifier (string) or an object
               reference (ID, collection).
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
 

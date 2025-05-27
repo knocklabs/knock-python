@@ -32,7 +32,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
+from ...pagination import SyncItemsCursor, AsyncItemsCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.activity import Activity
@@ -94,7 +94,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Message]:
+    ) -> SyncItemsCursor[Message]:
         """
         Returns a paginated list of messages for the current environment.
 
@@ -139,7 +139,7 @@ class MessagesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v1/messages",
-            page=SyncEntriesCursor[Message],
+            page=SyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,7 +341,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[MessageDeliveryLog]:
+    ) -> SyncItemsCursor[MessageDeliveryLog]:
         """
         Returns a paginated list of delivery logs for the specified message.
 
@@ -364,7 +364,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/delivery_logs",
-            page=SyncEntriesCursor[MessageDeliveryLog],
+            page=SyncItemsCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,7 +395,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[MessageEvent]:
+    ) -> SyncItemsCursor[MessageEvent]:
         """
         Returns a paginated list of events for the specified message.
 
@@ -418,7 +418,7 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/events",
-            page=SyncEntriesCursor[MessageEvent],
+            page=SyncItemsCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -710,7 +710,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
+    ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """
         Returns a paginated list of messages for the current environment.
 
@@ -755,7 +755,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v1/messages",
-            page=AsyncEntriesCursor[Message],
+            page=AsyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -957,7 +957,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageDeliveryLog, AsyncEntriesCursor[MessageDeliveryLog]]:
+    ) -> AsyncPaginator[MessageDeliveryLog, AsyncItemsCursor[MessageDeliveryLog]]:
         """
         Returns a paginated list of delivery logs for the specified message.
 
@@ -980,7 +980,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/delivery_logs",
-            page=AsyncEntriesCursor[MessageDeliveryLog],
+            page=AsyncItemsCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1011,7 +1011,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageEvent, AsyncEntriesCursor[MessageEvent]]:
+    ) -> AsyncPaginator[MessageEvent, AsyncItemsCursor[MessageEvent]]:
         """
         Returns a paginated list of events for the specified message.
 
@@ -1034,7 +1034,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
             f"/v1/messages/{message_id}/events",
-            page=AsyncEntriesCursor[MessageEvent],
+            page=AsyncItemsCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -53,7 +53,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ...pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
 from ...types.user import User
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
@@ -413,7 +413,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Message]:
+    ) -> SyncItemsCursor[Message]:
         """Returns a paginated list of messages for a specific user.
 
         Allows filtering by
@@ -463,7 +463,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
             f"/v1/users/{user_id}/messages",
-            page=SyncEntriesCursor[Message],
+            page=SyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1168,7 +1168,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
+    ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """Returns a paginated list of messages for a specific user.
 
         Allows filtering by
@@ -1218,7 +1218,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
             f"/v1/users/{user_id}/messages",
-            page=AsyncEntriesCursor[Message],
+            page=AsyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

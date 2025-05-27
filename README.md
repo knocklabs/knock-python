@@ -162,7 +162,7 @@ page = client.users.list_messages(
         "lte": "lte",
     },
 )
-print(page.entries)
+print(page.items)
 ```
 
 ## Handling errors

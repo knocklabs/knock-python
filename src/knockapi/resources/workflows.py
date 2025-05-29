@@ -136,7 +136,10 @@ class WorkflowsResource(SyncAPIResource):
               subsequent cancellation. Should be unique across trigger requests to avoid
               unintentional cancellations.
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           tenant: An request to set a tenant inline.
 
@@ -279,7 +282,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               subsequent cancellation. Should be unique across trigger requests to avoid
               unintentional cancellations.
 
-          data: An optional map of data to pass into the workflow execution.
+          data: An optional map of data to pass into the workflow execution. There is a 1024
+              byte limit on the size of any single string value (with the exception of
+              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
+              size of the full `data` payload.
 
           tenant: An request to set a tenant inline.
 

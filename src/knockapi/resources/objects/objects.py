@@ -36,7 +36,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ...pagination import SyncItemsCursor, AsyncItemsCursor, SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.object import Object
 from ...types.message import Message
@@ -422,7 +422,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncEntriesCursor[Message]:
+    ) -> SyncItemsCursor[Message]:
         """
         Returns a paginated list of messages for a specific object in the given
         collection. Allows filtering by message status and provides various sorting
@@ -473,7 +473,7 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/v1/objects/{collection}/{id}/messages",
-            page=SyncEntriesCursor[Message],
+            page=SyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1260,7 +1260,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Message, AsyncEntriesCursor[Message]]:
+    ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """
         Returns a paginated list of messages for a specific object in the given
         collection. Allows filtering by message status and provides various sorting
@@ -1311,7 +1311,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/v1/objects/{collection}/{id}/messages",
-            page=AsyncEntriesCursor[Message],
+            page=AsyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

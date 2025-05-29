@@ -701,8 +701,11 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
-        """
-        Updates or creates channel data for a specific user and channel ID.
+        """Updates or creates channel data for a specific user and channel ID.
+
+        If no user
+        exists in the current environment for the given `user_id`, Knock will create the
+        user entry as part of this request.
 
         Args:
           data: Channel data for a given channel type.
@@ -1456,8 +1459,11 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ChannelData:
-        """
-        Updates or creates channel data for a specific user and channel ID.
+        """Updates or creates channel data for a specific user and channel ID.
+
+        If no user
+        exists in the current environment for the given `user_id`, Knock will create the
+        user entry as part of this request.
 
         Args:
           data: Channel data for a given channel type.

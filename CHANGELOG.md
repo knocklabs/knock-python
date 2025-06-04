@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.5.0 (2025-06-04)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/knocklabs/knock-python/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** api update ([d1373fc](https://github.com/knocklabs/knock-python/commit/d1373fca14df49d70f39a976cfc06655d47e63f4))
+* **client:** add follow_redirects request option ([89019e2](https://github.com/knocklabs/knock-python/commit/89019e20bc3f965a662dfa8abc33b4608b5b2e12))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([7a8cea9](https://github.com/knocklabs/knock-python/commit/7a8cea9054c4c620a621d79eb15ba0159deadd39))
+* **docs:** remove unnecessary param examples ([bd97370](https://github.com/knocklabs/knock-python/commit/bd973709e9044293a48639c3a9fb403f7448f697))
+
 ## 1.4.0 (2025-05-29)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/knocklabs/knock-python/compare/v1.3.0...v1.4.0)

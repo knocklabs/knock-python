@@ -155,12 +155,7 @@ client = Knock()
 
 page = client.users.list_messages(
     user_id="user-123",
-    inserted_at={
-        "gt": "gt",
-        "gte": "gte",
-        "lt": "lt",
-        "lte": "lte",
-    },
+    inserted_at={},
 )
 print(page.items)
 ```

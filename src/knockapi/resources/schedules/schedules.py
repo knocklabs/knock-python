@@ -73,10 +73,11 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         recipients: List[RecipientRequestParam],
-        repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -96,9 +97,11 @@ class SchedulesResource(SyncAPIResource):
         Args:
           recipients: The recipients to set the schedule for. Limited to 100 recipients per request.
 
-          repeats: The repeat rule for the schedule.
-
           workflow: The key of the workflow.
+
+          actor: Specifies a recipient in a request. This can either be a user identifier
+              (string), an inline user request (object), or an inline object request, which is
+              determined by the presence of a `collection` property.
 
           data: An optional map of data to pass into the workflow execution. There is a 1024
               byte limit on the size of any single string value (with the exception of
@@ -106,6 +109,8 @@ class SchedulesResource(SyncAPIResource):
               size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
+
+          repeats: The repeat rule for the schedule.
 
           scheduled_at: The starting date and time for the schedule.
 
@@ -124,10 +129,11 @@ class SchedulesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "recipients": recipients,
-                    "repeats": repeats,
                     "workflow": workflow,
+                    "actor": actor,
                     "data": data,
                     "ending_at": ending_at,
+                    "repeats": repeats,
                     "scheduled_at": scheduled_at,
                     "tenant": tenant,
                 },
@@ -338,10 +344,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         recipients: List[RecipientRequestParam],
-        repeats: Iterable[ScheduleRepeatRuleParam],
         workflow: str,
+        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
         scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -361,9 +368,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
         Args:
           recipients: The recipients to set the schedule for. Limited to 100 recipients per request.
 
-          repeats: The repeat rule for the schedule.
-
           workflow: The key of the workflow.
+
+          actor: Specifies a recipient in a request. This can either be a user identifier
+              (string), an inline user request (object), or an inline object request, which is
+              determined by the presence of a `collection` property.
 
           data: An optional map of data to pass into the workflow execution. There is a 1024
               byte limit on the size of any single string value (with the exception of
@@ -371,6 +380,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
               size of the full `data` payload.
 
           ending_at: The ending date and time for the schedule.
+
+          repeats: The repeat rule for the schedule.
 
           scheduled_at: The starting date and time for the schedule.
 
@@ -389,10 +400,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "recipients": recipients,
-                    "repeats": repeats,
                     "workflow": workflow,
+                    "actor": actor,
                     "data": data,
                     "ending_at": ending_at,
+                    "repeats": repeats,
                     "scheduled_at": scheduled_at,
                     "tenant": tenant,
                 },

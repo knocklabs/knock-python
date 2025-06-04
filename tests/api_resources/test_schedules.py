@@ -15,6 +15,7 @@ from knockapi.types import (
     ScheduleDeleteResponse,
     ScheduleUpdateResponse,
 )
+from knockapi._utils import parse_datetime
 from knockapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,12 +31,6 @@ class TestSchedules:
     def test_method_create(self, client: Knock) -> None:
         schedule = client.schedules.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         )
         assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
@@ -47,6 +42,71 @@ class TestSchedules:
     def test_method_create_with_all_params(self, client: Knock) -> None:
         schedule = client.schedules.create(
             recipients=["user_123"],
+            workflow="comment-created",
+            actor={
+                "id": "user_1",
+                "avatar": "avatar",
+                "channel_data": {"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "email": "email",
+                "locale": "locale",
+                "name": "name",
+                "phone_number": "phone_number",
+                "preferences": {
+                    "default": {
+                        "categories": {
+                            "transactional": {
+                                "channel_types": {
+                                    "chat": True,
+                                    "email": False,
+                                    "http": True,
+                                    "in_app_feed": True,
+                                    "push": True,
+                                    "sms": True,
+                                },
+                                "conditions": [
+                                    {
+                                        "argument": "frog_genome",
+                                        "operator": "contains",
+                                        "variable": "specimen.dna_sequence",
+                                    }
+                                ],
+                            }
+                        },
+                        "channel_types": {
+                            "chat": True,
+                            "email": True,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
+                        },
+                        "workflows": {
+                            "dinosaurs-loose": {
+                                "channel_types": {
+                                    "chat": True,
+                                    "email": False,
+                                    "http": True,
+                                    "in_app_feed": True,
+                                    "push": True,
+                                    "sms": True,
+                                },
+                                "conditions": [
+                                    {
+                                        "argument": "frog_genome",
+                                        "operator": "contains",
+                                        "variable": "specimen.dna_sequence",
+                                    }
+                                ],
+                            },
+                            "welcome-sequence": True,
+                        },
+                    }
+                },
+                "timezone": "timezone",
+            },
+            data={"key": "bar"},
+            ending_at=None,
             repeats=[
                 {
                     "_typename": "ScheduleRepeat",
@@ -58,9 +118,6 @@ class TestSchedules:
                     "minutes": None,
                 }
             ],
-            workflow="comment-created",
-            data={"key": "bar"},
-            ending_at=None,
             scheduled_at=None,
             tenant="acme_corp",
         )
@@ -73,12 +130,6 @@ class TestSchedules:
     def test_raw_response_create(self, client: Knock) -> None:
         response = client.schedules.with_raw_response.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         )
 
@@ -94,12 +145,6 @@ class TestSchedules:
     def test_streaming_response_create(self, client: Knock) -> None:
         with client.schedules.with_streaming_response.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         ) as response:
             assert not response.is_closed
@@ -282,12 +327,6 @@ class TestAsyncSchedules:
     async def test_method_create(self, async_client: AsyncKnock) -> None:
         schedule = await async_client.schedules.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         )
         assert_matches_type(ScheduleCreateResponse, schedule, path=["response"])
@@ -299,6 +338,71 @@ class TestAsyncSchedules:
     async def test_method_create_with_all_params(self, async_client: AsyncKnock) -> None:
         schedule = await async_client.schedules.create(
             recipients=["user_123"],
+            workflow="comment-created",
+            actor={
+                "id": "user_1",
+                "avatar": "avatar",
+                "channel_data": {"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "email": "email",
+                "locale": "locale",
+                "name": "name",
+                "phone_number": "phone_number",
+                "preferences": {
+                    "default": {
+                        "categories": {
+                            "transactional": {
+                                "channel_types": {
+                                    "chat": True,
+                                    "email": False,
+                                    "http": True,
+                                    "in_app_feed": True,
+                                    "push": True,
+                                    "sms": True,
+                                },
+                                "conditions": [
+                                    {
+                                        "argument": "frog_genome",
+                                        "operator": "contains",
+                                        "variable": "specimen.dna_sequence",
+                                    }
+                                ],
+                            }
+                        },
+                        "channel_types": {
+                            "chat": True,
+                            "email": True,
+                            "http": True,
+                            "in_app_feed": True,
+                            "push": True,
+                            "sms": True,
+                        },
+                        "workflows": {
+                            "dinosaurs-loose": {
+                                "channel_types": {
+                                    "chat": True,
+                                    "email": False,
+                                    "http": True,
+                                    "in_app_feed": True,
+                                    "push": True,
+                                    "sms": True,
+                                },
+                                "conditions": [
+                                    {
+                                        "argument": "frog_genome",
+                                        "operator": "contains",
+                                        "variable": "specimen.dna_sequence",
+                                    }
+                                ],
+                            },
+                            "welcome-sequence": True,
+                        },
+                    }
+                },
+                "timezone": "timezone",
+            },
+            data={"key": "bar"},
+            ending_at=None,
             repeats=[
                 {
                     "_typename": "ScheduleRepeat",
@@ -310,9 +414,6 @@ class TestAsyncSchedules:
                     "minutes": None,
                 }
             ],
-            workflow="comment-created",
-            data={"key": "bar"},
-            ending_at=None,
             scheduled_at=None,
             tenant="acme_corp",
         )
@@ -325,12 +426,6 @@ class TestAsyncSchedules:
     async def test_raw_response_create(self, async_client: AsyncKnock) -> None:
         response = await async_client.schedules.with_raw_response.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         )
 
@@ -346,12 +441,6 @@ class TestAsyncSchedules:
     async def test_streaming_response_create(self, async_client: AsyncKnock) -> None:
         async with async_client.schedules.with_streaming_response.create(
             recipients=["user_123"],
-            repeats=[
-                {
-                    "_typename": "ScheduleRepeat",
-                    "frequency": "daily",
-                }
-            ],
             workflow="comment-created",
         ) as response:
             assert not response.is_closed

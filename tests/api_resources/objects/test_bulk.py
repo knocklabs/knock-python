@@ -132,12 +132,7 @@ class TestBulk:
     def test_method_set(self, client: Knock) -> None:
         bulk = client.objects.bulk.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -148,12 +143,7 @@ class TestBulk:
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         )
 
         assert response.is_closed is True
@@ -168,12 +158,7 @@ class TestBulk:
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,12 +176,7 @@ class TestBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             client.objects.bulk.with_raw_response.set(
                 collection="",
-                objects=[
-                    {
-                        "id": "project_1",
-                        "collection": "projects",
-                    }
-                ],
+                objects=[{"id": "project_1"}],
             )
 
 
@@ -318,12 +298,7 @@ class TestAsyncBulk:
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
@@ -334,12 +309,7 @@ class TestAsyncBulk:
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         )
 
         assert response.is_closed is True
@@ -354,12 +324,7 @@ class TestAsyncBulk:
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.set(
             collection="collection",
-            objects=[
-                {
-                    "id": "project_1",
-                    "collection": "projects",
-                }
-            ],
+            objects=[{"id": "project_1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -377,10 +342,5 @@ class TestAsyncBulk:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
             await async_client.objects.bulk.with_raw_response.set(
                 collection="",
-                objects=[
-                    {
-                        "id": "project_1",
-                        "collection": "projects",
-                    }
-                ],
+                objects=[{"id": "project_1"}],
             )

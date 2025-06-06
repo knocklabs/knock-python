@@ -109,8 +109,8 @@ class TestSchedules:
             ending_at=None,
             repeats=[
                 {
-                    "_typename": "ScheduleRepeat",
                     "frequency": "daily",
+                    "_typename": "ScheduleRepeat",
                     "day_of_month": None,
                     "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
                     "hours": None,
@@ -177,8 +177,8 @@ class TestSchedules:
             ending_at=None,
             repeats=[
                 {
-                    "_typename": "ScheduleRepeat",
                     "frequency": "daily",
+                    "_typename": "ScheduleRepeat",
                     "day_of_month": None,
                     "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
                     "hours": None,
@@ -241,7 +241,7 @@ class TestSchedules:
             after="after",
             before="before",
             page_size=0,
-            recipients=["string"],
+            recipients=["user_123"],
             tenant="tenant",
         )
         assert_matches_type(SyncEntriesCursor[Schedule], schedule, path=["response"])
@@ -405,8 +405,8 @@ class TestAsyncSchedules:
             ending_at=None,
             repeats=[
                 {
-                    "_typename": "ScheduleRepeat",
                     "frequency": "daily",
+                    "_typename": "ScheduleRepeat",
                     "day_of_month": None,
                     "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
                     "hours": None,
@@ -473,8 +473,8 @@ class TestAsyncSchedules:
             ending_at=None,
             repeats=[
                 {
-                    "_typename": "ScheduleRepeat",
                     "frequency": "daily",
+                    "_typename": "ScheduleRepeat",
                     "day_of_month": None,
                     "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
                     "hours": None,
@@ -537,7 +537,7 @@ class TestAsyncSchedules:
             after="after",
             before="before",
             page_size=0,
-            recipients=["string"],
+            recipients=["user_123"],
             tenant="tenant",
         )
         assert_matches_type(AsyncEntriesCursor[Schedule], schedule, path=["response"])

@@ -184,57 +184,6 @@ class TestTenants:
         tenant = client.tenants.set(
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
-            preferences={
-                "default": {
-                    "categories": {
-                        "transactional": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
-                    },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
-                    },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        },
-                        "welcome-sequence": True,
-                    },
-                }
-            },
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",
@@ -505,57 +454,6 @@ class TestAsyncTenants:
         tenant = await async_client.tenants.set(
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
-            preferences={
-                "default": {
-                    "categories": {
-                        "transactional": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        }
-                    },
-                    "channel_types": {
-                        "chat": True,
-                        "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
-                        "sms": True,
-                    },
-                    "workflows": {
-                        "dinosaurs-loose": {
-                            "channel_types": {
-                                "chat": True,
-                                "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
-                                "sms": True,
-                            },
-                            "conditions": [
-                                {
-                                    "argument": "frog_genome",
-                                    "operator": "contains",
-                                    "variable": "specimen.dna_sequence",
-                                }
-                            ],
-                        },
-                        "welcome-sequence": True,
-                    },
-                }
-            },
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",

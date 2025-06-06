@@ -19,7 +19,6 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.objects import bulk_set_params, bulk_delete_params, bulk_add_subscriptions_params
 from ...types.bulk_operation import BulkOperation
-from ...types.inline_object_request_param import InlineObjectRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -129,7 +128,7 @@ class BulkResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        objects: Iterable[InlineObjectRequestParam],
+        objects: Iterable[bulk_set_params.Object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,7 +267,7 @@ class AsyncBulkResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        objects: Iterable[InlineObjectRequestParam],
+        objects: Iterable[bulk_set_params.Object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

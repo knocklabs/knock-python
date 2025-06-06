@@ -11,11 +11,11 @@ __all__ = ["ScheduleRepeatRule"]
 
 
 class ScheduleRepeatRule(BaseModel):
-    api_typename: str = FieldInfo(alias="__typename")
-    """The typename of the schema."""
-
     frequency: Literal["daily", "weekly", "monthly", "hourly"]
     """The frequency of the schedule."""
+
+    api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
+    """The typename of the schema."""
 
     day_of_month: Optional[int] = None
     """The day of the month to repeat the schedule."""

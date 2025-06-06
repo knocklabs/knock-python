@@ -29,7 +29,6 @@ from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.tenant import Tenant
 from ...types.recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
-from ...types.recipients.inline_preference_set_request_param import InlinePreferenceSetRequestParam
 
 __all__ = ["TenantsResource", "AsyncTenantsResource"]
 
@@ -189,7 +188,6 @@ class TenantsResource(SyncAPIResource):
         id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -205,8 +203,6 @@ class TenantsResource(SyncAPIResource):
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
-
-          preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
           settings: The settings for the tenant. Includes branding and preference set.
 
@@ -225,7 +221,6 @@ class TenantsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "channel_data": channel_data,
-                    "preferences": preferences,
                     "settings": settings,
                 },
                 tenant_set_params.TenantSetParams,
@@ -392,7 +387,6 @@ class AsyncTenantsResource(AsyncAPIResource):
         id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
         settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -408,8 +402,6 @@ class AsyncTenantsResource(AsyncAPIResource):
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
-
-          preferences: Inline set preferences for a recipient, where the key is the preference set id.
 
           settings: The settings for the tenant. Includes branding and preference set.
 
@@ -428,7 +420,6 @@ class AsyncTenantsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "channel_data": channel_data,
-                    "preferences": preferences,
                     "settings": settings,
                 },
                 tenant_set_params.TenantSetParams,

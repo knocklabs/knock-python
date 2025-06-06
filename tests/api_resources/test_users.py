@@ -641,7 +641,7 @@ class TestUsers:
             after="after",
             before="before",
             include=["preferences"],
-            objects=["string"],
+            objects=["user_123"],
             page_size=0,
         )
         assert_matches_type(SyncEntriesCursor[Subscription], user, path=["response"])
@@ -1611,7 +1611,7 @@ class TestAsyncUsers:
             after="after",
             before="before",
             include=["preferences"],
-            objects=["string"],
+            objects=["user_123"],
             page_size=0,
         )
         assert_matches_type(AsyncEntriesCursor[Subscription], user, path=["response"])

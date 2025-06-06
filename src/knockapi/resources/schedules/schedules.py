@@ -223,7 +223,7 @@ class SchedulesResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[str] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -245,7 +245,7 @@ class SchedulesResource(SyncAPIResource):
 
           page_size: The number of items per page.
 
-          recipients: Filter by recipient IDs.
+          recipients: Filter by recipient references.
 
           tenant: Filter by tenant ID.
 
@@ -494,7 +494,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[str] | NotGiven = NOT_GIVEN,
+        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -516,7 +516,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
 
           page_size: The number of items per page.
 
-          recipients: Filter by recipient IDs.
+          recipients: Filter by recipient references.
 
           tenant: Filter by tenant ID.
 

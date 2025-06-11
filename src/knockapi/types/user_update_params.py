@@ -42,7 +42,11 @@ class UserUpdateParams(TypedDict, total=False):
     """
 
     preferences: Optional[InlinePreferenceSetRequestParam]
-    """Inline set preferences for a recipient, where the key is the preference set id."""
+    """Inline set preferences for a recipient, where the key is the preference set id.
+
+    Preferences that are set inline will be merged into any existing preferences
+    rather than replacing them.
+    """
 
     timezone: Optional[str]
     """The timezone of the user.

@@ -56,10 +56,8 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Deletes multiple users in a single operation.
-
-        Accepts up to 100 user IDs to
-        delete and returns a bulk operation that can be queried for progress.
+        """
+        Permanently deletes up to 1,000 users at a time.
 
         Args:
           user_ids: A list of user IDs.
@@ -95,8 +93,8 @@ class BulkResource(SyncAPIResource):
         """Identifies multiple users in a single operation.
 
         Allows creating or updating up
-        to 100 users in a single batch with various properties, preferences, and channel
-        data.
+        to 1,000 users in a single batch with various properties, preferences, and
+        channel data.
 
         Args:
           users: A list of users.
@@ -130,11 +128,13 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Sets preferences for multiple users in a single operation.
+        """Bulk sets the preferences for up to 1,000 users at a time.
 
-        Supports either
-        setting the same preferences for multiple users or specific preferences for each
-        user.
+        The preference
+        set `:id` can be either `default` or a `tenant.id`. Learn more
+        about [per-tenant preferences](/preferences/tenant-preferences). Note that this
+        is a destructive operation and will replace any existing users' preferences with
+        the preferences sent.
 
         Args:
           preferences: A request to set a preference set for a recipient.
@@ -196,10 +196,8 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Deletes multiple users in a single operation.
-
-        Accepts up to 100 user IDs to
-        delete and returns a bulk operation that can be queried for progress.
+        """
+        Permanently deletes up to 1,000 users at a time.
 
         Args:
           user_ids: A list of user IDs.
@@ -235,8 +233,8 @@ class AsyncBulkResource(AsyncAPIResource):
         """Identifies multiple users in a single operation.
 
         Allows creating or updating up
-        to 100 users in a single batch with various properties, preferences, and channel
-        data.
+        to 1,000 users in a single batch with various properties, preferences, and
+        channel data.
 
         Args:
           users: A list of users.
@@ -270,11 +268,13 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BulkOperation:
-        """Sets preferences for multiple users in a single operation.
+        """Bulk sets the preferences for up to 1,000 users at a time.
 
-        Supports either
-        setting the same preferences for multiple users or specific preferences for each
-        user.
+        The preference
+        set `:id` can be either `default` or a `tenant.id`. Learn more
+        about [per-tenant preferences](/preferences/tenant-preferences). Note that this
+        is a destructive operation and will replace any existing users' preferences with
+        the preferences sent.
 
         Args:
           preferences: A request to set a preference set for a recipient.

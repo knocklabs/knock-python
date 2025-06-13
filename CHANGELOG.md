@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.7.1 (2025-06-13)
+
+Full Changelog: [v1.7.0...v1.7.1](https://github.com/knocklabs/knock-python/compare/v1.7.0...v1.7.1)
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([86075af](https://github.com/knocklabs/knock-python/commit/86075af572ff7b0548a48f0fb741f8a3a3eca30a))
+
+
+### Chores
+
+* **tests:** run tests in parallel ([c6d9045](https://github.com/knocklabs/knock-python/commit/c6d90450c3c7923b81e2ddb74a249577b1571e8f))
+
 ## 1.7.0 (2025-06-12)
 
 Full Changelog: [v1.6.0...v1.7.0](https://github.com/knocklabs/knock-python/compare/v1.6.0...v1.7.0)

@@ -24,7 +24,6 @@ from pydantic import ValidationError
 from knockapi import Knock, AsyncKnock, APIResponseValidationError
 from knockapi._types import Omit
 from knockapi._models import BaseModel, FinalRequestOptions
-from knockapi._constants import RAW_RESPONSE_HEADER
 from knockapi._exceptions import KnockError, APIStatusError, APITimeoutError, APIResponseValidationError
 from knockapi._base_client import (
     DEFAULT_TIMEOUT,
@@ -711,26 +710,21 @@ class TestKnock:
 
     @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Knock) -> None:
         respx_mock.get("/v1/users/user_id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.get(
-                "/v1/users/user_id", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
-            )
+            client.users.with_streaming_response.get("user_id").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Knock) -> None:
         respx_mock.get("/v1/users/user_id").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.get(
-                "/v1/users/user_id", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
-            )
-
+            client.users.with_streaming_response.get("user_id").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1526,26 +1520,21 @@ class TestAsyncKnock:
 
     @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncKnock) -> None:
         respx_mock.get("/v1/users/user_id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.get(
-                "/v1/users/user_id", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
-            )
+            await async_client.users.with_streaming_response.get("user_id").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("knockapi._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncKnock) -> None:
         respx_mock.get("/v1/users/user_id").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.get(
-                "/v1/users/user_id", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
-            )
-
+            await async_client.users.with_streaming_response.get("user_id").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])

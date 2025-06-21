@@ -1,6 +1,6 @@
 [project]
 name = "knockapi"
-version = "1.7.1"
+version = "1.8.0"
 description = "The official Python library for the knock API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -37,6 +37,8 @@ classifiers = [
 Homepage = "https://github.com/knocklabs/knock-python"
 Repository = "https://github.com/knocklabs/knock-python"
 
+[project.optional-dependencies]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.6"]
 
 [tool.rye]
 managed = true

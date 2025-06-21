@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.8.0 (2025-06-21)
+
+Full Changelog: [v1.7.1...v1.8.0](https://github.com/knocklabs/knock-python/compare/v1.7.1...v1.8.0)
+
+### Features
+
+* **api:** api update ([4f1b799](https://github.com/knocklabs/knock-python/commit/4f1b799dcdf50253c531f5c1c9b71c6feec3cd98))
+* **client:** add support for aiohttp ([43bd2be](https://github.com/knocklabs/knock-python/commit/43bd2beae3e2e969ab3af11b3a40b0e3ce58a9c1))
+
+
+### Bug Fixes
+
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([beb242d](https://github.com/knocklabs/knock-python/commit/beb242d5a2280d777875f6b2481f2647ae9656b1))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([38cb0ce](https://github.com/knocklabs/knock-python/commit/38cb0ce8e86ff6fe1c676805bfb708ab37ed4319))
+* **internal:** update conftest.py ([5bcbc15](https://github.com/knocklabs/knock-python/commit/5bcbc15a618a92a5b4bbf73c612583566d78989d))
+* **readme:** update badges ([b72984d](https://github.com/knocklabs/knock-python/commit/b72984d6cf99fbb5d78e5af92e6ef82cae007a31))
+* **tests:** add tests for httpx client instantiation & proxies ([e971449](https://github.com/knocklabs/knock-python/commit/e9714490d78f9f477437425a72451c1a5a74b16c))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([7239e56](https://github.com/knocklabs/knock-python/commit/7239e56653b2b96dda92053ef69c1e944e9e8980))
+
 ## 1.7.1 (2025-06-13)
 
 Full Changelog: [v1.7.0...v1.7.1](https://github.com/knocklabs/knock-python/compare/v1.7.0...v1.7.1)

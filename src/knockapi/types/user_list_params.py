@@ -19,4 +19,4 @@ class UserListParams(TypedDict, total=False):
     """Associated resources to include in the response."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""

@@ -24,4 +24,4 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     """Only returns subscriptions for the specified object references."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""

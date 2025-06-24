@@ -12,7 +12,7 @@ __all__ = ["User"]
 
 class User(BaseModel):
     id: str
-    """The ID for the user that you set when identifying them in Knock."""
+    """The unique identifier of the user."""
 
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
@@ -21,7 +21,7 @@ class User(BaseModel):
     """The timestamp when the resource was last updated."""
 
     avatar: Optional[str] = None
-    """URL to the user's avatar image."""
+    """A URL for the avatar of the user."""
 
     created_at: Optional[datetime] = None
     """The creation date of the user from your system."""

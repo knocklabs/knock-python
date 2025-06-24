@@ -33,7 +33,7 @@ class UserListMessagesParams(TypedDict, total=False):
     """
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""
 
     source: str
     """Limits the results to messages triggered by the given workflow key."""

@@ -15,7 +15,7 @@ class AudienceAddMembersParams(TypedDict, total=False):
 
 class MemberUser(TypedDict, total=False):
     id: str
-    """The ID for the user that you set when identifying them in Knock."""
+    """The unique identifier of the user."""
 
 
 class Member(TypedDict, total=False):

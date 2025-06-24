@@ -22,10 +22,10 @@ class FeedListItemsParams(TypedDict, total=False):
     """Whether the feed items have a tenant."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""
 
     source: str
-    """The source of the feed items."""
+    """The workflow key associated with the message in the feed."""
 
     status: Literal["unread", "read", "unseen", "seen", "all"]
     """The status of the feed items."""

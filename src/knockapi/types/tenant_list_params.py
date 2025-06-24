@@ -18,7 +18,7 @@ class TenantListParams(TypedDict, total=False):
     """Filter tenants by name."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""
 
     tenant_id: str
     """Filter tenants by ID."""

@@ -243,7 +243,7 @@ class SchedulesResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           recipients: Filter by recipient references.
 
@@ -514,7 +514,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           recipients: Filter by recipient references.
 

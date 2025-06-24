@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.1 (2025-06-24)
+
+Full Changelog: [v1.8.0...v1.8.1](https://github.com/knocklabs/knock-python/compare/v1.8.0...v1.8.1)
+
+### Chores
+
+* **tests:** skip some failing tests on the latest python versions ([e4d646c](https://github.com/knocklabs/knock-python/commit/e4d646c9b1981e15ced10294cd7cc6bfea1a8117))
+
 ## 1.8.0 (2025-06-21)
 
 Full Changelog: [v1.7.1...v1.8.0](https://github.com/knocklabs/knock-python/compare/v1.7.1...v1.8.0)

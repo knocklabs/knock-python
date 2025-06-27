@@ -24,6 +24,9 @@ class Source(BaseModel):
     version_id: str
     """The ID of the version of the workflow that triggered the message."""
 
+    step_ref: Optional[str] = None
+    """The step reference for the step in the workflow that generated the message"""
+
 
 class Message(BaseModel):
     id: Optional[str] = None

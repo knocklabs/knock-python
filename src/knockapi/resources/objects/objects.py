@@ -107,7 +107,7 @@ class ObjectsResource(SyncAPIResource):
 
           include: Includes preferences of the objects in the response.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -440,7 +440,7 @@ class ObjectsResource(SyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -563,7 +563,7 @@ class ObjectsResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant: Filter schedules by tenant id.
 
@@ -641,7 +641,7 @@ class ObjectsResource(SyncAPIResource):
 
           objects: Objects to filter by (only used if mode is `recipient`).
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           recipients: Recipients to filter by (only used if mode is `object`).
 
@@ -947,7 +947,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           include: Includes preferences of the objects in the response.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -1280,7 +1280,7 @@ class AsyncObjectsResource(AsyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -1403,7 +1403,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant: Filter schedules by tenant id.
 
@@ -1481,7 +1481,7 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           objects: Objects to filter by (only used if mode is `recipient`).
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           recipients: Recipients to filter by (only used if mode is `object`).
 

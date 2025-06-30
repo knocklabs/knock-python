@@ -31,7 +31,7 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     """Objects to filter by (only used if mode is `recipient`)."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""
 
     recipients: List[RecipientReferenceParam]
     """Recipients to filter by (only used if mode is `object`)."""

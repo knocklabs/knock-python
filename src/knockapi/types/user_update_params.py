@@ -15,7 +15,7 @@ __all__ = ["UserUpdateParams"]
 
 class UserUpdateParams(TypedDict, total=False):
     avatar: Optional[str]
-    """URL to the user's avatar image."""
+    """A URL for the avatar of the user."""
 
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""

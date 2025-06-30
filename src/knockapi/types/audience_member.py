@@ -26,7 +26,7 @@ class AudienceMember(BaseModel):
     """
 
     user_id: str
-    """The ID for the user that you set when identifying them in Knock."""
+    """The unique identifier of the user."""
 
     tenant: Optional[str] = None
     """The unique identifier for the tenant."""

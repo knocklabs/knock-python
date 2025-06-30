@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.9.0 (2025-06-30)
+
+Full Changelog: [v1.8.1...v1.9.0](https://github.com/knocklabs/knock-python/compare/v1.8.1...v1.9.0)
+
+### Features
+
+* **api:** api update ([c8ba197](https://github.com/knocklabs/knock-python/commit/c8ba197008e7f90ff4005223037e260c55e8df67))
+* **api:** api update ([5379162](https://github.com/knocklabs/knock-python/commit/5379162632b4d170aa98b5f05cfb182823e3916e))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([4fca14e](https://github.com/knocklabs/knock-python/commit/4fca14eea5991a391667ee0b7eeb4262bb1a1306))
+* **ci:** release-doctor — report correct token name ([2fc22a4](https://github.com/knocklabs/knock-python/commit/2fc22a4fc600700721d43872047fca2c0c8ff999))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([4c11d9d](https://github.com/knocklabs/knock-python/commit/4c11d9d7191034b78abbd43f93b2a2062bbbdb79))
+
 ## 1.8.1 (2025-06-24)
 
 Full Changelog: [v1.8.0...v1.8.1](https://github.com/knocklabs/knock-python/compare/v1.8.0...v1.8.1)

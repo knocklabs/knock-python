@@ -110,7 +110,7 @@ class MessagesResource(SyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -293,7 +293,7 @@ class MessagesResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           trigger_data: The trigger data to filter activities by.
 
@@ -350,7 +350,7 @@ class MessagesResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -404,7 +404,7 @@ class MessagesResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -726,7 +726,7 @@ class AsyncMessagesResource(AsyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -909,7 +909,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           trigger_data: The trigger data to filter activities by.
 
@@ -966,7 +966,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -1020,7 +1020,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 

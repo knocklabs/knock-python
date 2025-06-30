@@ -82,7 +82,7 @@ class TenantsResource(SyncAPIResource):
 
           name: Filter tenants by name.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant_id: Filter tenants by ID.
 
@@ -281,7 +281,7 @@ class AsyncTenantsResource(AsyncAPIResource):
 
           name: Filter tenants by name.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant_id: Filter tenants by ID.
 

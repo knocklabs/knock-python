@@ -15,7 +15,7 @@ class UserListSchedulesParams(TypedDict, total=False):
     """The cursor to fetch entries before."""
 
     page_size: int
-    """The number of items per page."""
+    """The number of items per page (defaults to 50)."""
 
     tenant: str
     """The tenant ID to filter schedules for."""

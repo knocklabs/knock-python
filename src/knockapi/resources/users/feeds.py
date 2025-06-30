@@ -105,8 +105,20 @@ class FeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncEntriesCursor[FeedListItemsResponse]:
         """
-        Returns a paginated list of feed items for a user, including metadata about the
-        feed.
+        Returns a paginated list of feed items for a user in reverse chronological
+        order, including metadata about the feed. If the user has not yet been
+        identified within Knock, an empty feed will be returned.
+
+        You can customize the response using
+        [response filters](/integrations/in-app/knock#customizing-api-response-content)
+        to exclude or only include specific properties on your resources.
+
+        **Notes:**
+
+        - When making this call from a client-side environment, use your publishable key
+          along with a user token.
+        - This endpoint’s rate limit is always scoped per-user and per-environment. This
+          is true even for requests made without a signed user token.
 
         Args:
           after: The cursor to fetch entries after.
@@ -117,9 +129,9 @@ class FeedsResource(SyncAPIResource):
 
           has_tenant: Whether the feed items have a tenant.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
-          source: The source of the feed items.
+          source: The workflow key associated with the message in the feed.
 
           status: The status of the feed items.
 
@@ -248,8 +260,20 @@ class AsyncFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[FeedListItemsResponse, AsyncEntriesCursor[FeedListItemsResponse]]:
         """
-        Returns a paginated list of feed items for a user, including metadata about the
-        feed.
+        Returns a paginated list of feed items for a user in reverse chronological
+        order, including metadata about the feed. If the user has not yet been
+        identified within Knock, an empty feed will be returned.
+
+        You can customize the response using
+        [response filters](/integrations/in-app/knock#customizing-api-response-content)
+        to exclude or only include specific properties on your resources.
+
+        **Notes:**
+
+        - When making this call from a client-side environment, use your publishable key
+          along with a user token.
+        - This endpoint’s rate limit is always scoped per-user and per-environment. This
+          is true even for requests made without a signed user token.
 
         Args:
           after: The cursor to fetch entries after.
@@ -260,9 +284,9 @@ class AsyncFeedsResource(AsyncAPIResource):
 
           has_tenant: Whether the feed items have a tenant.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
-          source: The source of the feed items.
+          source: The workflow key associated with the message in the feed.
 
           status: The status of the feed items.
 

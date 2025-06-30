@@ -129,7 +129,7 @@ class UsersResource(SyncAPIResource):
         currently set on the user, updating only the fields included in your requests.
 
         Args:
-          avatar: URL to the user's avatar image.
+          avatar: A URL for the avatar of the user.
 
           channel_data: A request to set channel data for a type of channel inline.
 
@@ -211,7 +211,7 @@ class UsersResource(SyncAPIResource):
 
           include: Associated resources to include in the response.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -419,9 +419,9 @@ class UsersResource(SyncAPIResource):
     ) -> SyncItemsCursor[Message]:
         """Returns a paginated list of messages for a specific user.
 
-        Allows filtering by
-        message status and provides various sorting options. Messages outside the
-        account's retention window will not be included in the results.
+        Messages are sorted
+        with the most recent ones appearing first. Messages outside the account's
+        retention window will not be included in the results.
 
         Args:
           after: The cursor to fetch entries after.
@@ -435,7 +435,7 @@ class UsersResource(SyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -552,7 +552,7 @@ class UsersResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant: The tenant ID to filter schedules for.
 
@@ -619,7 +619,7 @@ class UsersResource(SyncAPIResource):
 
           objects: Only returns subscriptions for the specified object references.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -887,7 +887,7 @@ class AsyncUsersResource(AsyncAPIResource):
         currently set on the user, updating only the fields included in your requests.
 
         Args:
-          avatar: URL to the user's avatar image.
+          avatar: A URL for the avatar of the user.
 
           channel_data: A request to set channel data for a type of channel inline.
 
@@ -969,7 +969,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           include: Associated resources to include in the response.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 
@@ -1179,9 +1179,9 @@ class AsyncUsersResource(AsyncAPIResource):
     ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """Returns a paginated list of messages for a specific user.
 
-        Allows filtering by
-        message status and provides various sorting options. Messages outside the
-        account's retention window will not be included in the results.
+        Messages are sorted
+        with the most recent ones appearing first. Messages outside the account's
+        retention window will not be included in the results.
 
         Args:
           after: The cursor to fetch entries after.
@@ -1195,7 +1195,7 @@ class AsyncUsersResource(AsyncAPIResource):
           message_ids: Limits the results to only the message IDs given (max 50). Note: when using this
               option, the results will be subject to any other filters applied to the query.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           source: Limits the results to messages triggered by the given workflow key.
 
@@ -1312,7 +1312,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           tenant: The tenant ID to filter schedules for.
 
@@ -1379,7 +1379,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
           objects: Only returns subscriptions for the specified object references.
 
-          page_size: The number of items per page.
+          page_size: The number of items per page (defaults to 50).
 
           extra_headers: Send extra headers
 

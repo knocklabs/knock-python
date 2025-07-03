@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.10.0 (2025-07-03)
+
+Full Changelog: [v1.9.0...v1.10.0](https://github.com/knocklabs/knock-python/compare/v1.9.0...v1.10.0)
+
+### Features
+
+* **api:** api update ([b9f028b](https://github.com/knocklabs/knock-python/commit/b9f028b69089460aa522b023a272182803b6143c))
+
+
+### Chores
+
+* **ci:** change upload type ([e71a7c5](https://github.com/knocklabs/knock-python/commit/e71a7c512b98a9910e1596462504105cf3e9d58d))
+
 ## 1.9.0 (2025-06-30)
 
 Full Changelog: [v1.8.1...v1.9.0](https://github.com/knocklabs/knock-python/compare/v1.8.1...v1.9.0)

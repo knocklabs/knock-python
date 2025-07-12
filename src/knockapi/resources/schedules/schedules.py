@@ -103,10 +103,10 @@ class SchedulesResource(SyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          data: An optional map of data to pass into the workflow execution. There is a 1024
-              byte limit on the size of any single string value (with the exception of
-              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
-              size of the full `data` payload.
+          data: An optional map of data to pass into the workflow execution. There is a 10MB
+              limit on the size of the full `data` payload. Any individual string value
+              greater than 1024 bytes in length will be
+              [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
           ending_at: The ending date and time for the schedule.
 
@@ -175,10 +175,10 @@ class SchedulesResource(SyncAPIResource):
           actor: A reference to a recipient, either a user identifier (string) or an object
               reference (ID, collection).
 
-          data: An optional map of data to pass into the workflow execution. There is a 1024
-              byte limit on the size of any single string value (with the exception of
-              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
-              size of the full `data` payload.
+          data: An optional map of data to pass into the workflow execution. There is a 10MB
+              limit on the size of the full `data` payload. Any individual string value
+              greater than 1024 bytes in length will be
+              [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
           ending_at: The ending date and time for the schedule.
 
@@ -374,10 +374,10 @@ class AsyncSchedulesResource(AsyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          data: An optional map of data to pass into the workflow execution. There is a 1024
-              byte limit on the size of any single string value (with the exception of
-              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
-              size of the full `data` payload.
+          data: An optional map of data to pass into the workflow execution. There is a 10MB
+              limit on the size of the full `data` payload. Any individual string value
+              greater than 1024 bytes in length will be
+              [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
           ending_at: The ending date and time for the schedule.
 
@@ -446,10 +446,10 @@ class AsyncSchedulesResource(AsyncAPIResource):
           actor: A reference to a recipient, either a user identifier (string) or an object
               reference (ID, collection).
 
-          data: An optional map of data to pass into the workflow execution. There is a 1024
-              byte limit on the size of any single string value (with the exception of
-              [email attachments](/integrations/email/attachments)), and a 10MB limit on the
-              size of the full `data` payload.
+          data: An optional map of data to pass into the workflow execution. There is a 10MB
+              limit on the size of the full `data` payload. Any individual string value
+              greater than 1024 bytes in length will be
+              [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
           ending_at: The ending date and time for the schedule.
 

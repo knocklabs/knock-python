@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.10.0 (2025-07-15)
+
+Full Changelog: [v1.9.0...v1.10.0](https://github.com/knocklabs/knock-python/compare/v1.9.0...v1.10.0)
+
+### Features
+
+* **api:** api update ([7673085](https://github.com/knocklabs/knock-python/commit/7673085795939d4ce7e23cf0f2926fa8c6a08978))
+* **api:** api update ([b9f028b](https://github.com/knocklabs/knock-python/commit/b9f028b69089460aa522b023a272182803b6143c))
+* clean up environment call outs ([fb2f0d5](https://github.com/knocklabs/knock-python/commit/fb2f0d522f82069c40d931fe26722fc52be70967))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([64799d2](https://github.com/knocklabs/knock-python/commit/64799d2f0f8288c23e86ed7df45eeb211866ac0b))
+* **parsing:** correctly handle nested discriminated unions ([e8e1932](https://github.com/knocklabs/knock-python/commit/e8e1932417093bf612a0705cc7fada4a980f3a39))
+
+
+### Chores
+
+* **ci:** change upload type ([e71a7c5](https://github.com/knocklabs/knock-python/commit/e71a7c512b98a9910e1596462504105cf3e9d58d))
+* **internal:** bump pinned h11 dep ([f2b5336](https://github.com/knocklabs/knock-python/commit/f2b53364b5dd9cfcc15bea2204dc42bc6e49d0f6))
+* **package:** mark python 3.13 as supported ([ee5b244](https://github.com/knocklabs/knock-python/commit/ee5b244a23c584a6ccd61e85c56bb9e3e85dcb8d))
+* **readme:** fix version rendering on pypi ([a2fae26](https://github.com/knocklabs/knock-python/commit/a2fae26e5dfa3c003f3f1cf2b45bf55fe47db724))
+
 ## 1.9.0 (2025-06-30)
 
 Full Changelog: [v1.8.1...v1.9.0](https://github.com/knocklabs/knock-python/compare/v1.8.1...v1.9.0)

@@ -1,6 +1,7 @@
 # Knock Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/knockapi.svg?label=pypi%20(stable)>)](https://pypi.org/project/knockapi/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/knockapi.svg?label=pypi%20(stable))](https://pypi.org/project/knockapi/)
 
 The Knock Python library provides convenient access to the Knock REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -86,7 +87,6 @@ pip install knockapi[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from knockapi import DefaultAioHttpClient
 from knockapi import AsyncKnock
@@ -94,7 +94,7 @@ from knockapi import AsyncKnock
 
 async def main() -> None:
     async with AsyncKnock(
-        api_key=os.environ.get("KNOCK_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.workflows.trigger(

@@ -38,5 +38,6 @@ class QueryOptions(TypedDict, total=False):
     """
     Mix and match channel types by providing a comma-separated list of any
     combination of public_channel, private_channel, mpim, im. Defaults to
-    `"public_channel,private_channel"`.
+    `"public_channel,private_channel"`. If the user's Slack ID is unavailable, this
+    option is ignored and only public channels are returned.
     """

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.10.1 (2025-07-22)
+
+Full Changelog: [v1.10.0...v1.10.1](https://github.com/knocklabs/knock-python/compare/v1.10.0...v1.10.1)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([a005f4a](https://github.com/knocklabs/knock-python/commit/a005f4a5439d93015041b87caecd9246ddc120f2))
+
 ## 1.10.0 (2025-07-15)
 
 Full Changelog: [v1.9.0...v1.10.0](https://github.com/knocklabs/knock-python/compare/v1.9.0...v1.10.0)

@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.11.0 (2025-08-04)
+
+Full Changelog: [v1.10.1...v1.11.0](https://github.com/knocklabs/knock-python/compare/v1.10.1...v1.11.0)
+
+### Features
+
+* **client:** support file upload requests ([19135e5](https://github.com/knocklabs/knock-python/commit/19135e542bd4d6a02ee58a6ed9aa4517ec240af4))
+
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([4f39573](https://github.com/knocklabs/knock-python/commit/4f39573da7cf9751493d45420aa3c1fd6855b96a))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([4c4c3b6](https://github.com/knocklabs/knock-python/commit/4c4c3b687846aa7898359fb2db897dc1639c2066))
+
 ## 1.10.1 (2025-07-22)
 
 Full Changelog: [v1.10.0...v1.10.1](https://github.com/knocklabs/knock-python/compare/v1.10.0...v1.10.1)

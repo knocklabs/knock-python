@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.11.1 (2025-08-09)
+
+Full Changelog: [v1.11.0...v1.11.1](https://github.com/knocklabs/knock-python/compare/v1.11.0...v1.11.1)
+
+### Chores
+
+* **internal:** fix ruff target version ([be7a302](https://github.com/knocklabs/knock-python/commit/be7a30216cd43a35f08586000ec9ac04ac1aa8e9))
+* update @stainless-api/prism-cli to v5.15.0 ([a6f9e47](https://github.com/knocklabs/knock-python/commit/a6f9e4701fde8bb018d4a120fa28da17de54e117))
+
 ## 1.11.0 (2025-08-05)
 
 Full Changelog: [v1.10.1...v1.11.0](https://github.com/knocklabs/knock-python/compare/v1.10.1...v1.11.0)

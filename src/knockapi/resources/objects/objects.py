@@ -798,6 +798,7 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         id: str,
         *,
+        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -810,14 +811,19 @@ class ObjectsResource(SyncAPIResource):
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
-        This is a destructive
-        operation and will replace any existing preferences with the preferences given.
-        If no object exists in the current environment for the given `:collection` and
-        `:object_id`, Knock will create the object as part of this request. The
-        preference set `:id` can be either `default` or a `tenant.id`. Learn more about
+        By default, this is a
+        destructive operation and will replace any existing preferences with the
+        preferences given. Use '\\__\\__persistence_strategy': 'merge' to merge with
+        existing preferences instead. If no object exists in the current environment for
+        the given `:collection` and `:object_id`, Knock will create the object as part
+        of this request. The preference set `:id` can be either `default` or a
+        `tenant.id`. Learn more about
         [per-tenant preferences](/preferences/tenant-preferences).
 
         Args:
+          _persistence_strategy: Controls how the preference set is persisted. 'replace' will completely replace
+              the preference set, 'merge' will merge with existing preferences.
+
           categories: An object where the key is the category and the values are the preference
               settings for that category.
 
@@ -844,6 +850,7 @@ class ObjectsResource(SyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/preferences/{id}",
             body=maybe_transform(
                 {
+                    "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
                     "workflows": workflows,
@@ -1638,6 +1645,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         id: str,
         *,
+        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -1650,14 +1658,19 @@ class AsyncObjectsResource(AsyncAPIResource):
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
-        This is a destructive
-        operation and will replace any existing preferences with the preferences given.
-        If no object exists in the current environment for the given `:collection` and
-        `:object_id`, Knock will create the object as part of this request. The
-        preference set `:id` can be either `default` or a `tenant.id`. Learn more about
+        By default, this is a
+        destructive operation and will replace any existing preferences with the
+        preferences given. Use '\\__\\__persistence_strategy': 'merge' to merge with
+        existing preferences instead. If no object exists in the current environment for
+        the given `:collection` and `:object_id`, Knock will create the object as part
+        of this request. The preference set `:id` can be either `default` or a
+        `tenant.id`. Learn more about
         [per-tenant preferences](/preferences/tenant-preferences).
 
         Args:
+          _persistence_strategy: Controls how the preference set is persisted. 'replace' will completely replace
+              the preference set, 'merge' will merge with existing preferences.
+
           categories: An object where the key is the category and the values are the preference
               settings for that category.
 
@@ -1684,6 +1697,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/preferences/{id}",
             body=await async_maybe_transform(
                 {
+                    "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
                     "workflows": workflows,

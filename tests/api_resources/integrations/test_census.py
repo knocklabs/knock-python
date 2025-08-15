@@ -17,9 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCensus:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_custom_destination(self, client: Knock) -> None:
         census = client.integrations.census.custom_destination(
@@ -29,9 +27,7 @@ class TestCensus:
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_custom_destination_with_all_params(self, client: Knock) -> None:
         census = client.integrations.census.custom_destination(
@@ -42,9 +38,7 @@ class TestCensus:
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_custom_destination(self, client: Knock) -> None:
         response = client.integrations.census.with_raw_response.custom_destination(
@@ -58,9 +52,7 @@ class TestCensus:
         census = response.parse()
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_custom_destination(self, client: Knock) -> None:
         with client.integrations.census.with_streaming_response.custom_destination(
@@ -82,9 +74,7 @@ class TestAsyncCensus:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_custom_destination(self, async_client: AsyncKnock) -> None:
         census = await async_client.integrations.census.custom_destination(
@@ -94,9 +84,7 @@ class TestAsyncCensus:
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_custom_destination_with_all_params(self, async_client: AsyncKnock) -> None:
         census = await async_client.integrations.census.custom_destination(
@@ -107,9 +95,7 @@ class TestAsyncCensus:
         )
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_custom_destination(self, async_client: AsyncKnock) -> None:
         response = await async_client.integrations.census.with_raw_response.custom_destination(
@@ -123,9 +109,7 @@ class TestAsyncCensus:
         census = await response.parse()
         assert_matches_type(CensusCustomDestinationResponse, census, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_custom_destination(self, async_client: AsyncKnock) -> None:
         async with async_client.integrations.census.with_streaming_response.custom_destination(

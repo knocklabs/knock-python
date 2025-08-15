@@ -17,9 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBulk:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         bulk = client.tenants.bulk.delete(
@@ -27,9 +25,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.tenants.bulk.with_raw_response.delete(
@@ -41,9 +37,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.tenants.bulk.with_streaming_response.delete(
@@ -57,9 +51,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_set(self, client: Knock) -> None:
         bulk = client.tenants.bulk.set(
@@ -67,9 +59,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.tenants.bulk.with_raw_response.set(
@@ -81,9 +71,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.tenants.bulk.with_streaming_response.set(
@@ -103,9 +91,7 @@ class TestAsyncBulk:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.tenants.bulk.delete(
@@ -113,9 +99,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.tenants.bulk.with_raw_response.delete(
@@ -127,9 +111,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.tenants.bulk.with_streaming_response.delete(
@@ -143,9 +125,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.tenants.bulk.set(
@@ -153,9 +133,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.tenants.bulk.with_raw_response.set(
@@ -167,9 +145,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.tenants.bulk.with_streaming_response.set(

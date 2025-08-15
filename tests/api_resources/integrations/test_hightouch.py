@@ -17,9 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestHightouch:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_embedded_destination(self, client: Knock) -> None:
         hightouch = client.integrations.hightouch.embedded_destination(
@@ -29,9 +27,7 @@ class TestHightouch:
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_embedded_destination_with_all_params(self, client: Knock) -> None:
         hightouch = client.integrations.hightouch.embedded_destination(
@@ -42,9 +38,7 @@ class TestHightouch:
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_embedded_destination(self, client: Knock) -> None:
         response = client.integrations.hightouch.with_raw_response.embedded_destination(
@@ -58,9 +52,7 @@ class TestHightouch:
         hightouch = response.parse()
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_embedded_destination(self, client: Knock) -> None:
         with client.integrations.hightouch.with_streaming_response.embedded_destination(
@@ -82,9 +74,7 @@ class TestAsyncHightouch:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_embedded_destination(self, async_client: AsyncKnock) -> None:
         hightouch = await async_client.integrations.hightouch.embedded_destination(
@@ -94,9 +84,7 @@ class TestAsyncHightouch:
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_embedded_destination_with_all_params(self, async_client: AsyncKnock) -> None:
         hightouch = await async_client.integrations.hightouch.embedded_destination(
@@ -107,9 +95,7 @@ class TestAsyncHightouch:
         )
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_embedded_destination(self, async_client: AsyncKnock) -> None:
         response = await async_client.integrations.hightouch.with_raw_response.embedded_destination(
@@ -123,9 +109,7 @@ class TestAsyncHightouch:
         hightouch = await response.parse()
         assert_matches_type(HightouchEmbeddedDestinationResponse, hightouch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_embedded_destination(self, async_client: AsyncKnock) -> None:
         async with async_client.integrations.hightouch.with_streaming_response.embedded_destination(

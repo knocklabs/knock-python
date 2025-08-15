@@ -26,9 +26,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBatch:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_archive(self, client: Knock) -> None:
         batch = client.messages.batch.archive(
@@ -36,9 +34,7 @@ class TestBatch:
         )
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_archive(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.archive(
@@ -50,9 +46,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_archive(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.archive(
@@ -66,9 +60,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_get_content(self, client: Knock) -> None:
         batch = client.messages.batch.get_content(
@@ -76,9 +68,7 @@ class TestBatch:
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_get_content(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.get_content(
@@ -90,9 +80,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_get_content(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.get_content(
@@ -106,9 +94,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_interacted(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_interacted(
@@ -116,9 +102,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_interacted_with_all_params(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_interacted(
@@ -127,9 +111,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_as_interacted(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_interacted(
@@ -141,9 +123,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_as_interacted(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_interacted(
@@ -157,9 +137,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_read(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_read(
@@ -167,9 +145,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_as_read(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_read(
@@ -181,9 +157,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_as_read(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_read(
@@ -197,9 +171,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_seen(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_seen(
@@ -207,9 +179,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_as_seen(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_seen(
@@ -221,9 +191,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_as_seen(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_seen(
@@ -237,9 +205,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_unread(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_unread(
@@ -247,9 +213,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_as_unread(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_unread(
@@ -261,9 +225,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_as_unread(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_unread(
@@ -277,9 +239,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_mark_as_unseen(self, client: Knock) -> None:
         batch = client.messages.batch.mark_as_unseen(
@@ -287,9 +247,7 @@ class TestBatch:
         )
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_as_unseen(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.mark_as_unseen(
@@ -301,9 +259,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_as_unseen(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.mark_as_unseen(
@@ -317,9 +273,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_unarchive(self, client: Knock) -> None:
         batch = client.messages.batch.unarchive(
@@ -327,9 +281,7 @@ class TestBatch:
         )
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_unarchive(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.unarchive(
@@ -341,9 +293,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_unarchive(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.unarchive(
@@ -363,9 +313,7 @@ class TestAsyncBatch:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_archive(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.archive(
@@ -373,9 +321,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.archive(
@@ -387,9 +333,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchArchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.archive(
@@ -403,9 +347,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_get_content(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.get_content(
@@ -413,9 +355,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_get_content(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.get_content(
@@ -427,9 +367,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_get_content(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.get_content(
@@ -443,9 +381,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_interacted(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_interacted(
@@ -453,9 +389,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_interacted_with_all_params(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_interacted(
@@ -464,9 +398,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_as_interacted(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_interacted(
@@ -478,9 +410,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchMarkAsInteractedResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_as_interacted(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_interacted(
@@ -494,9 +424,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_read(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_read(
@@ -504,9 +432,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_read(
@@ -518,9 +444,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchMarkAsReadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_read(
@@ -534,9 +458,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_seen(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_seen(
@@ -544,9 +466,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_seen(
@@ -558,9 +478,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchMarkAsSeenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_seen(
@@ -574,9 +492,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_unread(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_unread(
@@ -584,9 +500,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_unread(
@@ -598,9 +512,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchMarkAsUnreadResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_unread(
@@ -614,9 +526,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.mark_as_unseen(
@@ -624,9 +534,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.mark_as_unseen(
@@ -638,9 +546,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchMarkAsUnseenResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.mark_as_unseen(
@@ -654,9 +560,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.unarchive(
@@ -664,9 +568,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.unarchive(
@@ -678,9 +580,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchUnarchiveResponse, batch, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.unarchive(

@@ -739,6 +739,7 @@ class UsersResource(SyncAPIResource):
         user_id: str,
         id: str,
         *,
+        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
         categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -751,10 +752,15 @@ class UsersResource(SyncAPIResource):
     ) -> PreferenceSet:
         """Updates a complete preference set for a user.
 
-        This is a destructive operation
-        that will replace the existing preference set for the user.
+        By default, this is a destructive
+        operation and will replace any existing preferences with the preferences given.
+        Use '**persistence_strategy**': 'merge' to merge with existing preferences
+        instead.
 
         Args:
+          _persistence_strategy: Controls how the preference set is persisted. 'replace' will completely replace
+              the preference set, 'merge' will merge with existing preferences.
+
           categories: An object where the key is the category and the values are the preference
               settings for that category.
 
@@ -779,6 +785,7 @@ class UsersResource(SyncAPIResource):
             f"/v1/users/{user_id}/preferences/{id}",
             body=maybe_transform(
                 {
+                    "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
                     "workflows": workflows,
@@ -1499,6 +1506,7 @@ class AsyncUsersResource(AsyncAPIResource):
         user_id: str,
         id: str,
         *,
+        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
         categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
         channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
         workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
@@ -1511,10 +1519,15 @@ class AsyncUsersResource(AsyncAPIResource):
     ) -> PreferenceSet:
         """Updates a complete preference set for a user.
 
-        This is a destructive operation
-        that will replace the existing preference set for the user.
+        By default, this is a destructive
+        operation and will replace any existing preferences with the preferences given.
+        Use '**persistence_strategy**': 'merge' to merge with existing preferences
+        instead.
 
         Args:
+          _persistence_strategy: Controls how the preference set is persisted. 'replace' will completely replace
+              the preference set, 'merge' will merge with existing preferences.
+
           categories: An object where the key is the category and the values are the preference
               settings for that category.
 
@@ -1539,6 +1552,7 @@ class AsyncUsersResource(AsyncAPIResource):
             f"/v1/users/{user_id}/preferences/{id}",
             body=await async_maybe_transform(
                 {
+                    "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
                     "workflows": workflows,

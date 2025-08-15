@@ -51,6 +51,7 @@ class TestUsers:
             phone_number="phone_number",
             preferences={
                 "default": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -724,6 +725,7 @@ class TestUsers:
         user = client.users.set_preferences(
             user_id="user_id",
             id="default",
+            _persistence_strategy="merge",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -897,6 +899,7 @@ class TestAsyncUsers:
             phone_number="phone_number",
             preferences={
                 "default": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -1570,6 +1573,7 @@ class TestAsyncUsers:
         user = await async_client.users.set_preferences(
             user_id="user_id",
             id="default",
+            _persistence_strategy="merge",
             categories={
                 "marketing": False,
                 "transactional": {

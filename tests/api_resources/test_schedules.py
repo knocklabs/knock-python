@@ -50,6 +50,7 @@ class TestSchedules:
                 "phone_number": "phone_number",
                 "preferences": {
                     "default": {
+                        "_persistence_strategy": "merge",
                         "categories": {
                             "transactional": {
                                 "channel_types": {
@@ -318,6 +319,7 @@ class TestAsyncSchedules:
                 "phone_number": "phone_number",
                 "preferences": {
                     "default": {
+                        "_persistence_strategy": "merge",
                         "categories": {
                             "transactional": {
                                 "channel_types": {

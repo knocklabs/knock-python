@@ -164,6 +164,7 @@ class TestTenants:
                     "primary_color_contrast": "#FFDE00",
                 },
                 "preference_set": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": False,
                         "transactional": {
@@ -402,6 +403,7 @@ class TestAsyncTenants:
                     "primary_color_contrast": "#FFDE00",
                 },
                 "preference_set": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": False,
                         "transactional": {

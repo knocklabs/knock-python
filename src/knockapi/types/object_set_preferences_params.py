@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
-from typing_extensions import TypeAlias, TypedDict
+from typing_extensions import Literal, Annotated, TypeAlias, TypedDict
 
+from .._utils import PropertyInfo
 from .condition_param import ConditionParam
 from .recipients.preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
@@ -18,6 +19,13 @@ __all__ = [
 
 
 class ObjectSetPreferencesParams(TypedDict, total=False):
+    _persistence_strategy: Annotated[Literal["merge", "replace"], PropertyInfo(alias="__persistence_strategy__")]
+    """Controls how the preference set is persisted.
+
+    'replace' will completely replace the preference set, 'merge' will merge with
+    existing preferences.
+    """
+
     categories: Optional[Dict[str, Categories]]
     """
     An object where the key is the category and the values are the preference

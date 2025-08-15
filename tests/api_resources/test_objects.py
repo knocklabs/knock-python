@@ -731,6 +731,7 @@ class TestObjects:
             locale="en-US",
             preferences={
                 "default": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -925,6 +926,7 @@ class TestObjects:
             collection="collection",
             object_id="object_id",
             id="default",
+            _persistence_strategy="merge",
             categories={
                 "marketing": False,
                 "transactional": {
@@ -1800,6 +1802,7 @@ class TestAsyncObjects:
             locale="en-US",
             preferences={
                 "default": {
+                    "_persistence_strategy": "merge",
                     "categories": {
                         "marketing": {
                             "channel_types": {
@@ -1994,6 +1997,7 @@ class TestAsyncObjects:
             collection="collection",
             object_id="object_id",
             id="default",
+            _persistence_strategy="merge",
             categories={
                 "marketing": False,
                 "transactional": {

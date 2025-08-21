@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.12.1 (2025-08-21)
+
+Full Changelog: [v1.12.0...v1.12.1](https://github.com/knocklabs/knock-python/compare/v1.12.0...v1.12.1)
+
+### Chores
+
+* update github action ([4892cb7](https://github.com/knocklabs/knock-python/commit/4892cb7b29fe513f2c7a74cf220cdab0d5c150e5))
+
 ## 1.12.0 (2025-08-15)
 
 Full Changelog: [v1.11.0...v1.12.0](https://github.com/knocklabs/knock-python/compare/v1.11.0...v1.12.0)

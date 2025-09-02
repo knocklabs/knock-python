@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["PushChannelDataParam"]
 
 
 class PushChannelDataParam(TypedDict, total=False):
-    tokens: Required[List[str]]
+    tokens: Required[SequenceNotStr[str]]
     """A list of push channel tokens."""

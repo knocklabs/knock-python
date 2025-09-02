@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["BatchGetContentParams"]
 
 
 class BatchGetContentParams(TypedDict, total=False):
-    message_ids: Required[List[str]]
+    message_ids: Required[SequenceNotStr[str]]
     """The IDs of the messages to fetch contents of."""

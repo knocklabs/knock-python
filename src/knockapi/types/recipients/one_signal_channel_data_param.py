@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["OneSignalChannelDataParam"]
 
 
 class OneSignalChannelDataParam(TypedDict, total=False):
-    player_ids: Required[List[str]]
+    player_ids: Required[SequenceNotStr[str]]
     """A list of OneSignal player IDs."""

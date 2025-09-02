@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .recipient_reference_param import RecipientReferenceParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
@@ -15,7 +16,7 @@ __all__ = ["ScheduleUpdateParams"]
 
 
 class ScheduleUpdateParams(TypedDict, total=False):
-    schedule_ids: Required[List[str]]
+    schedule_ids: Required[SequenceNotStr[str]]
     """A list of schedule IDs."""
 
     actor: Optional[RecipientReferenceParam]

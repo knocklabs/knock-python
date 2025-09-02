@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .recipient_reference_param import RecipientReferenceParam
 
 __all__ = ["ObjectListSubscriptionsParams", "Object"]
@@ -33,7 +34,7 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
     page_size: int
     """The number of items per page (defaults to 50)."""
 
-    recipients: List[RecipientReferenceParam]
+    recipients: SequenceNotStr[RecipientReferenceParam]
     """Recipients to filter by (only used if mode is `object`)."""
 
 

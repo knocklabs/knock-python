@@ -26,7 +26,7 @@ from ...types import (
     object_list_subscriptions_params,
     object_delete_subscriptions_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -183,7 +183,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -237,7 +237,7 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: SequenceNotStr[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -406,14 +406,14 @@ class ObjectsResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -614,7 +614,7 @@ class ObjectsResource(SyncAPIResource):
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
         objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1030,7 +1030,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1084,7 +1084,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: SequenceNotStr[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1253,14 +1253,14 @@ class AsyncObjectsResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1461,7 +1461,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
         objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

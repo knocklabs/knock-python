@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 
 import httpx
@@ -21,7 +21,7 @@ from ...types import (
     schedule_delete_params,
     schedule_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -72,7 +72,7 @@ class SchedulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         workflow: str,
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -148,7 +148,7 @@ class SchedulesResource(SyncAPIResource):
     def update(
         self,
         *,
-        schedule_ids: List[str],
+        schedule_ids: SequenceNotStr[str],
         actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
@@ -223,7 +223,7 @@ class SchedulesResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -283,7 +283,7 @@ class SchedulesResource(SyncAPIResource):
     def delete(
         self,
         *,
-        schedule_ids: List[str],
+        schedule_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -343,7 +343,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         workflow: str,
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -419,7 +419,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        schedule_ids: List[str],
+        schedule_ids: SequenceNotStr[str],
         actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
         ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
@@ -494,7 +494,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -554,7 +554,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        schedule_ids: List[str],
+        schedule_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["BulkDeleteParams"]
 
 
 class BulkDeleteParams(TypedDict, total=False):
-    object_ids: Required[List[str]]
+    object_ids: Required[SequenceNotStr[str]]
     """List of object IDs to delete."""

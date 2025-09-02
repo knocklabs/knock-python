@@ -22,7 +22,7 @@ from ...types import (
     message_list_delivery_logs_params,
     message_mark_as_interacted_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -78,14 +78,14 @@ class MessagesResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: message_list_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -694,14 +694,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: message_list_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

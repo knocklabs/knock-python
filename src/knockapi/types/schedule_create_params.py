@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .recipient_request_param import RecipientRequestParam
 from .schedule_repeat_rule_param import ScheduleRepeatRuleParam
@@ -15,7 +16,7 @@ __all__ = ["ScheduleCreateParams"]
 
 
 class ScheduleCreateParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[SequenceNotStr[RecipientRequestParam]]
     """The recipients to set the schedule for. Limited to 100 recipients per request."""
 
     workflow: Required[str]

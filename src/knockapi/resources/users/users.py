@@ -43,7 +43,7 @@ from ...types import (
     user_set_channel_data_params,
     user_list_subscriptions_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -400,14 +400,14 @@ class UsersResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -597,7 +597,7 @@ class UsersResource(SyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1167,14 +1167,14 @@ class AsyncUsersResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
         | NotGiven = NOT_GIVEN,
         tenant: str | NotGiven = NOT_GIVEN,
         trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
+        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
         workflow_run_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1364,7 +1364,7 @@ class AsyncUsersResource(AsyncAPIResource):
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        objects: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

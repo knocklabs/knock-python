@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .recipient_reference_param import RecipientReferenceParam
 
 __all__ = ["UserListSubscriptionsParams"]
@@ -20,7 +21,7 @@ class UserListSubscriptionsParams(TypedDict, total=False):
     include: List[Literal["preferences"]]
     """Associated resources to include in the response."""
 
-    objects: List[RecipientReferenceParam]
+    objects: SequenceNotStr[RecipientReferenceParam]
     """Only returns subscriptions for the specified object references."""
 
     page_size: int

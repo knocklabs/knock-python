@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .recipient_request_param import RecipientRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
@@ -12,7 +13,7 @@ __all__ = ["WorkflowTriggerParams"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
-    recipients: Required[List[RecipientRequestParam]]
+    recipients: Required[SequenceNotStr[RecipientRequestParam]]
     """The recipients to trigger the workflow for.
 
     Can inline identify users, objects, or use a list of user IDs. Limited to 1,000

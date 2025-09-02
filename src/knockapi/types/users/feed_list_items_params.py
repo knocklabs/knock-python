@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["FeedListItemsParams"]
 
@@ -36,5 +37,5 @@ class FeedListItemsParams(TypedDict, total=False):
     trigger_data: str
     """The trigger data of the feed items (as a JSON string)."""
 
-    workflow_categories: List[str]
+    workflow_categories: SequenceNotStr[str]
     """The workflow categories of the feed items."""

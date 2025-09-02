@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
+
 __all__ = ["ObjectListMessagesParams", "InsertedAt"]
 
 
@@ -25,7 +27,7 @@ class ObjectListMessagesParams(TypedDict, total=False):
 
     inserted_at: InsertedAt
 
-    message_ids: List[str]
+    message_ids: SequenceNotStr[str]
     """Limits the results to only the message IDs given (max 50).
 
     Note: when using this option, the results will be subject to any other filters
@@ -51,7 +53,7 @@ class ObjectListMessagesParams(TypedDict, total=False):
     more information.
     """
 
-    workflow_categories: List[str]
+    workflow_categories: SequenceNotStr[str]
     """Limits the results to messages related to any of the provided categories."""
 
     workflow_recipient_run_id: str

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
 from ..types import workflow_cancel_params, workflow_trigger_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class WorkflowsResource(SyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,7 +103,7 @@ class WorkflowsResource(SyncAPIResource):
         self,
         key: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
@@ -197,7 +197,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,7 +249,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        recipients: List[RecipientRequestParam],
+        recipients: SequenceNotStr[RecipientRequestParam],
         actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,

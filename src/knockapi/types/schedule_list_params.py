@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .recipient_reference_param import RecipientReferenceParam
 
 __all__ = ["ScheduleListParams"]
@@ -23,7 +23,7 @@ class ScheduleListParams(TypedDict, total=False):
     page_size: int
     """The number of items per page (defaults to 50)."""
 
-    recipients: List[RecipientReferenceParam]
+    recipients: SequenceNotStr[RecipientReferenceParam]
     """Filter by recipient references."""
 
     tenant: str

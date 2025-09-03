@@ -25,39 +25,15 @@ class Source(BaseModel):
     """The ID of the version of the workflow that triggered the message."""
 
     step_ref: Optional[str] = None
-    """The step reference for the step in the workflow that generated the message."""
+    """The step reference for the step in the workflow that generated the message"""
 
 
 class Message(BaseModel):
-    id: str
+    id: Optional[str] = None
     """The unique identifier for the message."""
 
-    api_typename: str = FieldInfo(alias="__typename")
+    api_typename: Optional[str] = FieldInfo(alias="__typename", default=None)
     """The typename of the schema."""
-
-    channel_id: str
-    """The ID for the channel the message was sent through."""
-
-    engagement_statuses: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
-    """A list of engagement statuses."""
-
-    inserted_at: datetime
-    """Timestamp when the resource was created."""
-
-    recipient: RecipientReference
-    """
-    A reference to a recipient, either a user identifier (string) or an object
-    reference (ID, collection).
-    """
-
-    source: Source
-    """The workflow that triggered the message."""
-
-    status: Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
-    """The message delivery status."""
-
-    updated_at: datetime
-    """The timestamp when the resource was last updated."""
 
     actors: Optional[List[RecipientReference]] = None
     """One or more actors that are associated with this message.
@@ -68,6 +44,9 @@ class Message(BaseModel):
 
     archived_at: Optional[datetime] = None
     """Timestamp when the message was archived."""
+
+    channel_id: Optional[str] = None
+    """The ID for the channel the message was sent through."""
 
     clicked_at: Optional[datetime] = None
     """Timestamp when the message was clicked."""
@@ -82,6 +61,12 @@ class Message(BaseModel):
     `data` from the most-recent trigger request (the final `activity` in the batch).
     """
 
+    engagement_statuses: Optional[List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]] = None
+    """A list of engagement statuses."""
+
+    inserted_at: Optional[datetime] = None
+    """Timestamp when the resource was created."""
+
     interacted_at: Optional[datetime] = None
     """Timestamp when the message was interacted with."""
 
@@ -94,17 +79,34 @@ class Message(BaseModel):
     read_at: Optional[datetime] = None
     """Timestamp when the message was read."""
 
+    recipient: Optional[RecipientReference] = None
+    """
+    A reference to a recipient, either a user identifier (string) or an object
+    reference (ID, collection).
+    """
+
     scheduled_at: Optional[datetime] = None
     """Timestamp when the message was scheduled to be sent."""
 
     seen_at: Optional[datetime] = None
     """Timestamp when the message was seen."""
 
+    source: Optional[Source] = None
+    """The workflow that triggered the message."""
+
+    status: Optional[
+        Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
+    ] = None
+    """The message delivery status."""
+
     tenant: Optional[str] = None
     """The ID of the `tenant` associated with the message.
 
     Only present when a `tenant` is provided on a workflow trigger request.
     """
+
+    updated_at: Optional[datetime] = None
+    """The timestamp when the resource was last updated."""
 
     workflow: Optional[str] = None
     """The key of the workflow that generated the message."""

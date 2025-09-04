@@ -5,14 +5,13 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
-from .._types import SequenceNotStr
 from .recipients.push_channel_data_param import PushChannelDataParam
 from .recipients.slack_channel_data_param import SlackChannelDataParam
 from .recipients.discord_channel_data_param import DiscordChannelDataParam
 from .recipients.ms_teams_channel_data_param import MsTeamsChannelDataParam
 from .recipients.one_signal_channel_data_param import OneSignalChannelDataParam
 
-__all__ = ["UserSetChannelDataParams", "Data", "DataAwsSnsPushChannelData"]
+__all__ = ["UserSetChannelDataParams", "Data"]
 
 
 class UserSetChannelDataParams(TypedDict, total=False):
@@ -20,19 +19,9 @@ class UserSetChannelDataParams(TypedDict, total=False):
     """Channel data for a given channel type."""
 
 
-class DataAwsSnsPushChannelData(TypedDict, total=False):
-    target_arns: Required[SequenceNotStr[str]]
-    """A list of platform endpoint ARNs.
-
-    See
-    [Setting up an Amazon SNS platform endpoint for mobile notifications](https://docs.aws.amazon.com/sns/latest/dg/mobile-platform-endpoint.html).
-    """
-
-
 Data: TypeAlias = Union[
     PushChannelDataParam,
     OneSignalChannelDataParam,
-    DataAwsSnsPushChannelData,
     SlackChannelDataParam,
     MsTeamsChannelDataParam,
     DiscordChannelDataParam,

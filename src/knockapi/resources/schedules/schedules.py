@@ -21,7 +21,7 @@ from ...types import (
     schedule_delete_params,
     schedule_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -74,18 +74,18 @@ class SchedulesResource(SyncAPIResource):
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
         workflow: str,
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        ending_at: Union[str, datetime, None] | Omit = omit,
+        repeats: Iterable[ScheduleRepeatRuleParam] | Omit = omit,
+        scheduled_at: Union[str, datetime, None] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
@@ -149,18 +149,18 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         schedule_ids: SequenceNotStr[str],
-        actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientReferenceParam] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        ending_at: Union[str, datetime, None] | Omit = omit,
+        repeats: Iterable[ScheduleRepeatRuleParam] | Omit = omit,
+        scheduled_at: Union[str, datetime, None] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleUpdateResponse:
         """
         Updates one or more existing schedules with new timing, data, or other
@@ -220,17 +220,17 @@ class SchedulesResource(SyncAPIResource):
         self,
         *,
         workflow: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Schedule]:
         """
         Returns a paginated list of schedules for the current environment, filtered by
@@ -289,7 +289,7 @@ class SchedulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleDeleteResponse:
         """
         Permanently deletes one or more schedules identified by the provided schedule
@@ -345,18 +345,18 @@ class AsyncSchedulesResource(AsyncAPIResource):
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
         workflow: str,
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        ending_at: Union[str, datetime, None] | Omit = omit,
+        repeats: Iterable[ScheduleRepeatRuleParam] | Omit = omit,
+        scheduled_at: Union[str, datetime, None] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
@@ -420,18 +420,18 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         schedule_ids: SequenceNotStr[str],
-        actor: Optional[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        ending_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        repeats: Iterable[ScheduleRepeatRuleParam] | NotGiven = NOT_GIVEN,
-        scheduled_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientReferenceParam] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        ending_at: Union[str, datetime, None] | Omit = omit,
+        repeats: Iterable[ScheduleRepeatRuleParam] | Omit = omit,
+        scheduled_at: Union[str, datetime, None] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleUpdateResponse:
         """
         Updates one or more existing schedules with new timing, data, or other
@@ -491,17 +491,17 @@ class AsyncSchedulesResource(AsyncAPIResource):
         self,
         *,
         workflow: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
         """
         Returns a paginated list of schedules for the current environment, filtered by
@@ -560,7 +560,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduleDeleteResponse:
         """
         Permanently deletes one or more schedules identified by the provided schedule

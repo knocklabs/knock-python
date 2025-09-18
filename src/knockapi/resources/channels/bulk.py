@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,28 +52,28 @@ class BulkResource(SyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
+        archived: Literal["exclude", "include", "only"] | Omit = omit,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         engagement_status: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
         ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tenants: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        has_tenant: bool | Omit = omit,
+        newer_than: Union[str, datetime] | Omit = omit,
+        older_than: Union[str, datetime] | Omit = omit,
+        recipient_ids: SequenceNotStr[str] | Omit = omit,
+        tenants: SequenceNotStr[str] | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflows: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkOperation:
         """Bulk update the status of messages for a specific channel.
 
@@ -168,28 +168,28 @@ class AsyncBulkResource(AsyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
+        archived: Literal["exclude", "include", "only"] | Omit = omit,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         engagement_status: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
         ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tenants: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        has_tenant: bool | Omit = omit,
+        newer_than: Union[str, datetime] | Omit = omit,
+        older_than: Union[str, datetime] | Omit = omit,
+        recipient_ids: SequenceNotStr[str] | Omit = omit,
+        tenants: SequenceNotStr[str] | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflows: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkOperation:
         """Bulk update the status of messages for a specific channel.
 

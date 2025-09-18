@@ -15,7 +15,7 @@ from .bulk import (
     AsyncBulkResourceWithStreamingResponse,
 )
 from ...types import tenant_set_params, tenant_list_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,17 +60,17 @@ class TenantsResource(SyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        name: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Tenant]:
         """
         List tenants for the current environment.
@@ -125,7 +125,7 @@ class TenantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Delete a tenant and all associated data.
 
@@ -159,7 +159,7 @@ class TenantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """
         Get a tenant by ID.
@@ -187,14 +187,14 @@ class TenantsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        settings: tenant_set_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """Sets a tenant within an environment, performing an upsert operation.
 
@@ -259,17 +259,17 @@ class AsyncTenantsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        name: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Tenant, AsyncEntriesCursor[Tenant]]:
         """
         List tenants for the current environment.
@@ -324,7 +324,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Delete a tenant and all associated data.
 
@@ -358,7 +358,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """
         Get a tenant by ID.
@@ -386,14 +386,14 @@ class AsyncTenantsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        settings: tenant_set_params.Settings | NotGiven = NOT_GIVEN,
+        channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        settings: tenant_set_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """Sets a tenant within an environment, performing an upsert operation.
 

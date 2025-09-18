@@ -26,7 +26,7 @@ from ...types import (
     object_list_subscriptions_params,
     object_delete_subscriptions_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -84,16 +84,16 @@ class ObjectsResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Object]:
         """Returns a paginated list of objects from the specified collection.
 
@@ -150,7 +150,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Permanently removes an object from the specified collection.
 
@@ -184,13 +184,13 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        properties: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -243,7 +243,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -287,7 +287,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """Retrieves a specific object by its ID from the specified collection.
 
@@ -326,7 +326,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
@@ -365,7 +365,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Returns the preference set for the specified object and preference set `id`.
@@ -398,30 +398,30 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: object_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncItemsCursor[Message]:
         """
         Returns a paginated list of messages for a specific object in the given
@@ -512,7 +512,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectListPreferencesResponse:
         """
         Returns a paginated list of preference sets for the specified object.
@@ -543,17 +543,17 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Schedule]:
         """
         Returns a paginated list of schedules for an object.
@@ -608,19 +608,19 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        mode: Literal["recipient", "object"] | Omit = omit,
+        objects: Iterable[object_list_subscriptions_params.Object] | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Subscription]:
         """List subscriptions for an object.
 
@@ -686,16 +686,16 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        preferences: InlinePreferenceSetRequestParam | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -758,7 +758,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -798,16 +798,16 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -874,7 +874,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Unsets the channel data for the specified object and channel.
@@ -931,16 +931,16 @@ class AsyncObjectsResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Object, AsyncEntriesCursor[Object]]:
         """Returns a paginated list of objects from the specified collection.
 
@@ -997,7 +997,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Permanently removes an object from the specified collection.
 
@@ -1031,13 +1031,13 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        properties: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -1090,7 +1090,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -1134,7 +1134,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """Retrieves a specific object by its ID from the specified collection.
 
@@ -1173,7 +1173,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
@@ -1212,7 +1212,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Returns the preference set for the specified object and preference set `id`.
@@ -1245,30 +1245,30 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: object_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """
         Returns a paginated list of messages for a specific object in the given
@@ -1359,7 +1359,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectListPreferencesResponse:
         """
         Returns a paginated list of preference sets for the specified object.
@@ -1390,17 +1390,17 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
         """
         Returns a paginated list of schedules for an object.
@@ -1455,19 +1455,19 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: SequenceNotStr[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        mode: Literal["recipient", "object"] | Omit = omit,
+        objects: Iterable[object_list_subscriptions_params.Object] | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
         """List subscriptions for an object.
 
@@ -1533,16 +1533,16 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        preferences: InlinePreferenceSetRequestParam | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -1605,7 +1605,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -1645,16 +1645,16 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -1721,7 +1721,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Unsets the channel data for the specified object and channel.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,7 +54,7 @@ class SlackResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlackCheckAuthResponse:
         """
         Check if a Slack channel is authenticated.
@@ -91,13 +91,13 @@ class SlackResource(SyncAPIResource):
         channel_id: str,
         *,
         access_token_object: str,
-        query_options: slack_list_channels_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: slack_list_channels_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSlackChannelsCursor[SlackListChannelsResponse]:
         """
         List Slack channels for a Slack workspace.
@@ -144,7 +144,7 @@ class SlackResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.
@@ -207,7 +207,7 @@ class AsyncSlackResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlackCheckAuthResponse:
         """
         Check if a Slack channel is authenticated.
@@ -244,13 +244,13 @@ class AsyncSlackResource(AsyncAPIResource):
         channel_id: str,
         *,
         access_token_object: str,
-        query_options: slack_list_channels_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: slack_list_channels_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SlackListChannelsResponse, AsyncSlackChannelsCursor[SlackListChannelsResponse]]:
         """
         List Slack channels for a Slack workspace.
@@ -297,7 +297,7 @@ class AsyncSlackResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.

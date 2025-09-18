@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,7 +60,7 @@ class MsTeamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamCheckAuthResponse:
         """
         Check if a connection to Microsoft Teams has been authorized for a given
@@ -99,13 +99,13 @@ class MsTeamsResource(SyncAPIResource):
         *,
         ms_teams_tenant_object: str,
         team_id: str,
-        query_options: ms_team_list_channels_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: ms_team_list_channels_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamListChannelsResponse:
         """List the Microsoft Teams channels within a team.
 
@@ -151,13 +151,13 @@ class MsTeamsResource(SyncAPIResource):
         channel_id: str,
         *,
         ms_teams_tenant_object: str,
-        query_options: ms_team_list_teams_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: ms_team_list_teams_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMsTeamsPagination[MsTeamListTeamsResponse]:
         """Get a list of teams belonging to the Microsoft Entra tenant.
 
@@ -206,7 +206,7 @@ class MsTeamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamRevokeAccessResponse:
         """
         Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.
@@ -270,7 +270,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamCheckAuthResponse:
         """
         Check if a connection to Microsoft Teams has been authorized for a given
@@ -309,13 +309,13 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         *,
         ms_teams_tenant_object: str,
         team_id: str,
-        query_options: ms_team_list_channels_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: ms_team_list_channels_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamListChannelsResponse:
         """List the Microsoft Teams channels within a team.
 
@@ -361,13 +361,13 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         channel_id: str,
         *,
         ms_teams_tenant_object: str,
-        query_options: ms_team_list_teams_params.QueryOptions | NotGiven = NOT_GIVEN,
+        query_options: ms_team_list_teams_params.QueryOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MsTeamListTeamsResponse, AsyncMsTeamsPagination[MsTeamListTeamsResponse]]:
         """Get a list of teams belonging to the Microsoft Entra tenant.
 
@@ -416,7 +416,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MsTeamRevokeAccessResponse:
         """
         Remove a Microsoft Entra tenant ID from a Microsoft Teams tenant object.

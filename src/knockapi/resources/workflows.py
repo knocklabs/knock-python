@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..types import workflow_cancel_params, workflow_trigger_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,13 +51,13 @@ class WorkflowsResource(SyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
@@ -104,16 +104,16 @@ class WorkflowsResource(SyncAPIResource):
         key: str,
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using
@@ -197,13 +197,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
@@ -250,16 +250,16 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         key: str,
         *,
         recipients: SequenceNotStr[RecipientRequestParam],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using

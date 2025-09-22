@@ -733,14 +733,23 @@ class TestObjects:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -750,7 +759,6 @@ class TestObjects:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -758,7 +766,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -768,7 +784,15 @@ class TestObjects:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -936,7 +960,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -953,7 +985,15 @@ class TestObjects:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -963,7 +1003,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -1804,14 +1852,23 @@ class TestAsyncObjects:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -1821,7 +1878,6 @@ class TestAsyncObjects:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -1829,7 +1885,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -1839,7 +1903,15 @@ class TestAsyncObjects:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -2007,7 +2079,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -2024,7 +2104,15 @@ class TestAsyncObjects:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -2034,7 +2122,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {

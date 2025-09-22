@@ -109,7 +109,15 @@ class TestBulk:
                             "http": True,
                             "in_app_feed": True,
                             "push": True,
-                            "sms": True,
+                            "sms": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                         },
                         "conditions": [
                             {
@@ -126,7 +134,15 @@ class TestBulk:
                     "http": True,
                     "in_app_feed": True,
                     "push": True,
-                    "sms": True,
+                    "sms": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                 },
                 "workflows": {
                     "dinosaurs-loose": {
@@ -136,7 +152,15 @@ class TestBulk:
                             "http": True,
                             "in_app_feed": True,
                             "push": True,
-                            "sms": True,
+                            "sms": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                         },
                         "conditions": [
                             {
@@ -278,7 +302,15 @@ class TestAsyncBulk:
                             "http": True,
                             "in_app_feed": True,
                             "push": True,
-                            "sms": True,
+                            "sms": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                         },
                         "conditions": [
                             {
@@ -295,7 +327,15 @@ class TestAsyncBulk:
                     "http": True,
                     "in_app_feed": True,
                     "push": True,
-                    "sms": True,
+                    "sms": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                 },
                 "workflows": {
                     "dinosaurs-loose": {
@@ -305,7 +345,15 @@ class TestAsyncBulk:
                             "http": True,
                             "in_app_feed": True,
                             "push": True,
-                            "sms": True,
+                            "sms": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                         },
                         "conditions": [
                             {

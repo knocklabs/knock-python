@@ -174,7 +174,15 @@ class TestTenants:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -191,7 +199,15 @@ class TestTenants:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -201,7 +217,15 @@ class TestTenants:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -413,7 +437,15 @@ class TestAsyncTenants:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -430,7 +462,15 @@ class TestAsyncTenants:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -440,7 +480,15 @@ class TestAsyncTenants:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {

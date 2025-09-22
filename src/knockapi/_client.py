@@ -110,6 +110,8 @@ class Knock(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self._idempotency_header = "Idempotency-Key"
+
         self.users = users.UsersResource(self)
         self.objects = objects.ObjectsResource(self)
         self.tenants = tenants.TenantsResource(self)
@@ -297,6 +299,8 @@ class AsyncKnock(AsyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+        self._idempotency_header = "Idempotency-Key"
 
         self.users = users.AsyncUsersResource(self)
         self.objects = objects.AsyncObjectsResource(self)

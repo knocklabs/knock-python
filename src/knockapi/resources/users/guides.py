@@ -127,6 +127,7 @@ class GuidesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsArchivedResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
@@ -158,6 +159,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -180,7 +183,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsArchivedResponse,
         )
@@ -205,6 +212,7 @@ class GuidesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsInteractedResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
@@ -236,6 +244,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -258,7 +268,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_interacted_params.GuideMarkMessageAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsInteractedResponse,
         )
@@ -283,6 +297,7 @@ class GuidesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsSeenResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
@@ -314,6 +329,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -336,7 +353,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsSeenResponse,
         )
@@ -438,6 +459,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsArchivedResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
@@ -469,6 +491,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -491,7 +515,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsArchivedResponse,
         )
@@ -516,6 +544,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsInteractedResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
@@ -547,6 +576,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -569,7 +600,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_interacted_params.GuideMarkMessageAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsInteractedResponse,
         )
@@ -594,6 +629,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsSeenResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
@@ -625,6 +661,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -647,7 +685,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsSeenResponse,
         )

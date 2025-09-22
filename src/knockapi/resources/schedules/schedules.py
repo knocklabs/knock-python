@@ -86,6 +86,7 @@ class SchedulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
@@ -123,6 +124,8 @@ class SchedulesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/schedules",
@@ -140,7 +143,11 @@ class SchedulesResource(SyncAPIResource):
                 schedule_create_params.ScheduleCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleCreateResponse,
         )
@@ -161,6 +168,7 @@ class SchedulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleUpdateResponse:
         """
         Updates one or more existing schedules with new timing, data, or other
@@ -195,6 +203,8 @@ class SchedulesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._put(
             "/v1/schedules",
@@ -211,7 +221,11 @@ class SchedulesResource(SyncAPIResource):
                 schedule_update_params.ScheduleUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleUpdateResponse,
         )
@@ -290,6 +304,7 @@ class SchedulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleDeleteResponse:
         """
         Permanently deletes one or more schedules identified by the provided schedule
@@ -305,12 +320,18 @@ class SchedulesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._delete(
             "/v1/schedules",
             body=maybe_transform({"schedule_ids": schedule_ids}, schedule_delete_params.ScheduleDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleDeleteResponse,
         )
@@ -357,6 +378,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleCreateResponse:
         """
         Creates one or more schedules for a workflow with the specified recipients,
@@ -394,6 +416,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/schedules",
@@ -411,7 +435,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
                 schedule_create_params.ScheduleCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleCreateResponse,
         )
@@ -432,6 +460,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleUpdateResponse:
         """
         Updates one or more existing schedules with new timing, data, or other
@@ -466,6 +495,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._put(
             "/v1/schedules",
@@ -482,7 +513,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
                 schedule_update_params.ScheduleUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleUpdateResponse,
         )
@@ -561,6 +596,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ScheduleDeleteResponse:
         """
         Permanently deletes one or more schedules identified by the provided schedule
@@ -576,6 +612,8 @@ class AsyncSchedulesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._delete(
             "/v1/schedules",
@@ -583,7 +621,11 @@ class AsyncSchedulesResource(AsyncAPIResource):
                 {"schedule_ids": schedule_ids}, schedule_delete_params.ScheduleDeleteParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ScheduleDeleteResponse,
         )

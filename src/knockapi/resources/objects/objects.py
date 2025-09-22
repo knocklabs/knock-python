@@ -151,6 +151,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """Permanently removes an object from the specified collection.
 
@@ -165,6 +166,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -173,7 +176,11 @@ class ObjectsResource(SyncAPIResource):
         return self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )
@@ -191,6 +198,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -212,6 +220,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -227,7 +237,11 @@ class ObjectsResource(SyncAPIResource):
                 object_add_subscriptions_params.ObjectAddSubscriptionsParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectAddSubscriptionsResponse,
         )
@@ -244,6 +258,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -261,6 +276,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -272,7 +289,11 @@ class ObjectsResource(SyncAPIResource):
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectDeleteSubscriptionsResponse,
         )
@@ -696,6 +717,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -724,6 +746,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -741,7 +765,11 @@ class ObjectsResource(SyncAPIResource):
                 object_set_params.ObjectSetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=Object,
         )
@@ -759,6 +787,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -776,6 +805,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -787,7 +818,11 @@ class ObjectsResource(SyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             body=maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -808,6 +843,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -839,6 +875,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -858,7 +896,11 @@ class ObjectsResource(SyncAPIResource):
                 object_set_preferences_params.ObjectSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -875,6 +917,7 @@ class ObjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """
         Unsets the channel data for the specified object and channel.
@@ -887,6 +930,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -897,7 +942,11 @@ class ObjectsResource(SyncAPIResource):
         return self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )
@@ -998,6 +1047,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """Permanently removes an object from the specified collection.
 
@@ -1012,6 +1062,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1020,7 +1072,11 @@ class AsyncObjectsResource(AsyncAPIResource):
         return await self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )
@@ -1038,6 +1094,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -1059,6 +1116,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1074,7 +1133,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_add_subscriptions_params.ObjectAddSubscriptionsParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectAddSubscriptionsResponse,
         )
@@ -1091,6 +1154,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -1108,6 +1172,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1119,7 +1185,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectDeleteSubscriptionsResponse,
         )
@@ -1543,6 +1613,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -1571,6 +1642,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1588,7 +1661,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_set_params.ObjectSetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=Object,
         )
@@ -1606,6 +1683,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -1623,6 +1701,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1634,7 +1714,11 @@ class AsyncObjectsResource(AsyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             body=await async_maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -1655,6 +1739,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -1686,6 +1771,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1705,7 +1792,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_set_preferences_params.ObjectSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -1722,6 +1813,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """
         Unsets the channel data for the specified object and channel.
@@ -1734,6 +1826,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1744,7 +1838,11 @@ class AsyncObjectsResource(AsyncAPIResource):
         return await self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )

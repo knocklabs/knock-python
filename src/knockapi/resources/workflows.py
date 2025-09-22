@@ -58,6 +58,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
@@ -81,6 +82,8 @@ class WorkflowsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -94,7 +97,11 @@ class WorkflowsResource(SyncAPIResource):
                 workflow_cancel_params.WorkflowCancelParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )
@@ -114,6 +121,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using
@@ -150,6 +158,8 @@ class WorkflowsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -166,7 +176,11 @@ class WorkflowsResource(SyncAPIResource):
                 workflow_trigger_params.WorkflowTriggerParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=WorkflowTriggerResponse,
         )
@@ -204,6 +218,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> str:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
@@ -227,6 +242,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -240,7 +257,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 workflow_cancel_params.WorkflowCancelParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=str,
         )
@@ -260,6 +281,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using
@@ -296,6 +318,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -312,7 +336,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 workflow_trigger_params.WorkflowTriggerParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=WorkflowTriggerResponse,
         )

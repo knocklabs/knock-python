@@ -55,6 +55,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
         Permanently deletes up to 1,000 users at a time.
@@ -69,12 +70,18 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/users/bulk/delete",
             body=maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -89,6 +96,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Identifies multiple users in a single operation.
 
@@ -106,12 +114,18 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/users/bulk/identify",
             body=maybe_transform({"users": users}, bulk_identify_params.BulkIdentifyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -127,6 +141,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Bulk sets the preferences for up to 1,000 users at a time.
 
@@ -148,6 +163,8 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/users/bulk/preferences",
@@ -159,7 +176,11 @@ class BulkResource(SyncAPIResource):
                 bulk_set_preferences_params.BulkSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -195,6 +216,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
         Permanently deletes up to 1,000 users at a time.
@@ -209,12 +231,18 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/users/bulk/delete",
             body=await async_maybe_transform({"user_ids": user_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -229,6 +257,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Identifies multiple users in a single operation.
 
@@ -246,12 +275,18 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/users/bulk/identify",
             body=await async_maybe_transform({"users": users}, bulk_identify_params.BulkIdentifyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -267,6 +302,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Bulk sets the preferences for up to 1,000 users at a time.
 
@@ -288,6 +324,8 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/users/bulk/preferences",
@@ -299,7 +337,11 @@ class AsyncBulkResource(AsyncAPIResource):
                 bulk_set_preferences_params.BulkSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )

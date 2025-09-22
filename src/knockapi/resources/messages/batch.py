@@ -69,6 +69,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchArchiveResponse:
         """Marks the given messages as archived.
 
@@ -85,12 +86,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/archived",
             body=maybe_transform({"message_ids": message_ids}, batch_archive_params.BatchArchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchArchiveResponse,
         )
@@ -143,6 +150,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsInteractedResponse:
         """Marks the given messages as interacted with by the user.
 
@@ -164,6 +172,8 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/interacted",
@@ -175,7 +185,11 @@ class BatchResource(SyncAPIResource):
                 batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsInteractedResponse,
         )
@@ -190,6 +204,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsReadResponse:
         """Marks the given messages as `read`.
 
@@ -206,12 +221,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/read",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_read_params.BatchMarkAsReadParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsReadResponse,
         )
@@ -226,6 +247,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsSeenResponse:
         """Marks the given messages as `seen`.
 
@@ -243,12 +265,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/seen",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_seen_params.BatchMarkAsSeenParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsSeenResponse,
         )
@@ -263,6 +291,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnreadResponse:
         """Marks the given messages as `unread`.
 
@@ -280,12 +309,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unread",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_unread_params.BatchMarkAsUnreadParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnreadResponse,
         )
@@ -300,6 +335,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnseenResponse:
         """Marks the given messages as `unseen`.
 
@@ -317,12 +353,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unseen",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_unseen_params.BatchMarkAsUnseenParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnseenResponse,
         )
@@ -337,6 +379,7 @@ class BatchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchUnarchiveResponse:
         """Marks the given messages as unarchived.
 
@@ -354,12 +397,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unarchived",
             body=maybe_transform({"message_ids": message_ids}, batch_unarchive_params.BatchUnarchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchUnarchiveResponse,
         )
@@ -395,6 +444,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchArchiveResponse:
         """Marks the given messages as archived.
 
@@ -411,12 +461,18 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/archived",
             body=await async_maybe_transform({"message_ids": message_ids}, batch_archive_params.BatchArchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchArchiveResponse,
         )
@@ -471,6 +527,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsInteractedResponse:
         """Marks the given messages as interacted with by the user.
 
@@ -492,6 +549,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/interacted",
@@ -503,7 +562,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsInteractedResponse,
         )
@@ -518,6 +581,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsReadResponse:
         """Marks the given messages as `read`.
 
@@ -534,6 +598,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/read",
@@ -541,7 +607,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_read_params.BatchMarkAsReadParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsReadResponse,
         )
@@ -556,6 +626,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsSeenResponse:
         """Marks the given messages as `seen`.
 
@@ -573,6 +644,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/seen",
@@ -580,7 +653,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_seen_params.BatchMarkAsSeenParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsSeenResponse,
         )
@@ -595,6 +672,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnreadResponse:
         """Marks the given messages as `unread`.
 
@@ -612,6 +690,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unread",
@@ -619,7 +699,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_unread_params.BatchMarkAsUnreadParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnreadResponse,
         )
@@ -634,6 +718,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnseenResponse:
         """Marks the given messages as `unseen`.
 
@@ -651,6 +736,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unseen",
@@ -658,7 +745,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_unseen_params.BatchMarkAsUnseenParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnseenResponse,
         )
@@ -673,6 +764,7 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchUnarchiveResponse:
         """Marks the given messages as unarchived.
 
@@ -690,12 +782,18 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unarchived",
             body=await async_maybe_transform({"message_ids": message_ids}, batch_unarchive_params.BatchUnarchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchUnarchiveResponse,
         )

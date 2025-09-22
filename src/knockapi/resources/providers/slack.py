@@ -145,6 +145,7 @@ class SlackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.
@@ -159,6 +160,8 @@ class SlackResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
@@ -169,6 +172,7 @@ class SlackResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                idempotency_key=idempotency_key,
                 query=maybe_transform(
                     {"access_token_object": access_token_object}, slack_revoke_access_params.SlackRevokeAccessParams
                 ),
@@ -298,6 +302,7 @@ class AsyncSlackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> SlackRevokeAccessResponse:
         """
         Revoke access for a Slack channel.
@@ -312,6 +317,8 @@ class AsyncSlackResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
@@ -322,6 +329,7 @@ class AsyncSlackResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                idempotency_key=idempotency_key,
                 query=await async_maybe_transform(
                     {"access_token_object": access_token_object}, slack_revoke_access_params.SlackRevokeAccessParams
                 ),

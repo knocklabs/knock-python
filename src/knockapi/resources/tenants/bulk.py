@@ -52,6 +52,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Delete multiple tenants in a single operation.
 
@@ -67,6 +68,8 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/tenants/bulk/delete",
@@ -75,6 +78,7 @@ class BulkResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                idempotency_key=idempotency_key,
                 query=maybe_transform({"tenant_ids": tenant_ids}, bulk_delete_params.BulkDeleteParams),
             ),
             cast_to=BulkOperation,
@@ -90,6 +94,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
         Set or update up to 1,000 tenants in a single operation.
@@ -104,12 +109,18 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/tenants/bulk/set",
             body=maybe_transform({"tenants": tenants}, bulk_set_params.BulkSetParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -145,6 +156,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Delete multiple tenants in a single operation.
 
@@ -160,6 +172,8 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/tenants/bulk/delete",
@@ -168,6 +182,7 @@ class AsyncBulkResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                idempotency_key=idempotency_key,
                 query=await async_maybe_transform({"tenant_ids": tenant_ids}, bulk_delete_params.BulkDeleteParams),
             ),
             cast_to=BulkOperation,
@@ -183,6 +198,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
         Set or update up to 1,000 tenants in a single operation.
@@ -197,12 +213,18 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/tenants/bulk/set",
             body=await async_maybe_transform({"tenants": tenants}, bulk_set_params.BulkSetParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )

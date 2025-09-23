@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..types import workflow_cancel_params, workflow_trigger_params
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,7 +59,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
         will cancel any queued workflow runs associated with that key/cancellation key
@@ -87,6 +87,7 @@ class WorkflowsResource(SyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/v1/workflows/{key}/cancel",
             body=maybe_transform(
@@ -103,7 +104,7 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def trigger(
@@ -219,7 +220,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
         will cancel any queued workflow runs associated with that key/cancellation key
@@ -247,6 +248,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/v1/workflows/{key}/cancel",
             body=await async_maybe_transform(
@@ -263,7 +265,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def trigger(

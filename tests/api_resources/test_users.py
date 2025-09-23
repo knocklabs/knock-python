@@ -208,7 +208,7 @@ class TestUsers:
         user = client.users.delete(
             "user_id",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -220,7 +220,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -232,7 +232,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -874,7 +874,7 @@ class TestUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -887,7 +887,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -900,7 +900,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -1104,7 +1104,7 @@ class TestAsyncUsers:
         user = await async_client.users.delete(
             "user_id",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1116,7 +1116,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1128,7 +1128,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -1770,7 +1770,7 @@ class TestAsyncUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1783,7 +1783,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1796,7 +1796,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,9 +9,7 @@ import pytest
 
 from knockapi import Knock, AsyncKnock
 from tests.utils import assert_matches_type
-from knockapi.types import (
-    AudienceListMembersResponse,
-)
+from knockapi.types import AudienceListMembersResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +24,7 @@ class TestAudiences:
             key="key",
             members=[{"user": {}}],
         )
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -39,7 +37,7 @@ class TestAudiences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audience = response.parse()
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -52,7 +50,7 @@ class TestAudiences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audience = response.parse()
-            assert_matches_type(str, audience, path=["response"])
+            assert audience is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,7 +112,7 @@ class TestAudiences:
             key="key",
             members=[{"user": {}}],
         )
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -127,7 +125,7 @@ class TestAudiences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audience = response.parse()
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -140,7 +138,7 @@ class TestAudiences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audience = response.parse()
-            assert_matches_type(str, audience, path=["response"])
+            assert audience is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +164,7 @@ class TestAsyncAudiences:
             key="key",
             members=[{"user": {}}],
         )
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -179,7 +177,7 @@ class TestAsyncAudiences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audience = await response.parse()
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -192,7 +190,7 @@ class TestAsyncAudiences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audience = await response.parse()
-            assert_matches_type(str, audience, path=["response"])
+            assert audience is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -254,7 +252,7 @@ class TestAsyncAudiences:
             key="key",
             members=[{"user": {}}],
         )
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -267,7 +265,7 @@ class TestAsyncAudiences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audience = await response.parse()
-        assert_matches_type(str, audience, path=["response"])
+        assert audience is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -280,7 +278,7 @@ class TestAsyncAudiences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audience = await response.parse()
-            assert_matches_type(str, audience, path=["response"])
+            assert audience is None
 
         assert cast(Any, response.is_closed) is True
 

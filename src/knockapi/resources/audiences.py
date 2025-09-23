@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..types import audience_add_members_params, audience_remove_members_params
-from .._types import Body, Query, Headers, NotGiven, not_given
+from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class AudiencesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Adds one or more members to the specified audience.
 
@@ -74,6 +74,7 @@ class AudiencesResource(SyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/v1/audiences/{key}/members",
             body=maybe_transform({"members": members}, audience_add_members_params.AudienceAddMembersParams),
@@ -84,7 +85,7 @@ class AudiencesResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def list_members(
@@ -132,7 +133,7 @@ class AudiencesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Removes one or more members from the specified audience.
 
@@ -151,6 +152,7 @@ class AudiencesResource(SyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/audiences/{key}/members",
             body=maybe_transform({"members": members}, audience_remove_members_params.AudienceRemoveMembersParams),
@@ -161,7 +163,7 @@ class AudiencesResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 
@@ -197,7 +199,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Adds one or more members to the specified audience.
 
@@ -216,6 +218,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/v1/audiences/{key}/members",
             body=await async_maybe_transform(
@@ -228,7 +231,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def list_members(
@@ -276,7 +279,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Removes one or more members from the specified audience.
 
@@ -295,6 +298,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/audiences/{key}/members",
             body=await async_maybe_transform(
@@ -307,7 +311,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 

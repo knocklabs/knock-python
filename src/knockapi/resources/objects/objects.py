@@ -26,7 +26,7 @@ from ...types import (
     object_list_subscriptions_params,
     object_delete_subscriptions_params,
 )
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -152,7 +152,7 @@ class ObjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """Permanently removes an object from the specified collection.
 
         This operation
@@ -173,6 +173,7 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
@@ -182,7 +183,7 @@ class ObjectsResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def add_subscriptions(
@@ -918,7 +919,7 @@ class ObjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Unsets the channel data for the specified object and channel.
 
@@ -939,6 +940,7 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
@@ -948,7 +950,7 @@ class ObjectsResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 
@@ -1048,7 +1050,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """Permanently removes an object from the specified collection.
 
         This operation
@@ -1069,6 +1071,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
@@ -1078,7 +1081,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def add_subscriptions(
@@ -1814,7 +1817,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Unsets the channel data for the specified object and channel.
 
@@ -1835,6 +1838,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
@@ -1844,7 +1848,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 

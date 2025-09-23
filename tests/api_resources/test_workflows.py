@@ -26,7 +26,7 @@ class TestWorkflows:
             key="key",
             cancellation_key="cancel-workflow-123",
         )
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -36,7 +36,7 @@ class TestWorkflows:
             cancellation_key="cancel-workflow-123",
             recipients=["jhammond"],
         )
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -49,7 +49,7 @@ class TestWorkflows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         workflow = response.parse()
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -62,7 +62,7 @@ class TestWorkflows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             workflow = response.parse()
-            assert_matches_type(str, workflow, path=["response"])
+            assert workflow is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -154,7 +154,7 @@ class TestAsyncWorkflows:
             key="key",
             cancellation_key="cancel-workflow-123",
         )
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -164,7 +164,7 @@ class TestAsyncWorkflows:
             cancellation_key="cancel-workflow-123",
             recipients=["jhammond"],
         )
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -177,7 +177,7 @@ class TestAsyncWorkflows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         workflow = await response.parse()
-        assert_matches_type(str, workflow, path=["response"])
+        assert workflow is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -190,7 +190,7 @@ class TestAsyncWorkflows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             workflow = await response.parse()
-            assert_matches_type(str, workflow, path=["response"])
+            assert workflow is None
 
         assert cast(Any, response.is_closed) is True
 

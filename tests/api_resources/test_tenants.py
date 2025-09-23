@@ -64,7 +64,7 @@ class TestTenants:
         tenant = client.tenants.delete(
             "id",
         )
-        assert_matches_type(str, tenant, path=["response"])
+        assert tenant is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -76,7 +76,7 @@ class TestTenants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tenant = response.parse()
-        assert_matches_type(str, tenant, path=["response"])
+        assert tenant is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -88,7 +88,7 @@ class TestTenants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tenant = response.parse()
-            assert_matches_type(str, tenant, path=["response"])
+            assert tenant is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -327,7 +327,7 @@ class TestAsyncTenants:
         tenant = await async_client.tenants.delete(
             "id",
         )
-        assert_matches_type(str, tenant, path=["response"])
+        assert tenant is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -339,7 +339,7 @@ class TestAsyncTenants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tenant = await response.parse()
-        assert_matches_type(str, tenant, path=["response"])
+        assert tenant is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -351,7 +351,7 @@ class TestAsyncTenants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tenant = await response.parse()
-            assert_matches_type(str, tenant, path=["response"])
+            assert tenant is None
 
         assert cast(Any, response.is_closed) is True
 

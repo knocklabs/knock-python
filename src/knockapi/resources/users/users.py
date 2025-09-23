@@ -43,7 +43,7 @@ from ...types import (
     user_set_channel_data_params,
     user_list_subscriptions_params,
 )
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -260,7 +260,7 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Permanently delete a user and all associated data.
 
@@ -277,6 +277,7 @@ class UsersResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/users/{user_id}",
             options=make_request_options(
@@ -286,7 +287,7 @@ class UsersResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def get(
@@ -845,7 +846,7 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Deletes channel data for a specific user and channel ID.
 
@@ -864,6 +865,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             options=make_request_options(
@@ -873,7 +875,7 @@ class UsersResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 
@@ -1067,7 +1069,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Permanently delete a user and all associated data.
 
@@ -1084,6 +1086,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/users/{user_id}",
             options=make_request_options(
@@ -1093,7 +1096,7 @@ class AsyncUsersResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def get(
@@ -1654,7 +1657,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """
         Deletes channel data for a specific user and channel ID.
 
@@ -1673,6 +1676,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             options=make_request_options(
@@ -1682,7 +1686,7 @@ class AsyncUsersResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 

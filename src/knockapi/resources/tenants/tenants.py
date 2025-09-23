@@ -15,7 +15,7 @@ from .bulk import (
     AsyncBulkResourceWithStreamingResponse,
 )
 from ...types import tenant_set_params, tenant_list_params
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -127,7 +127,7 @@ class TenantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """Delete a tenant and all associated data.
 
         This operation cannot be undone.
@@ -145,6 +145,7 @@ class TenantsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/tenants/{id}",
             options=make_request_options(
@@ -154,7 +155,7 @@ class TenantsResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def get(
@@ -340,7 +341,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> str:
+    ) -> None:
         """Delete a tenant and all associated data.
 
         This operation cannot be undone.
@@ -358,6 +359,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/tenants/{id}",
             options=make_request_options(
@@ -367,7 +369,7 @@ class AsyncTenantsResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def get(

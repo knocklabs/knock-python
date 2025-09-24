@@ -1,5 +1,44 @@
 # Changelog
 
+## 1.13.0 (2025-09-24)
+
+Full Changelog: [v1.12.1...v1.13.0](https://github.com/knocklabs/knock-python/compare/v1.12.1...v1.13.0)
+
+### Features
+
+* **api:** api update ([d7b6c47](https://github.com/knocklabs/knock-python/commit/d7b6c474cb8edcc4cfe34d9cd4e98523365a716b))
+* **api:** api update ([35e2b49](https://github.com/knocklabs/knock-python/commit/35e2b4952d2a49e991c44c8051fd2a882a98ff9a))
+* **api:** api update ([1cdaf26](https://github.com/knocklabs/knock-python/commit/1cdaf26e8af57ab84654b48b30fd54afc5c721ac))
+* **api:** api update ([78563fd](https://github.com/knocklabs/knock-python/commit/78563fd72a7c20144d49770a2fb1d444cfa96d83))
+* **api:** api update ([c2a6ebb](https://github.com/knocklabs/knock-python/commit/c2a6ebbc4de4158cabbc9a22f60c2cee346c3531))
+* **api:** api update ([122f574](https://github.com/knocklabs/knock-python/commit/122f574b1018dededf82d02d01f56d055115ce40))
+* **api:** api update ([b6b52d7](https://github.com/knocklabs/knock-python/commit/b6b52d7259d8c48f92f208d99756eb7fd234b0c4))
+* **api:** api update ([da8cdc0](https://github.com/knocklabs/knock-python/commit/da8cdc052fe12a158e2f3e8081182fa0cada65f0))
+* **api:** api update ([df20d51](https://github.com/knocklabs/knock-python/commit/df20d5158a8a0df0600147be6497c56feed1a257))
+* **api:** api update ([b9007c9](https://github.com/knocklabs/knock-python/commit/b9007c9da8d172eeb43c0acb509ec12c7c3d0d9a))
+* **api:** set idempotency key header by default ([9d22a7c](https://github.com/knocklabs/knock-python/commit/9d22a7ccd5ca33775cd60d1d2c6cc1b883d906ae))
+* improve future compat with pydantic v3 ([125d0c3](https://github.com/knocklabs/knock-python/commit/125d0c3e2d2cbfaaee8b8c2460b9328fa7f1a47a))
+* **types:** replace List[str] with SequenceNotStr in params ([e19113c](https://github.com/knocklabs/knock-python/commit/e19113cded8eccae475f30b36ae5585427bffe57))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([66ba143](https://github.com/knocklabs/knock-python/commit/66ba143f5c6e28cb7e04c0682f1da3dbe0a82f55))
+* **compat:** compat with `pydantic&lt;2.8.0` when using additional fields ([c6ad6a9](https://github.com/knocklabs/knock-python/commit/c6ad6a98989bcb6b4ec6982ba7dc1303c5b832ec))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([4c552a6](https://github.com/knocklabs/knock-python/commit/4c552a66eaaa4a0d51a1d78819c3c9623e4a31b3))
+* improve example values ([48505ea](https://github.com/knocklabs/knock-python/commit/48505eadad03840bdfe6b073fb4f059e3d05a9e8))
+* **internal:** add Sequence related utils ([2032a76](https://github.com/knocklabs/knock-python/commit/2032a76fac21550c5198347c3f5a392e86616ca4))
+* **internal:** change ci workflow machines ([a1760f4](https://github.com/knocklabs/knock-python/commit/a1760f41b2ca681bf983ae3b24c49516156fa7bd))
+* **internal:** move mypy configurations to `pyproject.toml` file ([c9193ff](https://github.com/knocklabs/knock-python/commit/c9193ff2a63d7b83981dea86f0b7cfa11542c4cd))
+* **internal:** update pydantic dependency ([0636d0b](https://github.com/knocklabs/knock-python/commit/0636d0bbc0f0b4e9559de931f93dc8e6217ad963))
+* **internal:** update pyright exclude list ([40513b5](https://github.com/knocklabs/knock-python/commit/40513b513e482356c3abf8c4427e133da91f8a85))
+* **tests:** simplify `get_platform` test ([e6d99e5](https://github.com/knocklabs/knock-python/commit/e6d99e582689202e25a841d02d225d72c9d5ca0b))
+* **types:** change optional parameter type from NotGiven to Omit ([4a81616](https://github.com/knocklabs/knock-python/commit/4a81616dd316193b7e078076bde0ca530fade27d))
+
 ## 1.12.1 (2025-08-21)
 
 Full Changelog: [v1.12.0...v1.12.1](https://github.com/knocklabs/knock-python/compare/v1.12.0...v1.12.1)

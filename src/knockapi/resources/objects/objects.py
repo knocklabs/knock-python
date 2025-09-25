@@ -26,7 +26,7 @@ from ...types import (
     object_list_subscriptions_params,
     object_delete_subscriptions_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -84,16 +84,16 @@ class ObjectsResource(SyncAPIResource):
         self,
         collection: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Object]:
         """Returns a paginated list of objects from the specified collection.
 
@@ -150,8 +150,9 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """Permanently removes an object from the specified collection.
 
         This operation
@@ -165,17 +166,24 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def add_subscriptions(
@@ -183,14 +191,15 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientRequestParam],
+        properties: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -212,6 +221,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -227,7 +238,11 @@ class ObjectsResource(SyncAPIResource):
                 object_add_subscriptions_params.ObjectAddSubscriptionsParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectAddSubscriptionsResponse,
         )
@@ -237,13 +252,14 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: SequenceNotStr[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -261,6 +277,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -272,7 +290,11 @@ class ObjectsResource(SyncAPIResource):
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectDeleteSubscriptionsResponse,
         )
@@ -287,7 +309,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """Retrieves a specific object by its ID from the specified collection.
 
@@ -326,7 +348,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
@@ -365,7 +387,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Returns the preference set for the specified object and preference set `id`.
@@ -398,30 +420,30 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: object_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncItemsCursor[Message]:
         """
         Returns a paginated list of messages for a specific object in the given
@@ -512,7 +534,7 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectListPreferencesResponse:
         """
         Returns a paginated list of preference sets for the specified object.
@@ -543,17 +565,17 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Schedule]:
         """
         Returns a paginated list of schedules for an object.
@@ -608,19 +630,19 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        mode: Literal["recipient", "object"] | Omit = omit,
+        objects: Iterable[object_list_subscriptions_params.Object] | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Subscription]:
         """List subscriptions for an object.
 
@@ -686,16 +708,17 @@ class ObjectsResource(SyncAPIResource):
         collection: str,
         id: str,
         *,
-        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        preferences: InlinePreferenceSetRequestParam | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -724,6 +747,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -741,7 +766,11 @@ class ObjectsResource(SyncAPIResource):
                 object_set_params.ObjectSetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=Object,
         )
@@ -758,7 +787,8 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -776,6 +806,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -787,7 +819,11 @@ class ObjectsResource(SyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             body=maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -798,16 +834,17 @@ class ObjectsResource(SyncAPIResource):
         object_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -839,6 +876,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -858,7 +897,11 @@ class ObjectsResource(SyncAPIResource):
                 object_set_preferences_params.ObjectSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -874,8 +917,9 @@ class ObjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Unsets the channel data for the specified object and channel.
 
@@ -887,6 +931,8 @@ class ObjectsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -894,12 +940,17 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 
@@ -931,16 +982,16 @@ class AsyncObjectsResource(AsyncAPIResource):
         self,
         collection: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Object, AsyncEntriesCursor[Object]]:
         """Returns a paginated list of objects from the specified collection.
 
@@ -997,8 +1048,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """Permanently removes an object from the specified collection.
 
         This operation
@@ -1012,17 +1064,24 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/objects/{collection}/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def add_subscriptions(
@@ -1030,14 +1089,15 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientRequestParam],
-        properties: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientRequestParam],
+        properties: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectAddSubscriptionsResponse:
         """Add subscriptions for an object.
 
@@ -1059,6 +1119,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1074,7 +1136,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_add_subscriptions_params.ObjectAddSubscriptionsParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectAddSubscriptionsResponse,
         )
@@ -1084,13 +1150,14 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        recipients: List[RecipientReferenceParam],
+        recipients: SequenceNotStr[RecipientReferenceParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ObjectDeleteSubscriptionsResponse:
         """Delete subscriptions for the specified recipients from an object.
 
@@ -1108,6 +1175,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1119,7 +1188,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ObjectDeleteSubscriptionsResponse,
         )
@@ -1134,7 +1207,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Object:
         """Retrieves a specific object by its ID from the specified collection.
 
@@ -1173,7 +1246,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Returns the channel data for the specified object and channel.
@@ -1212,7 +1285,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Returns the preference set for the specified object and preference set `id`.
@@ -1245,30 +1318,30 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: object_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: object_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """
         Returns a paginated list of messages for a specific object in the given
@@ -1359,7 +1432,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectListPreferencesResponse:
         """
         Returns a paginated list of preference sets for the specified object.
@@ -1390,17 +1463,17 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
         """
         Returns a paginated list of schedules for an object.
@@ -1455,19 +1528,19 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         object_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        mode: Literal["recipient", "object"] | NotGiven = NOT_GIVEN,
-        objects: Iterable[object_list_subscriptions_params.Object] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recipients: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        mode: Literal["recipient", "object"] | Omit = omit,
+        objects: Iterable[object_list_subscriptions_params.Object] | Omit = omit,
+        page_size: int | Omit = omit,
+        recipients: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
         """List subscriptions for an object.
 
@@ -1533,16 +1606,17 @@ class AsyncObjectsResource(AsyncAPIResource):
         collection: str,
         id: str,
         *,
-        channel_data: InlineChannelDataRequestParam | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: InlinePreferenceSetRequestParam | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        channel_data: InlineChannelDataRequestParam | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        preferences: InlinePreferenceSetRequestParam | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> Object:
         """
         Creates a new object or updates an existing one in the specified collection.
@@ -1571,6 +1645,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1588,7 +1664,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_set_params.ObjectSetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=Object,
         )
@@ -1605,7 +1685,8 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Sets the channel data for the specified object and channel.
 
@@ -1623,6 +1704,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1634,7 +1717,11 @@ class AsyncObjectsResource(AsyncAPIResource):
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             body=await async_maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -1645,16 +1732,17 @@ class AsyncObjectsResource(AsyncAPIResource):
         object_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Sets preferences within the given preference set.
 
@@ -1686,6 +1774,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1705,7 +1795,11 @@ class AsyncObjectsResource(AsyncAPIResource):
                 object_set_preferences_params.ObjectSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -1721,8 +1815,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Unsets the channel data for the specified object and channel.
 
@@ -1734,6 +1829,8 @@ class AsyncObjectsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
@@ -1741,12 +1838,17 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 

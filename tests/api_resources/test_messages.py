@@ -82,7 +82,7 @@ class TestMessages:
     @parametrize
     def test_method_archive(self, client: Knock) -> None:
         message = client.messages.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -90,7 +90,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_archive(self, client: Knock) -> None:
         response = client.messages.with_raw_response.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -102,7 +102,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_archive(self, client: Knock) -> None:
         with client.messages.with_streaming_response.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,7 +124,7 @@ class TestMessages:
     @parametrize
     def test_method_get(self, client: Knock) -> None:
         message = client.messages.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -132,7 +132,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_get(self, client: Knock) -> None:
         response = client.messages.with_raw_response.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -144,7 +144,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_get(self, client: Knock) -> None:
         with client.messages.with_streaming_response.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -419,7 +419,7 @@ class TestMessages:
     @parametrize
     def test_method_mark_as_read(self, client: Knock) -> None:
         message = client.messages.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -427,7 +427,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_mark_as_read(self, client: Knock) -> None:
         response = client.messages.with_raw_response.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -439,7 +439,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_mark_as_read(self, client: Knock) -> None:
         with client.messages.with_streaming_response.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -461,7 +461,7 @@ class TestMessages:
     @parametrize
     def test_method_mark_as_seen(self, client: Knock) -> None:
         message = client.messages.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -469,7 +469,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_mark_as_seen(self, client: Knock) -> None:
         response = client.messages.with_raw_response.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -481,7 +481,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_mark_as_seen(self, client: Knock) -> None:
         with client.messages.with_streaming_response.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -503,7 +503,7 @@ class TestMessages:
     @parametrize
     def test_method_mark_as_unread(self, client: Knock) -> None:
         message = client.messages.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -511,7 +511,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_mark_as_unread(self, client: Knock) -> None:
         response = client.messages.with_raw_response.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -523,7 +523,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_mark_as_unread(self, client: Knock) -> None:
         with client.messages.with_streaming_response.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -545,7 +545,7 @@ class TestMessages:
     @parametrize
     def test_method_mark_as_unseen(self, client: Knock) -> None:
         message = client.messages.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -553,7 +553,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_mark_as_unseen(self, client: Knock) -> None:
         response = client.messages.with_raw_response.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -565,7 +565,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_mark_as_unseen(self, client: Knock) -> None:
         with client.messages.with_streaming_response.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -587,7 +587,7 @@ class TestMessages:
     @parametrize
     def test_method_unarchive(self, client: Knock) -> None:
         message = client.messages.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -595,7 +595,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_unarchive(self, client: Knock) -> None:
         response = client.messages.with_raw_response.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -607,7 +607,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_unarchive(self, client: Knock) -> None:
         with client.messages.with_streaming_response.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -689,7 +689,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_archive(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -697,7 +697,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -709,7 +709,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.archive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -731,7 +731,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_get(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -739,7 +739,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -751,7 +751,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.get(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1026,7 +1026,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_mark_as_read(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -1034,7 +1034,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -1046,7 +1046,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_mark_as_read(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.mark_as_read(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1068,7 +1068,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_mark_as_seen(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -1076,7 +1076,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -1088,7 +1088,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_mark_as_seen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.mark_as_seen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1110,7 +1110,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_mark_as_unread(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -1118,7 +1118,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -1130,7 +1130,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_mark_as_unread(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.mark_as_unread(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1152,7 +1152,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -1160,7 +1160,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -1172,7 +1172,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_mark_as_unseen(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.mark_as_unseen(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1194,7 +1194,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncKnock) -> None:
         message = await async_client.messages.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
         assert_matches_type(Message, message, path=["response"])
 
@@ -1202,7 +1202,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.with_raw_response.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         )
 
         assert response.is_closed is True
@@ -1214,7 +1214,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.with_streaming_response.unarchive(
-            "message_id",
+            "1jNaXzB2RZX3LY8wVQnfCKyPnv7",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

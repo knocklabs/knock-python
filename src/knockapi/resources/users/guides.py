@@ -6,7 +6,7 @@ from typing import Dict, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,15 +56,15 @@ class GuidesResource(SyncAPIResource):
         user_id: str,
         channel_id: str,
         *,
-        data: str | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        data: str | Omit = omit,
+        tenant: str | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideGetChannelResponse:
         """
         Returns a list of eligible in-app guides for a specific user and channel.
@@ -116,17 +116,18 @@ class GuidesResource(SyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsArchivedResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
@@ -158,6 +159,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -180,7 +183,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsArchivedResponse,
         )
@@ -194,17 +201,18 @@ class GuidesResource(SyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsInteractedResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
@@ -236,6 +244,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -258,7 +268,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_interacted_params.GuideMarkMessageAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsInteractedResponse,
         )
@@ -272,17 +286,18 @@ class GuidesResource(SyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsSeenResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
@@ -314,6 +329,8 @@ class GuidesResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -336,7 +353,11 @@ class GuidesResource(SyncAPIResource):
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsSeenResponse,
         )
@@ -367,15 +388,15 @@ class AsyncGuidesResource(AsyncAPIResource):
         user_id: str,
         channel_id: str,
         *,
-        data: str | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        data: str | Omit = omit,
+        tenant: str | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideGetChannelResponse:
         """
         Returns a list of eligible in-app guides for a specific user and channel.
@@ -427,17 +448,18 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsArchivedResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
@@ -469,6 +491,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -491,7 +515,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsArchivedResponse,
         )
@@ -505,17 +533,18 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsInteractedResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
@@ -547,6 +576,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -569,7 +600,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_interacted_params.GuideMarkMessageAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsInteractedResponse,
         )
@@ -583,17 +618,18 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        is_final: bool | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        content: Dict[str, object] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        is_final: bool | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> GuideMarkMessageAsSeenResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
@@ -625,6 +661,8 @@ class AsyncGuidesResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -647,7 +685,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=GuideMarkMessageAsSeenResponse,
         )

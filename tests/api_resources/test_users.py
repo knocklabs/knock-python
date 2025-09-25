@@ -53,14 +53,23 @@ class TestUsers:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -70,7 +79,6 @@ class TestUsers:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -78,7 +86,15 @@ class TestUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -88,7 +104,15 @@ class TestUsers:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -184,7 +208,7 @@ class TestUsers:
         user = client.users.delete(
             "user_id",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -196,7 +220,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -208,7 +232,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -735,7 +759,15 @@ class TestUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -752,7 +784,15 @@ class TestUsers:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -762,7 +802,15 @@ class TestUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -826,7 +874,7 @@ class TestUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -839,7 +887,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -852,7 +900,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -901,14 +949,23 @@ class TestAsyncUsers:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -918,7 +975,6 @@ class TestAsyncUsers:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -926,7 +982,15 @@ class TestAsyncUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -936,7 +1000,15 @@ class TestAsyncUsers:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -1032,7 +1104,7 @@ class TestAsyncUsers:
         user = await async_client.users.delete(
             "user_id",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1044,7 +1116,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1056,7 +1128,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -1583,7 +1655,15 @@ class TestAsyncUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -1600,7 +1680,15 @@ class TestAsyncUsers:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -1610,7 +1698,15 @@ class TestAsyncUsers:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -1674,7 +1770,7 @@ class TestAsyncUsers:
             user_id="user_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1687,7 +1783,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(str, user, path=["response"])
+        assert user is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1700,7 +1796,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(str, user, path=["response"])
+            assert user is None
 
         assert cast(Any, response.is_closed) is True
 

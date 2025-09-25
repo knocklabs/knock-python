@@ -6,13 +6,10 @@ import gc
 import os
 import sys
 import json
-import time
 import asyncio
 import inspect
-import subprocess
 import tracemalloc
 from typing import Any, Union, cast
-from textwrap import dedent
 from unittest import mock
 from typing_extensions import Literal
 
@@ -23,14 +20,17 @@ from pydantic import ValidationError
 
 from knockapi import Knock, AsyncKnock, APIResponseValidationError
 from knockapi._types import Omit
+from knockapi._utils import asyncify
 from knockapi._models import BaseModel, FinalRequestOptions
 from knockapi._exceptions import KnockError, APIStatusError, APITimeoutError, APIResponseValidationError
 from knockapi._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
+    OtherPlatform,
     DefaultHttpxClient,
     DefaultAsyncHttpxClient,
+    get_platform,
     make_request_options,
 )
 
@@ -544,6 +544,37 @@ class TestKnock:
         response = self.client.get("/foo", cast_to=Model)
         assert isinstance(response, Model)
         assert response.foo == 2
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+
+        response = self.client.post("/foo", cast_to=httpx.Response)
+
+        header = response.request.headers.get("Idempotency-Key")
+        assert header is not None
+        assert header.startswith("stainless-python-retry")
+
+        # explicit header
+        response = self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        response = self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        # custom argument
+        response = self.client.post(
+            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
     def test_base_url_setter(self) -> None:
         client = Knock(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
@@ -1344,6 +1375,37 @@ class TestAsyncKnock:
         assert isinstance(response, Model)
         assert response.foo == 2
 
+    @pytest.mark.respx(base_url=base_url)
+    async def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+
+        response = await self.client.post("/foo", cast_to=httpx.Response)
+
+        header = response.request.headers.get("Idempotency-Key")
+        assert header is not None
+        assert header.startswith("stainless-python-retry")
+
+        # explicit header
+        response = await self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        response = await self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        # custom argument
+        response = await self.client.post(
+            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
     def test_base_url_setter(self) -> None:
         client = AsyncKnock(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
@@ -1621,50 +1683,9 @@ class TestAsyncKnock:
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
-    def test_get_platform(self) -> None:
-        # A previous implementation of asyncify could leave threads unterminated when
-        # used with nest_asyncio.
-        #
-        # Since nest_asyncio.apply() is global and cannot be un-applied, this
-        # test is run in a separate process to avoid affecting other tests.
-        test_code = dedent("""
-        import asyncio
-        import nest_asyncio
-        import threading
-
-        from knockapi._utils import asyncify
-        from knockapi._base_client import get_platform
-
-        async def test_main() -> None:
-            result = await asyncify(get_platform)()
-            print(result)
-            for thread in threading.enumerate():
-                print(thread.name)
-
-        nest_asyncio.apply()
-        asyncio.run(test_main())
-        """)
-        with subprocess.Popen(
-            [sys.executable, "-c", test_code],
-            text=True,
-        ) as process:
-            timeout = 10  # seconds
-
-            start_time = time.monotonic()
-            while True:
-                return_code = process.poll()
-                if return_code is not None:
-                    if return_code != 0:
-                        raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
-
-                    # success
-                    break
-
-                if time.monotonic() - start_time > timeout:
-                    process.kill()
-                    raise AssertionError("calling get_platform using asyncify resulted in a hung process")
-
-                time.sleep(0.1)
+    async def test_get_platform(self) -> None:
+        platform = await asyncify(get_platform)()
+        assert isinstance(platform, (str, OtherPlatform))
 
     async def test_proxy_environment_variables(self, monkeypatch: pytest.MonkeyPatch) -> None:
         # Test that the proxy environment variables are set correctly

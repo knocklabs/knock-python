@@ -43,7 +43,7 @@ from ...types import (
     user_set_channel_data_params,
     user_list_subscriptions_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -106,21 +106,22 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
-        avatar: Optional[str] | NotGiven = NOT_GIVEN,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        email: Optional[str] | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        avatar: Optional[str] | Omit = omit,
+        channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        created_at: Union[str, datetime, None] | Omit = omit,
+        email: Optional[str] | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone_number: Optional[str] | Omit = omit,
+        preferences: Optional[InlinePreferenceSetRequestParam] | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> User:
         """Create or update a user with the provided identification data.
 
@@ -160,6 +161,8 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -180,7 +183,11 @@ class UsersResource(SyncAPIResource):
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=User,
         )
@@ -188,16 +195,16 @@ class UsersResource(SyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[User]:
         """Retrieve a paginated list of users in the environment.
 
@@ -251,8 +258,9 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Permanently delete a user and all associated data.
 
@@ -264,15 +272,22 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/users/{user_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def get(
@@ -284,7 +299,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> User:
         """
         Retrieve a specific user by their ID.
@@ -318,7 +333,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Retrieves the channel data for a specific user and channel ID.
@@ -349,13 +364,13 @@ class UsersResource(SyncAPIResource):
         user_id: str,
         id: str,
         *,
-        tenant: str | NotGiven = NOT_GIVEN,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Retrieves a specific preference set for a user identified by the preference set
@@ -392,30 +407,30 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: user_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncItemsCursor[Message]:
         """Returns a paginated list of messages for a specific user.
 
@@ -504,7 +519,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserListPreferencesResponse:
         """
         Retrieves a list of all preference sets for a specific user.
@@ -532,17 +547,17 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Schedule]:
         """
         Returns a paginated list of schedules for a specific user, in descending order.
@@ -594,17 +609,17 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        objects: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Subscription]:
         """
         Retrieves a paginated list of subscriptions for a specific user, in descending
@@ -663,7 +678,8 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> User:
         """
         Merge two users together, where the user specified with the `from_user_id` param
@@ -679,6 +695,8 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -686,7 +704,11 @@ class UsersResource(SyncAPIResource):
             f"/v1/users/{user_id}/merge",
             body=maybe_transform({"from_user_id": from_user_id}, user_merge_params.UserMergeParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=User,
         )
@@ -702,7 +724,8 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Updates or creates channel data for a specific user and channel ID.
 
@@ -720,6 +743,8 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -729,7 +754,11 @@ class UsersResource(SyncAPIResource):
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             body=maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -739,16 +768,17 @@ class UsersResource(SyncAPIResource):
         user_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Updates a complete preference set for a user.
 
@@ -776,6 +806,8 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -793,7 +825,11 @@ class UsersResource(SyncAPIResource):
                 user_set_preferences_params.UserSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -808,8 +844,9 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Deletes channel data for a specific user and channel ID.
 
@@ -821,17 +858,24 @@ class UsersResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 
@@ -871,21 +915,22 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
-        avatar: Optional[str] | NotGiven = NOT_GIVEN,
-        channel_data: Optional[InlineChannelDataRequestParam] | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        email: Optional[str] | NotGiven = NOT_GIVEN,
-        locale: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
-        preferences: Optional[InlinePreferenceSetRequestParam] | NotGiven = NOT_GIVEN,
-        timezone: Optional[str] | NotGiven = NOT_GIVEN,
+        avatar: Optional[str] | Omit = omit,
+        channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        created_at: Union[str, datetime, None] | Omit = omit,
+        email: Optional[str] | Omit = omit,
+        locale: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone_number: Optional[str] | Omit = omit,
+        preferences: Optional[InlinePreferenceSetRequestParam] | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> User:
         """Create or update a user with the provided identification data.
 
@@ -925,6 +970,8 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -945,7 +992,11 @@ class AsyncUsersResource(AsyncAPIResource):
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=User,
         )
@@ -953,16 +1004,16 @@ class AsyncUsersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[User, AsyncEntriesCursor[User]]:
         """Retrieve a paginated list of users in the environment.
 
@@ -1016,8 +1067,9 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Permanently delete a user and all associated data.
 
@@ -1029,15 +1081,22 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/users/{user_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def get(
@@ -1049,7 +1108,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> User:
         """
         Retrieve a specific user by their ID.
@@ -1083,7 +1142,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelData:
         """
         Retrieves the channel data for a specific user and channel ID.
@@ -1114,13 +1173,13 @@ class AsyncUsersResource(AsyncAPIResource):
         user_id: str,
         id: str,
         *,
-        tenant: str | NotGiven = NOT_GIVEN,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreferenceSet:
         """
         Retrieves a specific preference set for a user identified by the preference set
@@ -1159,30 +1218,30 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        channel_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        channel_id: str | Omit = omit,
         engagement_status: List[
             Literal["seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"]
         ]
-        | NotGiven = NOT_GIVEN,
-        inserted_at: user_list_messages_params.InsertedAt | NotGiven = NOT_GIVEN,
-        message_ids: List[str] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        inserted_at: user_list_messages_params.InsertedAt | Omit = omit,
+        message_ids: SequenceNotStr[str] | Omit = omit,
+        page_size: int | Omit = omit,
+        source: str | Omit = omit,
         status: List[Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]]
-        | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflow_categories: List[str] | NotGiven = NOT_GIVEN,
-        workflow_recipient_run_id: str | NotGiven = NOT_GIVEN,
-        workflow_run_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tenant: str | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflow_categories: SequenceNotStr[str] | Omit = omit,
+        workflow_recipient_run_id: str | Omit = omit,
+        workflow_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Message, AsyncItemsCursor[Message]]:
         """Returns a paginated list of messages for a specific user.
 
@@ -1271,7 +1330,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserListPreferencesResponse:
         """
         Retrieves a list of all preference sets for a specific user.
@@ -1299,17 +1358,17 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
-        workflow: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        page_size: int | Omit = omit,
+        tenant: str | Omit = omit,
+        workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Schedule, AsyncEntriesCursor[Schedule]]:
         """
         Returns a paginated list of schedules for a specific user, in descending order.
@@ -1361,17 +1420,17 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["preferences"]] | NotGiven = NOT_GIVEN,
-        objects: List[RecipientReferenceParam] | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["preferences"]] | Omit = omit,
+        objects: SequenceNotStr[RecipientReferenceParam] | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subscription, AsyncEntriesCursor[Subscription]]:
         """
         Retrieves a paginated list of subscriptions for a specific user, in descending
@@ -1430,7 +1489,8 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> User:
         """
         Merge two users together, where the user specified with the `from_user_id` param
@@ -1446,6 +1506,8 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -1453,7 +1515,11 @@ class AsyncUsersResource(AsyncAPIResource):
             f"/v1/users/{user_id}/merge",
             body=await async_maybe_transform({"from_user_id": from_user_id}, user_merge_params.UserMergeParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=User,
         )
@@ -1469,7 +1535,8 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> ChannelData:
         """Updates or creates channel data for a specific user and channel ID.
 
@@ -1487,6 +1554,8 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -1496,7 +1565,11 @@ class AsyncUsersResource(AsyncAPIResource):
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             body=await async_maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=ChannelData,
         )
@@ -1506,16 +1579,17 @@ class AsyncUsersResource(AsyncAPIResource):
         user_id: str,
         id: str,
         *,
-        _persistence_strategy: Literal["merge", "replace"] | NotGiven = NOT_GIVEN,
-        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | NotGiven = NOT_GIVEN,
-        channel_types: Optional[PreferenceSetChannelTypesParam] | NotGiven = NOT_GIVEN,
-        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | NotGiven = NOT_GIVEN,
+        _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
+        categories: Optional[Dict[str, user_set_preferences_params.Categories]] | Omit = omit,
+        channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        workflows: Optional[Dict[str, user_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> PreferenceSet:
         """Updates a complete preference set for a user.
 
@@ -1543,6 +1617,8 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
@@ -1560,7 +1636,11 @@ class AsyncUsersResource(AsyncAPIResource):
                 user_set_preferences_params.UserSetPreferencesParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=PreferenceSet,
         )
@@ -1575,8 +1655,9 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         Deletes channel data for a specific user and channel ID.
 
@@ -1588,17 +1669,24 @@ class AsyncUsersResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/v1/users/{user_id}/channel_data/{channel_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
 

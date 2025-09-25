@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,13 +62,14 @@ class BatchResource(SyncAPIResource):
     def archive(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchArchiveResponse:
         """Marks the given messages as archived.
 
@@ -85,12 +86,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/archived",
             body=maybe_transform({"message_ids": message_ids}, batch_archive_params.BatchArchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchArchiveResponse,
         )
@@ -98,13 +105,13 @@ class BatchResource(SyncAPIResource):
     def get_content(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchGetContentResponse:
         """
         Get the contents of multiple messages in a single request.
@@ -135,14 +142,15 @@ class BatchResource(SyncAPIResource):
     def mark_as_interacted(
         self,
         *,
-        message_ids: List[str],
-        metadata: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str],
+        metadata: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsInteractedResponse:
         """Marks the given messages as interacted with by the user.
 
@@ -164,6 +172,8 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/interacted",
@@ -175,7 +185,11 @@ class BatchResource(SyncAPIResource):
                 batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsInteractedResponse,
         )
@@ -183,13 +197,14 @@ class BatchResource(SyncAPIResource):
     def mark_as_read(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsReadResponse:
         """Marks the given messages as `read`.
 
@@ -206,12 +221,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/read",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_read_params.BatchMarkAsReadParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsReadResponse,
         )
@@ -219,13 +240,14 @@ class BatchResource(SyncAPIResource):
     def mark_as_seen(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsSeenResponse:
         """Marks the given messages as `seen`.
 
@@ -243,12 +265,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/seen",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_seen_params.BatchMarkAsSeenParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsSeenResponse,
         )
@@ -256,13 +284,14 @@ class BatchResource(SyncAPIResource):
     def mark_as_unread(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnreadResponse:
         """Marks the given messages as `unread`.
 
@@ -280,12 +309,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unread",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_unread_params.BatchMarkAsUnreadParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnreadResponse,
         )
@@ -293,13 +328,14 @@ class BatchResource(SyncAPIResource):
     def mark_as_unseen(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnseenResponse:
         """Marks the given messages as `unseen`.
 
@@ -317,12 +353,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unseen",
             body=maybe_transform({"message_ids": message_ids}, batch_mark_as_unseen_params.BatchMarkAsUnseenParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnseenResponse,
         )
@@ -330,13 +372,14 @@ class BatchResource(SyncAPIResource):
     def unarchive(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchUnarchiveResponse:
         """Marks the given messages as unarchived.
 
@@ -354,12 +397,18 @@ class BatchResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/v1/messages/batch/unarchived",
             body=maybe_transform({"message_ids": message_ids}, batch_unarchive_params.BatchUnarchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchUnarchiveResponse,
         )
@@ -388,13 +437,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def archive(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchArchiveResponse:
         """Marks the given messages as archived.
 
@@ -411,12 +461,18 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/archived",
             body=await async_maybe_transform({"message_ids": message_ids}, batch_archive_params.BatchArchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchArchiveResponse,
         )
@@ -424,13 +480,13 @@ class AsyncBatchResource(AsyncAPIResource):
     async def get_content(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchGetContentResponse:
         """
         Get the contents of multiple messages in a single request.
@@ -463,14 +519,15 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_interacted(
         self,
         *,
-        message_ids: List[str],
-        metadata: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        message_ids: SequenceNotStr[str],
+        metadata: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsInteractedResponse:
         """Marks the given messages as interacted with by the user.
 
@@ -492,6 +549,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/interacted",
@@ -503,7 +562,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 batch_mark_as_interacted_params.BatchMarkAsInteractedParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsInteractedResponse,
         )
@@ -511,13 +574,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_read(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsReadResponse:
         """Marks the given messages as `read`.
 
@@ -534,6 +598,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/read",
@@ -541,7 +607,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_read_params.BatchMarkAsReadParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsReadResponse,
         )
@@ -549,13 +619,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_seen(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsSeenResponse:
         """Marks the given messages as `seen`.
 
@@ -573,6 +644,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/seen",
@@ -580,7 +653,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_seen_params.BatchMarkAsSeenParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsSeenResponse,
         )
@@ -588,13 +665,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_unread(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnreadResponse:
         """Marks the given messages as `unread`.
 
@@ -612,6 +690,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unread",
@@ -619,7 +699,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_unread_params.BatchMarkAsUnreadParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnreadResponse,
         )
@@ -627,13 +711,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def mark_as_unseen(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchMarkAsUnseenResponse:
         """Marks the given messages as `unseen`.
 
@@ -651,6 +736,8 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unseen",
@@ -658,7 +745,11 @@ class AsyncBatchResource(AsyncAPIResource):
                 {"message_ids": message_ids}, batch_mark_as_unseen_params.BatchMarkAsUnseenParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchMarkAsUnseenResponse,
         )
@@ -666,13 +757,14 @@ class AsyncBatchResource(AsyncAPIResource):
     async def unarchive(
         self,
         *,
-        message_ids: List[str],
+        message_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BatchUnarchiveResponse:
         """Marks the given messages as unarchived.
 
@@ -690,12 +782,18 @@ class AsyncBatchResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/v1/messages/batch/unarchived",
             body=await async_maybe_transform({"message_ids": message_ids}, batch_unarchive_params.BatchUnarchiveParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BatchUnarchiveResponse,
         )

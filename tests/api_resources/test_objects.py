@@ -91,7 +91,7 @@ class TestObjects:
             collection="collection",
             id="id",
         )
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -104,7 +104,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = response.parse()
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -117,7 +117,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = response.parse()
-            assert_matches_type(str, object_, path=["response"])
+            assert object_ is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -733,14 +733,23 @@ class TestObjects:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -750,7 +759,6 @@ class TestObjects:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -758,7 +766,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -768,7 +784,15 @@ class TestObjects:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -936,7 +960,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -953,7 +985,15 @@ class TestObjects:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -963,7 +1003,15 @@ class TestObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -1039,7 +1087,7 @@ class TestObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1053,7 +1101,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = response.parse()
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1067,7 +1115,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = response.parse()
-            assert_matches_type(str, object_, path=["response"])
+            assert object_ is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -1162,7 +1210,7 @@ class TestAsyncObjects:
             collection="collection",
             id="id",
         )
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1175,7 +1223,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = await response.parse()
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -1188,7 +1236,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = await response.parse()
-            assert_matches_type(str, object_, path=["response"])
+            assert object_ is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -1804,14 +1852,23 @@ class TestAsyncObjects:
                 "default": {
                     "_persistence_strategy": "merge",
                     "categories": {
-                        "marketing": {
+                        "marketing": False,
+                        "transactional": {
                             "channel_types": {
                                 "chat": True,
                                 "email": False,
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -1821,7 +1878,6 @@ class TestAsyncObjects:
                                 }
                             ],
                         },
-                        "transactional": True,
                     },
                     "channel_types": {
                         "chat": True,
@@ -1829,7 +1885,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "workflows": {
                         "dinosaurs-loose": {
@@ -1839,7 +1903,15 @@ class TestAsyncObjects:
                                 "http": True,
                                 "in_app_feed": True,
                                 "push": True,
-                                "sms": True,
+                                "sms": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                             },
                             "conditions": [
                                 {
@@ -2007,7 +2079,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -2024,7 +2104,15 @@ class TestAsyncObjects:
                 "http": True,
                 "in_app_feed": True,
                 "push": True,
-                "sms": True,
+                "sms": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
             },
             workflows={
                 "dinosaurs-loose": {
@@ -2034,7 +2122,15 @@ class TestAsyncObjects:
                         "http": True,
                         "in_app_feed": True,
                         "push": True,
-                        "sms": True,
+                        "sms": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                     },
                     "conditions": [
                         {
@@ -2110,7 +2206,7 @@ class TestAsyncObjects:
             object_id="object_id",
             channel_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -2124,7 +2220,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object_ = await response.parse()
-        assert_matches_type(str, object_, path=["response"])
+        assert object_ is None
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -2138,7 +2234,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object_ = await response.parse()
-            assert_matches_type(str, object_, path=["response"])
+            assert object_ is None
 
         assert cast(Any, response.is_closed) is True
 

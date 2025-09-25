@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["BulkUpdateMessageStatusParams"]
@@ -32,10 +33,10 @@ class BulkUpdateMessageStatusParams(TypedDict, total=False):
     older_than: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Limits the results to messages inserted before the given date."""
 
-    recipient_ids: List[str]
+    recipient_ids: SequenceNotStr[str]
     """Limits the results to messages with the given recipient IDs."""
 
-    tenants: List[str]
+    tenants: SequenceNotStr[str]
     """Limits the results to messages with the given tenant IDs."""
 
     trigger_data: str
@@ -45,5 +46,5 @@ class BulkUpdateMessageStatusParams(TypedDict, total=False):
     more information.
     """
 
-    workflows: List[str]
+    workflows: SequenceNotStr[str]
     """Limits the results to messages with the given workflow keys."""

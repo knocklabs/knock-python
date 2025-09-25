@@ -11,6 +11,9 @@ class Guide(BaseModel):
     id: Optional[str] = None
     """The unique identifier for the guide."""
 
+    active: Optional[bool] = None
+    """Whether the guide is active."""
+
     content: Optional[str] = None
     """The content of the guide."""
 

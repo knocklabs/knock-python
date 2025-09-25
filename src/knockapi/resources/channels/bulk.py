@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,28 +52,29 @@ class BulkResource(SyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
+        archived: Literal["exclude", "include", "only"] | Omit = omit,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         engagement_status: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
         ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: List[str] | NotGiven = NOT_GIVEN,
-        tenants: List[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: List[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        has_tenant: bool | Omit = omit,
+        newer_than: Union[str, datetime] | Omit = omit,
+        older_than: Union[str, datetime] | Omit = omit,
+        recipient_ids: SequenceNotStr[str] | Omit = omit,
+        tenants: SequenceNotStr[str] | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflows: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Bulk update the status of messages for a specific channel.
 
@@ -112,6 +113,8 @@ class BulkResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
@@ -135,7 +138,11 @@ class BulkResource(SyncAPIResource):
                 bulk_update_message_status_params.BulkUpdateMessageStatusParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )
@@ -168,28 +175,29 @@ class AsyncBulkResource(AsyncAPIResource):
             "seen", "unseen", "read", "unread", "archived", "unarchived", "interacted", "archive", "unarchive", "delete"
         ],
         *,
-        archived: Literal["exclude", "include", "only"] | NotGiven = NOT_GIVEN,
+        archived: Literal["exclude", "include", "only"] | Omit = omit,
         delivery_status: Literal[
             "queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         engagement_status: Literal[
             "seen", "unseen", "read", "unread", "archived", "unarchived", "link_clicked", "interacted"
         ]
-        | NotGiven = NOT_GIVEN,
-        has_tenant: bool | NotGiven = NOT_GIVEN,
-        newer_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        older_than: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        recipient_ids: List[str] | NotGiven = NOT_GIVEN,
-        tenants: List[str] | NotGiven = NOT_GIVEN,
-        trigger_data: str | NotGiven = NOT_GIVEN,
-        workflows: List[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        has_tenant: bool | Omit = omit,
+        newer_than: Union[str, datetime] | Omit = omit,
+        older_than: Union[str, datetime] | Omit = omit,
+        recipient_ids: SequenceNotStr[str] | Omit = omit,
+        tenants: SequenceNotStr[str] | Omit = omit,
+        trigger_data: str | Omit = omit,
+        workflows: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> BulkOperation:
         """Bulk update the status of messages for a specific channel.
 
@@ -228,6 +236,8 @@ class AsyncBulkResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
@@ -251,7 +261,11 @@ class AsyncBulkResource(AsyncAPIResource):
                 bulk_update_message_status_params.BulkUpdateMessageStatusParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=BulkOperation,
         )

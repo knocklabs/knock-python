@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
 from ..types import workflow_cancel_params, workflow_trigger_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,14 +51,15 @@ class WorkflowsResource(SyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
         will cancel any queued workflow runs associated with that key/cancellation key
@@ -81,9 +82,12 @@ class WorkflowsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/v1/workflows/{key}/cancel",
             body=maybe_transform(
@@ -94,26 +98,31 @@ class WorkflowsResource(SyncAPIResource):
                 workflow_cancel_params.WorkflowCancelParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     def trigger(
         self,
         key: str,
         *,
-        recipients: List[RecipientRequestParam],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientRequestParam],
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using
@@ -150,6 +159,8 @@ class WorkflowsResource(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -166,7 +177,11 @@ class WorkflowsResource(SyncAPIResource):
                 workflow_trigger_params.WorkflowTriggerParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=WorkflowTriggerResponse,
         )
@@ -197,14 +212,15 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         key: str,
         *,
         cancellation_key: str,
-        recipients: Optional[List[RecipientReferenceParam]] | NotGiven = NOT_GIVEN,
+        recipients: Optional[SequenceNotStr[RecipientReferenceParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
         """
         When invoked for a workflow using a specific workflow key and cancellation key,
         will cancel any queued workflow runs associated with that key/cancellation key
@@ -227,9 +243,12 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/v1/workflows/{key}/cancel",
             body=await async_maybe_transform(
@@ -240,26 +259,31 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 workflow_cancel_params.WorkflowCancelParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
-            cast_to=str,
+            cast_to=NoneType,
         )
 
     async def trigger(
         self,
         key: str,
         *,
-        recipients: List[RecipientRequestParam],
-        actor: Optional[RecipientRequestParam] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Optional[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tenant: Optional[InlineTenantRequestParam] | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[RecipientRequestParam],
+        actor: Optional[RecipientRequestParam] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Optional[Dict[str, object]] | Omit = omit,
+        tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
     ) -> WorkflowTriggerResponse:
         """
         Trigger a workflow (specified by the key) to run for the given recipients, using
@@ -296,6 +320,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
@@ -312,7 +338,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 workflow_trigger_params.WorkflowTriggerParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
             ),
             cast_to=WorkflowTriggerResponse,
         )

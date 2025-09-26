@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.14.0 (2025-09-26)
+
+Full Changelog: [v1.13.0...v1.14.0](https://github.com/knocklabs/knock-python/compare/v1.13.0...v1.14.0)
+
+### Features
+
+* **api:** api update ([70ea482](https://github.com/knocklabs/knock-python/commit/70ea482aac100dca502cd0e4d20e08c5ad17026b))
+
 ## 1.13.0 (2025-09-24)
 
 Full Changelog: [v1.12.1...v1.13.0](https://github.com/knocklabs/knock-python/compare/v1.12.1...v1.13.0)

@@ -60,7 +60,7 @@ class AudiencesResource(SyncAPIResource):
         Adds one or more members to the specified audience.
 
         Args:
-          members: A list of audience members to add.
+          members: A list of audience members to add. Limited to 1,000 members per request.
 
           extra_headers: Send extra headers
 
@@ -204,7 +204,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Adds one or more members to the specified audience.
 
         Args:
-          members: A list of audience members to add.
+          members: A list of audience members to add. Limited to 1,000 members per request.
 
           extra_headers: Send extra headers
 

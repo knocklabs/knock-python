@@ -10,7 +10,7 @@ __all__ = ["AudienceAddMembersParams", "Member", "MemberUser"]
 
 class AudienceAddMembersParams(TypedDict, total=False):
     members: Required[Iterable[Member]]
-    """A list of audience members to add."""
+    """A list of audience members to add. Limited to 1,000 members per request."""
 
 
 class MemberUser(TypedDict, total=False):

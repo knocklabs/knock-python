@@ -3,7 +3,7 @@
 from typing import List
 
 from ..._models import BaseModel
-from ..condition import Condition
+from ..shared.condition import Condition
 
 __all__ = ["PreferenceSetChannelTypeSetting"]
 

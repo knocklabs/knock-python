@@ -1,6 +1,4 @@
-# Shared
-
-Types:
+# Shared Types
 
 ```python
 from knockapi.types import Condition, PageInfo

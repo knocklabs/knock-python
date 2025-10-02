@@ -6,7 +6,7 @@ from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .condition_param import ConditionParam
+from .shared_params.condition import Condition
 from .recipients.preference_set_channel_types_param import PreferenceSetChannelTypesParam
 
 __all__ = [
@@ -46,7 +46,7 @@ class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=Fals
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
-    conditions: Optional[Iterable[ConditionParam]]
+    conditions: Optional[Iterable[Condition]]
     """A list of conditions to apply to a channel type."""
 
 
@@ -57,7 +57,7 @@ class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
-    conditions: Optional[Iterable[ConditionParam]]
+    conditions: Optional[Iterable[Condition]]
     """A list of conditions to apply to a channel type."""
 
 

@@ -3,8 +3,8 @@
 from typing import List
 
 from .._models import BaseModel
-from .page_info import PageInfo
 from .audience_member import AudienceMember
+from .shared.page_info import PageInfo
 
 __all__ = ["AudienceListMembersResponse"]
 

@@ -4,7 +4,7 @@ from typing import Dict, List, Union, Optional
 from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
-from ..condition import Condition
+from ..shared.condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
 
 __all__ = [

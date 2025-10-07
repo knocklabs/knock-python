@@ -19,13 +19,16 @@ class Source(BaseModel):
     """The categories associated with the message."""
 
     key: str
-    """The key of the workflow that triggered the message."""
+    """The key of the workflow or guide that triggered the message."""
 
     version_id: str
-    """The ID of the version of the workflow that triggered the message."""
+    """The ID of the version of the workflow or guide that triggered the message."""
 
     step_ref: Optional[str] = None
     """The step reference for the step in the workflow that generated the message."""
+
+    type: Optional[Literal["broadcast", "workflow", "guide"]] = None
+    """Whether this message was generated from a workflow, broadcast, or guide."""
 
 
 class Message(BaseModel):
@@ -51,7 +54,7 @@ class Message(BaseModel):
     """
 
     source: Source
-    """The workflow that triggered the message."""
+    """The workflow or guide that triggered the message."""
 
     status: Literal["queued", "sent", "delivered", "delivery_attempted", "undelivered", "not_sent", "bounced"]
     """The message delivery status."""

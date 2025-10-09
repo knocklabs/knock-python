@@ -4,17 +4,15 @@ from __future__ import annotations
 
 from .user import User as User
 from .object import Object as Object
+from .shared import PageInfo as PageInfo, Condition as Condition
 from .tenant import Tenant as Tenant
 from .message import Message as Message
 from .activity import Activity as Activity
 from .schedule import Schedule as Schedule
-from .condition import Condition as Condition
-from .page_info import PageInfo as PageInfo
 from .recipient import Recipient as Recipient
 from .message_event import MessageEvent as MessageEvent
 from .bulk_operation import BulkOperation as BulkOperation
 from .audience_member import AudienceMember as AudienceMember
-from .condition_param import ConditionParam as ConditionParam
 from .user_list_params import UserListParams as UserListParams
 from .object_set_params import ObjectSetParams as ObjectSetParams
 from .tenant_set_params import TenantSetParams as TenantSetParams

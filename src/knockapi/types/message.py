@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .recipient_reference import RecipientReference
 
-__all__ = ["Message", "Source"]
+__all__ = ["Message", "Source", "Channel"]
 
 
 class Source(BaseModel):
@@ -31,6 +31,29 @@ class Source(BaseModel):
     """Whether this message was generated from a workflow, broadcast, or guide."""
 
 
+class Channel(BaseModel):
+    id: str
+    """The unique identifier for the channel."""
+
+    created_at: datetime
+    """The timestamp of when the channel was created."""
+
+    provider: str
+    """The ID of the provider that this channel uses to deliver messages."""
+
+    type: Literal["email", "in_app", "in_app_feed", "in_app_guide", "sms", "push", "chat", "http"]
+    """The type of channel, determining what kind of messages it can send."""
+
+    updated_at: datetime
+    """The timestamp of when the channel was last updated."""
+
+    key: Optional[str] = None
+    """Unique identifier for the channel within a project (immutable once created)."""
+
+    name: Optional[str] = None
+    """The human-readable name of the channel."""
+
+
 class Message(BaseModel):
     id: str
     """The unique identifier for the message."""
@@ -39,7 +62,7 @@ class Message(BaseModel):
     """The typename of the schema."""
 
     channel_id: str
-    """The ID for the channel the message was sent through."""
+    """Deprecated, use channel.id instead."""
 
     engagement_statuses: List[Literal["seen", "read", "interacted", "link_clicked", "archived"]]
     """A list of engagement statuses."""
@@ -71,6 +94,9 @@ class Message(BaseModel):
 
     archived_at: Optional[datetime] = None
     """Timestamp when the message was archived."""
+
+    channel: Optional[Channel] = None
+    """A configured channel, which is a way to route messages to a provider."""
 
     clicked_at: Optional[datetime] = None
     """Timestamp when the message was clicked."""

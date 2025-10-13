@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.15.0 (2025-10-13)
+
+Full Changelog: [v1.14.0...v1.15.0](https://github.com/knocklabs/knock-python/compare/v1.14.0...v1.15.0)
+
+### Features
+
+* **api:** api update ([f20d9d2](https://github.com/knocklabs/knock-python/commit/f20d9d2b2a07ca1193140f4409d3701fe7bd00df))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([1ca76cb](https://github.com/knocklabs/knock-python/commit/1ca76cb3ed72befb82a5474996c2f4d4c928b205))
+
 ## 1.14.0 (2025-10-07)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/knocklabs/knock-python/compare/v1.13.0...v1.14.0)

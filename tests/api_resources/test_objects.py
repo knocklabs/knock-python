@@ -776,6 +776,7 @@ class TestObjects:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
@@ -995,6 +996,7 @@ class TestObjects:
                     ]
                 },
             },
+            commercial_subscribed=True,
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {
@@ -1895,6 +1897,7 @@ class TestAsyncObjects:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
@@ -2114,6 +2117,7 @@ class TestAsyncObjects:
                     ]
                 },
             },
+            commercial_subscribed=True,
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {

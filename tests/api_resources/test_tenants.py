@@ -209,6 +209,7 @@ class TestTenants:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
@@ -472,6 +473,7 @@ class TestAsyncTenants:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {

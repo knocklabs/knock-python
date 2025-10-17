@@ -95,6 +95,7 @@ class TestSchedules:
                                 ]
                             },
                         },
+                        "commercial_subscribed": True,
                         "workflows": {
                             "dinosaurs-loose": {
                                 "channel_types": {
@@ -388,6 +389,7 @@ class TestAsyncSchedules:
                                 ]
                             },
                         },
+                        "commercial_subscribed": True,
                         "workflows": {
                             "dinosaurs-loose": {
                                 "channel_types": {

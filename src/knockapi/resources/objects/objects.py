@@ -837,6 +837,7 @@ class ObjectsResource(SyncAPIResource):
         _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
         channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        commercial_subscribed: Optional[bool] | Omit = omit,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -866,6 +867,9 @@ class ObjectsResource(SyncAPIResource):
 
           channel_types: Channel type preferences.
 
+          commercial_subscribed: Whether the recipient is subscribed to commercial communications. When false,
+              the recipient will not receive commercial workflow notifications.
+
           workflows: An object where the key is the workflow key and the values are the preference
               settings for that workflow.
 
@@ -892,6 +896,7 @@ class ObjectsResource(SyncAPIResource):
                     "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
+                    "commercial_subscribed": commercial_subscribed,
                     "workflows": workflows,
                 },
                 object_set_preferences_params.ObjectSetPreferencesParams,
@@ -1735,6 +1740,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         _persistence_strategy: Literal["merge", "replace"] | Omit = omit,
         categories: Optional[Dict[str, object_set_preferences_params.Categories]] | Omit = omit,
         channel_types: Optional[PreferenceSetChannelTypesParam] | Omit = omit,
+        commercial_subscribed: Optional[bool] | Omit = omit,
         workflows: Optional[Dict[str, object_set_preferences_params.Workflows]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1764,6 +1770,9 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           channel_types: Channel type preferences.
 
+          commercial_subscribed: Whether the recipient is subscribed to commercial communications. When false,
+              the recipient will not receive commercial workflow notifications.
+
           workflows: An object where the key is the workflow key and the values are the preference
               settings for that workflow.
 
@@ -1790,6 +1799,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                     "_persistence_strategy": _persistence_strategy,
                     "categories": categories,
                     "channel_types": channel_types,
+                    "commercial_subscribed": commercial_subscribed,
                     "workflows": workflows,
                 },
                 object_set_preferences_params.ObjectSetPreferencesParams,

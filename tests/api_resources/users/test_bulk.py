@@ -144,6 +144,7 @@ class TestBulk:
                         ]
                     },
                 },
+                "commercial_subscribed": True,
                 "workflows": {
                     "dinosaurs-loose": {
                         "channel_types": {
@@ -337,6 +338,7 @@ class TestAsyncBulk:
                         ]
                     },
                 },
+                "commercial_subscribed": True,
                 "workflows": {
                     "dinosaurs-loose": {
                         "channel_types": {

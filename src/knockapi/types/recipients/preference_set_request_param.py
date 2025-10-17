@@ -57,6 +57,12 @@ class PreferenceSetRequestParam(TypedDict, total=False):
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
+    commercial_subscribed: Optional[bool]
+    """Whether the recipient is subscribed to commercial communications.
+
+    When false, the recipient will not receive commercial workflow notifications.
+    """
+
     workflows: Optional[Dict[str, Workflows]]
     """
     An object where the key is the workflow key and the values are the preference

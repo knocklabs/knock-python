@@ -96,6 +96,7 @@ class TestUsers:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
@@ -794,6 +795,7 @@ class TestUsers:
                     ]
                 },
             },
+            commercial_subscribed=True,
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {
@@ -992,6 +994,7 @@ class TestAsyncUsers:
                             ]
                         },
                     },
+                    "commercial_subscribed": True,
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
@@ -1690,6 +1693,7 @@ class TestAsyncUsers:
                     ]
                 },
             },
+            commercial_subscribed=True,
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {

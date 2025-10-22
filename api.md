@@ -45,8 +45,6 @@ from knockapi.types.recipients import (
     DiscordChannelData,
     InlineChannelDataRequest,
     MsTeamsChannelData,
-    OneSignalChannelData,
-    PushChannelData,
     SlackChannelData,
 )
 ```

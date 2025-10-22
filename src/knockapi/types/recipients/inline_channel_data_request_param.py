@@ -6,20 +6,25 @@ from typing import Dict, Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
-from .push_channel_data_param import PushChannelDataParam
 from .slack_channel_data_param import SlackChannelDataParam
 from .discord_channel_data_param import DiscordChannelDataParam
 from .ms_teams_channel_data_param import MsTeamsChannelDataParam
-from .one_signal_channel_data_param import OneSignalChannelDataParam
 
 __all__ = [
     "InlineChannelDataRequestParam",
     "InlineChannelDataRequestParamItem",
-    "InlineChannelDataRequestParamItemAwsSnsPushChannelData",
+    "InlineChannelDataRequestParamItemPushChannelDataTokensOnly",
+    "InlineChannelDataRequestParamItemAwssnsPushChannelDataTargetArNsOnly",
+    "InlineChannelDataRequestParamItemOneSignalChannelDataPlayerIDsOnly",
 ]
 
 
-class InlineChannelDataRequestParamItemAwsSnsPushChannelData(TypedDict, total=False):
+class InlineChannelDataRequestParamItemPushChannelDataTokensOnly(TypedDict, total=False):
+    tokens: Required[SequenceNotStr[str]]
+    """A list of push channel tokens."""
+
+
+class InlineChannelDataRequestParamItemAwssnsPushChannelDataTargetArNsOnly(TypedDict, total=False):
     target_arns: Required[SequenceNotStr[str]]
     """A list of platform endpoint ARNs.
 
@@ -28,10 +33,15 @@ class InlineChannelDataRequestParamItemAwsSnsPushChannelData(TypedDict, total=Fa
     """
 
 
+class InlineChannelDataRequestParamItemOneSignalChannelDataPlayerIDsOnly(TypedDict, total=False):
+    player_ids: Required[SequenceNotStr[str]]
+    """A list of OneSignal player IDs."""
+
+
 InlineChannelDataRequestParamItem: TypeAlias = Union[
-    PushChannelDataParam,
-    OneSignalChannelDataParam,
-    InlineChannelDataRequestParamItemAwsSnsPushChannelData,
+    InlineChannelDataRequestParamItemPushChannelDataTokensOnly,
+    InlineChannelDataRequestParamItemAwssnsPushChannelDataTargetArNsOnly,
+    InlineChannelDataRequestParamItemOneSignalChannelDataPlayerIDsOnly,
     SlackChannelDataParam,
     MsTeamsChannelDataParam,
     DiscordChannelDataParam,

@@ -13,18 +13,76 @@ from .ms_teams_channel_data import MsTeamsChannelData
 __all__ = [
     "ChannelData",
     "Data",
-    "DataPushChannelDataTokensOnly",
-    "DataAwssnsPushChannelDataTargetArNsOnly",
+    "DataPushChannelDataFull",
+    "DataPushChannelDataFullDevice",
+    "DataAwssnsPushChannelDataFull",
+    "DataAwssnsPushChannelDataFullDevice",
     "DataOneSignalChannelDataPlayerIDsOnly",
 ]
 
 
-class DataPushChannelDataTokensOnly(BaseModel):
+class DataPushChannelDataFullDevice(BaseModel):
+    token: str
+    """The device token to send the push notification to."""
+
+    locale: Optional[str] = None
+    """The locale of the object.
+
+    Used for [message localization](/concepts/translations).
+    """
+
+    timezone: Optional[str] = None
+    """The timezone of the object.
+
+    Must be a
+    valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used
+    for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+    """
+
+
+class DataPushChannelDataFull(BaseModel):
+    devices: List[DataPushChannelDataFullDevice]
+    """A list of devices.
+
+    Each device contains a token, and optionally a locale and timezone.
+    """
+
     tokens: List[str]
     """A list of push channel tokens."""
 
 
-class DataAwssnsPushChannelDataTargetArNsOnly(BaseModel):
+class DataAwssnsPushChannelDataFullDevice(BaseModel):
+    target_arn: str
+    """
+    The ARN of a platform endpoint associated with a platform application and a
+    device token. See
+    [Setting up an Amazon SNS platform endpoint for mobile notifications](https://docs.aws.amazon.com/sns/latest/dg/mobile-platform-endpoint.html).
+    """
+
+    locale: Optional[str] = None
+    """The locale of the object.
+
+    Used for [message localization](/concepts/translations).
+    """
+
+    timezone: Optional[str] = None
+    """The timezone of the object.
+
+    Must be a
+    valid [tz database time zone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    Used
+    for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
+    """
+
+
+class DataAwssnsPushChannelDataFull(BaseModel):
+    devices: List[DataAwssnsPushChannelDataFullDevice]
+    """A list of devices.
+
+    Each device contains a target_arn, and optionally a locale and timezone.
+    """
+
     target_arns: List[str]
     """A list of platform endpoint ARNs.
 
@@ -39,8 +97,8 @@ class DataOneSignalChannelDataPlayerIDsOnly(BaseModel):
 
 
 Data: TypeAlias = Union[
-    DataPushChannelDataTokensOnly,
-    DataAwssnsPushChannelDataTargetArNsOnly,
+    DataPushChannelDataFull,
+    DataAwssnsPushChannelDataFull,
     DataOneSignalChannelDataPlayerIDsOnly,
     SlackChannelData,
     MsTeamsChannelData,

@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.16.0 (2025-10-24)
+
+Full Changelog: [v1.15.0...v1.16.0](https://github.com/knocklabs/knock-python/compare/v1.15.0...v1.16.0)
+
+### Features
+
+* **api:** api update ([882f43e](https://github.com/knocklabs/knock-python/commit/882f43e04f2ece4192d4129cb8b645eb00c368eb))
+* **api:** api update ([9e7ddd1](https://github.com/knocklabs/knock-python/commit/9e7ddd1e98cc6bbd0578f43cd03d35ba27cd43a5))
+* **api:** api update ([aca8efd](https://github.com/knocklabs/knock-python/commit/aca8efd87ecc7498810f6f362eb752b75f8b8b83))
+* **api:** api update ([d227b37](https://github.com/knocklabs/knock-python/commit/d227b3706bfaf624e7976fd246f53b6d1d2cdc79))
+* **api:** api update ([34169d3](https://github.com/knocklabs/knock-python/commit/34169d37993571958b4764b11d77dd87be129964))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([1f77d9e](https://github.com/knocklabs/knock-python/commit/1f77d9eaacb09cf4b1ff3ec7792a06484351af45))
+
 ## 1.15.0 (2025-10-13)
 
 Full Changelog: [v1.14.0...v1.15.0](https://github.com/knocklabs/knock-python/compare/v1.14.0...v1.15.0)

@@ -6,13 +6,17 @@ from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
-from .recipients.push_channel_data_param import PushChannelDataParam
 from .recipients.slack_channel_data_param import SlackChannelDataParam
 from .recipients.discord_channel_data_param import DiscordChannelDataParam
 from .recipients.ms_teams_channel_data_param import MsTeamsChannelDataParam
-from .recipients.one_signal_channel_data_param import OneSignalChannelDataParam
 
-__all__ = ["ObjectSetChannelDataParams", "Data", "DataAwsSnsPushChannelData"]
+__all__ = [
+    "ObjectSetChannelDataParams",
+    "Data",
+    "DataPushChannelDataTokensOnly",
+    "DataAwssnsPushChannelDataTargetArNsOnly",
+    "DataOneSignalChannelDataPlayerIDsOnly",
+]
 
 
 class ObjectSetChannelDataParams(TypedDict, total=False):
@@ -20,7 +24,12 @@ class ObjectSetChannelDataParams(TypedDict, total=False):
     """Channel data for a given channel type."""
 
 
-class DataAwsSnsPushChannelData(TypedDict, total=False):
+class DataPushChannelDataTokensOnly(TypedDict, total=False):
+    tokens: Required[SequenceNotStr[str]]
+    """A list of push channel tokens."""
+
+
+class DataAwssnsPushChannelDataTargetArNsOnly(TypedDict, total=False):
     target_arns: Required[SequenceNotStr[str]]
     """A list of platform endpoint ARNs.
 
@@ -29,10 +38,15 @@ class DataAwsSnsPushChannelData(TypedDict, total=False):
     """
 
 
+class DataOneSignalChannelDataPlayerIDsOnly(TypedDict, total=False):
+    player_ids: Required[SequenceNotStr[str]]
+    """A list of OneSignal player IDs."""
+
+
 Data: TypeAlias = Union[
-    PushChannelDataParam,
-    OneSignalChannelDataParam,
-    DataAwsSnsPushChannelData,
+    DataPushChannelDataTokensOnly,
+    DataAwssnsPushChannelDataTargetArNsOnly,
+    DataOneSignalChannelDataPlayerIDsOnly,
     SlackChannelDataParam,
     MsTeamsChannelDataParam,
     DiscordChannelDataParam,

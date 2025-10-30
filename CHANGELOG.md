@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.17.0 (2025-10-30)
+
+Full Changelog: [v1.16.0...v1.17.0](https://github.com/knocklabs/knock-python/compare/v1.16.0...v1.17.0)
+
+### Features
+
+* **api:** api update ([7c98b41](https://github.com/knocklabs/knock-python/commit/7c98b41d8a73fb28f15094760ce8e8981017616f))
+* **api:** api update ([da9738c](https://github.com/knocklabs/knock-python/commit/da9738cdc04fb7d602636f64be5fe089b9992660))
+* **api:** api update ([ed246b8](https://github.com/knocklabs/knock-python/commit/ed246b8f6739ca8b2fde96173cb372d7b519c250))
+* **api:** api update ([68227fd](https://github.com/knocklabs/knock-python/commit/68227fd65152d45667c893f552d14723c62ae0c2))
+* **api:** api update ([f2d1c34](https://github.com/knocklabs/knock-python/commit/f2d1c34ea755e2a1f9e0320c6bd8ff2acf4d6fff))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([34ef2a9](https://github.com/knocklabs/knock-python/commit/34ef2a90d3a7d6f107f0e7bf0359e50b01623554))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([8126c82](https://github.com/knocklabs/knock-python/commit/8126c829c0d8ca30f80498c475bdae2c74990a59))
+
 ## 1.16.0 (2025-10-24)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/knocklabs/knock-python/compare/v1.15.0...v1.16.0)

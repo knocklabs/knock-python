@@ -6,30 +6,20 @@ from typing_extensions import TypeAlias
 from ..._models import BaseModel
 from ..shared.condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
+from .preference_set_channel_setting import PreferenceSetChannelSetting
 
 __all__ = [
     "PreferenceSet",
     "Categories",
     "CategoriesPreferenceSetWorkflowCategorySettingObject",
     "CategoriesPreferenceSetWorkflowCategorySettingObjectChannels",
-    "CategoriesPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting",
     "Channels",
-    "ChannelsPreferenceSetChannelSetting",
     "Workflows",
     "WorkflowsPreferenceSetWorkflowCategorySettingObject",
     "WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels",
-    "WorkflowsPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting",
 ]
 
-
-class CategoriesPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting(BaseModel):
-    conditions: List[Condition]
-    """A list of conditions to apply to a specific channel."""
-
-
-CategoriesPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
-    bool, CategoriesPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting
-]
+CategoriesPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 
 
 class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
@@ -45,23 +35,9 @@ class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
 
 Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
 
+Channels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 
-class ChannelsPreferenceSetChannelSetting(BaseModel):
-    conditions: List[Condition]
-    """A list of conditions to apply to a specific channel."""
-
-
-Channels: TypeAlias = Union[bool, ChannelsPreferenceSetChannelSetting]
-
-
-class WorkflowsPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting(BaseModel):
-    conditions: List[Condition]
-    """A list of conditions to apply to a specific channel."""
-
-
-WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
-    bool, WorkflowsPreferenceSetWorkflowCategorySettingObjectChannelsPreferenceSetChannelSetting
-]
+WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 
 
 class WorkflowsPreferenceSetWorkflowCategorySettingObject(BaseModel):

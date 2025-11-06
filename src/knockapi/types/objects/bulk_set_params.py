@@ -28,6 +28,9 @@ class ObjectTyped(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Timestamp when the resource was created."""
 
+    name: Optional[str]
+    """An optional name for the object."""
+
     preferences: Optional[InlinePreferenceSetRequestParam]
     """Inline set preferences for a recipient, where the key is the preference set id.
 

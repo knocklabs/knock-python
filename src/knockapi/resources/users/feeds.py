@@ -90,6 +90,7 @@ class FeedsResource(SyncAPIResource):
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
         has_tenant: bool | Omit = omit,
+        locale: str | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -127,6 +128,11 @@ class FeedsResource(SyncAPIResource):
           before: The cursor to fetch entries before.
 
           has_tenant: Whether the feed items have a tenant.
+
+          locale: The locale to render the feed items in. Must be in the IETF 5646 format (e.g.
+              `en-US`). When not provided, will default to the locale that the feed items were
+              rendered in. Only available for enterprise plan customers using custom
+              translations.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -166,6 +172,7 @@ class FeedsResource(SyncAPIResource):
                         "archived": archived,
                         "before": before,
                         "has_tenant": has_tenant,
+                        "locale": locale,
                         "page_size": page_size,
                         "source": source,
                         "status": status,
@@ -245,6 +252,7 @@ class AsyncFeedsResource(AsyncAPIResource):
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
         has_tenant: bool | Omit = omit,
+        locale: str | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -282,6 +290,11 @@ class AsyncFeedsResource(AsyncAPIResource):
           before: The cursor to fetch entries before.
 
           has_tenant: Whether the feed items have a tenant.
+
+          locale: The locale to render the feed items in. Must be in the IETF 5646 format (e.g.
+              `en-US`). When not provided, will default to the locale that the feed items were
+              rendered in. Only available for enterprise plan customers using custom
+              translations.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -321,6 +334,7 @@ class AsyncFeedsResource(AsyncAPIResource):
                         "archived": archived,
                         "before": before,
                         "has_tenant": has_tenant,
+                        "locale": locale,
                         "page_size": page_size,
                         "source": source,
                         "status": status,

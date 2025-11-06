@@ -15,6 +15,9 @@ class TenantSetParams(TypedDict, total=False):
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""
 
+    name: Optional[str]
+    """An optional name for the tenant."""
+
     settings: Settings
     """The settings for the tenant. Includes branding and preference set."""
 

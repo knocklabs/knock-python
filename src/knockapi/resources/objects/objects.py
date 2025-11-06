@@ -710,6 +710,7 @@ class ObjectsResource(SyncAPIResource):
         *,
         channel_data: InlineChannelDataRequestParam | Omit = omit,
         locale: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         preferences: InlinePreferenceSetRequestParam | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -730,6 +731,8 @@ class ObjectsResource(SyncAPIResource):
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
+
+          name: An optional name for the object.
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
               Preferences that are set inline will be merged into any existing preferences
@@ -760,6 +763,7 @@ class ObjectsResource(SyncAPIResource):
                 {
                     "channel_data": channel_data,
                     "locale": locale,
+                    "name": name,
                     "preferences": preferences,
                     "timezone": timezone,
                 },
@@ -1617,6 +1621,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         *,
         channel_data: InlineChannelDataRequestParam | Omit = omit,
         locale: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         preferences: InlinePreferenceSetRequestParam | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1637,6 +1642,8 @@ class AsyncObjectsResource(AsyncAPIResource):
 
           locale: The locale of the object. Used for
               [message localization](/concepts/translations).
+
+          name: An optional name for the object.
 
           preferences: Inline set preferences for a recipient, where the key is the preference set id.
               Preferences that are set inline will be merged into any existing preferences
@@ -1667,6 +1674,7 @@ class AsyncObjectsResource(AsyncAPIResource):
                 {
                     "channel_data": channel_data,
                     "locale": locale,
+                    "name": name,
                     "preferences": preferences,
                     "timezone": timezone,
                 },

@@ -196,6 +196,7 @@ class TenantsResource(SyncAPIResource):
         id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         settings: tenant_set_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -212,6 +213,8 @@ class TenantsResource(SyncAPIResource):
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
+
+          name: An optional name for the tenant.
 
           settings: The settings for the tenant. Includes branding and preference set.
 
@@ -232,6 +235,7 @@ class TenantsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "channel_data": channel_data,
+                    "name": name,
                     "settings": settings,
                 },
                 tenant_set_params.TenantSetParams,
@@ -410,6 +414,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         id: str,
         *,
         channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         settings: tenant_set_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -426,6 +431,8 @@ class AsyncTenantsResource(AsyncAPIResource):
 
         Args:
           channel_data: A request to set channel data for a type of channel inline.
+
+          name: An optional name for the tenant.
 
           settings: The settings for the tenant. Includes branding and preference set.
 
@@ -446,6 +453,7 @@ class AsyncTenantsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "channel_data": channel_data,
+                    "name": name,
                     "settings": settings,
                 },
                 tenant_set_params.TenantSetParams,

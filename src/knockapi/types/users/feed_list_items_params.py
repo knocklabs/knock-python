@@ -22,6 +22,14 @@ class FeedListItemsParams(TypedDict, total=False):
     has_tenant: bool
     """Whether the feed items have a tenant."""
 
+    locale: str
+    """The locale to render the feed items in.
+
+    Must be in the IETF 5646 format (e.g. `en-US`). When not provided, will default
+    to the locale that the feed items were rendered in. Only available for
+    enterprise plan customers using custom translations.
+    """
+
     page_size: int
     """The number of items per page (defaults to 50)."""
 

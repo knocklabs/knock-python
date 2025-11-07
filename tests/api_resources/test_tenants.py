@@ -156,6 +156,7 @@ class TestTenants:
         tenant = client.tenants.set(
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
+            name="Jurassic Park",
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",
@@ -434,6 +435,7 @@ class TestAsyncTenants:
         tenant = await async_client.tenants.set(
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_xxx"]}},
+            name="Jurassic Park",
             settings={
                 "branding": {
                     "icon_url": "https://example.com/trex_silhouette_icon.png",

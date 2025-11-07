@@ -729,6 +729,7 @@ class TestObjects:
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             locale="en-US",
+            name="My product",
             preferences={
                 "default": {
                     "_persistence_strategy": "merge",
@@ -1878,6 +1879,7 @@ class TestAsyncObjects:
             id="id",
             channel_data={"97c5837d-c65c-4d54-aa39-080eeb81c69d": {"tokens": ["push_token_123"]}},
             locale="en-US",
+            name="My product",
             preferences={
                 "default": {
                     "_persistence_strategy": "merge",

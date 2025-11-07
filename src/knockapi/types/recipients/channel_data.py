@@ -9,6 +9,7 @@ from ..._models import BaseModel
 from .slack_channel_data import SlackChannelData
 from .discord_channel_data import DiscordChannelData
 from .ms_teams_channel_data import MsTeamsChannelData
+from .one_signal_channel_data_player_ids_only import OneSignalChannelDataPlayerIDsOnly
 
 __all__ = [
     "ChannelData",
@@ -17,7 +18,6 @@ __all__ = [
     "DataPushChannelDataFullDevice",
     "DataAwssnsPushChannelDataFull",
     "DataAwssnsPushChannelDataFullDevice",
-    "DataOneSignalChannelDataPlayerIDsOnly",
 ]
 
 
@@ -91,15 +91,10 @@ class DataAwssnsPushChannelDataFull(BaseModel):
     """
 
 
-class DataOneSignalChannelDataPlayerIDsOnly(BaseModel):
-    player_ids: List[str]
-    """A list of OneSignal player IDs."""
-
-
 Data: TypeAlias = Union[
     DataPushChannelDataFull,
     DataAwssnsPushChannelDataFull,
-    DataOneSignalChannelDataPlayerIDsOnly,
+    OneSignalChannelDataPlayerIDsOnly,
     SlackChannelData,
     MsTeamsChannelData,
     DiscordChannelData,

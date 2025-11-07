@@ -28,6 +28,7 @@ Types:
 from knockapi.types.recipients import (
     InlinePreferenceSetRequest,
     PreferenceSet,
+    PreferenceSetChannelSetting,
     PreferenceSetChannelTypeSetting,
     PreferenceSetChannelTypes,
     PreferenceSetRequest,
@@ -40,11 +41,16 @@ Types:
 
 ```python
 from knockapi.types.recipients import (
+    AwsSnsPushChannelDataDevicesOnly,
+    AwsSnsPushChannelDataTargetArnsOnly,
     ChannelData,
     ChannelDataRequest,
     DiscordChannelData,
     InlineChannelDataRequest,
     MsTeamsChannelData,
+    OneSignalChannelDataPlayerIDsOnly,
+    PushChannelDataDevicesOnly,
+    PushChannelDataTokensOnly,
     SlackChannelData,
 )
 ```

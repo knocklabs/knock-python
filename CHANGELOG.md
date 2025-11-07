@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.18.0 (2025-11-07)
+
+Full Changelog: [v1.17.0...v1.18.0](https://github.com/knocklabs/knock-python/compare/v1.17.0...v1.18.0)
+
+### Features
+
+* **api:** api update ([be33019](https://github.com/knocklabs/knock-python/commit/be33019381cfb5ee35be3960c8ea28a7078b234a))
+* **api:** support specifying a branch ([cbed5ed](https://github.com/knocklabs/knock-python/commit/cbed5ed3d3a8995d6167008addadec5e138e63e5))
+* correct channel data schemas ([fadc24d](https://github.com/knocklabs/knock-python/commit/fadc24d9363b9cf33377e696cd6863dff8e38e55))
+
+
+### Chores
+
+* **internal:** grammar fix (it's -&gt; its) ([49b5e48](https://github.com/knocklabs/knock-python/commit/49b5e48c10abe112361fd92f4c7a74fc7543706a))
+
 ## 1.17.0 (2025-10-30)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/knocklabs/knock-python/compare/v1.16.0...v1.17.0)

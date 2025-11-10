@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.18.1 (2025-11-10)
+
+Full Changelog: [v1.18.0...v1.18.1](https://github.com/knocklabs/knock-python/compare/v1.18.0...v1.18.1)
+
+### Bug Fixes
+
+* compat with Python 3.14 ([372ebe8](https://github.com/knocklabs/knock-python/commit/372ebe855b40704df70a619d9db7855702c4e0fd))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([57e0a18](https://github.com/knocklabs/knock-python/commit/57e0a18cc17b86273535c917669dc48fc322a3e3))
+
 ## 1.18.0 (2025-11-07)
 
 Full Changelog: [v1.17.0...v1.18.0](https://github.com/knocklabs/knock-python/compare/v1.17.0...v1.18.0)

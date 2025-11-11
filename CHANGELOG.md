@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.18.2 (2025-11-11)
+
+Full Changelog: [v1.18.1...v1.18.2](https://github.com/knocklabs/knock-python/compare/v1.18.1...v1.18.2)
+
+### Bug Fixes
+
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([8800c2d](https://github.com/knocklabs/knock-python/commit/8800c2da8a3bd29950d784f87c60d9725a5657b6))
+
 ## 1.18.1 (2025-11-10)
 
 Full Changelog: [v1.18.0...v1.18.1](https://github.com/knocklabs/knock-python/compare/v1.18.0...v1.18.1)

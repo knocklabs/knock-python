@@ -15,6 +15,7 @@ from .bulk_operation import BulkOperation as BulkOperation
 from .audience_member import AudienceMember as AudienceMember
 from .user_list_params import UserListParams as UserListParams
 from .object_set_params import ObjectSetParams as ObjectSetParams
+from .tenant_get_params import TenantGetParams as TenantGetParams
 from .tenant_set_params import TenantSetParams as TenantSetParams
 from .user_merge_params import UserMergeParams as UserMergeParams
 from .object_list_params import ObjectListParams as ObjectListParams

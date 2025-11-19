@@ -13,10 +13,13 @@ __all__ = ["BulkAddSubscriptionsParams", "Subscription"]
 
 class BulkAddSubscriptionsParams(TypedDict, total=False):
     subscriptions: Required[Iterable[Subscription]]
-    """A list of subscriptions."""
+    """A nested list of subscriptions."""
 
 
 class Subscription(TypedDict, total=False):
+    id: Required[str]
+    """Unique identifier for the object."""
+
     recipients: Required[SequenceNotStr[RecipientRequestParam]]
     """The recipients of the subscription.
 

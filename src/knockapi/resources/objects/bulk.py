@@ -109,7 +109,7 @@ class BulkResource(SyncAPIResource):
         for the `recipient` field.
 
         Args:
-          subscriptions: A list of subscriptions.
+          subscriptions: A nested list of subscriptions.
 
           extra_headers: Send extra headers
 
@@ -269,7 +269,7 @@ class AsyncBulkResource(AsyncAPIResource):
         for the `recipient` field.
 
         Args:
-          subscriptions: A list of subscriptions.
+          subscriptions: A nested list of subscriptions.
 
           extra_headers: Send extra headers
 

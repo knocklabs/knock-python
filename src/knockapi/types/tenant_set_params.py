@@ -12,6 +12,13 @@ __all__ = ["TenantSetParams", "Settings", "SettingsBranding"]
 
 
 class TenantSetParams(TypedDict, total=False):
+    resolve_full_preference_settings: bool
+    """
+    When true, merges environment-level default preferences into the tenant's
+    `settings.preference_set` field before returning the response. Defaults to
+    false.
+    """
+
     channel_data: Optional[InlineChannelDataRequestParam]
     """A request to set channel data for a type of channel inline."""
 

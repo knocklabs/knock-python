@@ -178,7 +178,7 @@ Methods:
 
 - <code title="get /v1/tenants">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">list</a>(\*\*<a href="src/knockapi/types/tenant_list_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">SyncEntriesCursor[Tenant]</a></code>
 - <code title="delete /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">delete</a>(id) -> None</code>
-- <code title="get /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">get</a>(id) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
+- <code title="get /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">get</a>(id, \*\*<a href="src/knockapi/types/tenant_get_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
 - <code title="put /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">set</a>(id, \*\*<a href="src/knockapi/types/tenant_set_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
 
 ## Bulk

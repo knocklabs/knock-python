@@ -14,7 +14,7 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import tenant_set_params, tenant_list_params
+from ...types import tenant_get_params, tenant_set_params, tenant_list_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -162,6 +162,7 @@ class TenantsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        resolve_full_preference_settings: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,6 +174,10 @@ class TenantsResource(SyncAPIResource):
         Get a tenant by ID.
 
         Args:
+          resolve_full_preference_settings: When true, merges environment-level default preferences into the tenant's
+              `settings.preference_set` field before returning the response. Defaults to
+              false.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -186,7 +191,14 @@ class TenantsResource(SyncAPIResource):
         return self._get(
             f"/v1/tenants/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"resolve_full_preference_settings": resolve_full_preference_settings},
+                    tenant_get_params.TenantGetParams,
+                ),
             ),
             cast_to=Tenant,
         )
@@ -195,6 +207,7 @@ class TenantsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        resolve_full_preference_settings: bool | Omit = omit,
         channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         settings: tenant_set_params.Settings | Omit = omit,
@@ -212,6 +225,10 @@ class TenantsResource(SyncAPIResource):
         existing properties will be merged with the incoming properties.
 
         Args:
+          resolve_full_preference_settings: When true, merges environment-level default preferences into the tenant's
+              `settings.preference_set` field before returning the response. Defaults to
+              false.
+
           channel_data: A request to set channel data for a type of channel inline.
 
           name: An optional name for the tenant.
@@ -246,6 +263,10 @@ class TenantsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"resolve_full_preference_settings": resolve_full_preference_settings},
+                    tenant_set_params.TenantSetParams,
+                ),
             ),
             cast_to=Tenant,
         )
@@ -380,6 +401,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        resolve_full_preference_settings: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -391,6 +413,10 @@ class AsyncTenantsResource(AsyncAPIResource):
         Get a tenant by ID.
 
         Args:
+          resolve_full_preference_settings: When true, merges environment-level default preferences into the tenant's
+              `settings.preference_set` field before returning the response. Defaults to
+              false.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -404,7 +430,14 @@ class AsyncTenantsResource(AsyncAPIResource):
         return await self._get(
             f"/v1/tenants/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"resolve_full_preference_settings": resolve_full_preference_settings},
+                    tenant_get_params.TenantGetParams,
+                ),
             ),
             cast_to=Tenant,
         )
@@ -413,6 +446,7 @@ class AsyncTenantsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        resolve_full_preference_settings: bool | Omit = omit,
         channel_data: Optional[InlineChannelDataRequestParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         settings: tenant_set_params.Settings | Omit = omit,
@@ -430,6 +464,10 @@ class AsyncTenantsResource(AsyncAPIResource):
         existing properties will be merged with the incoming properties.
 
         Args:
+          resolve_full_preference_settings: When true, merges environment-level default preferences into the tenant's
+              `settings.preference_set` field before returning the response. Defaults to
+              false.
+
           channel_data: A request to set channel data for a type of channel inline.
 
           name: An optional name for the tenant.
@@ -464,6 +502,10 @@ class AsyncTenantsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=await async_maybe_transform(
+                    {"resolve_full_preference_settings": resolve_full_preference_settings},
+                    tenant_set_params.TenantSetParams,
+                ),
             ),
             cast_to=Tenant,
         )

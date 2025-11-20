@@ -131,6 +131,88 @@ class TestBulk:
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
+    def test_method_delete_subscriptions(self, client: Knock) -> None:
+        bulk = client.objects.bulk.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        )
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_raw_response_delete_subscriptions(self, client: Knock) -> None:
+        response = client.objects.bulk.with_raw_response.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bulk = response.parse()
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_streaming_response_delete_subscriptions(self, client: Knock) -> None:
+        with client.objects.bulk.with_streaming_response.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk = response.parse()
+            assert_matches_type(BulkOperation, bulk, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_path_params_delete_subscriptions(self, client: Knock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            client.objects.bulk.with_raw_response.delete_subscriptions(
+                collection="",
+                subscriptions=[
+                    {
+                        "id": "subscribed-to-object-1",
+                        "recipients": [{}, "subscriber-user-1"],
+                    },
+                    {
+                        "id": "subscribed-to-object-2",
+                        "recipients": ["subscriber-user-2"],
+                    },
+                ],
+            )
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
     def test_method_set(self, client: Knock) -> None:
         bulk = client.objects.bulk.set(
             collection="collection",
@@ -290,6 +372,88 @@ class TestAsyncBulk:
                         "id": "project-1",
                         "recipients": [{"id": "user_1"}],
                     }
+                ],
+            )
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_delete_subscriptions(self, async_client: AsyncKnock) -> None:
+        bulk = await async_client.objects.bulk.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        )
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_raw_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
+        response = await async_client.objects.bulk.with_raw_response.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bulk = await response.parse()
+        assert_matches_type(BulkOperation, bulk, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_streaming_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
+        async with async_client.objects.bulk.with_streaming_response.delete_subscriptions(
+            collection="projects",
+            subscriptions=[
+                {
+                    "id": "subscribed-to-object-1",
+                    "recipients": [{}, "subscriber-user-1"],
+                },
+                {
+                    "id": "subscribed-to-object-2",
+                    "recipients": ["subscriber-user-2"],
+                },
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk = await response.parse()
+            assert_matches_type(BulkOperation, bulk, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_path_params_delete_subscriptions(self, async_client: AsyncKnock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            await async_client.objects.bulk.with_raw_response.delete_subscriptions(
+                collection="",
+                subscriptions=[
+                    {
+                        "id": "subscribed-to-object-1",
+                        "recipients": [{}, "subscriber-user-1"],
+                    },
+                    {
+                        "id": "subscribed-to-object-2",
+                        "recipients": ["subscriber-user-2"],
+                    },
                 ],
             )
 

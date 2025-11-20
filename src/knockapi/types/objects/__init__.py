@@ -5,3 +5,4 @@ from __future__ import annotations
 from .bulk_set_params import BulkSetParams as BulkSetParams
 from .bulk_delete_params import BulkDeleteParams as BulkDeleteParams
 from .bulk_add_subscriptions_params import BulkAddSubscriptionsParams as BulkAddSubscriptionsParams
+from .bulk_delete_subscriptions_params import BulkDeleteSubscriptionsParams as BulkDeleteSubscriptionsParams

@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.19.0 (2025-11-20)
+
+Full Changelog: [v1.18.1...v1.19.0](https://github.com/knocklabs/knock-python/compare/v1.18.1...v1.19.0)
+
+### Features
+
+* **api:** Add bulk delete subscriptions ([19e98c2](https://github.com/knocklabs/knock-python/commit/19e98c23c849f558c931993cf4b4b51c8aa6cba9))
+* **api:** api update ([fd69af2](https://github.com/knocklabs/knock-python/commit/fd69af2d0bceb8268ffe5332d27f164ba8d9cc40))
+* **api:** api update ([73a3ba3](https://github.com/knocklabs/knock-python/commit/73a3ba3c1d5e370f31d781f13b211c18c0ba2b25))
+
+
+### Bug Fixes
+
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([8800c2d](https://github.com/knocklabs/knock-python/commit/8800c2da8a3bd29950d784f87c60d9725a5657b6))
+
 ## 1.18.1 (2025-11-10)
 
 Full Changelog: [v1.18.0...v1.18.1](https://github.com/knocklabs/knock-python/compare/v1.18.0...v1.18.1)

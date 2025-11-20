@@ -164,6 +164,7 @@ Methods:
 
 - <code title="post /v1/objects/{collection}/bulk/delete">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">delete</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_delete_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/objects/{collection}/bulk/subscriptions/add">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">add_subscriptions</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_add_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+- <code title="post /v1/objects/{collection}/bulk/subscriptions/delete">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">delete_subscriptions</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_delete_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/objects/{collection}/bulk/set">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">set</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_set_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
 # Tenants
@@ -178,7 +179,7 @@ Methods:
 
 - <code title="get /v1/tenants">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">list</a>(\*\*<a href="src/knockapi/types/tenant_list_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">SyncEntriesCursor[Tenant]</a></code>
 - <code title="delete /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">delete</a>(id) -> None</code>
-- <code title="get /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">get</a>(id) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
+- <code title="get /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">get</a>(id, \*\*<a href="src/knockapi/types/tenant_get_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
 - <code title="put /v1/tenants/{id}">client.tenants.<a href="./src/knockapi/resources/tenants/tenants.py">set</a>(id, \*\*<a href="src/knockapi/types/tenant_set_params.py">params</a>) -> <a href="./src/knockapi/types/tenant.py">Tenant</a></code>
 
 ## Bulk

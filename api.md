@@ -164,6 +164,7 @@ Methods:
 
 - <code title="post /v1/objects/{collection}/bulk/delete">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">delete</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_delete_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/objects/{collection}/bulk/subscriptions/add">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">add_subscriptions</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_add_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+- <code title="post /v1/objects/{collection}/bulk/subscriptions/delete">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">delete_subscriptions</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_delete_subscriptions_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/objects/{collection}/bulk/set">client.objects.bulk.<a href="./src/knockapi/resources/objects/bulk.py">set</a>(collection, \*\*<a href="src/knockapi/types/objects/bulk_set_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 
 # Tenants

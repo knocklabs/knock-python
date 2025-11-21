@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.19.1 (2025-11-21)
+
+Full Changelog: [v1.19.0...v1.19.1](https://github.com/knocklabs/knock-python/compare/v1.19.0...v1.19.1)
+
+### Chores
+
+* **internal:** codegen related update ([98724ee](https://github.com/knocklabs/knock-python/commit/98724ee95eeaf2dffd5e725b212d223b9db1096a))
+
 ## 1.19.0 (2025-11-20)
 
 Full Changelog: [v1.18.1...v1.19.0](https://github.com/knocklabs/knock-python/compare/v1.18.1...v1.19.0)

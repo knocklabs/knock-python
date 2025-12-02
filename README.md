@@ -87,6 +87,7 @@ pip install knockapi[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from knockapi import DefaultAioHttpClient
 from knockapi import AsyncKnock
@@ -94,7 +95,7 @@ from knockapi import AsyncKnock
 
 async def main() -> None:
     async with AsyncKnock(
-        api_key="My API Key",
+        api_key=os.environ.get("KNOCK_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.workflows.trigger(

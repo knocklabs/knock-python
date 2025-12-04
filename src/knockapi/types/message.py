@@ -30,6 +30,19 @@ class Source(BaseModel):
     type: Optional[Literal["broadcast", "workflow", "guide"]] = None
     """Whether this message was generated from a workflow, broadcast, or guide."""
 
+    workflow_recipient_run_id: Optional[str] = None
+    """The unique identifier for the workflow recipient run that generated this
+    message.
+
+    Only present for workflow/broadcast messages.
+    """
+
+    workflow_run_id: Optional[str] = None
+    """The unique identifier for the workflow run that generated this message.
+
+    Only present for workflow/broadcast messages.
+    """
+
 
 class Channel(BaseModel):
     id: str

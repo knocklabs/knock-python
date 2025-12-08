@@ -8,6 +8,8 @@ __all__ = ["MsTeamCheckAuthResponse", "Connection"]
 
 
 class Connection(BaseModel):
+    """A Microsoft Teams connection object."""
+
     ok: bool
     """Whether the Microsoft Teams connection is valid."""
 
@@ -16,5 +18,7 @@ class Connection(BaseModel):
 
 
 class MsTeamCheckAuthResponse(BaseModel):
+    """The response from a Microsoft Teams auth check request."""
+
     connection: Connection
     """A Microsoft Teams connection object."""

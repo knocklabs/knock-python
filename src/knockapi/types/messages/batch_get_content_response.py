@@ -27,6 +27,8 @@ __all__ = [
 
 
 class BatchGetContentResponseItemDataMessageEmailContent(BaseModel):
+    """The content of an email message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -56,6 +58,8 @@ class BatchGetContentResponseItemDataMessageEmailContent(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessageSMSContent(BaseModel):
+    """The content of an SMS message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -67,6 +71,8 @@ class BatchGetContentResponseItemDataMessageSMSContent(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessagePushContent(BaseModel):
+    """Push channel data."""
+
     token: str
     """The device token to send the push notification to."""
 
@@ -84,6 +90,8 @@ class BatchGetContentResponseItemDataMessagePushContent(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessageChatContentTemplateBlock(BaseModel):
+    """A block in a message in a chat."""
+
     content: str
     """The actual content of the block."""
 
@@ -95,6 +103,8 @@ class BatchGetContentResponseItemDataMessageChatContentTemplateBlock(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessageChatContentTemplate(BaseModel):
+    """The template structure for the chat message."""
+
     blocks: Optional[List[BatchGetContentResponseItemDataMessageChatContentTemplateBlock]] = None
     """The blocks of the message in a chat."""
 
@@ -106,6 +116,8 @@ class BatchGetContentResponseItemDataMessageChatContentTemplate(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessageChatContent(BaseModel):
+    """The content of a chat message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -120,6 +132,8 @@ class BatchGetContentResponseItemDataMessageChatContent(BaseModel):
 
 
 class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
+    """A block in a message in an app feed."""
+
     content: str
     """The content of the block in a message in an app feed."""
 
@@ -134,6 +148,8 @@ class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFee
 
 
 class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseModel):
+    """A button in an in app feed message."""
+
     action: str
     """The action to take when the button is clicked."""
 
@@ -145,6 +161,8 @@ class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFee
 
 
 class BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
+    """A button set block in a message in an app feed."""
+
     buttons: List[BatchGetContentResponseItemDataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton]
     """A list of buttons in an in app feed message."""
 
@@ -162,6 +180,8 @@ BatchGetContentResponseItemDataMessageInAppFeedContentBlock: TypeAlias = Union[
 
 
 class BatchGetContentResponseItemDataMessageInAppFeedContent(BaseModel):
+    """The content of an in-app feed message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -179,6 +199,8 @@ BatchGetContentResponseItemData: TypeAlias = Union[
 
 
 class BatchGetContentResponseItem(BaseModel):
+    """The content of a message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

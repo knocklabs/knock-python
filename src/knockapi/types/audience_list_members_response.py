@@ -10,6 +10,8 @@ __all__ = ["AudienceListMembersResponse"]
 
 
 class AudienceListMembersResponse(BaseModel):
+    """A paginated list of audience members."""
+
     entries: List[AudienceMember]
     """A list of audience members."""
 

@@ -33,6 +33,8 @@ class Device(TypedDict, total=False):
 
 
 class AwsSnsPushChannelDataDevicesOnlyParam(TypedDict, total=False):
+    """AWS SNS push channel data."""
+
     devices: Required[Iterable[Device]]
     """A list of devices.
 

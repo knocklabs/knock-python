@@ -15,16 +15,22 @@ __all__ = [
 
 
 class ConnectionDiscordChannelConnection(TypedDict, total=False):
+    """Discord channel connection."""
+
     channel_id: Required[str]
     """Discord channel ID."""
 
 
 class ConnectionDiscordIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
+    """Discord incoming webhook object."""
+
     url: Required[str]
     """Incoming webhook URL."""
 
 
 class ConnectionDiscordIncomingWebhookConnection(TypedDict, total=False):
+    """Discord incoming webhook connection."""
+
     incoming_webhook: Required[ConnectionDiscordIncomingWebhookConnectionIncomingWebhook]
     """Discord incoming webhook object."""
 
@@ -33,5 +39,7 @@ Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDisc
 
 
 class DiscordChannelDataParam(TypedDict, total=False):
+    """Discord channel data."""
+
     connections: Required[Iterable[Connection]]
     """List of Discord channel connections."""

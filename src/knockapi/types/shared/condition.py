@@ -9,6 +9,8 @@ __all__ = ["Condition"]
 
 
 class Condition(BaseModel):
+    """A condition to be evaluated."""
+
     argument: Optional[str] = None
     """The argument value to compare against in the condition."""
 

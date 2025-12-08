@@ -8,5 +8,7 @@ __all__ = ["MsTeamRevokeAccessResponse"]
 
 
 class MsTeamRevokeAccessResponse(BaseModel):
+    """A response indicating the operation was successful."""
+
     ok: Optional[str] = None
     """OK response."""

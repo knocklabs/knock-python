@@ -10,5 +10,7 @@ __all__ = ["OneSignalChannelDataPlayerIDsOnlyParam"]
 
 
 class OneSignalChannelDataPlayerIDsOnlyParam(TypedDict, total=False):
+    """OneSignal channel data."""
+
     player_ids: Required[SequenceNotStr[str]]
     """A list of OneSignal player IDs."""

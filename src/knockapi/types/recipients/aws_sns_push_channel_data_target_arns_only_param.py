@@ -10,6 +10,8 @@ __all__ = ["AwsSnsPushChannelDataTargetArnsOnlyParam"]
 
 
 class AwsSnsPushChannelDataTargetArnsOnlyParam(TypedDict, total=False):
+    """AWS SNS push channel data."""
+
     target_arns: Required[SequenceNotStr[str]]
     """A list of platform endpoint ARNs.
 

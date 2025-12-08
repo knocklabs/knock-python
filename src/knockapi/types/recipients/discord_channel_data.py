@@ -15,16 +15,22 @@ __all__ = [
 
 
 class ConnectionDiscordChannelConnection(BaseModel):
+    """Discord channel connection."""
+
     channel_id: str
     """Discord channel ID."""
 
 
 class ConnectionDiscordIncomingWebhookConnectionIncomingWebhook(BaseModel):
+    """Discord incoming webhook object."""
+
     url: str
     """Incoming webhook URL."""
 
 
 class ConnectionDiscordIncomingWebhookConnection(BaseModel):
+    """Discord incoming webhook connection."""
+
     incoming_webhook: ConnectionDiscordIncomingWebhookConnectionIncomingWebhook
     """Discord incoming webhook object."""
 
@@ -33,5 +39,7 @@ Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDisc
 
 
 class DiscordChannelData(BaseModel):
+    """Discord channel data."""
+
     connections: List[Connection]
     """List of Discord channel connections."""

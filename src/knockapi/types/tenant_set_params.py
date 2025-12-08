@@ -30,6 +30,8 @@ class TenantSetParams(TypedDict, total=False):
 
 
 class SettingsBranding(TypedDict, total=False):
+    """The branding for the tenant."""
+
     icon_url: Optional[str]
     """The icon URL for the tenant.
 
@@ -50,6 +52,8 @@ class SettingsBranding(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    """The settings for the tenant. Includes branding and preference set."""
+
     branding: SettingsBranding
     """The branding for the tenant."""
 

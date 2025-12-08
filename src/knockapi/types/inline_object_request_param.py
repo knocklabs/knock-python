@@ -14,6 +14,8 @@ __all__ = ["InlineObjectRequestParam"]
 
 
 class InlineObjectRequestParamTyped(TypedDict, total=False):
+    """A custom [Object](/concepts/objects) entity which belongs to a collection."""
+
     id: Required[str]
     """Unique identifier for the object."""
 

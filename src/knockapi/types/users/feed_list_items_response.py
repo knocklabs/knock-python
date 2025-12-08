@@ -20,6 +20,8 @@ __all__ = [
 
 
 class BlockMessageInAppFeedContentBlock(BaseModel):
+    """A block in a message in an app feed."""
+
     content: str
     """The content of the block in a message in an app feed."""
 
@@ -34,6 +36,8 @@ class BlockMessageInAppFeedContentBlock(BaseModel):
 
 
 class BlockMessageInAppFeedButtonSetBlockButton(BaseModel):
+    """A button in an in app feed message."""
+
     action: str
     """The action to take when the button is clicked."""
 
@@ -45,6 +49,8 @@ class BlockMessageInAppFeedButtonSetBlockButton(BaseModel):
 
 
 class BlockMessageInAppFeedButtonSetBlock(BaseModel):
+    """A button set block in a message in an app feed."""
+
     buttons: List[BlockMessageInAppFeedButtonSetBlockButton]
     """A list of buttons in an in app feed message."""
 
@@ -59,6 +65,8 @@ Block: TypeAlias = Union[BlockMessageInAppFeedContentBlock, BlockMessageInAppFee
 
 
 class Source(BaseModel):
+    """Source information for the feed item."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -73,6 +81,8 @@ class Source(BaseModel):
 
 
 class FeedListItemsResponse(BaseModel):
+    """An in-app feed message in a user's feed."""
+
     id: str
     """Unique identifier for the feed."""
 

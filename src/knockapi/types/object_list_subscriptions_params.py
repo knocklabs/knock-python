@@ -39,6 +39,8 @@ class ObjectListSubscriptionsParams(TypedDict, total=False):
 
 
 class Object(TypedDict, total=False):
+    """A reference to a recipient object."""
+
     id: str
     """An identifier for the recipient object."""
 

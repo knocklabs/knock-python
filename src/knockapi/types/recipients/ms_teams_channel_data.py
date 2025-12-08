@@ -15,6 +15,8 @@ __all__ = [
 
 
 class ConnectionMsTeamsTokenConnection(BaseModel):
+    """Microsoft Teams token connection."""
+
     ms_teams_channel_id: Optional[str] = None
     """Microsoft Teams channel ID."""
 
@@ -29,11 +31,15 @@ class ConnectionMsTeamsTokenConnection(BaseModel):
 
 
 class ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook(BaseModel):
+    """Microsoft Teams incoming webhook."""
+
     url: str
     """Microsoft Teams incoming webhook URL."""
 
 
 class ConnectionMsTeamsIncomingWebhookConnection(BaseModel):
+    """Microsoft Teams incoming webhook connection."""
+
     incoming_webhook: ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook
     """Microsoft Teams incoming webhook."""
 
@@ -42,6 +48,8 @@ Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeam
 
 
 class MsTeamsChannelData(BaseModel):
+    """Microsoft Teams channel data."""
+
     connections: List[Connection]
     """List of Microsoft Teams connections."""
 

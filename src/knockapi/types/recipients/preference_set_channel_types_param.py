@@ -23,6 +23,8 @@ SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSettingParam]
 
 
 class PreferenceSetChannelTypesParam(TypedDict, total=False):
+    """Channel type preferences."""
+
     chat: Chat
     """Whether the channel type is enabled for the preference set."""
 

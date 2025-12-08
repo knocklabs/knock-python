@@ -11,5 +11,10 @@ __all__ = ["PreferenceSetChannelSettingParam"]
 
 
 class PreferenceSetChannelSettingParam(TypedDict, total=False):
+    """A set of settings for a specific channel.
+
+    Currently, this can only be a list of conditions to apply.
+    """
+
     conditions: Required[Iterable[Condition]]
     """A list of conditions to apply to a specific channel."""

@@ -14,6 +14,8 @@ __all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
+    """A subscription object."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

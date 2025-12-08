@@ -15,6 +15,8 @@ __all__ = [
 
 
 class ConnectionSlackTokenConnection(BaseModel):
+    """A Slack connection token."""
+
     access_token: Optional[str] = None
     """A Slack access token."""
 
@@ -26,6 +28,8 @@ class ConnectionSlackTokenConnection(BaseModel):
 
 
 class ConnectionSlackIncomingWebhookConnection(BaseModel):
+    """A Slack connection incoming webhook."""
+
     url: str
     """The URL of the incoming webhook for a Slack connection."""
 
@@ -34,11 +38,15 @@ Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackInc
 
 
 class Token(BaseModel):
+    """A Slack connection token."""
+
     access_token: Optional[str] = None
     """A Slack access token."""
 
 
 class SlackChannelData(BaseModel):
+    """Slack channel data."""
+
     connections: List[Connection]
     """List of Slack channel connections."""
 

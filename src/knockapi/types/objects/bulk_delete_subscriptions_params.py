@@ -17,6 +17,8 @@ class BulkDeleteSubscriptionsParams(TypedDict, total=False):
 
 
 class Subscription(TypedDict, total=False):
+    """A list of subscriptions. 1 subscribed-to id, and N subscriber recipients."""
+
     id: Required[str]
     """Unique identifier for the object."""
 

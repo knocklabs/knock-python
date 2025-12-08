@@ -9,6 +9,8 @@ __all__ = ["RecipientReferenceParam", "ObjectReference"]
 
 
 class ObjectReference(TypedDict, total=False):
+    """A reference to a recipient object."""
+
     id: str
     """An identifier for the recipient object."""
 

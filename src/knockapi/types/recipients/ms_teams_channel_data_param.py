@@ -15,6 +15,8 @@ __all__ = [
 
 
 class ConnectionMsTeamsTokenConnection(TypedDict, total=False):
+    """Microsoft Teams token connection."""
+
     ms_teams_channel_id: Optional[str]
     """Microsoft Teams channel ID."""
 
@@ -29,11 +31,15 @@ class ConnectionMsTeamsTokenConnection(TypedDict, total=False):
 
 
 class ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
+    """Microsoft Teams incoming webhook."""
+
     url: Required[str]
     """Microsoft Teams incoming webhook URL."""
 
 
 class ConnectionMsTeamsIncomingWebhookConnection(TypedDict, total=False):
+    """Microsoft Teams incoming webhook connection."""
+
     incoming_webhook: Required[ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook]
     """Microsoft Teams incoming webhook."""
 
@@ -42,6 +48,8 @@ Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeam
 
 
 class MsTeamsChannelDataParam(TypedDict, total=False):
+    """Microsoft Teams channel data."""
+
     connections: Required[Iterable[Connection]]
     """List of Microsoft Teams connections."""
 

@@ -11,6 +11,8 @@ __all__ = ["Object"]
 
 
 class Object(BaseModel):
+    """A custom [Object](/concepts/objects) entity which belongs to a collection."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -22,6 +22,8 @@ SMS: TypeAlias = Union[bool, PreferenceSetChannelTypeSetting]
 
 
 class PreferenceSetChannelTypes(BaseModel):
+    """Channel type preferences."""
+
     chat: Optional[Chat] = None
     """Whether the channel type is enabled for the preference set."""
 

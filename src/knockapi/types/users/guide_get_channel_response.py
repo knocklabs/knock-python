@@ -124,6 +124,8 @@ class GuideGroup(BaseModel):
 
 
 class GuideGetChannelResponse(BaseModel):
+    """A response for a list of guides."""
+
     entries: List[Entry]
     """A list of guides."""
 

@@ -10,6 +10,8 @@ __all__ = ["PageInfo"]
 
 
 class PageInfo(BaseModel):
+    """Pagination information for a list of resources."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

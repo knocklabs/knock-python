@@ -14,6 +14,11 @@ __all__ = ["InlineIdentifyUserRequestParam"]
 
 
 class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
+    """A set of parameters to inline-identify a user with.
+
+    Inline identifying the user will ensure that the user is available before the request is executed in Knock. It will perform an upsert for the user you're supplying, replacing any properties specified.
+    """
+
     id: Required[str]
     """The unique identifier of the user."""
 

@@ -11,6 +11,8 @@ __all__ = ["ScheduleRepeatRule"]
 
 
 class ScheduleRepeatRule(BaseModel):
+    """The repeat rule for the schedule."""
+
     frequency: Literal["daily", "weekly", "monthly", "hourly"]
     """The frequency of the schedule."""
 

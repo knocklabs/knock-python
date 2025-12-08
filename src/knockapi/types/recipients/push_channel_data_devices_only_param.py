@@ -29,6 +29,8 @@ class Device(TypedDict, total=False):
 
 
 class PushChannelDataDevicesOnlyParam(TypedDict, total=False):
+    """Push channel data."""
+
     devices: Required[Iterable[Device]]
     """A list of devices.
 

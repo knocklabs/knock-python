@@ -11,6 +11,8 @@ __all__ = ["ScheduleRepeatRuleParam"]
 
 
 class ScheduleRepeatRuleParam(TypedDict, total=False):
+    """The repeat rule for the schedule."""
+
     frequency: Required[Literal["daily", "weekly", "monthly", "hourly"]]
     """The frequency of the schedule."""
 

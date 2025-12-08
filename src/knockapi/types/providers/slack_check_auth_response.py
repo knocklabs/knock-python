@@ -8,6 +8,8 @@ __all__ = ["SlackCheckAuthResponse", "Connection"]
 
 
 class Connection(BaseModel):
+    """A Slack connection object."""
+
     ok: bool
     """Whether the Slack connection is valid."""
 
@@ -16,5 +18,7 @@ class Connection(BaseModel):
 
 
 class SlackCheckAuthResponse(BaseModel):
+    """The response from a Slack auth check request."""
+
     connection: Connection
     """A Slack connection object."""

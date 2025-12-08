@@ -12,6 +12,8 @@ __all__ = ["AudienceMember"]
 
 
 class AudienceMember(BaseModel):
+    """An audience member."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

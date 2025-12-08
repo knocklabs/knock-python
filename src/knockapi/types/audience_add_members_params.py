@@ -14,11 +14,15 @@ class AudienceAddMembersParams(TypedDict, total=False):
 
 
 class MemberUser(TypedDict, total=False):
+    """An object containing the user's ID."""
+
     id: str
     """The unique identifier of the user."""
 
 
 class Member(TypedDict, total=False):
+    """An audience member."""
+
     user: Required[MemberUser]
     """An object containing the user's ID."""
 

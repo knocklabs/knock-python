@@ -59,6 +59,10 @@ CategoriesPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
 
 
 class CategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+    """
+    The settings object for a workflow or category, where you can specify channel types or conditions.
+    """
+
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 
@@ -77,6 +81,10 @@ WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[b
 
 
 class WorkflowsPreferenceSetWorkflowCategorySettingObject(TypedDict, total=False):
+    """
+    The settings object for a workflow or category, where you can specify channel types or conditions.
+    """
+
     channel_types: Optional[PreferenceSetChannelTypesParam]
     """Channel type preferences."""
 

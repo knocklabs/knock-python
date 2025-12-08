@@ -12,6 +12,11 @@ __all__ = ["Activity"]
 
 
 class Activity(BaseModel):
+    """An activity associated with a workflow trigger request.
+
+    Messages produced after a [batch step](/designing-workflows/batch-function) can be associated with one or more activities. Non-batched messages will always be associated with a single activity.
+    """
+
     id: Optional[str] = None
     """Unique identifier for the activity."""
 

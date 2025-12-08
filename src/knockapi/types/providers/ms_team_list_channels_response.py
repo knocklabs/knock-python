@@ -30,5 +30,9 @@ class MsTeamsChannel(BaseModel):
 
 
 class MsTeamListChannelsResponse(BaseModel):
+    """
+    The response from a Microsoft Teams provider request, containing a list of channels.
+    """
+
     ms_teams_channels: List[MsTeamsChannel]
     """List of Microsoft Teams channels."""

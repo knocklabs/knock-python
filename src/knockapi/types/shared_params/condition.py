@@ -9,6 +9,8 @@ __all__ = ["Condition"]
 
 
 class Condition(TypedDict, total=False):
+    """A condition to be evaluated."""
+
     argument: Required[Optional[str]]
     """The argument value to compare against in the condition."""
 

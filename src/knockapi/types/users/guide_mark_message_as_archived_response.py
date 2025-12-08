@@ -6,5 +6,7 @@ __all__ = ["GuideMarkMessageAsArchivedResponse"]
 
 
 class GuideMarkMessageAsArchivedResponse(BaseModel):
+    """A response for a guide action."""
+
     status: str
     """The status of a guide's action."""

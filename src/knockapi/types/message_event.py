@@ -13,6 +13,11 @@ __all__ = ["MessageEvent"]
 
 
 class MessageEvent(BaseModel):
+    """A message event.
+
+    Occurs when a message [delivery or engagement status](/send-notifications/message-statuses) changes.
+    """
+
     id: str
     """The unique identifier for the message event."""
 

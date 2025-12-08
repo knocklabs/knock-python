@@ -26,6 +26,8 @@ __all__ = [
 
 
 class DataMessageEmailContent(BaseModel):
+    """The content of an email message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -55,6 +57,8 @@ class DataMessageEmailContent(BaseModel):
 
 
 class DataMessageSMSContent(BaseModel):
+    """The content of an SMS message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -66,6 +70,8 @@ class DataMessageSMSContent(BaseModel):
 
 
 class DataMessagePushContent(BaseModel):
+    """Push channel data."""
+
     token: str
     """The device token to send the push notification to."""
 
@@ -83,6 +89,8 @@ class DataMessagePushContent(BaseModel):
 
 
 class DataMessageChatContentTemplateBlock(BaseModel):
+    """A block in a message in a chat."""
+
     content: str
     """The actual content of the block."""
 
@@ -94,6 +102,8 @@ class DataMessageChatContentTemplateBlock(BaseModel):
 
 
 class DataMessageChatContentTemplate(BaseModel):
+    """The template structure for the chat message."""
+
     blocks: Optional[List[DataMessageChatContentTemplateBlock]] = None
     """The blocks of the message in a chat."""
 
@@ -105,6 +115,8 @@ class DataMessageChatContentTemplate(BaseModel):
 
 
 class DataMessageChatContent(BaseModel):
+    """The content of a chat message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -119,6 +131,8 @@ class DataMessageChatContent(BaseModel):
 
 
 class DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
+    """A block in a message in an app feed."""
+
     content: str
     """The content of the block in a message in an app feed."""
 
@@ -133,6 +147,8 @@ class DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
 
 
 class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseModel):
+    """A button in an in app feed message."""
+
     action: str
     """The action to take when the button is clicked."""
 
@@ -144,6 +160,8 @@ class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseM
 
 
 class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
+    """A button set block in a message in an app feed."""
+
     buttons: List[DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton]
     """A list of buttons in an in app feed message."""
 
@@ -161,6 +179,8 @@ DataMessageInAppFeedContentBlock: TypeAlias = Union[
 
 
 class DataMessageInAppFeedContent(BaseModel):
+    """The content of an in-app feed message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 
@@ -178,6 +198,8 @@ Data: TypeAlias = Union[
 
 
 class MessageGetContentResponse(BaseModel):
+    """The content of a message."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

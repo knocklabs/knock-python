@@ -6,6 +6,8 @@ __all__ = ["WorkflowTriggerResponse"]
 
 
 class WorkflowTriggerResponse(BaseModel):
+    """The response from triggering a workflow."""
+
     workflow_run_id: str
     """
     This value allows you to track individual messages associated with this trigger

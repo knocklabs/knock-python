@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -15,6 +16,7 @@ __all__ = [
     "EntryStep",
     "EntryStepMessage",
     "GuideGroup",
+    "IneligibleGuide",
 ]
 
 
@@ -123,6 +125,17 @@ class GuideGroup(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class IneligibleGuide(BaseModel):
+    key: str
+    """The guide's key identifier"""
+
+    message: str
+    """Human-readable explanation of ineligibility"""
+
+    reason: Literal["guide_not_active", "marked_as_archived", "target_conditions_not_met", "not_in_target_audience"]
+    """Reason code for ineligibility"""
+
+
 class GuideGetChannelResponse(BaseModel):
     """A response for a list of guides."""
 
@@ -134,3 +147,6 @@ class GuideGetChannelResponse(BaseModel):
 
     guide_groups: List[GuideGroup]
     """A list of guide groups with their display sequences and intervals."""
+
+    ineligible_guides: List[IneligibleGuide]
+    """Markers for guides the user is not eligible to see."""

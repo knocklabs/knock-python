@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AudienceRemoveMembersParams", "Member", "MemberUser"]
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
+
+__all__ = ["AudienceRemoveMembersParams", "Member"]
 
 
 class AudienceRemoveMembersParams(TypedDict, total=False):
@@ -13,18 +15,16 @@ class AudienceRemoveMembersParams(TypedDict, total=False):
     """A list of audience members to remove."""
 
 
-class MemberUser(TypedDict, total=False):
-    """An object containing the user's ID."""
-
-    id: str
-    """The unique identifier of the user."""
-
-
 class Member(TypedDict, total=False):
     """An audience member."""
 
-    user: Required[MemberUser]
-    """An object containing the user's ID."""
+    user: Required[InlineIdentifyUserRequestParam]
+    """A set of parameters to inline-identify a user with.
+
+    Inline identifying the user will ensure that the user is available before the
+    request is executed in Knock. It will perform an upsert for the user you're
+    supplying, replacing any properties specified.
+    """
 
     tenant: Optional[str]
     """The unique identifier for the tenant."""

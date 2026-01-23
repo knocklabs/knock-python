@@ -22,7 +22,7 @@ class TestAudiences:
     def test_method_add_members(self, client: Knock) -> None:
         audience = client.audiences.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
         assert audience is None
 
@@ -31,7 +31,7 @@ class TestAudiences:
     def test_raw_response_add_members(self, client: Knock) -> None:
         response = client.audiences.with_raw_response.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestAudiences:
     def test_streaming_response_add_members(self, client: Knock) -> None:
         with client.audiences.with_streaming_response.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,7 +60,7 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.audiences.with_raw_response.add_members(
                 key="",
-                members=[{"user": {"id": "dr_sattler"}}],
+                members=[{"user": {}}],
             )
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
@@ -110,7 +110,7 @@ class TestAudiences:
     def test_method_remove_members(self, client: Knock) -> None:
         audience = client.audiences.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
         assert audience is None
 
@@ -119,7 +119,7 @@ class TestAudiences:
     def test_raw_response_remove_members(self, client: Knock) -> None:
         response = client.audiences.with_raw_response.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
 
         assert response.is_closed is True
@@ -132,7 +132,7 @@ class TestAudiences:
     def test_streaming_response_remove_members(self, client: Knock) -> None:
         with client.audiences.with_streaming_response.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +148,7 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.audiences.with_raw_response.remove_members(
                 key="",
-                members=[{"user": {"id": "dr_sattler"}}],
+                members=[{"user": {}}],
             )
 
 
@@ -162,7 +162,7 @@ class TestAsyncAudiences:
     async def test_method_add_members(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
         assert audience is None
 
@@ -171,7 +171,7 @@ class TestAsyncAudiences:
     async def test_raw_response_add_members(self, async_client: AsyncKnock) -> None:
         response = await async_client.audiences.with_raw_response.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
 
         assert response.is_closed is True
@@ -184,7 +184,7 @@ class TestAsyncAudiences:
     async def test_streaming_response_add_members(self, async_client: AsyncKnock) -> None:
         async with async_client.audiences.with_streaming_response.add_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,7 +200,7 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.audiences.with_raw_response.add_members(
                 key="",
-                members=[{"user": {"id": "dr_sattler"}}],
+                members=[{"user": {}}],
             )
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
@@ -250,7 +250,7 @@ class TestAsyncAudiences:
     async def test_method_remove_members(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
         assert audience is None
 
@@ -259,7 +259,7 @@ class TestAsyncAudiences:
     async def test_raw_response_remove_members(self, async_client: AsyncKnock) -> None:
         response = await async_client.audiences.with_raw_response.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         )
 
         assert response.is_closed is True
@@ -272,7 +272,7 @@ class TestAsyncAudiences:
     async def test_streaming_response_remove_members(self, async_client: AsyncKnock) -> None:
         async with async_client.audiences.with_streaming_response.remove_members(
             key="key",
-            members=[{"user": {"id": "dr_sattler"}}],
+            members=[{"user": {}}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -288,5 +288,5 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.audiences.with_raw_response.remove_members(
                 key="",
-                members=[{"user": {"id": "dr_sattler"}}],
+                members=[{"user": {}}],
             )

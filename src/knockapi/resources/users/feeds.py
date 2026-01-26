@@ -119,6 +119,9 @@ class FeedsResource(SyncAPIResource):
           along with a user token.
         - This endpoint’s rate limit is always scoped per-user and per-environment. This
           is true even for requests made without a signed user token.
+        - Any [attachments](/integrations/email/attachments) present in trigger data are
+          automatically excluded from both the `data` and `activities` fields of
+          `UserInAppFeedResponse`.
 
         Args:
           after: The cursor to fetch entries after.
@@ -281,6 +284,9 @@ class AsyncFeedsResource(AsyncAPIResource):
           along with a user token.
         - This endpoint’s rate limit is always scoped per-user and per-environment. This
           is true even for requests made without a signed user token.
+        - Any [attachments](/integrations/email/attachments) present in trigger data are
+          automatically excluded from both the `data` and `activities` fields of
+          `UserInAppFeedResponse`.
 
         Args:
           after: The cursor to fetch entries after.

@@ -27,13 +27,16 @@ class EntryActivationURLPattern(BaseModel):
     pathname: Optional[str] = None
     """The pathname pattern to match (supports wildcards like /\\**)"""
 
+    search: Optional[str] = None
+    """The search query params to match"""
+
 
 class EntryActivationURLRule(BaseModel):
     argument: Optional[str] = None
     """The value to compare against"""
 
     directive: Optional[str] = None
-    """The directive for the URL pattern ('allow' or 'block')"""
+    """The directive for the URL rule ('allow' or 'block')"""
 
     operator: Optional[str] = None
     """The comparison operator ('contains' or 'equal_to')"""

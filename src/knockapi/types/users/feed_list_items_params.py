@@ -19,6 +19,13 @@ class FeedListItemsParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    exclude: str
+    """Comma-separated list of field paths to exclude from the response.
+
+    Use dot notation for nested fields (e.g., `entries.archived_at`). Limited to 3
+    levels deep.
+    """
+
     has_tenant: bool
     """Whether the feed items have a tenant."""
 

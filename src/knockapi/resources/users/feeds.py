@@ -89,6 +89,7 @@ class FeedsResource(SyncAPIResource):
         after: str | Omit = omit,
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
+        exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
         locale: str | Omit = omit,
         page_size: int | Omit = omit,
@@ -129,6 +130,10 @@ class FeedsResource(SyncAPIResource):
           archived: The archived status of the feed items.
 
           before: The cursor to fetch entries before.
+
+          exclude: Comma-separated list of field paths to exclude from the response. Use dot
+              notation for nested fields (e.g., `entries.archived_at`). Limited to 3 levels
+              deep.
 
           has_tenant: Whether the feed items have a tenant.
 
@@ -174,6 +179,7 @@ class FeedsResource(SyncAPIResource):
                         "after": after,
                         "archived": archived,
                         "before": before,
+                        "exclude": exclude,
                         "has_tenant": has_tenant,
                         "locale": locale,
                         "page_size": page_size,
@@ -254,6 +260,7 @@ class AsyncFeedsResource(AsyncAPIResource):
         after: str | Omit = omit,
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
+        exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
         locale: str | Omit = omit,
         page_size: int | Omit = omit,
@@ -294,6 +301,10 @@ class AsyncFeedsResource(AsyncAPIResource):
           archived: The archived status of the feed items.
 
           before: The cursor to fetch entries before.
+
+          exclude: Comma-separated list of field paths to exclude from the response. Use dot
+              notation for nested fields (e.g., `entries.archived_at`). Limited to 3 levels
+              deep.
 
           has_tenant: Whether the feed items have a tenant.
 
@@ -339,6 +350,7 @@ class AsyncFeedsResource(AsyncAPIResource):
                         "after": after,
                         "archived": archived,
                         "before": before,
+                        "exclude": exclude,
                         "has_tenant": has_tenant,
                         "locale": locale,
                         "page_size": page_size,

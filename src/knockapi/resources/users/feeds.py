@@ -92,6 +92,7 @@ class FeedsResource(SyncAPIResource):
         exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
         locale: str | Omit = omit,
+        mode: Literal["compact", "rich"] | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -142,6 +143,11 @@ class FeedsResource(SyncAPIResource):
               rendered in. Only available for enterprise plan customers using custom
               translations.
 
+          mode: The mode to render the feed items in. Can be `compact` or `rich`. Defaults to
+              `rich`. When `mode` is `compact`, feed items will not have `activities` and
+              `total_activities` fields, and the `data` field will not include nested arrays
+              and objects.
+
           page_size: The number of items per page (defaults to 50).
 
           source: The workflow key associated with the message in the feed.
@@ -182,6 +188,7 @@ class FeedsResource(SyncAPIResource):
                         "exclude": exclude,
                         "has_tenant": has_tenant,
                         "locale": locale,
+                        "mode": mode,
                         "page_size": page_size,
                         "source": source,
                         "status": status,
@@ -263,6 +270,7 @@ class AsyncFeedsResource(AsyncAPIResource):
         exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
         locale: str | Omit = omit,
+        mode: Literal["compact", "rich"] | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -313,6 +321,11 @@ class AsyncFeedsResource(AsyncAPIResource):
               rendered in. Only available for enterprise plan customers using custom
               translations.
 
+          mode: The mode to render the feed items in. Can be `compact` or `rich`. Defaults to
+              `rich`. When `mode` is `compact`, feed items will not have `activities` and
+              `total_activities` fields, and the `data` field will not include nested arrays
+              and objects.
+
           page_size: The number of items per page (defaults to 50).
 
           source: The workflow key associated with the message in the feed.
@@ -353,6 +366,7 @@ class AsyncFeedsResource(AsyncAPIResource):
                         "exclude": exclude,
                         "has_tenant": has_tenant,
                         "locale": locale,
+                        "mode": mode,
                         "page_size": page_size,
                         "source": source,
                         "status": status,

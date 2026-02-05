@@ -60,7 +60,7 @@ class AudiencesResource(SyncAPIResource):
         Adds one or more members to the specified audience.
 
         Args:
-          members: A list of audience members to add. Limited to 1,000 members per request.
+          members: A list of audience members to add. You can add up to 1,000 members per request.
 
           extra_headers: Send extra headers
 
@@ -138,7 +138,8 @@ class AudiencesResource(SyncAPIResource):
         Removes one or more members from the specified audience.
 
         Args:
-          members: A list of audience members to remove.
+          members: A list of audience members to remove. You can remove up to 1,000 members per
+              request.
 
           extra_headers: Send extra headers
 
@@ -204,7 +205,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Adds one or more members to the specified audience.
 
         Args:
-          members: A list of audience members to add. Limited to 1,000 members per request.
+          members: A list of audience members to add. You can add up to 1,000 members per request.
 
           extra_headers: Send extra headers
 
@@ -284,7 +285,8 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Removes one or more members from the specified audience.
 
         Args:
-          members: A list of audience members to remove.
+          members: A list of audience members to remove. You can remove up to 1,000 members per
+              request.
 
           extra_headers: Send extra headers
 

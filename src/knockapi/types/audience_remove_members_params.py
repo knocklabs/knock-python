@@ -12,7 +12,10 @@ __all__ = ["AudienceRemoveMembersParams", "Member"]
 
 class AudienceRemoveMembersParams(TypedDict, total=False):
     members: Required[Iterable[Member]]
-    """A list of audience members to remove."""
+    """A list of audience members to remove.
+
+    You can remove up to 1,000 members per request.
+    """
 
 
 class Member(TypedDict, total=False):

@@ -68,13 +68,13 @@ class UserListMessagesParams(TypedDict, total=False):
 
 class InsertedAt(TypedDict, total=False):
     gt: str
-    """Limits the results to messages inserted after the given date."""
+    """Limits the results to items inserted after the given date."""
 
     gte: str
-    """Limits the results to messages inserted after or on the given date."""
+    """Limits the results to items inserted after or on the given date."""
 
     lt: str
-    """Limits the results to messages inserted before the given date."""
+    """Limits the results to items inserted before the given date."""
 
     lte: str
-    """Limits the results to messages inserted before or on the given date."""
+    """Limits the results to items inserted before or on the given date."""

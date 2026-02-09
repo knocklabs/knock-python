@@ -6,7 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["FeedListItemsParams"]
+__all__ = ["FeedListItemsParams", "InsertedAt"]
 
 
 class FeedListItemsParams(TypedDict, total=False):
@@ -28,6 +28,8 @@ class FeedListItemsParams(TypedDict, total=False):
 
     has_tenant: bool
     """Whether the feed items have a tenant."""
+
+    inserted_at: InsertedAt
 
     locale: str
     """The locale to render the feed items in.
@@ -54,3 +56,17 @@ class FeedListItemsParams(TypedDict, total=False):
 
     workflow_categories: SequenceNotStr[str]
     """The workflow categories of the feed items."""
+
+
+class InsertedAt(TypedDict, total=False):
+    gt: str
+    """Limits the results to items inserted after the given date."""
+
+    gte: str
+    """Limits the results to items inserted after or on the given date."""
+
+    lt: str
+    """Limits the results to items inserted before the given date."""
+
+    lte: str
+    """Limits the results to items inserted before or on the given date."""

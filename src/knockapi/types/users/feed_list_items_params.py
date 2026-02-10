@@ -39,6 +39,15 @@ class FeedListItemsParams(TypedDict, total=False):
     enterprise plan customers using custom translations.
     """
 
+    mode: Literal["compact", "rich"]
+    """The mode to render the feed items in.
+
+    Can be `compact` or `rich`. Defaults to `rich`. When `mode` is `compact`, feed
+    items will not have `activities` and `total_activities` fields; the `data` field
+    will not include nested arrays and objects; and the `actors` field will only
+    have up to one actor.
+    """
+
     page_size: int
     """The number of items per page (defaults to 50)."""
 

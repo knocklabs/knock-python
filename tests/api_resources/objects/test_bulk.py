@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBulk:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         bulk = client.objects.bulk.delete(
@@ -26,7 +26,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.delete(
@@ -39,7 +39,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.delete(
@@ -54,7 +54,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_delete(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -63,7 +63,7 @@ class TestBulk:
                 object_ids=["obj_123", "obj_456", "obj_789"],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_add_subscriptions(self, client: Knock) -> None:
         bulk = client.objects.bulk.add_subscriptions(
@@ -77,7 +77,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_add_subscriptions(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.add_subscriptions(
@@ -95,7 +95,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_add_subscriptions(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.add_subscriptions(
@@ -115,7 +115,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_add_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -129,7 +129,7 @@ class TestBulk:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_delete_subscriptions(self, client: Knock) -> None:
         bulk = client.objects.bulk.delete_subscriptions(
@@ -147,7 +147,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete_subscriptions(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.delete_subscriptions(
@@ -169,7 +169,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete_subscriptions(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.delete_subscriptions(
@@ -193,7 +193,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_delete_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -211,7 +211,7 @@ class TestBulk:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set(self, client: Knock) -> None:
         bulk = client.objects.bulk.set(
@@ -220,7 +220,7 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.objects.bulk.with_raw_response.set(
@@ -233,7 +233,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.objects.bulk.with_streaming_response.set(
@@ -248,7 +248,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_set(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -263,7 +263,7 @@ class TestAsyncBulk:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.delete(
@@ -272,7 +272,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.delete(
@@ -285,7 +285,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.delete(
@@ -300,7 +300,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -309,7 +309,7 @@ class TestAsyncBulk:
                 object_ids=["obj_123", "obj_456", "obj_789"],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_add_subscriptions(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.add_subscriptions(
@@ -323,7 +323,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.add_subscriptions(
@@ -341,7 +341,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.add_subscriptions(
@@ -361,7 +361,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_add_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -375,7 +375,7 @@ class TestAsyncBulk:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.delete_subscriptions(
@@ -393,7 +393,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.delete_subscriptions(
@@ -415,7 +415,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.delete_subscriptions(
@@ -439,7 +439,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -457,7 +457,7 @@ class TestAsyncBulk:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.objects.bulk.set(
@@ -466,7 +466,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.bulk.with_raw_response.set(
@@ -479,7 +479,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.bulk.with_streaming_response.set(
@@ -494,7 +494,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_set(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):

@@ -14,6 +14,9 @@ class AudienceAddMembersParams(TypedDict, total=False):
     members: Required[Iterable[Member]]
     """A list of audience members to add. You can add up to 1,000 members per request."""
 
+    create_audience: bool
+    """Create the audience if it does not exist."""
+
 
 class Member(TypedDict, total=False):
     """An audience member."""

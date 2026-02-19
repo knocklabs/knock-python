@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWorkflows:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_cancel(self, client: Knock) -> None:
         workflow = client.workflows.cancel(
@@ -28,7 +28,7 @@ class TestWorkflows:
         )
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_cancel_with_all_params(self, client: Knock) -> None:
         workflow = client.workflows.cancel(
@@ -38,7 +38,7 @@ class TestWorkflows:
         )
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_cancel(self, client: Knock) -> None:
         response = client.workflows.with_raw_response.cancel(
@@ -51,7 +51,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_cancel(self, client: Knock) -> None:
         with client.workflows.with_streaming_response.cancel(
@@ -66,7 +66,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_cancel(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -75,7 +75,7 @@ class TestWorkflows:
                 cancellation_key="cancel-workflow-123",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_trigger(self, client: Knock) -> None:
         workflow = client.workflows.trigger(
@@ -84,7 +84,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_trigger_with_all_params(self, client: Knock) -> None:
         workflow = client.workflows.trigger(
@@ -104,7 +104,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_trigger(self, client: Knock) -> None:
         response = client.workflows.with_raw_response.trigger(
@@ -117,7 +117,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_trigger(self, client: Knock) -> None:
         with client.workflows.with_streaming_response.trigger(
@@ -132,7 +132,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_trigger(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -147,7 +147,7 @@ class TestAsyncWorkflows:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.cancel(
@@ -156,7 +156,7 @@ class TestAsyncWorkflows:
         )
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_cancel_with_all_params(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.cancel(
@@ -166,7 +166,7 @@ class TestAsyncWorkflows:
         )
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncKnock) -> None:
         response = await async_client.workflows.with_raw_response.cancel(
@@ -179,7 +179,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert workflow is None
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncKnock) -> None:
         async with async_client.workflows.with_streaming_response.cancel(
@@ -194,7 +194,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -203,7 +203,7 @@ class TestAsyncWorkflows:
                 cancellation_key="cancel-workflow-123",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_trigger(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.trigger(
@@ -212,7 +212,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_trigger_with_all_params(self, async_client: AsyncKnock) -> None:
         workflow = await async_client.workflows.trigger(
@@ -232,7 +232,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_trigger(self, async_client: AsyncKnock) -> None:
         response = await async_client.workflows.with_raw_response.trigger(
@@ -245,7 +245,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_trigger(self, async_client: AsyncKnock) -> None:
         async with async_client.workflows.with_streaming_response.trigger(
@@ -260,7 +260,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_trigger(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):

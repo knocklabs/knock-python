@@ -1,5 +1,67 @@
 # Changelog
 
+## 1.20.0 (2026-02-23)
+
+Full Changelog: [v1.19.0...v1.20.0](https://github.com/knocklabs/knock-python/compare/v1.19.0...v1.20.0)
+
+### Features
+
+* **api:** api update ([05255a7](https://github.com/knocklabs/knock-python/commit/05255a72441648cd184eb325fc66e24c18603cb7))
+* **api:** api update ([dea9649](https://github.com/knocklabs/knock-python/commit/dea9649ac66c95288d2033d6e963827638c21572))
+* **api:** api update ([a339941](https://github.com/knocklabs/knock-python/commit/a339941af5f8ead6905ef2a6bb1481f3345b3e91))
+* **api:** api update ([56da8e9](https://github.com/knocklabs/knock-python/commit/56da8e943787fc0749e39e7cb6018e0c2ace35b3))
+* **api:** api update ([44d9cb3](https://github.com/knocklabs/knock-python/commit/44d9cb30c7a1d8262d8ffa97d253634a4bbedafd))
+* **api:** api update ([7549fe1](https://github.com/knocklabs/knock-python/commit/7549fe137fc6ed74676af248f979e0760c0948b1))
+* **api:** api update ([5d9adba](https://github.com/knocklabs/knock-python/commit/5d9adbadcccf8a27d153a34d2190593757a05512))
+* **api:** api update ([9f83db0](https://github.com/knocklabs/knock-python/commit/9f83db099daf463a4472fd154f3bad7ea697b1ad))
+* **api:** api update ([a27fbba](https://github.com/knocklabs/knock-python/commit/a27fbbadfa3928f36d6fa7c0b824bc9bfd9dbde0))
+* **api:** api update ([119c586](https://github.com/knocklabs/knock-python/commit/119c5866c95ab580fa3650d83fba133a6d51aa1f))
+* **api:** api update ([8906815](https://github.com/knocklabs/knock-python/commit/89068157d348f7579adcd21e2514781a784f7bef))
+* **api:** api update ([53f67f5](https://github.com/knocklabs/knock-python/commit/53f67f56d7aef82576bb80c1e26ad44c2f1a1d85))
+* **api:** api update ([de9af64](https://github.com/knocklabs/knock-python/commit/de9af6473687644be3598673a1aedd37d170b329))
+* **api:** api update ([8c88c54](https://github.com/knocklabs/knock-python/commit/8c88c545b234b0bbf876106d889c6f3ce41ef32d))
+* **api:** api update ([6fa8331](https://github.com/knocklabs/knock-python/commit/6fa83315060530d14ad296f4d725e1e544d43faf))
+* **api:** api update ([3ef2d85](https://github.com/knocklabs/knock-python/commit/3ef2d85dcb10221fb441a7c3869d19391e0504b6))
+* **api:** api update ([c50a8ee](https://github.com/knocklabs/knock-python/commit/c50a8eeadf1e424505f2c112d74f66cadaa1d2cf))
+* **api:** api update ([f4573c3](https://github.com/knocklabs/knock-python/commit/f4573c32948495b568f1201a5fb7404df4aadf51))
+* **api:** api update ([94f9a57](https://github.com/knocklabs/knock-python/commit/94f9a57672939b32bb54f5586d778e25add94904))
+* **api:** api update ([b85a638](https://github.com/knocklabs/knock-python/commit/b85a63858e283b9b898abd766a40eda69cc96889))
+* **api:** api update ([7f5b0fc](https://github.com/knocklabs/knock-python/commit/7f5b0fc648526fe857fc615a3f583ce9b4c76697))
+* **api:** api update ([79859d6](https://github.com/knocklabs/knock-python/commit/79859d6ca10acd18814ba447bf59d8289f361e74))
+* **api:** api update ([66931f9](https://github.com/knocklabs/knock-python/commit/66931f970f1e98fb2152194ba9834e914538d109))
+* **api:** api update ([c8a206a](https://github.com/knocklabs/knock-python/commit/c8a206a627961a6ece03ff8d9aeb371d73e5be04))
+* **api:** api update ([47806ce](https://github.com/knocklabs/knock-python/commit/47806ce73d09bedb21d6ded55c68a5401d50abbe))
+* **client:** add custom JSON encoder for extended type support ([0472a35](https://github.com/knocklabs/knock-python/commit/0472a35893d9d01adb3fcf1d272ebf57ee9e0fef))
+* **client:** add support for binary request streaming ([a0ff5ec](https://github.com/knocklabs/knock-python/commit/a0ff5ec2d3132a0289449df2d5d2995488f79d42))
+
+
+### Bug Fixes
+
+* ensure streams are always closed ([007d337](https://github.com/knocklabs/knock-python/commit/007d337f07c9de1883d0580209aa743384e24925))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([ab076a9](https://github.com/knocklabs/knock-python/commit/ab076a9225fe2b2d013603b7136c7a76ea0f3300))
+* use async_to_httpx_files in patch method ([47196d1](https://github.com/knocklabs/knock-python/commit/47196d100147ab585fdb4fb3e7e05b92b953c2ec))
+
+
+### Chores
+
+* add missing docstrings ([dad2da6](https://github.com/knocklabs/knock-python/commit/dad2da6573ee829b4ac6c44d480e7becd19a25e0))
+* **ci:** upgrade `actions/github-script` ([751818a](https://github.com/knocklabs/knock-python/commit/751818aeedc73b4a53e9ddeb9966ff5973cdb3cf))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([227e51f](https://github.com/knocklabs/knock-python/commit/227e51fa9f367e8aa67f9fe9ce96c844c3925b9e))
+* **docs:** use environment variables for authentication in code snippets ([89f2835](https://github.com/knocklabs/knock-python/commit/89f283596c21f14a316593dd8542c0ae8b872afc))
+* format all `api.md` files ([867dcfb](https://github.com/knocklabs/knock-python/commit/867dcfbfb2039d433fd8e434fd59d82e410bcc0e))
+* **internal:** add `--fix` argument to lint script ([be20a97](https://github.com/knocklabs/knock-python/commit/be20a97526ee33e626576d27f817f186218facb4))
+* **internal:** add missing files argument to base client ([8737e4a](https://github.com/knocklabs/knock-python/commit/8737e4a0cd84c85d0887b2e0ce5d9acd034abe87))
+* **internal:** add request options to SSE classes ([29a214d](https://github.com/knocklabs/knock-python/commit/29a214debc763dbe2a33648a831c2d85e219a6e2))
+* **internal:** bump dependencies ([82c06e8](https://github.com/knocklabs/knock-python/commit/82c06e8ac65112bcede6c98dfc5c1d645a03e458))
+* **internal:** codegen related update ([fb3e366](https://github.com/knocklabs/knock-python/commit/fb3e366f5c969b8c9956faeccab88f0882d6a263))
+* **internal:** codegen related update ([98724ee](https://github.com/knocklabs/knock-python/commit/98724ee95eeaf2dffd5e725b212d223b9db1096a))
+* **internal:** fix lint error on Python 3.14 ([82900b2](https://github.com/knocklabs/knock-python/commit/82900b2dd806553ad778e04ad77de0dc0cf276ac))
+* **internal:** make `test_proxy_environment_variables` more resilient ([07b652c](https://github.com/knocklabs/knock-python/commit/07b652c4cc1dbd96fa814070d12a284ab22473dd))
+* **internal:** update `actions/checkout` version ([ef96980](https://github.com/knocklabs/knock-python/commit/ef96980eff0e3a1d600df5e777cfdeabb486ce32))
+* speedup initial import ([f5c9aa6](https://github.com/knocklabs/knock-python/commit/f5c9aa6dd753849ac29c12ca41e1723ac77d1892))
+* update lockfile ([48e85d7](https://github.com/knocklabs/knock-python/commit/48e85d7d0cdd44f342abd95e1517dc4f51f1d67d))
+* update mock server docs ([97e6a8a](https://github.com/knocklabs/knock-python/commit/97e6a8aab842615b61cb9c433626b4fba02734fc))
+
 ## 1.19.0 (2025-11-20)
 
 Full Changelog: [v1.18.1...v1.19.0](https://github.com/knocklabs/knock-python/compare/v1.18.1...v1.19.0)

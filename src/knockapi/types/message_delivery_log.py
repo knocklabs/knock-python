@@ -11,6 +11,8 @@ __all__ = ["MessageDeliveryLog", "Request", "Response"]
 
 
 class Request(BaseModel):
+    """A message delivery log request."""
+
     body: Union[str, Dict[str, object], None] = None
     """The body content that was sent with the request."""
 
@@ -31,6 +33,8 @@ class Request(BaseModel):
 
 
 class Response(BaseModel):
+    """A message delivery log response."""
+
     body: Union[str, Dict[str, object], None] = None
     """The body content that was received with the response."""
 
@@ -42,6 +46,10 @@ class Response(BaseModel):
 
 
 class MessageDeliveryLog(BaseModel):
+    """
+    A message delivery log contains a `request` from Knock to a downstream provider and the `response` that was returned.
+    """
+
     id: str
     """The unique identifier for the message delivery log."""
 

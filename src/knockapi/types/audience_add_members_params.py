@@ -5,22 +5,29 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AudienceAddMembersParams", "Member", "MemberUser"]
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
+
+__all__ = ["AudienceAddMembersParams", "Member"]
 
 
 class AudienceAddMembersParams(TypedDict, total=False):
     members: Required[Iterable[Member]]
-    """A list of audience members to add. Limited to 1,000 members per request."""
+    """A list of audience members to add. You can add up to 1,000 members per request."""
 
-
-class MemberUser(TypedDict, total=False):
-    id: str
-    """The unique identifier of the user."""
+    create_audience: bool
+    """Create the audience if it does not exist."""
 
 
 class Member(TypedDict, total=False):
-    user: Required[MemberUser]
-    """An object containing the user's ID."""
+    """An audience member."""
+
+    user: Required[InlineIdentifyUserRequestParam]
+    """A set of parameters to inline-identify a user with.
+
+    Inline identifying the user will ensure that the user is available before the
+    request is executed in Knock. It will perform an upsert for the user you're
+    supplying, replacing any properties specified.
+    """
 
     tenant: Optional[str]
     """The unique identifier for the tenant."""

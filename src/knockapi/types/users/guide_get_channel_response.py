@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -15,6 +16,7 @@ __all__ = [
     "EntryStep",
     "EntryStepMessage",
     "GuideGroup",
+    "IneligibleGuide",
 ]
 
 
@@ -25,13 +27,16 @@ class EntryActivationURLPattern(BaseModel):
     pathname: Optional[str] = None
     """The pathname pattern to match (supports wildcards like /\\**)"""
 
+    search: Optional[str] = None
+    """The search query params to match"""
+
 
 class EntryActivationURLRule(BaseModel):
     argument: Optional[str] = None
     """The value to compare against"""
 
     directive: Optional[str] = None
-    """The directive for the URL pattern ('allow' or 'block')"""
+    """The directive for the URL rule ('allow' or 'block')"""
 
     operator: Optional[str] = None
     """The comparison operator ('contains' or 'equal_to')"""
@@ -123,7 +128,20 @@ class GuideGroup(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class IneligibleGuide(BaseModel):
+    key: str
+    """The guide's key identifier"""
+
+    message: str
+    """Human-readable explanation of ineligibility"""
+
+    reason: Literal["guide_not_active", "marked_as_archived", "target_conditions_not_met", "not_in_target_audience"]
+    """Reason code for ineligibility"""
+
+
 class GuideGetChannelResponse(BaseModel):
+    """A response for a list of guides."""
+
     entries: List[Entry]
     """A list of guides."""
 
@@ -132,3 +150,6 @@ class GuideGetChannelResponse(BaseModel):
 
     guide_groups: List[GuideGroup]
     """A list of guide groups with their display sequences and intervals."""
+
+    ineligible_guides: List[IneligibleGuide]
+    """Markers for guides the user is not eligible to see."""

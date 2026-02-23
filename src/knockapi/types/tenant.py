@@ -11,6 +11,8 @@ __all__ = ["Tenant", "Settings", "SettingsBranding"]
 
 
 class SettingsBranding(BaseModel):
+    """The branding for the tenant."""
+
     icon_url: Optional[str] = None
     """The icon URL for the tenant.
 
@@ -31,6 +33,8 @@ class SettingsBranding(BaseModel):
 
 
 class Settings(BaseModel):
+    """The settings for the tenant. Includes branding and preference set."""
+
     branding: Optional[SettingsBranding] = None
     """The branding for the tenant."""
 
@@ -42,6 +46,8 @@ class Settings(BaseModel):
 
 
 class Tenant(BaseModel):
+    """A tenant entity."""
+
     id: str
     """The unique identifier for the tenant."""
 

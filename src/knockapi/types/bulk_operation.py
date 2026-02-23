@@ -20,6 +20,8 @@ class ErrorItem(BaseModel):
 
 
 class BulkOperation(BaseModel):
+    """A bulk operation entity."""
+
     id: str
     """Unique identifier for the bulk operation."""
 

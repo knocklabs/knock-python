@@ -23,6 +23,10 @@ CategoriesPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
 
 
 class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
+    """
+    The settings object for a workflow or category, where you can specify channel types or conditions.
+    """
+
     channel_types: Optional[PreferenceSetChannelTypes] = None
     """Channel type preferences."""
 
@@ -41,6 +45,10 @@ WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[b
 
 
 class WorkflowsPreferenceSetWorkflowCategorySettingObject(BaseModel):
+    """
+    The settings object for a workflow or category, where you can specify channel types or conditions.
+    """
+
     channel_types: Optional[PreferenceSetChannelTypes] = None
     """Channel type preferences."""
 
@@ -55,6 +63,10 @@ Workflows: TypeAlias = Union[bool, WorkflowsPreferenceSetWorkflowCategorySetting
 
 
 class PreferenceSet(BaseModel):
+    """
+    A preference set represents a specific set of notification preferences for a recipient. A recipient can have multiple preference sets.
+    """
+
     id: str
     """Unique identifier for the preference set."""
 

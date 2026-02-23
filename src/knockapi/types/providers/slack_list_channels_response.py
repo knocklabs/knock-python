@@ -6,6 +6,8 @@ __all__ = ["SlackListChannelsResponse"]
 
 
 class SlackListChannelsResponse(BaseModel):
+    """A Slack channel."""
+
     id: str
     """A Slack channel ID from the Slack provider."""
 

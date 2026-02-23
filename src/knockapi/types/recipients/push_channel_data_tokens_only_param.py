@@ -10,5 +10,7 @@ __all__ = ["PushChannelDataTokensOnlyParam"]
 
 
 class PushChannelDataTokensOnlyParam(TypedDict, total=False):
+    """Push channel data."""
+
     tokens: Required[SequenceNotStr[str]]
     """A list of push channel tokens."""

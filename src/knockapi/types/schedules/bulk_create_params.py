@@ -20,6 +20,8 @@ class BulkCreateParams(TypedDict, total=False):
 
 
 class Schedule(TypedDict, total=False):
+    """A schedule represents a recurring workflow execution."""
+
     workflow: Required[str]
     """The key of the workflow."""
 

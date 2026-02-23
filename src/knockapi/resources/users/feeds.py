@@ -89,8 +89,11 @@ class FeedsResource(SyncAPIResource):
         after: str | Omit = omit,
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
+        exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
+        inserted_at: feed_list_items_params.InsertedAt | Omit = omit,
         locale: str | Omit = omit,
+        mode: Literal["compact", "rich"] | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -119,6 +122,9 @@ class FeedsResource(SyncAPIResource):
           along with a user token.
         - This endpoint’s rate limit is always scoped per-user and per-environment. This
           is true even for requests made without a signed user token.
+        - Any [attachments](/integrations/email/attachments) present in trigger data are
+          automatically excluded from both the `data` and `activities` fields of
+          `UserInAppFeedResponse`.
 
         Args:
           after: The cursor to fetch entries after.
@@ -127,12 +133,21 @@ class FeedsResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
+          exclude: Comma-separated list of field paths to exclude from the response. Use dot
+              notation for nested fields (e.g., `entries.archived_at`). Limited to 3 levels
+              deep.
+
           has_tenant: Whether the feed items have a tenant.
 
           locale: The locale to render the feed items in. Must be in the IETF 5646 format (e.g.
               `en-US`). When not provided, will default to the locale that the feed items were
               rendered in. Only available for enterprise plan customers using custom
               translations.
+
+          mode: The mode to render the feed items in. Can be `compact` or `rich`. Defaults to
+              `rich`. When `mode` is `compact`, feed items will not have `activities` and
+              `total_activities` fields; the `data` field will not include nested arrays and
+              objects; and the `actors` field will only have up to one actor.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -171,8 +186,11 @@ class FeedsResource(SyncAPIResource):
                         "after": after,
                         "archived": archived,
                         "before": before,
+                        "exclude": exclude,
                         "has_tenant": has_tenant,
+                        "inserted_at": inserted_at,
                         "locale": locale,
+                        "mode": mode,
                         "page_size": page_size,
                         "source": source,
                         "status": status,
@@ -251,8 +269,11 @@ class AsyncFeedsResource(AsyncAPIResource):
         after: str | Omit = omit,
         archived: Literal["exclude", "include", "only"] | Omit = omit,
         before: str | Omit = omit,
+        exclude: str | Omit = omit,
         has_tenant: bool | Omit = omit,
+        inserted_at: feed_list_items_params.InsertedAt | Omit = omit,
         locale: str | Omit = omit,
+        mode: Literal["compact", "rich"] | Omit = omit,
         page_size: int | Omit = omit,
         source: str | Omit = omit,
         status: Literal["unread", "read", "unseen", "seen", "all"] | Omit = omit,
@@ -281,6 +302,9 @@ class AsyncFeedsResource(AsyncAPIResource):
           along with a user token.
         - This endpoint’s rate limit is always scoped per-user and per-environment. This
           is true even for requests made without a signed user token.
+        - Any [attachments](/integrations/email/attachments) present in trigger data are
+          automatically excluded from both the `data` and `activities` fields of
+          `UserInAppFeedResponse`.
 
         Args:
           after: The cursor to fetch entries after.
@@ -289,12 +313,21 @@ class AsyncFeedsResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
+          exclude: Comma-separated list of field paths to exclude from the response. Use dot
+              notation for nested fields (e.g., `entries.archived_at`). Limited to 3 levels
+              deep.
+
           has_tenant: Whether the feed items have a tenant.
 
           locale: The locale to render the feed items in. Must be in the IETF 5646 format (e.g.
               `en-US`). When not provided, will default to the locale that the feed items were
               rendered in. Only available for enterprise plan customers using custom
               translations.
+
+          mode: The mode to render the feed items in. Can be `compact` or `rich`. Defaults to
+              `rich`. When `mode` is `compact`, feed items will not have `activities` and
+              `total_activities` fields; the `data` field will not include nested arrays and
+              objects; and the `actors` field will only have up to one actor.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -333,8 +366,11 @@ class AsyncFeedsResource(AsyncAPIResource):
                         "after": after,
                         "archived": archived,
                         "before": before,
+                        "exclude": exclude,
                         "has_tenant": has_tenant,
+                        "inserted_at": inserted_at,
                         "locale": locale,
+                        "mode": mode,
                         "page_size": page_size,
                         "source": source,
                         "status": status,

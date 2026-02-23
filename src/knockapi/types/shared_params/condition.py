@@ -9,6 +9,8 @@ __all__ = ["Condition"]
 
 
 class Condition(TypedDict, total=False):
+    """A condition to be evaluated."""
+
     argument: Required[Optional[str]]
     """The argument value to compare against in the condition."""
 
@@ -24,11 +26,15 @@ class Condition(TypedDict, total=False):
             "not_contains",
             "empty",
             "not_empty",
+            "exists",
+            "not_exists",
             "contains_all",
             "is_timestamp",
             "is_not_timestamp",
-            "is_timestamp_after",
+            "is_timestamp_on_or_after",
             "is_timestamp_before",
+            "is_timestamp_on_or_after_date",
+            "is_timestamp_before_date",
             "is_timestamp_between",
             "is_audience_member",
             "is_not_audience_member",

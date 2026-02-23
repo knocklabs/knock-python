@@ -6,7 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["FeedListItemsParams"]
+__all__ = ["FeedListItemsParams", "InsertedAt"]
 
 
 class FeedListItemsParams(TypedDict, total=False):
@@ -19,8 +19,17 @@ class FeedListItemsParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    exclude: str
+    """Comma-separated list of field paths to exclude from the response.
+
+    Use dot notation for nested fields (e.g., `entries.archived_at`). Limited to 3
+    levels deep.
+    """
+
     has_tenant: bool
     """Whether the feed items have a tenant."""
+
+    inserted_at: InsertedAt
 
     locale: str
     """The locale to render the feed items in.
@@ -28,6 +37,15 @@ class FeedListItemsParams(TypedDict, total=False):
     Must be in the IETF 5646 format (e.g. `en-US`). When not provided, will default
     to the locale that the feed items were rendered in. Only available for
     enterprise plan customers using custom translations.
+    """
+
+    mode: Literal["compact", "rich"]
+    """The mode to render the feed items in.
+
+    Can be `compact` or `rich`. Defaults to `rich`. When `mode` is `compact`, feed
+    items will not have `activities` and `total_activities` fields; the `data` field
+    will not include nested arrays and objects; and the `actors` field will only
+    have up to one actor.
     """
 
     page_size: int
@@ -47,3 +65,17 @@ class FeedListItemsParams(TypedDict, total=False):
 
     workflow_categories: SequenceNotStr[str]
     """The workflow categories of the feed items."""
+
+
+class InsertedAt(TypedDict, total=False):
+    gt: str
+    """Limits the results to items inserted after the given date."""
+
+    gte: str
+    """Limits the results to items inserted after or on the given date."""
+
+    lt: str
+    """Limits the results to items inserted before the given date."""
+
+    lte: str
+    """Limits the results to items inserted before or on the given date."""

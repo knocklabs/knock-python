@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import audiences, workflows, bulk_operations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import KnockError, APIStatusError
 from ._base_client import (
@@ -29,33 +29,37 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.users import users
-from .resources.objects import objects
-from .resources.tenants import tenants
-from .resources.channels import channels
-from .resources.messages import messages
-from .resources.providers import providers
-from .resources.schedules import schedules
-from .resources.integrations import integrations
+
+if TYPE_CHECKING:
+    from .resources import (
+        users,
+        objects,
+        tenants,
+        channels,
+        messages,
+        audiences,
+        providers,
+        schedules,
+        workflows,
+        integrations,
+        bulk_operations,
+    )
+    from .resources.audiences import AudiencesResource, AsyncAudiencesResource
+    from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
+    from .resources.users.users import UsersResource, AsyncUsersResource
+    from .resources.bulk_operations import BulkOperationsResource, AsyncBulkOperationsResource
+    from .resources.objects.objects import ObjectsResource, AsyncObjectsResource
+    from .resources.tenants.tenants import TenantsResource, AsyncTenantsResource
+    from .resources.channels.channels import ChannelsResource, AsyncChannelsResource
+    from .resources.messages.messages import MessagesResource, AsyncMessagesResource
+    from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
+    from .resources.schedules.schedules import SchedulesResource, AsyncSchedulesResource
+    from .resources.integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Knock", "AsyncKnock", "Client", "AsyncClient"]
 
 
 class Knock(SyncAPIClient):
-    users: users.UsersResource
-    objects: objects.ObjectsResource
-    tenants: tenants.TenantsResource
-    bulk_operations: bulk_operations.BulkOperationsResource
-    messages: messages.MessagesResource
-    providers: providers.ProvidersResource
-    integrations: integrations.IntegrationsResource
-    workflows: workflows.WorkflowsResource
-    schedules: schedules.SchedulesResource
-    channels: channels.ChannelsResource
-    audiences: audiences.AudiencesResource
-    with_raw_response: KnockWithRawResponse
-    with_streaming_response: KnockWithStreamedResponse
-
     # client options
     api_key: str
     branch: str | None
@@ -120,19 +124,79 @@ class Knock(SyncAPIClient):
 
         self._idempotency_header = "Idempotency-Key"
 
-        self.users = users.UsersResource(self)
-        self.objects = objects.ObjectsResource(self)
-        self.tenants = tenants.TenantsResource(self)
-        self.bulk_operations = bulk_operations.BulkOperationsResource(self)
-        self.messages = messages.MessagesResource(self)
-        self.providers = providers.ProvidersResource(self)
-        self.integrations = integrations.IntegrationsResource(self)
-        self.workflows = workflows.WorkflowsResource(self)
-        self.schedules = schedules.SchedulesResource(self)
-        self.channels = channels.ChannelsResource(self)
-        self.audiences = audiences.AudiencesResource(self)
-        self.with_raw_response = KnockWithRawResponse(self)
-        self.with_streaming_response = KnockWithStreamedResponse(self)
+    @cached_property
+    def users(self) -> UsersResource:
+        from .resources.users import UsersResource
+
+        return UsersResource(self)
+
+    @cached_property
+    def objects(self) -> ObjectsResource:
+        from .resources.objects import ObjectsResource
+
+        return ObjectsResource(self)
+
+    @cached_property
+    def tenants(self) -> TenantsResource:
+        from .resources.tenants import TenantsResource
+
+        return TenantsResource(self)
+
+    @cached_property
+    def bulk_operations(self) -> BulkOperationsResource:
+        from .resources.bulk_operations import BulkOperationsResource
+
+        return BulkOperationsResource(self)
+
+    @cached_property
+    def messages(self) -> MessagesResource:
+        from .resources.messages import MessagesResource
+
+        return MessagesResource(self)
+
+    @cached_property
+    def providers(self) -> ProvidersResource:
+        from .resources.providers import ProvidersResource
+
+        return ProvidersResource(self)
+
+    @cached_property
+    def integrations(self) -> IntegrationsResource:
+        from .resources.integrations import IntegrationsResource
+
+        return IntegrationsResource(self)
+
+    @cached_property
+    def workflows(self) -> WorkflowsResource:
+        from .resources.workflows import WorkflowsResource
+
+        return WorkflowsResource(self)
+
+    @cached_property
+    def schedules(self) -> SchedulesResource:
+        from .resources.schedules import SchedulesResource
+
+        return SchedulesResource(self)
+
+    @cached_property
+    def channels(self) -> ChannelsResource:
+        from .resources.channels import ChannelsResource
+
+        return ChannelsResource(self)
+
+    @cached_property
+    def audiences(self) -> AudiencesResource:
+        from .resources.audiences import AudiencesResource
+
+        return AudiencesResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> KnockWithRawResponse:
+        return KnockWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> KnockWithStreamedResponse:
+        return KnockWithStreamedResponse(self)
 
     @property
     @override
@@ -243,20 +307,6 @@ class Knock(SyncAPIClient):
 
 
 class AsyncKnock(AsyncAPIClient):
-    users: users.AsyncUsersResource
-    objects: objects.AsyncObjectsResource
-    tenants: tenants.AsyncTenantsResource
-    bulk_operations: bulk_operations.AsyncBulkOperationsResource
-    messages: messages.AsyncMessagesResource
-    providers: providers.AsyncProvidersResource
-    integrations: integrations.AsyncIntegrationsResource
-    workflows: workflows.AsyncWorkflowsResource
-    schedules: schedules.AsyncSchedulesResource
-    channels: channels.AsyncChannelsResource
-    audiences: audiences.AsyncAudiencesResource
-    with_raw_response: AsyncKnockWithRawResponse
-    with_streaming_response: AsyncKnockWithStreamedResponse
-
     # client options
     api_key: str
     branch: str | None
@@ -321,19 +371,79 @@ class AsyncKnock(AsyncAPIClient):
 
         self._idempotency_header = "Idempotency-Key"
 
-        self.users = users.AsyncUsersResource(self)
-        self.objects = objects.AsyncObjectsResource(self)
-        self.tenants = tenants.AsyncTenantsResource(self)
-        self.bulk_operations = bulk_operations.AsyncBulkOperationsResource(self)
-        self.messages = messages.AsyncMessagesResource(self)
-        self.providers = providers.AsyncProvidersResource(self)
-        self.integrations = integrations.AsyncIntegrationsResource(self)
-        self.workflows = workflows.AsyncWorkflowsResource(self)
-        self.schedules = schedules.AsyncSchedulesResource(self)
-        self.channels = channels.AsyncChannelsResource(self)
-        self.audiences = audiences.AsyncAudiencesResource(self)
-        self.with_raw_response = AsyncKnockWithRawResponse(self)
-        self.with_streaming_response = AsyncKnockWithStreamedResponse(self)
+    @cached_property
+    def users(self) -> AsyncUsersResource:
+        from .resources.users import AsyncUsersResource
+
+        return AsyncUsersResource(self)
+
+    @cached_property
+    def objects(self) -> AsyncObjectsResource:
+        from .resources.objects import AsyncObjectsResource
+
+        return AsyncObjectsResource(self)
+
+    @cached_property
+    def tenants(self) -> AsyncTenantsResource:
+        from .resources.tenants import AsyncTenantsResource
+
+        return AsyncTenantsResource(self)
+
+    @cached_property
+    def bulk_operations(self) -> AsyncBulkOperationsResource:
+        from .resources.bulk_operations import AsyncBulkOperationsResource
+
+        return AsyncBulkOperationsResource(self)
+
+    @cached_property
+    def messages(self) -> AsyncMessagesResource:
+        from .resources.messages import AsyncMessagesResource
+
+        return AsyncMessagesResource(self)
+
+    @cached_property
+    def providers(self) -> AsyncProvidersResource:
+        from .resources.providers import AsyncProvidersResource
+
+        return AsyncProvidersResource(self)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResource:
+        from .resources.integrations import AsyncIntegrationsResource
+
+        return AsyncIntegrationsResource(self)
+
+    @cached_property
+    def workflows(self) -> AsyncWorkflowsResource:
+        from .resources.workflows import AsyncWorkflowsResource
+
+        return AsyncWorkflowsResource(self)
+
+    @cached_property
+    def schedules(self) -> AsyncSchedulesResource:
+        from .resources.schedules import AsyncSchedulesResource
+
+        return AsyncSchedulesResource(self)
+
+    @cached_property
+    def channels(self) -> AsyncChannelsResource:
+        from .resources.channels import AsyncChannelsResource
+
+        return AsyncChannelsResource(self)
+
+    @cached_property
+    def audiences(self) -> AsyncAudiencesResource:
+        from .resources.audiences import AsyncAudiencesResource
+
+        return AsyncAudiencesResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncKnockWithRawResponse:
+        return AsyncKnockWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncKnockWithStreamedResponse:
+        return AsyncKnockWithStreamedResponse(self)
 
     @property
     @override
@@ -444,63 +554,295 @@ class AsyncKnock(AsyncAPIClient):
 
 
 class KnockWithRawResponse:
+    _client: Knock
+
     def __init__(self, client: Knock) -> None:
-        self.users = users.UsersResourceWithRawResponse(client.users)
-        self.objects = objects.ObjectsResourceWithRawResponse(client.objects)
-        self.tenants = tenants.TenantsResourceWithRawResponse(client.tenants)
-        self.bulk_operations = bulk_operations.BulkOperationsResourceWithRawResponse(client.bulk_operations)
-        self.messages = messages.MessagesResourceWithRawResponse(client.messages)
-        self.providers = providers.ProvidersResourceWithRawResponse(client.providers)
-        self.integrations = integrations.IntegrationsResourceWithRawResponse(client.integrations)
-        self.workflows = workflows.WorkflowsResourceWithRawResponse(client.workflows)
-        self.schedules = schedules.SchedulesResourceWithRawResponse(client.schedules)
-        self.channels = channels.ChannelsResourceWithRawResponse(client.channels)
-        self.audiences = audiences.AudiencesResourceWithRawResponse(client.audiences)
+        self._client = client
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithRawResponse:
+        from .resources.users import UsersResourceWithRawResponse
+
+        return UsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def objects(self) -> objects.ObjectsResourceWithRawResponse:
+        from .resources.objects import ObjectsResourceWithRawResponse
+
+        return ObjectsResourceWithRawResponse(self._client.objects)
+
+    @cached_property
+    def tenants(self) -> tenants.TenantsResourceWithRawResponse:
+        from .resources.tenants import TenantsResourceWithRawResponse
+
+        return TenantsResourceWithRawResponse(self._client.tenants)
+
+    @cached_property
+    def bulk_operations(self) -> bulk_operations.BulkOperationsResourceWithRawResponse:
+        from .resources.bulk_operations import BulkOperationsResourceWithRawResponse
+
+        return BulkOperationsResourceWithRawResponse(self._client.bulk_operations)
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithRawResponse:
+        from .resources.messages import MessagesResourceWithRawResponse
+
+        return MessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def providers(self) -> providers.ProvidersResourceWithRawResponse:
+        from .resources.providers import ProvidersResourceWithRawResponse
+
+        return ProvidersResourceWithRawResponse(self._client.providers)
+
+    @cached_property
+    def integrations(self) -> integrations.IntegrationsResourceWithRawResponse:
+        from .resources.integrations import IntegrationsResourceWithRawResponse
+
+        return IntegrationsResourceWithRawResponse(self._client.integrations)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        from .resources.workflows import WorkflowsResourceWithRawResponse
+
+        return WorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def schedules(self) -> schedules.SchedulesResourceWithRawResponse:
+        from .resources.schedules import SchedulesResourceWithRawResponse
+
+        return SchedulesResourceWithRawResponse(self._client.schedules)
+
+    @cached_property
+    def channels(self) -> channels.ChannelsResourceWithRawResponse:
+        from .resources.channels import ChannelsResourceWithRawResponse
+
+        return ChannelsResourceWithRawResponse(self._client.channels)
+
+    @cached_property
+    def audiences(self) -> audiences.AudiencesResourceWithRawResponse:
+        from .resources.audiences import AudiencesResourceWithRawResponse
+
+        return AudiencesResourceWithRawResponse(self._client.audiences)
 
 
 class AsyncKnockWithRawResponse:
+    _client: AsyncKnock
+
     def __init__(self, client: AsyncKnock) -> None:
-        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
-        self.objects = objects.AsyncObjectsResourceWithRawResponse(client.objects)
-        self.tenants = tenants.AsyncTenantsResourceWithRawResponse(client.tenants)
-        self.bulk_operations = bulk_operations.AsyncBulkOperationsResourceWithRawResponse(client.bulk_operations)
-        self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
-        self.providers = providers.AsyncProvidersResourceWithRawResponse(client.providers)
-        self.integrations = integrations.AsyncIntegrationsResourceWithRawResponse(client.integrations)
-        self.workflows = workflows.AsyncWorkflowsResourceWithRawResponse(client.workflows)
-        self.schedules = schedules.AsyncSchedulesResourceWithRawResponse(client.schedules)
-        self.channels = channels.AsyncChannelsResourceWithRawResponse(client.channels)
-        self.audiences = audiences.AsyncAudiencesResourceWithRawResponse(client.audiences)
+        self._client = client
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithRawResponse:
+        from .resources.users import AsyncUsersResourceWithRawResponse
+
+        return AsyncUsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def objects(self) -> objects.AsyncObjectsResourceWithRawResponse:
+        from .resources.objects import AsyncObjectsResourceWithRawResponse
+
+        return AsyncObjectsResourceWithRawResponse(self._client.objects)
+
+    @cached_property
+    def tenants(self) -> tenants.AsyncTenantsResourceWithRawResponse:
+        from .resources.tenants import AsyncTenantsResourceWithRawResponse
+
+        return AsyncTenantsResourceWithRawResponse(self._client.tenants)
+
+    @cached_property
+    def bulk_operations(self) -> bulk_operations.AsyncBulkOperationsResourceWithRawResponse:
+        from .resources.bulk_operations import AsyncBulkOperationsResourceWithRawResponse
+
+        return AsyncBulkOperationsResourceWithRawResponse(self._client.bulk_operations)
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        from .resources.messages import AsyncMessagesResourceWithRawResponse
+
+        return AsyncMessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithRawResponse:
+        from .resources.providers import AsyncProvidersResourceWithRawResponse
+
+        return AsyncProvidersResourceWithRawResponse(self._client.providers)
+
+    @cached_property
+    def integrations(self) -> integrations.AsyncIntegrationsResourceWithRawResponse:
+        from .resources.integrations import AsyncIntegrationsResourceWithRawResponse
+
+        return AsyncIntegrationsResourceWithRawResponse(self._client.integrations)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
+
+        return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def schedules(self) -> schedules.AsyncSchedulesResourceWithRawResponse:
+        from .resources.schedules import AsyncSchedulesResourceWithRawResponse
+
+        return AsyncSchedulesResourceWithRawResponse(self._client.schedules)
+
+    @cached_property
+    def channels(self) -> channels.AsyncChannelsResourceWithRawResponse:
+        from .resources.channels import AsyncChannelsResourceWithRawResponse
+
+        return AsyncChannelsResourceWithRawResponse(self._client.channels)
+
+    @cached_property
+    def audiences(self) -> audiences.AsyncAudiencesResourceWithRawResponse:
+        from .resources.audiences import AsyncAudiencesResourceWithRawResponse
+
+        return AsyncAudiencesResourceWithRawResponse(self._client.audiences)
 
 
 class KnockWithStreamedResponse:
+    _client: Knock
+
     def __init__(self, client: Knock) -> None:
-        self.users = users.UsersResourceWithStreamingResponse(client.users)
-        self.objects = objects.ObjectsResourceWithStreamingResponse(client.objects)
-        self.tenants = tenants.TenantsResourceWithStreamingResponse(client.tenants)
-        self.bulk_operations = bulk_operations.BulkOperationsResourceWithStreamingResponse(client.bulk_operations)
-        self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
-        self.providers = providers.ProvidersResourceWithStreamingResponse(client.providers)
-        self.integrations = integrations.IntegrationsResourceWithStreamingResponse(client.integrations)
-        self.workflows = workflows.WorkflowsResourceWithStreamingResponse(client.workflows)
-        self.schedules = schedules.SchedulesResourceWithStreamingResponse(client.schedules)
-        self.channels = channels.ChannelsResourceWithStreamingResponse(client.channels)
-        self.audiences = audiences.AudiencesResourceWithStreamingResponse(client.audiences)
+        self._client = client
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithStreamingResponse:
+        from .resources.users import UsersResourceWithStreamingResponse
+
+        return UsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def objects(self) -> objects.ObjectsResourceWithStreamingResponse:
+        from .resources.objects import ObjectsResourceWithStreamingResponse
+
+        return ObjectsResourceWithStreamingResponse(self._client.objects)
+
+    @cached_property
+    def tenants(self) -> tenants.TenantsResourceWithStreamingResponse:
+        from .resources.tenants import TenantsResourceWithStreamingResponse
+
+        return TenantsResourceWithStreamingResponse(self._client.tenants)
+
+    @cached_property
+    def bulk_operations(self) -> bulk_operations.BulkOperationsResourceWithStreamingResponse:
+        from .resources.bulk_operations import BulkOperationsResourceWithStreamingResponse
+
+        return BulkOperationsResourceWithStreamingResponse(self._client.bulk_operations)
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        from .resources.messages import MessagesResourceWithStreamingResponse
+
+        return MessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def providers(self) -> providers.ProvidersResourceWithStreamingResponse:
+        from .resources.providers import ProvidersResourceWithStreamingResponse
+
+        return ProvidersResourceWithStreamingResponse(self._client.providers)
+
+    @cached_property
+    def integrations(self) -> integrations.IntegrationsResourceWithStreamingResponse:
+        from .resources.integrations import IntegrationsResourceWithStreamingResponse
+
+        return IntegrationsResourceWithStreamingResponse(self._client.integrations)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import WorkflowsResourceWithStreamingResponse
+
+        return WorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def schedules(self) -> schedules.SchedulesResourceWithStreamingResponse:
+        from .resources.schedules import SchedulesResourceWithStreamingResponse
+
+        return SchedulesResourceWithStreamingResponse(self._client.schedules)
+
+    @cached_property
+    def channels(self) -> channels.ChannelsResourceWithStreamingResponse:
+        from .resources.channels import ChannelsResourceWithStreamingResponse
+
+        return ChannelsResourceWithStreamingResponse(self._client.channels)
+
+    @cached_property
+    def audiences(self) -> audiences.AudiencesResourceWithStreamingResponse:
+        from .resources.audiences import AudiencesResourceWithStreamingResponse
+
+        return AudiencesResourceWithStreamingResponse(self._client.audiences)
 
 
 class AsyncKnockWithStreamedResponse:
+    _client: AsyncKnock
+
     def __init__(self, client: AsyncKnock) -> None:
-        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
-        self.objects = objects.AsyncObjectsResourceWithStreamingResponse(client.objects)
-        self.tenants = tenants.AsyncTenantsResourceWithStreamingResponse(client.tenants)
-        self.bulk_operations = bulk_operations.AsyncBulkOperationsResourceWithStreamingResponse(client.bulk_operations)
-        self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
-        self.providers = providers.AsyncProvidersResourceWithStreamingResponse(client.providers)
-        self.integrations = integrations.AsyncIntegrationsResourceWithStreamingResponse(client.integrations)
-        self.workflows = workflows.AsyncWorkflowsResourceWithStreamingResponse(client.workflows)
-        self.schedules = schedules.AsyncSchedulesResourceWithStreamingResponse(client.schedules)
-        self.channels = channels.AsyncChannelsResourceWithStreamingResponse(client.channels)
-        self.audiences = audiences.AsyncAudiencesResourceWithStreamingResponse(client.audiences)
+        self._client = client
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithStreamingResponse:
+        from .resources.users import AsyncUsersResourceWithStreamingResponse
+
+        return AsyncUsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def objects(self) -> objects.AsyncObjectsResourceWithStreamingResponse:
+        from .resources.objects import AsyncObjectsResourceWithStreamingResponse
+
+        return AsyncObjectsResourceWithStreamingResponse(self._client.objects)
+
+    @cached_property
+    def tenants(self) -> tenants.AsyncTenantsResourceWithStreamingResponse:
+        from .resources.tenants import AsyncTenantsResourceWithStreamingResponse
+
+        return AsyncTenantsResourceWithStreamingResponse(self._client.tenants)
+
+    @cached_property
+    def bulk_operations(self) -> bulk_operations.AsyncBulkOperationsResourceWithStreamingResponse:
+        from .resources.bulk_operations import AsyncBulkOperationsResourceWithStreamingResponse
+
+        return AsyncBulkOperationsResourceWithStreamingResponse(self._client.bulk_operations)
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        from .resources.messages import AsyncMessagesResourceWithStreamingResponse
+
+        return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithStreamingResponse:
+        from .resources.providers import AsyncProvidersResourceWithStreamingResponse
+
+        return AsyncProvidersResourceWithStreamingResponse(self._client.providers)
+
+    @cached_property
+    def integrations(self) -> integrations.AsyncIntegrationsResourceWithStreamingResponse:
+        from .resources.integrations import AsyncIntegrationsResourceWithStreamingResponse
+
+        return AsyncIntegrationsResourceWithStreamingResponse(self._client.integrations)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
+
+        return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def schedules(self) -> schedules.AsyncSchedulesResourceWithStreamingResponse:
+        from .resources.schedules import AsyncSchedulesResourceWithStreamingResponse
+
+        return AsyncSchedulesResourceWithStreamingResponse(self._client.schedules)
+
+    @cached_property
+    def channels(self) -> channels.AsyncChannelsResourceWithStreamingResponse:
+        from .resources.channels import AsyncChannelsResourceWithStreamingResponse
+
+        return AsyncChannelsResourceWithStreamingResponse(self._client.channels)
+
+    @cached_property
+    def audiences(self) -> audiences.AsyncAudiencesResourceWithStreamingResponse:
+        from .resources.audiences import AsyncAudiencesResourceWithStreamingResponse
+
+        return AsyncAudiencesResourceWithStreamingResponse(self._client.audiences)
 
 
 Client = Knock

@@ -42,6 +42,8 @@ class DataPushChannelDataFullDevice(BaseModel):
 
 
 class DataPushChannelDataFull(BaseModel):
+    """Push channel data."""
+
     devices: List[DataPushChannelDataFullDevice]
     """A list of devices.
 
@@ -77,6 +79,8 @@ class DataAwssnsPushChannelDataFullDevice(BaseModel):
 
 
 class DataAwssnsPushChannelDataFull(BaseModel):
+    """AWS SNS push channel data."""
+
     devices: List[DataAwssnsPushChannelDataFullDevice]
     """A list of devices.
 
@@ -102,6 +106,8 @@ Data: TypeAlias = Union[
 
 
 class ChannelData(BaseModel):
+    """Channel data for a given channel type."""
+
     api_typename: str = FieldInfo(alias="__typename")
     """The typename of the schema."""
 

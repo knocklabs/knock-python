@@ -13,6 +13,8 @@ __all__ = ["Schedule"]
 
 
 class Schedule(BaseModel):
+    """A schedule represents a recurring workflow execution."""
+
     id: str
     """Unique identifier for the schedule."""
 

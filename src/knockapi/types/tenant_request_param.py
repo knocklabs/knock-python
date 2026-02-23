@@ -13,6 +13,8 @@ __all__ = ["TenantRequestParam", "Settings", "SettingsBranding"]
 
 
 class SettingsBranding(TypedDict, total=False):
+    """The branding for the tenant."""
+
     icon_url: Optional[str]
     """The icon URL for the tenant.
 
@@ -33,6 +35,8 @@ class SettingsBranding(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    """The settings for the tenant. Includes branding and preference set."""
+
     branding: SettingsBranding
     """The branding for the tenant."""
 
@@ -41,6 +45,11 @@ class Settings(TypedDict, total=False):
 
 
 class TenantRequestParamTyped(TypedDict, total=False):
+    """A tenant to be set in the system.
+
+    You can supply any additional properties on the tenant object.
+    """
+
     id: Required[str]
     """The unique identifier for the tenant."""
 

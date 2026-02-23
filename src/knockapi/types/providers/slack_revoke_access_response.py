@@ -8,5 +8,7 @@ __all__ = ["SlackRevokeAccessResponse"]
 
 
 class SlackRevokeAccessResponse(BaseModel):
+    """A response indicating the operation was successful."""
+
     ok: Optional[str] = None
     """OK response."""

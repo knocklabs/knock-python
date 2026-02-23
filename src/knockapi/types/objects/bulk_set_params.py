@@ -19,6 +19,8 @@ class BulkSetParams(TypedDict, total=False):
 
 
 class ObjectTyped(TypedDict, total=False):
+    """A custom [Object](/concepts/objects) entity which belongs to a collection."""
+
     id: Required[str]
     """Unique identifier for the object."""
 

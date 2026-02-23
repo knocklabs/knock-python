@@ -9,6 +9,8 @@ __all__ = ["RecipientReference", "ObjectReference"]
 
 
 class ObjectReference(BaseModel):
+    """A reference to a recipient object."""
+
     id: Optional[str] = None
     """An identifier for the recipient object."""
 

@@ -54,10 +54,10 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> BulkOperation:
-        """Delete up to 100 tenants at a time in a single operation.
+        """Delete up to 1,000 tenants at a time in a single operation.
 
-        This operation cannot
-        be undone.
+        This operation
+        cannot be undone.
 
         Args:
           tenant_ids: The IDs of the tenants to delete.
@@ -98,7 +98,7 @@ class BulkResource(SyncAPIResource):
         idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
-        Set or update up to 100 tenants in a single operation.
+        Set or update up to 1,000 tenants in a single operation.
 
         Args:
           tenants: The tenants to be upserted.
@@ -159,10 +159,10 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> BulkOperation:
-        """Delete up to 100 tenants at a time in a single operation.
+        """Delete up to 1,000 tenants at a time in a single operation.
 
-        This operation cannot
-        be undone.
+        This operation
+        cannot be undone.
 
         Args:
           tenant_ids: The IDs of the tenants to delete.
@@ -203,7 +203,7 @@ class AsyncBulkResource(AsyncAPIResource):
         idempotency_key: str | None = None,
     ) -> BulkOperation:
         """
-        Set or update up to 100 tenants in a single operation.
+        Set or update up to 1,000 tenants in a single operation.
 
         Args:
           tenants: The tenants to be upserted.

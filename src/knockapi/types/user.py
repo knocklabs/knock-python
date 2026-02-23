@@ -11,6 +11,10 @@ __all__ = ["User"]
 
 
 class User(BaseModel):
+    """
+    A [User](/concepts/users) represents an individual in your system who can receive notifications through Knock. Users are the most common recipients of notifications and are always referenced by your internal identifier.
+    """
+
     id: str
     """The unique identifier of the user."""
 

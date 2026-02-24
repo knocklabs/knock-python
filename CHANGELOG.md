@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.20.1 (2026-02-24)
+
+Full Changelog: [v1.20.0...v1.20.1](https://github.com/knocklabs/knock-python/compare/v1.20.0...v1.20.1)
+
+### Chores
+
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([8a10ea7](https://github.com/knocklabs/knock-python/commit/8a10ea7436198b9016d7b9a7e2172372894baeaf))
+
 ## 1.20.0 (2026-02-23)
 
 Full Changelog: [v1.19.0...v1.20.0](https://github.com/knocklabs/knock-python/compare/v1.19.0...v1.20.0)

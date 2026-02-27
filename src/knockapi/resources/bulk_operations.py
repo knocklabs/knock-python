@@ -20,6 +20,10 @@ __all__ = ["BulkOperationsResource", "AsyncBulkOperationsResource"]
 
 
 class BulkOperationsResource(SyncAPIResource):
+    """
+    A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+    """
+
     @cached_property
     def with_raw_response(self) -> BulkOperationsResourceWithRawResponse:
         """
@@ -74,6 +78,10 @@ class BulkOperationsResource(SyncAPIResource):
 
 
 class AsyncBulkOperationsResource(AsyncAPIResource):
+    """
+    A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncBulkOperationsResourceWithRawResponse:
         """

@@ -126,30 +126,42 @@ class Knock(SyncAPIClient):
 
     @cached_property
     def users(self) -> UsersResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import UsersResource
 
         return UsersResource(self)
 
     @cached_property
     def objects(self) -> ObjectsResource:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import ObjectsResource
 
         return ObjectsResource(self)
 
     @cached_property
     def tenants(self) -> TenantsResource:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import TenantsResource
 
         return TenantsResource(self)
 
     @cached_property
     def bulk_operations(self) -> BulkOperationsResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import BulkOperationsResource
 
         return BulkOperationsResource(self)
 
     @cached_property
     def messages(self) -> MessagesResource:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import MessagesResource
 
         return MessagesResource(self)
@@ -168,12 +180,18 @@ class Knock(SyncAPIClient):
 
     @cached_property
     def workflows(self) -> WorkflowsResource:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import WorkflowsResource
 
         return WorkflowsResource(self)
 
     @cached_property
     def schedules(self) -> SchedulesResource:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import SchedulesResource
 
         return SchedulesResource(self)
@@ -186,6 +204,7 @@ class Knock(SyncAPIClient):
 
     @cached_property
     def audiences(self) -> AudiencesResource:
+        """An Audience is a segment of users."""
         from .resources.audiences import AudiencesResource
 
         return AudiencesResource(self)
@@ -373,30 +392,42 @@ class AsyncKnock(AsyncAPIClient):
 
     @cached_property
     def users(self) -> AsyncUsersResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import AsyncUsersResource
 
         return AsyncUsersResource(self)
 
     @cached_property
     def objects(self) -> AsyncObjectsResource:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import AsyncObjectsResource
 
         return AsyncObjectsResource(self)
 
     @cached_property
     def tenants(self) -> AsyncTenantsResource:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import AsyncTenantsResource
 
         return AsyncTenantsResource(self)
 
     @cached_property
     def bulk_operations(self) -> AsyncBulkOperationsResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import AsyncBulkOperationsResource
 
         return AsyncBulkOperationsResource(self)
 
     @cached_property
     def messages(self) -> AsyncMessagesResource:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import AsyncMessagesResource
 
         return AsyncMessagesResource(self)
@@ -415,12 +446,18 @@ class AsyncKnock(AsyncAPIClient):
 
     @cached_property
     def workflows(self) -> AsyncWorkflowsResource:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import AsyncWorkflowsResource
 
         return AsyncWorkflowsResource(self)
 
     @cached_property
     def schedules(self) -> AsyncSchedulesResource:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import AsyncSchedulesResource
 
         return AsyncSchedulesResource(self)
@@ -433,6 +470,7 @@ class AsyncKnock(AsyncAPIClient):
 
     @cached_property
     def audiences(self) -> AsyncAudiencesResource:
+        """An Audience is a segment of users."""
         from .resources.audiences import AsyncAudiencesResource
 
         return AsyncAudiencesResource(self)
@@ -561,30 +599,42 @@ class KnockWithRawResponse:
 
     @cached_property
     def users(self) -> users.UsersResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import UsersResourceWithRawResponse
 
         return UsersResourceWithRawResponse(self._client.users)
 
     @cached_property
     def objects(self) -> objects.ObjectsResourceWithRawResponse:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import ObjectsResourceWithRawResponse
 
         return ObjectsResourceWithRawResponse(self._client.objects)
 
     @cached_property
     def tenants(self) -> tenants.TenantsResourceWithRawResponse:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import TenantsResourceWithRawResponse
 
         return TenantsResourceWithRawResponse(self._client.tenants)
 
     @cached_property
     def bulk_operations(self) -> bulk_operations.BulkOperationsResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import BulkOperationsResourceWithRawResponse
 
         return BulkOperationsResourceWithRawResponse(self._client.bulk_operations)
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithRawResponse:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import MessagesResourceWithRawResponse
 
         return MessagesResourceWithRawResponse(self._client.messages)
@@ -603,12 +653,18 @@ class KnockWithRawResponse:
 
     @cached_property
     def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import WorkflowsResourceWithRawResponse
 
         return WorkflowsResourceWithRawResponse(self._client.workflows)
 
     @cached_property
     def schedules(self) -> schedules.SchedulesResourceWithRawResponse:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import SchedulesResourceWithRawResponse
 
         return SchedulesResourceWithRawResponse(self._client.schedules)
@@ -621,6 +677,7 @@ class KnockWithRawResponse:
 
     @cached_property
     def audiences(self) -> audiences.AudiencesResourceWithRawResponse:
+        """An Audience is a segment of users."""
         from .resources.audiences import AudiencesResourceWithRawResponse
 
         return AudiencesResourceWithRawResponse(self._client.audiences)
@@ -634,30 +691,42 @@ class AsyncKnockWithRawResponse:
 
     @cached_property
     def users(self) -> users.AsyncUsersResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import AsyncUsersResourceWithRawResponse
 
         return AsyncUsersResourceWithRawResponse(self._client.users)
 
     @cached_property
     def objects(self) -> objects.AsyncObjectsResourceWithRawResponse:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import AsyncObjectsResourceWithRawResponse
 
         return AsyncObjectsResourceWithRawResponse(self._client.objects)
 
     @cached_property
     def tenants(self) -> tenants.AsyncTenantsResourceWithRawResponse:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import AsyncTenantsResourceWithRawResponse
 
         return AsyncTenantsResourceWithRawResponse(self._client.tenants)
 
     @cached_property
     def bulk_operations(self) -> bulk_operations.AsyncBulkOperationsResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import AsyncBulkOperationsResourceWithRawResponse
 
         return AsyncBulkOperationsResourceWithRawResponse(self._client.bulk_operations)
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import AsyncMessagesResourceWithRawResponse
 
         return AsyncMessagesResourceWithRawResponse(self._client.messages)
@@ -676,12 +745,18 @@ class AsyncKnockWithRawResponse:
 
     @cached_property
     def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
 
         return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
 
     @cached_property
     def schedules(self) -> schedules.AsyncSchedulesResourceWithRawResponse:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import AsyncSchedulesResourceWithRawResponse
 
         return AsyncSchedulesResourceWithRawResponse(self._client.schedules)
@@ -694,6 +769,7 @@ class AsyncKnockWithRawResponse:
 
     @cached_property
     def audiences(self) -> audiences.AsyncAudiencesResourceWithRawResponse:
+        """An Audience is a segment of users."""
         from .resources.audiences import AsyncAudiencesResourceWithRawResponse
 
         return AsyncAudiencesResourceWithRawResponse(self._client.audiences)
@@ -707,30 +783,42 @@ class KnockWithStreamedResponse:
 
     @cached_property
     def users(self) -> users.UsersResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import UsersResourceWithStreamingResponse
 
         return UsersResourceWithStreamingResponse(self._client.users)
 
     @cached_property
     def objects(self) -> objects.ObjectsResourceWithStreamingResponse:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import ObjectsResourceWithStreamingResponse
 
         return ObjectsResourceWithStreamingResponse(self._client.objects)
 
     @cached_property
     def tenants(self) -> tenants.TenantsResourceWithStreamingResponse:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import TenantsResourceWithStreamingResponse
 
         return TenantsResourceWithStreamingResponse(self._client.tenants)
 
     @cached_property
     def bulk_operations(self) -> bulk_operations.BulkOperationsResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import BulkOperationsResourceWithStreamingResponse
 
         return BulkOperationsResourceWithStreamingResponse(self._client.bulk_operations)
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import MessagesResourceWithStreamingResponse
 
         return MessagesResourceWithStreamingResponse(self._client.messages)
@@ -749,12 +837,18 @@ class KnockWithStreamedResponse:
 
     @cached_property
     def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import WorkflowsResourceWithStreamingResponse
 
         return WorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
     def schedules(self) -> schedules.SchedulesResourceWithStreamingResponse:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import SchedulesResourceWithStreamingResponse
 
         return SchedulesResourceWithStreamingResponse(self._client.schedules)
@@ -767,6 +861,7 @@ class KnockWithStreamedResponse:
 
     @cached_property
     def audiences(self) -> audiences.AudiencesResourceWithStreamingResponse:
+        """An Audience is a segment of users."""
         from .resources.audiences import AudiencesResourceWithStreamingResponse
 
         return AudiencesResourceWithStreamingResponse(self._client.audiences)
@@ -780,30 +875,42 @@ class AsyncKnockWithStreamedResponse:
 
     @cached_property
     def users(self) -> users.AsyncUsersResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         from .resources.users import AsyncUsersResourceWithStreamingResponse
 
         return AsyncUsersResourceWithStreamingResponse(self._client.users)
 
     @cached_property
     def objects(self) -> objects.AsyncObjectsResourceWithStreamingResponse:
+        """An object represents a resource in your system that you want to map into Knock."""
         from .resources.objects import AsyncObjectsResourceWithStreamingResponse
 
         return AsyncObjectsResourceWithStreamingResponse(self._client.objects)
 
     @cached_property
     def tenants(self) -> tenants.AsyncTenantsResourceWithStreamingResponse:
+        """
+        A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+        """
         from .resources.tenants import AsyncTenantsResourceWithStreamingResponse
 
         return AsyncTenantsResourceWithStreamingResponse(self._client.tenants)
 
     @cached_property
     def bulk_operations(self) -> bulk_operations.AsyncBulkOperationsResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         from .resources.bulk_operations import AsyncBulkOperationsResourceWithStreamingResponse
 
         return AsyncBulkOperationsResourceWithStreamingResponse(self._client.bulk_operations)
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        """A message sent to a single recipient on a channel."""
         from .resources.messages import AsyncMessagesResourceWithStreamingResponse
 
         return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
@@ -822,12 +929,18 @@ class AsyncKnockWithStreamedResponse:
 
     @cached_property
     def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        """
+        A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+        """
         from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
 
         return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
     def schedules(self) -> schedules.AsyncSchedulesResourceWithStreamingResponse:
+        """
+        A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+        """
         from .resources.schedules import AsyncSchedulesResourceWithStreamingResponse
 
         return AsyncSchedulesResourceWithStreamingResponse(self._client.schedules)
@@ -840,6 +953,7 @@ class AsyncKnockWithStreamedResponse:
 
     @cached_property
     def audiences(self) -> audiences.AsyncAudiencesResourceWithStreamingResponse:
+        """An Audience is a segment of users."""
         from .resources.audiences import AsyncAudiencesResourceWithStreamingResponse
 
         return AsyncAudiencesResourceWithStreamingResponse(self._client.audiences)

@@ -46,8 +46,15 @@ __all__ = ["SchedulesResource", "AsyncSchedulesResource"]
 
 
 class SchedulesResource(SyncAPIResource):
+    """
+    A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+    """
+
     @cached_property
     def bulk(self) -> BulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResource(self._client)
 
     @cached_property
@@ -338,8 +345,15 @@ class SchedulesResource(SyncAPIResource):
 
 
 class AsyncSchedulesResource(AsyncAPIResource):
+    """
+    A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
+    """
+
     @cached_property
     def bulk(self) -> AsyncBulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResource(self._client)
 
     @cached_property
@@ -650,6 +664,9 @@ class SchedulesResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithRawResponse(self._schedules.bulk)
 
 
@@ -672,6 +689,9 @@ class AsyncSchedulesResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithRawResponse(self._schedules.bulk)
 
 
@@ -694,6 +714,9 @@ class SchedulesResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithStreamingResponse(self._schedules.bulk)
 
 
@@ -716,4 +739,7 @@ class AsyncSchedulesResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithStreamingResponse(self._schedules.bulk)

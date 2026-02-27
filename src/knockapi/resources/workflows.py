@@ -27,6 +27,10 @@ __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
 
 
 class WorkflowsResource(SyncAPIResource):
+    """
+    A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+    """
+
     @cached_property
     def with_raw_response(self) -> WorkflowsResourceWithRawResponse:
         """
@@ -188,6 +192,10 @@ class WorkflowsResource(SyncAPIResource):
 
 
 class AsyncWorkflowsResource(AsyncAPIResource):
+    """
+    A workflow is a structured set of steps that is triggered to produce notifications sent over channels.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncWorkflowsResourceWithRawResponse:
         """

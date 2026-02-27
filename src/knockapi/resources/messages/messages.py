@@ -44,8 +44,11 @@ __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
 
 class MessagesResource(SyncAPIResource):
+    """A message sent to a single recipient on a channel."""
+
     @cached_property
     def batch(self) -> BatchResource:
+        """A message sent to a single recipient on a channel."""
         return BatchResource(self._client)
 
     @cached_property
@@ -709,8 +712,11 @@ class MessagesResource(SyncAPIResource):
 
 
 class AsyncMessagesResource(AsyncAPIResource):
+    """A message sent to a single recipient on a channel."""
+
     @cached_property
     def batch(self) -> AsyncBatchResource:
+        """A message sent to a single recipient on a channel."""
         return AsyncBatchResource(self._client)
 
     @cached_property
@@ -1419,6 +1425,7 @@ class MessagesResourceWithRawResponse:
 
     @cached_property
     def batch(self) -> BatchResourceWithRawResponse:
+        """A message sent to a single recipient on a channel."""
         return BatchResourceWithRawResponse(self._messages.batch)
 
 
@@ -1468,6 +1475,7 @@ class AsyncMessagesResourceWithRawResponse:
 
     @cached_property
     def batch(self) -> AsyncBatchResourceWithRawResponse:
+        """A message sent to a single recipient on a channel."""
         return AsyncBatchResourceWithRawResponse(self._messages.batch)
 
 
@@ -1517,6 +1525,7 @@ class MessagesResourceWithStreamingResponse:
 
     @cached_property
     def batch(self) -> BatchResourceWithStreamingResponse:
+        """A message sent to a single recipient on a channel."""
         return BatchResourceWithStreamingResponse(self._messages.batch)
 
 
@@ -1566,4 +1575,5 @@ class AsyncMessagesResourceWithStreamingResponse:
 
     @cached_property
     def batch(self) -> AsyncBatchResourceWithStreamingResponse:
+        """A message sent to a single recipient on a channel."""
         return AsyncBatchResourceWithStreamingResponse(self._messages.batch)

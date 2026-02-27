@@ -24,6 +24,8 @@ __all__ = ["AudiencesResource", "AsyncAudiencesResource"]
 
 
 class AudiencesResource(SyncAPIResource):
+    """An Audience is a segment of users."""
+
     @cached_property
     def with_raw_response(self) -> AudiencesResourceWithRawResponse:
         """
@@ -175,6 +177,8 @@ class AudiencesResource(SyncAPIResource):
 
 
 class AsyncAudiencesResource(AsyncAPIResource):
+    """An Audience is a segment of users."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAudiencesResourceWithRawResponse:
         """

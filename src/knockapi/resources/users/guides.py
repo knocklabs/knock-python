@@ -32,6 +32,11 @@ __all__ = ["GuidesResource", "AsyncGuidesResource"]
 
 
 class GuidesResource(SyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def with_raw_response(self) -> GuidesResourceWithRawResponse:
         """
@@ -364,6 +369,11 @@ class GuidesResource(SyncAPIResource):
 
 
 class AsyncGuidesResource(AsyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncGuidesResourceWithRawResponse:
         """

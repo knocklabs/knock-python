@@ -25,6 +25,10 @@ __all__ = ["SlackResource", "AsyncSlackResource"]
 
 
 class SlackResource(SyncAPIResource):
+    """
+    A provider represents a third-party service that Knock integrates with and is configured via a channel.
+    """
+
     @cached_property
     def with_raw_response(self) -> SlackResourceWithRawResponse:
         """
@@ -182,6 +186,10 @@ class SlackResource(SyncAPIResource):
 
 
 class AsyncSlackResource(AsyncAPIResource):
+    """
+    A provider represents a third-party service that Knock integrates with and is configured via a channel.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSlackResourceWithRawResponse:
         """

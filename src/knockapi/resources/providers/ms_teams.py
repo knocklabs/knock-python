@@ -31,6 +31,10 @@ __all__ = ["MsTeamsResource", "AsyncMsTeamsResource"]
 
 
 class MsTeamsResource(SyncAPIResource):
+    """
+    A provider represents a third-party service that Knock integrates with and is configured via a channel.
+    """
+
     @cached_property
     def with_raw_response(self) -> MsTeamsResourceWithRawResponse:
         """
@@ -245,6 +249,10 @@ class MsTeamsResource(SyncAPIResource):
 
 
 class AsyncMsTeamsResource(AsyncAPIResource):
+    """
+    A provider represents a third-party service that Knock integrates with and is configured via a channel.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncMsTeamsResourceWithRawResponse:
         """

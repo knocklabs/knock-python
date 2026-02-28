@@ -34,8 +34,15 @@ __all__ = ["TenantsResource", "AsyncTenantsResource"]
 
 
 class TenantsResource(SyncAPIResource):
+    """
+    A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+    """
+
     @cached_property
     def bulk(self) -> BulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResource(self._client)
 
     @cached_property
@@ -273,8 +280,15 @@ class TenantsResource(SyncAPIResource):
 
 
 class AsyncTenantsResource(AsyncAPIResource):
+    """
+    A tenant represents a top-level entity from your system, like a company, organization, account, or workspace.
+    """
+
     @cached_property
     def bulk(self) -> AsyncBulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResource(self._client)
 
     @cached_property
@@ -530,6 +544,9 @@ class TenantsResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithRawResponse(self._tenants.bulk)
 
 
@@ -552,6 +569,9 @@ class AsyncTenantsResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithRawResponse(self._tenants.bulk)
 
 
@@ -574,6 +594,9 @@ class TenantsResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithStreamingResponse(self._tenants.bulk)
 
 
@@ -596,4 +619,7 @@ class AsyncTenantsResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithStreamingResponse(self._tenants.bulk)

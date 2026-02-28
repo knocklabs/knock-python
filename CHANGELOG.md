@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.20.2 (2026-02-27)
+
+Full Changelog: [v1.20.1...v1.20.2](https://github.com/knocklabs/knock-python/compare/v1.20.1...v1.20.2)
+
+### Chores
+
+* **docs:** add missing descriptions ([02bea2b](https://github.com/knocklabs/knock-python/commit/02bea2b275c9680072ed89fb06634e957f017292))
+
 ## 1.20.1 (2026-02-24)
 
 Full Changelog: [v1.20.0...v1.20.1](https://github.com/knocklabs/knock-python/compare/v1.20.0...v1.20.1)

@@ -26,6 +26,11 @@ __all__ = ["FeedsResource", "AsyncFeedsResource"]
 
 
 class FeedsResource(SyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def with_raw_response(self) -> FeedsResourceWithRawResponse:
         """
@@ -206,6 +211,11 @@ class FeedsResource(SyncAPIResource):
 
 
 class AsyncFeedsResource(AsyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFeedsResourceWithRawResponse:
         """

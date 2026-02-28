@@ -27,10 +27,16 @@ __all__ = ["ProvidersResource", "AsyncProvidersResource"]
 class ProvidersResource(SyncAPIResource):
     @cached_property
     def slack(self) -> SlackResource:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return SlackResource(self._client)
 
     @cached_property
     def ms_teams(self) -> MsTeamsResource:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return MsTeamsResource(self._client)
 
     @cached_property
@@ -56,10 +62,16 @@ class ProvidersResource(SyncAPIResource):
 class AsyncProvidersResource(AsyncAPIResource):
     @cached_property
     def slack(self) -> AsyncSlackResource:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncSlackResource(self._client)
 
     @cached_property
     def ms_teams(self) -> AsyncMsTeamsResource:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncMsTeamsResource(self._client)
 
     @cached_property
@@ -88,10 +100,16 @@ class ProvidersResourceWithRawResponse:
 
     @cached_property
     def slack(self) -> SlackResourceWithRawResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return SlackResourceWithRawResponse(self._providers.slack)
 
     @cached_property
     def ms_teams(self) -> MsTeamsResourceWithRawResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return MsTeamsResourceWithRawResponse(self._providers.ms_teams)
 
 
@@ -101,10 +119,16 @@ class AsyncProvidersResourceWithRawResponse:
 
     @cached_property
     def slack(self) -> AsyncSlackResourceWithRawResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncSlackResourceWithRawResponse(self._providers.slack)
 
     @cached_property
     def ms_teams(self) -> AsyncMsTeamsResourceWithRawResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncMsTeamsResourceWithRawResponse(self._providers.ms_teams)
 
 
@@ -114,10 +138,16 @@ class ProvidersResourceWithStreamingResponse:
 
     @cached_property
     def slack(self) -> SlackResourceWithStreamingResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return SlackResourceWithStreamingResponse(self._providers.slack)
 
     @cached_property
     def ms_teams(self) -> MsTeamsResourceWithStreamingResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return MsTeamsResourceWithStreamingResponse(self._providers.ms_teams)
 
 
@@ -127,8 +157,14 @@ class AsyncProvidersResourceWithStreamingResponse:
 
     @cached_property
     def slack(self) -> AsyncSlackResourceWithStreamingResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncSlackResourceWithStreamingResponse(self._providers.slack)
 
     @cached_property
     def ms_teams(self) -> AsyncMsTeamsResourceWithStreamingResponse:
+        """
+        A provider represents a third-party service that Knock integrates with and is configured via a channel.
+        """
         return AsyncMsTeamsResourceWithStreamingResponse(self._providers.ms_teams)

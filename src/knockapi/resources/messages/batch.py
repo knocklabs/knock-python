@@ -40,6 +40,8 @@ __all__ = ["BatchResource", "AsyncBatchResource"]
 
 
 class BatchResource(SyncAPIResource):
+    """A message sent to a single recipient on a channel."""
+
     @cached_property
     def with_raw_response(self) -> BatchResourceWithRawResponse:
         """
@@ -415,6 +417,8 @@ class BatchResource(SyncAPIResource):
 
 
 class AsyncBatchResource(AsyncAPIResource):
+    """A message sent to a single recipient on a channel."""
+
     @cached_property
     def with_raw_response(self) -> AsyncBatchResourceWithRawResponse:
         """

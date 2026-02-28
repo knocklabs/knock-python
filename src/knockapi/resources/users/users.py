@@ -71,16 +71,32 @@ __all__ = ["UsersResource", "AsyncUsersResource"]
 
 
 class UsersResource(SyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def feeds(self) -> FeedsResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return FeedsResource(self._client)
 
     @cached_property
     def guides(self) -> GuidesResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return GuidesResource(self._client)
 
     @cached_property
     def bulk(self) -> BulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResource(self._client)
 
     @cached_property
@@ -889,16 +905,32 @@ class UsersResource(SyncAPIResource):
 
 
 class AsyncUsersResource(AsyncAPIResource):
+    """A user is an individual from your system, represented in Knock.
+
+    They are most commonly a recipient of a notification.
+    """
+
     @cached_property
     def feeds(self) -> AsyncFeedsResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncFeedsResource(self._client)
 
     @cached_property
     def guides(self) -> AsyncGuidesResource:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncGuidesResource(self._client)
 
     @cached_property
     def bulk(self) -> AsyncBulkResource:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResource(self._client)
 
     @cached_property
@@ -1757,14 +1789,25 @@ class UsersResourceWithRawResponse:
 
     @cached_property
     def feeds(self) -> FeedsResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return FeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> GuidesResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return GuidesResourceWithRawResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithRawResponse(self._users.bulk)
 
 
@@ -1817,14 +1860,25 @@ class AsyncUsersResourceWithRawResponse:
 
     @cached_property
     def feeds(self) -> AsyncFeedsResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncFeedsResourceWithRawResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> AsyncGuidesResourceWithRawResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncGuidesResourceWithRawResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithRawResponse(self._users.bulk)
 
 
@@ -1877,14 +1931,25 @@ class UsersResourceWithStreamingResponse:
 
     @cached_property
     def feeds(self) -> FeedsResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return FeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> GuidesResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return GuidesResourceWithStreamingResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return BulkResourceWithStreamingResponse(self._users.bulk)
 
 
@@ -1937,12 +2002,23 @@ class AsyncUsersResourceWithStreamingResponse:
 
     @cached_property
     def feeds(self) -> AsyncFeedsResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncFeedsResourceWithStreamingResponse(self._users.feeds)
 
     @cached_property
     def guides(self) -> AsyncGuidesResourceWithStreamingResponse:
+        """A user is an individual from your system, represented in Knock.
+
+        They are most commonly a recipient of a notification.
+        """
         return AsyncGuidesResourceWithStreamingResponse(self._users.guides)
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        """
+        A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
+        """
         return AsyncBulkResourceWithStreamingResponse(self._users.bulk)

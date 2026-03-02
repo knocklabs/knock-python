@@ -99,9 +99,6 @@ class Entry(BaseModel):
 
     channel_id: Optional[str] = None
 
-    dashboard_url: Optional[str] = None
-    """URL to this guide in the Knock dashboard"""
-
     inserted_at: Optional[datetime] = None
 
     key: Optional[str] = None

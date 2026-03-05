@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.22.1 (2026-03-05)
+
+Full Changelog: [v1.22.0...v1.22.1](https://github.com/knocklabs/knock-python/compare/v1.22.0...v1.22.1)
+
+### Chores
+
+* **test:** do not count install time for mock server timeout ([fb90aa9](https://github.com/knocklabs/knock-python/commit/fb90aa9aeb75f917647c343385ab79e0e42aa85d))
+
+
+### Refactors
+
+* **types:** use `extra_items` from PEP 728 ([10ec48a](https://github.com/knocklabs/knock-python/commit/10ec48a716604bb5419a818320326e85c1eae04f))
+
 ## 1.22.0 (2026-03-02)
 
 Full Changelog: [v1.21.0...v1.22.0](https://github.com/knocklabs/knock-python/compare/v1.21.0...v1.22.0)

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -13,7 +13,7 @@ from .recipients.inline_preference_set_request_param import InlinePreferenceSetR
 __all__ = ["InlineIdentifyUserRequestParam"]
 
 
-class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
+class InlineIdentifyUserRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """A set of parameters to inline-identify a user with.
 
     Inline identifying the user will ensure that the user is available before the request is executed in Knock. It will perform an upsert for the user you're supplying, replacing any properties specified.
@@ -64,6 +64,3 @@ class InlineIdentifyUserRequestParamTyped(TypedDict, total=False):
     Used
     for [recurring schedules](/concepts/schedules#scheduling-workflows-with-recurring-schedules-for-recipients).
     """
-
-
-InlineIdentifyUserRequestParam: TypeAlias = Union[InlineIdentifyUserRequestParamTyped, Dict[str, object]]

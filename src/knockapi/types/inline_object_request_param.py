@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -13,7 +13,7 @@ from .recipients.inline_preference_set_request_param import InlinePreferenceSetR
 __all__ = ["InlineObjectRequestParam"]
 
 
-class InlineObjectRequestParamTyped(TypedDict, total=False):
+class InlineObjectRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """A custom [Object](/concepts/objects) entity which belongs to a collection."""
 
     id: Required[str]
@@ -37,6 +37,3 @@ class InlineObjectRequestParamTyped(TypedDict, total=False):
     Preferences that are set inline will be merged into any existing preferences
     rather than replacing them.
     """
-
-
-InlineObjectRequestParam: TypeAlias = Union[InlineObjectRequestParamTyped, Dict[str, object]]

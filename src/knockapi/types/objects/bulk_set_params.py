@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 from ..recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -18,7 +18,7 @@ class BulkSetParams(TypedDict, total=False):
     """A list of objects."""
 
 
-class ObjectTyped(TypedDict, total=False):
+class Object(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """A custom [Object](/concepts/objects) entity which belongs to a collection."""
 
     id: Required[str]
@@ -39,6 +39,3 @@ class ObjectTyped(TypedDict, total=False):
     Preferences that are set inline will be merged into any existing preferences
     rather than replacing them.
     """
-
-
-Object: TypeAlias = Union[ObjectTyped, Dict[str, object]]

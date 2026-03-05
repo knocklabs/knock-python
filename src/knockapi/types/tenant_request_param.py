@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Optional
+from typing_extensions import Required, TypedDict
 
 from .recipients.preference_set_request_param import PreferenceSetRequestParam
 from .recipients.inline_channel_data_request_param import InlineChannelDataRequestParam
@@ -44,7 +44,7 @@ class Settings(TypedDict, total=False):
     """A request to set a preference set for a recipient."""
 
 
-class TenantRequestParamTyped(TypedDict, total=False):
+class TenantRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """A tenant to be set in the system.
 
     You can supply any additional properties on the tenant object.
@@ -68,6 +68,3 @@ class TenantRequestParamTyped(TypedDict, total=False):
 
     settings: Settings
     """The settings for the tenant. Includes branding and preference set."""
-
-
-TenantRequestParam: TypeAlias = Union[TenantRequestParamTyped, Dict[str, object]]

@@ -36,7 +36,6 @@ class Condition(TypedDict, total=False):
             "is_timestamp_on_or_after_date",
             "is_timestamp_before_date",
             "is_timestamp_between",
-            "is_between",
             "is_audience_member",
             "is_not_audience_member",
         ]

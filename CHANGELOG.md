@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.23.0 (2026-03-12)
+
+Full Changelog: [v1.22.1...v1.23.0](https://github.com/knocklabs/knock-python/compare/v1.22.1...v1.23.0)
+
+### Features
+
+* **api:** api update ([b1d76bc](https://github.com/knocklabs/knock-python/commit/b1d76bc463172822bc2fad95586991c132431aa5))
+* **api:** api update ([27e9425](https://github.com/knocklabs/knock-python/commit/27e94255f35365a57c78254789185c3e3fa059dd))
+* **api:** api update ([9580e88](https://github.com/knocklabs/knock-python/commit/9580e88cd8e4447bee23afa25485e038d61a557d))
+* **api:** api update ([453061c](https://github.com/knocklabs/knock-python/commit/453061c6e2671a8d57430dcc06054510ac513db5))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([3a0d565](https://github.com/knocklabs/knock-python/commit/3a0d56535fee93f9adf76615208dc37be7cc2acd))
+
 ## 1.22.1 (2026-03-05)
 
 Full Changelog: [v1.22.0...v1.22.1](https://github.com/knocklabs/knock-python/compare/v1.22.0...v1.22.1)

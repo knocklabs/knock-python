@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import TYPE_CHECKING, Any, Union, Generic, TypeVar, Callable, cast, overload
 from datetime import date, datetime
 from typing_extensions import Self, Literal
@@ -17,7 +18,7 @@ _ModelT = TypeVar("_ModelT", bound=pydantic.BaseModel)
 # Pyright incorrectly reports some of our functions as overriding a method when they don't
 # pyright: reportIncompatibleMethodOverride=false
 
-PYDANTIC_V1 = pydantic.VERSION.startswith("1.")
+PYDANTIC_V1 = pydantic.VERSION.startswith("1.") or os.environ.get("FORCE_PYDANTIC_V1", "").lower() in ("1", "true")
 
 if TYPE_CHECKING:
 

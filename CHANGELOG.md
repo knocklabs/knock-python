@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.24.1 (2026-03-16)
+
+Full Changelog: [v1.24.0...v1.24.1](https://github.com/knocklabs/knock-python/compare/v1.24.0...v1.24.1)
+
+### Bug Fixes
+
+* **pydantic:** do not pass `by_alias` unless set ([0354401](https://github.com/knocklabs/knock-python/commit/035440138f517318906cf5e746e24ecdcb1bb86b))
+
 ## 1.24.0 (2026-03-13)
 
 Full Changelog: [v1.23.0...v1.24.0](https://github.com/knocklabs/knock-python/compare/v1.23.0...v1.24.0)

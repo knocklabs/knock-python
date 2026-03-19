@@ -8,7 +8,7 @@ import httpx
 
 from ..types import audience_add_members_params, audience_remove_members_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -81,7 +81,7 @@ class AudiencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             body=maybe_transform({"members": members}, audience_add_members_params.AudienceAddMembersParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -122,7 +122,7 @@ class AudiencesResource(SyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return self._get(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -163,7 +163,7 @@ class AudiencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             body=maybe_transform({"members": members}, audience_remove_members_params.AudienceRemoveMembersParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -234,7 +234,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             body=await async_maybe_transform(
                 {"members": members}, audience_add_members_params.AudienceAddMembersParams
             ),
@@ -277,7 +277,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return await self._get(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -318,7 +318,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/audiences/{key}/members",
+            path_template("/v1/audiences/{key}/members", key=key),
             body=await async_maybe_transform(
                 {"members": members}, audience_remove_members_params.AudienceRemoveMembersParams
             ),

@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -125,7 +125,7 @@ class BulkResource(SyncAPIResource):
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return self._post(
-            f"/v1/channels/{channel_id}/messages/bulk/{action}",
+            path_template("/v1/channels/{channel_id}/messages/bulk/{action}", channel_id=channel_id, action=action),
             body=maybe_transform(
                 {
                     "archived": archived,
@@ -252,7 +252,7 @@ class AsyncBulkResource(AsyncAPIResource):
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         return await self._post(
-            f"/v1/channels/{channel_id}/messages/bulk/{action}",
+            path_template("/v1/channels/{channel_id}/messages/bulk/{action}", channel_id=channel_id, action=action),
             body=await async_maybe_transform(
                 {
                     "archived": archived,

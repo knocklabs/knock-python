@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class BulkResource(SyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
-            f"/v1/objects/{collection}/bulk/delete",
+            path_template("/v1/objects/{collection}/bulk/delete", collection=collection),
             body=maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -133,7 +133,7 @@ class BulkResource(SyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
-            f"/v1/objects/{collection}/bulk/subscriptions/add",
+            path_template("/v1/objects/{collection}/bulk/subscriptions/add", collection=collection),
             body=maybe_transform(
                 {"subscriptions": subscriptions}, bulk_add_subscriptions_params.BulkAddSubscriptionsParams
             ),
@@ -181,7 +181,7 @@ class BulkResource(SyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
-            f"/v1/objects/{collection}/bulk/subscriptions/delete",
+            path_template("/v1/objects/{collection}/bulk/subscriptions/delete", collection=collection),
             body=maybe_transform(
                 {"subscriptions": subscriptions}, bulk_delete_subscriptions_params.BulkDeleteSubscriptionsParams
             ),
@@ -227,7 +227,7 @@ class BulkResource(SyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._post(
-            f"/v1/objects/{collection}/bulk/set",
+            path_template("/v1/objects/{collection}/bulk/set", collection=collection),
             body=maybe_transform({"objects": objects}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -296,7 +296,7 @@ class AsyncBulkResource(AsyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
-            f"/v1/objects/{collection}/bulk/delete",
+            path_template("/v1/objects/{collection}/bulk/delete", collection=collection),
             body=await async_maybe_transform({"object_ids": object_ids}, bulk_delete_params.BulkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -345,7 +345,7 @@ class AsyncBulkResource(AsyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
-            f"/v1/objects/{collection}/bulk/subscriptions/add",
+            path_template("/v1/objects/{collection}/bulk/subscriptions/add", collection=collection),
             body=await async_maybe_transform(
                 {"subscriptions": subscriptions}, bulk_add_subscriptions_params.BulkAddSubscriptionsParams
             ),
@@ -393,7 +393,7 @@ class AsyncBulkResource(AsyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
-            f"/v1/objects/{collection}/bulk/subscriptions/delete",
+            path_template("/v1/objects/{collection}/bulk/subscriptions/delete", collection=collection),
             body=await async_maybe_transform(
                 {"subscriptions": subscriptions}, bulk_delete_subscriptions_params.BulkDeleteSubscriptionsParams
             ),
@@ -439,7 +439,7 @@ class AsyncBulkResource(AsyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return await self._post(
-            f"/v1/objects/{collection}/bulk/set",
+            path_template("/v1/objects/{collection}/bulk/set", collection=collection),
             body=await async_maybe_transform({"objects": objects}, bulk_set_params.BulkSetParams),
             options=make_request_options(
                 extra_headers=extra_headers,

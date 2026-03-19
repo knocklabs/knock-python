@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class MsTeamsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get(
-            f"/v1/providers/ms-teams/{channel_id}/auth_check",
+            path_template("/v1/providers/ms-teams/{channel_id}/auth_check", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -132,7 +132,7 @@ class MsTeamsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get(
-            f"/v1/providers/ms-teams/{channel_id}/channels",
+            path_template("/v1/providers/ms-teams/{channel_id}/channels", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -182,7 +182,7 @@ class MsTeamsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get_api_list(
-            f"/v1/providers/ms-teams/{channel_id}/teams",
+            path_template("/v1/providers/ms-teams/{channel_id}/teams", channel_id=channel_id),
             page=SyncMsTeamsPagination[MsTeamListTeamsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -232,7 +232,7 @@ class MsTeamsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._put(
-            f"/v1/providers/ms-teams/{channel_id}/revoke_access",
+            path_template("/v1/providers/ms-teams/{channel_id}/revoke_access", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -302,7 +302,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._get(
-            f"/v1/providers/ms-teams/{channel_id}/auth_check",
+            path_template("/v1/providers/ms-teams/{channel_id}/auth_check", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,7 +350,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._get(
-            f"/v1/providers/ms-teams/{channel_id}/channels",
+            path_template("/v1/providers/ms-teams/{channel_id}/channels", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -400,7 +400,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get_api_list(
-            f"/v1/providers/ms-teams/{channel_id}/teams",
+            path_template("/v1/providers/ms-teams/{channel_id}/teams", channel_id=channel_id),
             page=AsyncMsTeamsPagination[MsTeamListTeamsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -450,7 +450,7 @@ class AsyncMsTeamsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._put(
-            f"/v1/providers/ms-teams/{channel_id}/revoke_access",
+            path_template("/v1/providers/ms-teams/{channel_id}/revoke_access", channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

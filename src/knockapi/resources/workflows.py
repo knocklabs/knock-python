@@ -8,7 +8,7 @@ import httpx
 
 from ..types import workflow_cancel_params, workflow_trigger_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -93,7 +93,7 @@ class WorkflowsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v1/workflows/{key}/cancel",
+            path_template("/v1/workflows/{key}/cancel", key=key),
             body=maybe_transform(
                 {
                     "cancellation_key": cancellation_key,
@@ -169,7 +169,7 @@ class WorkflowsResource(SyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return self._post(
-            f"/v1/workflows/{key}/trigger",
+            path_template("/v1/workflows/{key}/trigger", key=key),
             body=maybe_transform(
                 {
                     "recipients": recipients,
@@ -258,7 +258,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v1/workflows/{key}/cancel",
+            path_template("/v1/workflows/{key}/cancel", key=key),
             body=await async_maybe_transform(
                 {
                     "cancellation_key": cancellation_key,
@@ -334,7 +334,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return await self._post(
-            f"/v1/workflows/{key}/trigger",
+            path_template("/v1/workflows/{key}/trigger", key=key),
             body=await async_maybe_transform(
                 {
                     "recipients": recipients,

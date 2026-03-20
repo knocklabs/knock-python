@@ -44,7 +44,7 @@ from ...types import (
     user_list_subscriptions_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -183,7 +183,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._put(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             body=maybe_transform(
                 {
                     "avatar": avatar,
@@ -295,7 +295,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,7 +332,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -368,7 +368,7 @@ class UsersResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -408,7 +408,7 @@ class UsersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/v1/users/{user_id}/preferences/{id}",
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -496,7 +496,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/messages",
+            path_template("/v1/users/{user_id}/messages", user_id=user_id),
             page=SyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -552,7 +552,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/v1/users/{user_id}/preferences",
+            path_template("/v1/users/{user_id}/preferences", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -600,7 +600,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/schedules",
+            path_template("/v1/users/{user_id}/schedules", user_id=user_id),
             page=SyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -663,7 +663,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/subscriptions",
+            path_template("/v1/users/{user_id}/subscriptions", user_id=user_id),
             page=SyncEntriesCursor[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -717,7 +717,7 @@ class UsersResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._post(
-            f"/v1/users/{user_id}/merge",
+            path_template("/v1/users/{user_id}/merge", user_id=user_id),
             body=maybe_transform({"from_user_id": from_user_id}, user_merge_params.UserMergeParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -767,7 +767,7 @@ class UsersResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._put(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             body=maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -837,7 +837,7 @@ class UsersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/v1/users/{user_id}/preferences/{id}",
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
             body=maybe_transform(
                 {
                     "_persistence_strategy": _persistence_strategy,
@@ -892,7 +892,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1017,7 +1017,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "avatar": avatar,
@@ -1129,7 +1129,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1166,7 +1166,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}",
+            path_template("/v1/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1202,7 +1202,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1242,7 +1242,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/preferences/{id}",
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1332,7 +1332,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/messages",
+            path_template("/v1/users/{user_id}/messages", user_id=user_id),
             page=AsyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1388,7 +1388,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/preferences",
+            path_template("/v1/users/{user_id}/preferences", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1436,7 +1436,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/schedules",
+            path_template("/v1/users/{user_id}/schedules", user_id=user_id),
             page=AsyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1499,7 +1499,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/v1/users/{user_id}/subscriptions",
+            path_template("/v1/users/{user_id}/subscriptions", user_id=user_id),
             page=AsyncEntriesCursor[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1553,7 +1553,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._post(
-            f"/v1/users/{user_id}/merge",
+            path_template("/v1/users/{user_id}/merge", user_id=user_id),
             body=await async_maybe_transform({"from_user_id": from_user_id}, user_merge_params.UserMergeParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1603,7 +1603,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             body=await async_maybe_transform({"data": data}, user_set_channel_data_params.UserSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1673,7 +1673,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/preferences/{id}",
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
             body=await async_maybe_transform(
                 {
                     "_persistence_strategy": _persistence_strategy,
@@ -1728,7 +1728,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/users/{user_id}/channel_data/{channel_id}",
+            path_template("/v1/users/{user_id}/channel_data/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

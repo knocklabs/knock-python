@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.24.2 (2026-03-20)
+
+Full Changelog: [v1.24.1...v1.24.2](https://github.com/knocklabs/knock-python/compare/v1.24.1...v1.24.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([3faab94](https://github.com/knocklabs/knock-python/commit/3faab948d5ae4297d7c35150545d843e0c34f427))
+* sanitize endpoint path params ([5615d9e](https://github.com/knocklabs/knock-python/commit/5615d9e295147ff3a2321ca06222d2f04c875e30))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([4c01647](https://github.com/knocklabs/knock-python/commit/4c016474b315185a18ec577ea79e0b3115607dd3))
+* **tests:** bump steady to v0.19.4 ([1b211c0](https://github.com/knocklabs/knock-python/commit/1b211c0a547eff991969ddfb57418b9797cb5f10))
+* **tests:** bump steady to v0.19.5 ([a0638b5](https://github.com/knocklabs/knock-python/commit/a0638b570e32ab0db5028d1e5ab4f24da80bee7b))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([29d5c77](https://github.com/knocklabs/knock-python/commit/29d5c776dae1ed8712a0d5514f48ee0fe6afda14))
+
 ## 1.24.1 (2026-03-16)
 
 Full Changelog: [v1.24.0...v1.24.1](https://github.com/knocklabs/knock-python/compare/v1.24.0...v1.24.1)

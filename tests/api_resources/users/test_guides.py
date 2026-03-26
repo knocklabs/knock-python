@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestGuides:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_get_channel(self, client: Knock) -> None:
         guide = client.users.guides.get_channel(
@@ -31,7 +30,6 @@ class TestGuides:
         )
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_get_channel_with_all_params(self, client: Knock) -> None:
         guide = client.users.guides.get_channel(
@@ -43,7 +41,6 @@ class TestGuides:
         )
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_get_channel(self, client: Knock) -> None:
         response = client.users.guides.with_raw_response.get_channel(
@@ -56,7 +53,6 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_get_channel(self, client: Knock) -> None:
         with client.users.guides.with_streaming_response.get_channel(
@@ -71,7 +67,6 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_get_channel(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -86,7 +81,6 @@ class TestGuides:
                 channel_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_archived(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_archived(
@@ -99,7 +93,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_archived_with_all_params(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_archived(
@@ -128,7 +121,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_message_as_archived(self, client: Knock) -> None:
         response = client.users.guides.with_raw_response.mark_message_as_archived(
@@ -145,7 +137,6 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_message_as_archived(self, client: Knock) -> None:
         with client.users.guides.with_streaming_response.mark_message_as_archived(
@@ -164,7 +155,6 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_mark_message_as_archived(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -187,7 +177,6 @@ class TestGuides:
                 guide_step_ref="lab_tours",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_interacted(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_interacted(
@@ -200,7 +189,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_interacted_with_all_params(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_interacted(
@@ -229,7 +217,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_message_as_interacted(self, client: Knock) -> None:
         response = client.users.guides.with_raw_response.mark_message_as_interacted(
@@ -246,7 +233,6 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_message_as_interacted(self, client: Knock) -> None:
         with client.users.guides.with_streaming_response.mark_message_as_interacted(
@@ -265,7 +251,6 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_mark_message_as_interacted(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -288,7 +273,6 @@ class TestGuides:
                 guide_step_ref="lab_tours",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_seen(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_seen(
@@ -301,7 +285,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_mark_message_as_seen_with_all_params(self, client: Knock) -> None:
         guide = client.users.guides.mark_message_as_seen(
@@ -330,7 +313,6 @@ class TestGuides:
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_mark_message_as_seen(self, client: Knock) -> None:
         response = client.users.guides.with_raw_response.mark_message_as_seen(
@@ -347,7 +329,6 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_mark_message_as_seen(self, client: Knock) -> None:
         with client.users.guides.with_streaming_response.mark_message_as_seen(
@@ -366,7 +347,6 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_mark_message_as_seen(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -395,7 +375,6 @@ class TestAsyncGuides:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_get_channel(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.get_channel(
@@ -404,7 +383,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_get_channel_with_all_params(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.get_channel(
@@ -416,7 +394,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_get_channel(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.guides.with_raw_response.get_channel(
@@ -429,7 +406,6 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideGetChannelResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_get_channel(self, async_client: AsyncKnock) -> None:
         async with async_client.users.guides.with_streaming_response.get_channel(
@@ -444,7 +420,6 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_get_channel(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -459,7 +434,6 @@ class TestAsyncGuides:
                 channel_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_archived(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_archived(
@@ -472,7 +446,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_archived_with_all_params(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_archived(
@@ -501,7 +474,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_message_as_archived(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.guides.with_raw_response.mark_message_as_archived(
@@ -518,7 +490,6 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_message_as_archived(self, async_client: AsyncKnock) -> None:
         async with async_client.users.guides.with_streaming_response.mark_message_as_archived(
@@ -537,7 +508,6 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_mark_message_as_archived(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -560,7 +530,6 @@ class TestAsyncGuides:
                 guide_step_ref="lab_tours",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_interacted(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_interacted(
@@ -573,7 +542,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_interacted_with_all_params(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_interacted(
@@ -602,7 +570,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_message_as_interacted(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.guides.with_raw_response.mark_message_as_interacted(
@@ -619,7 +586,6 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideMarkMessageAsInteractedResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_message_as_interacted(self, async_client: AsyncKnock) -> None:
         async with async_client.users.guides.with_streaming_response.mark_message_as_interacted(
@@ -638,7 +604,6 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_mark_message_as_interacted(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
@@ -661,7 +626,6 @@ class TestAsyncGuides:
                 guide_step_ref="lab_tours",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_seen(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_seen(
@@ -674,7 +638,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_mark_message_as_seen_with_all_params(self, async_client: AsyncKnock) -> None:
         guide = await async_client.users.guides.mark_message_as_seen(
@@ -703,7 +666,6 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_mark_message_as_seen(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.guides.with_raw_response.mark_message_as_seen(
@@ -720,7 +682,6 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideMarkMessageAsSeenResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_mark_message_as_seen(self, async_client: AsyncKnock) -> None:
         async with async_client.users.guides.with_streaming_response.mark_message_as_seen(
@@ -739,7 +700,6 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_mark_message_as_seen(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):

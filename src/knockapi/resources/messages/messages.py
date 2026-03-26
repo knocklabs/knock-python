@@ -23,7 +23,7 @@ from ...types import (
     message_mark_as_interacted_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -202,7 +202,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/messages/{message_id}/archived",
+            path_template("/v1/messages/{message_id}/archived", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +239,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get(
-            f"/v1/messages/{message_id}",
+            path_template("/v1/messages/{message_id}", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +273,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get(
-            f"/v1/messages/{message_id}/content",
+            path_template("/v1/messages/{message_id}/content", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -318,7 +318,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/activities",
+            path_template("/v1/messages/{message_id}/activities", message_id=message_id),
             page=SyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -373,7 +373,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/delivery_logs",
+            path_template("/v1/messages/{message_id}/delivery_logs", message_id=message_id),
             page=SyncItemsCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -427,7 +427,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/events",
+            path_template("/v1/messages/{message_id}/events", message_id=message_id),
             page=SyncItemsCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -483,7 +483,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/messages/{message_id}/interacted",
+            path_template("/v1/messages/{message_id}/interacted", message_id=message_id),
             body=maybe_transform(
                 {"metadata": metadata}, message_mark_as_interacted_params.MessageMarkAsInteractedParams
             ),
@@ -529,7 +529,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/messages/{message_id}/read",
+            path_template("/v1/messages/{message_id}/read", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -572,7 +572,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/messages/{message_id}/seen",
+            path_template("/v1/messages/{message_id}/seen", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -615,7 +615,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._delete(
-            f"/v1/messages/{message_id}/read",
+            path_template("/v1/messages/{message_id}/read", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -658,7 +658,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._delete(
-            f"/v1/messages/{message_id}/seen",
+            path_template("/v1/messages/{message_id}/seen", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -699,7 +699,7 @@ class MessagesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._delete(
-            f"/v1/messages/{message_id}/archived",
+            path_template("/v1/messages/{message_id}/archived", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -870,7 +870,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/messages/{message_id}/archived",
+            path_template("/v1/messages/{message_id}/archived", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -907,7 +907,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._get(
-            f"/v1/messages/{message_id}",
+            path_template("/v1/messages/{message_id}", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -941,7 +941,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._get(
-            f"/v1/messages/{message_id}/content",
+            path_template("/v1/messages/{message_id}/content", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -986,7 +986,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/activities",
+            path_template("/v1/messages/{message_id}/activities", message_id=message_id),
             page=AsyncItemsCursor[Activity],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1041,7 +1041,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/delivery_logs",
+            path_template("/v1/messages/{message_id}/delivery_logs", message_id=message_id),
             page=AsyncItemsCursor[MessageDeliveryLog],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1095,7 +1095,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._get_api_list(
-            f"/v1/messages/{message_id}/events",
+            path_template("/v1/messages/{message_id}/events", message_id=message_id),
             page=AsyncItemsCursor[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1151,7 +1151,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/messages/{message_id}/interacted",
+            path_template("/v1/messages/{message_id}/interacted", message_id=message_id),
             body=await async_maybe_transform(
                 {"metadata": metadata}, message_mark_as_interacted_params.MessageMarkAsInteractedParams
             ),
@@ -1197,7 +1197,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/messages/{message_id}/read",
+            path_template("/v1/messages/{message_id}/read", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1240,7 +1240,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/messages/{message_id}/seen",
+            path_template("/v1/messages/{message_id}/seen", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1283,7 +1283,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._delete(
-            f"/v1/messages/{message_id}/read",
+            path_template("/v1/messages/{message_id}/read", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1326,7 +1326,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._delete(
-            f"/v1/messages/{message_id}/seen",
+            path_template("/v1/messages/{message_id}/seen", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1367,7 +1367,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._delete(
-            f"/v1/messages/{message_id}/archived",
+            path_template("/v1/messages/{message_id}/archived", message_id=message_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

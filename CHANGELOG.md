@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.25.0 (2026-03-26)
+
+Full Changelog: [v1.24.1...v1.25.0](https://github.com/knocklabs/knock-python/compare/v1.24.1...v1.25.0)
+
+### Features
+
+* **api:** api update ([5d9ba46](https://github.com/knocklabs/knock-python/commit/5d9ba46e6ab6200bba7d6a7fed0f87582b2ad34e))
+* **internal:** implement indices array format for query and form serialization ([e7db532](https://github.com/knocklabs/knock-python/commit/e7db532103b42156c58ea021d78ae97f71b8c0bd))
+
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([3faab94](https://github.com/knocklabs/knock-python/commit/3faab948d5ae4297d7c35150545d843e0c34f427))
+* sanitize endpoint path params ([5615d9e](https://github.com/knocklabs/knock-python/commit/5615d9e295147ff3a2321ca06222d2f04c875e30))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([64c3c93](https://github.com/knocklabs/knock-python/commit/64c3c93d337ee63ea4b81c23bbefd9d7c12a7e7b))
+* **internal:** tweak CI branches ([4c01647](https://github.com/knocklabs/knock-python/commit/4c016474b315185a18ec577ea79e0b3115607dd3))
+* **internal:** update gitignore ([e5e89f5](https://github.com/knocklabs/knock-python/commit/e5e89f5f97e9170e602a836907a68987756b82f8))
+* **tests:** bump steady to v0.19.4 ([1b211c0](https://github.com/knocklabs/knock-python/commit/1b211c0a547eff991969ddfb57418b9797cb5f10))
+* **tests:** bump steady to v0.19.5 ([a0638b5](https://github.com/knocklabs/knock-python/commit/a0638b570e32ab0db5028d1e5ab4f24da80bee7b))
+* **tests:** bump steady to v0.19.6 ([f09d000](https://github.com/knocklabs/knock-python/commit/f09d000d0185189f1134f655cf96f522c59dfd24))
+* **tests:** bump steady to v0.19.7 ([973f8be](https://github.com/knocklabs/knock-python/commit/973f8bec907c1b613f410dd36711d171d43e97ef))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([29d5c77](https://github.com/knocklabs/knock-python/commit/29d5c776dae1ed8712a0d5514f48ee0fe6afda14))
+
 ## 1.24.1 (2026-03-16)
 
 Full Changelog: [v1.24.0...v1.24.1](https://github.com/knocklabs/knock-python/compare/v1.24.0...v1.24.1)

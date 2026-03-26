@@ -1,6 +1,6 @@
 [project]
 name = "knockapi"
-version = "1.24.1"
+version = "1.25.0"
 description = "The official Python library for the knock API"
 dynamic = ["readme"]
 license = "Apache-2.0"

@@ -886,6 +886,54 @@ class TestUsers:
                 channel_id="",
             )
 
+    @parametrize
+    def test_method_unset_preferences(self, client: Knock) -> None:
+        user = client.users.unset_preferences(
+            user_id="user_id",
+            id="default",
+        )
+        assert user is None
+
+    @parametrize
+    def test_raw_response_unset_preferences(self, client: Knock) -> None:
+        response = client.users.with_raw_response.unset_preferences(
+            user_id="user_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = response.parse()
+        assert user is None
+
+    @parametrize
+    def test_streaming_response_unset_preferences(self, client: Knock) -> None:
+        with client.users.with_streaming_response.unset_preferences(
+            user_id="user_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = response.parse()
+            assert user is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_unset_preferences(self, client: Knock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            client.users.with_raw_response.unset_preferences(
+                user_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.users.with_raw_response.unset_preferences(
+                user_id="user_id",
+                id="",
+            )
+
 
 class TestAsyncUsers:
     parametrize = pytest.mark.parametrize(
@@ -1747,4 +1795,52 @@ class TestAsyncUsers:
             await async_client.users.with_raw_response.unset_channel_data(
                 user_id="user_id",
                 channel_id="",
+            )
+
+    @parametrize
+    async def test_method_unset_preferences(self, async_client: AsyncKnock) -> None:
+        user = await async_client.users.unset_preferences(
+            user_id="user_id",
+            id="default",
+        )
+        assert user is None
+
+    @parametrize
+    async def test_raw_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        response = await async_client.users.with_raw_response.unset_preferences(
+            user_id="user_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = await response.parse()
+        assert user is None
+
+    @parametrize
+    async def test_streaming_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        async with async_client.users.with_streaming_response.unset_preferences(
+            user_id="user_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = await response.parse()
+            assert user is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_unset_preferences(self, async_client: AsyncKnock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            await async_client.users.with_raw_response.unset_preferences(
+                user_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.users.with_raw_response.unset_preferences(
+                user_id="user_id",
+                id="",
             )

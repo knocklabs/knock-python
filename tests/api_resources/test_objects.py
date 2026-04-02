@@ -1106,6 +1106,66 @@ class TestObjects:
                 channel_id="",
             )
 
+    @parametrize
+    def test_method_unset_preferences(self, client: Knock) -> None:
+        object_ = client.objects.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+        assert object_ is None
+
+    @parametrize
+    def test_raw_response_unset_preferences(self, client: Knock) -> None:
+        response = client.objects.with_raw_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = response.parse()
+        assert object_ is None
+
+    @parametrize
+    def test_streaming_response_unset_preferences(self, client: Knock) -> None:
+        with client.objects.with_streaming_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = response.parse()
+            assert object_ is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_unset_preferences(self, client: Knock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="",
+                object_id="object_id",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="object_id",
+                id="",
+            )
+
 
 class TestAsyncObjects:
     parametrize = pytest.mark.parametrize(
@@ -2186,4 +2246,64 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
+            )
+
+    @parametrize
+    async def test_method_unset_preferences(self, async_client: AsyncKnock) -> None:
+        object_ = await async_client.objects.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+        assert object_ is None
+
+    @parametrize
+    async def test_raw_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        response = await async_client.objects.with_raw_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = await response.parse()
+        assert object_ is None
+
+    @parametrize
+    async def test_streaming_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        async with async_client.objects.with_streaming_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = await response.parse()
+            assert object_ is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_unset_preferences(self, async_client: AsyncKnock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="",
+                object_id="object_id",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="object_id",
+                id="",
             )

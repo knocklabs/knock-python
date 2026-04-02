@@ -903,6 +903,50 @@ class UsersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def unset_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Unsets the preference set for the user, removing it entirely.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncUsersResource(AsyncAPIResource):
     """A user is an individual from your system, represented in Knock.
@@ -1739,6 +1783,50 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def unset_preferences(
+        self,
+        user_id: str,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Unsets the preference set for the user, removing it entirely.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template("/v1/users/{user_id}/preferences/{id}", user_id=user_id, id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
@@ -1785,6 +1873,9 @@ class UsersResourceWithRawResponse:
         )
         self.unset_channel_data = to_raw_response_wrapper(
             users.unset_channel_data,
+        )
+        self.unset_preferences = to_raw_response_wrapper(
+            users.unset_preferences,
         )
 
     @cached_property
@@ -1857,6 +1948,9 @@ class AsyncUsersResourceWithRawResponse:
         self.unset_channel_data = async_to_raw_response_wrapper(
             users.unset_channel_data,
         )
+        self.unset_preferences = async_to_raw_response_wrapper(
+            users.unset_preferences,
+        )
 
     @cached_property
     def feeds(self) -> AsyncFeedsResourceWithRawResponse:
@@ -1928,6 +2022,9 @@ class UsersResourceWithStreamingResponse:
         self.unset_channel_data = to_streamed_response_wrapper(
             users.unset_channel_data,
         )
+        self.unset_preferences = to_streamed_response_wrapper(
+            users.unset_preferences,
+        )
 
     @cached_property
     def feeds(self) -> FeedsResourceWithStreamingResponse:
@@ -1998,6 +2095,9 @@ class AsyncUsersResourceWithStreamingResponse:
         )
         self.unset_channel_data = async_to_streamed_response_wrapper(
             users.unset_channel_data,
+        )
+        self.unset_preferences = async_to_streamed_response_wrapper(
+            users.unset_preferences,
         )
 
     @cached_property

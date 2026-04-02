@@ -84,6 +84,7 @@ Methods:
 - <code title="put /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_channel_data</a>(user_id, channel_id, \*\*<a href="src/knockapi/types/user_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
 - <code title="put /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_preferences</a>(user_id, id, \*\*<a href="src/knockapi/types/user_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">unset_channel_data</a>(user_id, channel_id) -> None</code>
+- <code title="delete /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knockapi/resources/users/users.py">unset_preferences</a>(user_id, id) -> None</code>
 
 ## Feeds
 
@@ -157,6 +158,7 @@ Methods:
 - <code title="put /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_channel_data</a>(collection, object_id, channel_id, \*\*<a href="src/knockapi/types/object_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
 - <code title="put /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_preferences</a>(collection, object_id, id, \*\*<a href="src/knockapi/types/object_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">unset_channel_data</a>(collection, object_id, channel_id) -> None</code>
+- <code title="delete /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">unset_preferences</a>(collection, object_id, id) -> None</code>
 
 ## Bulk
 

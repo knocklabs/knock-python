@@ -53,11 +53,43 @@ class TestSchedules:
                             "marketing": False,
                             "transactional": {
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": False,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {
@@ -79,11 +111,43 @@ class TestSchedules:
                             },
                         },
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": True,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -110,11 +174,43 @@ class TestSchedules:
                         "workflows": {
                             "dinosaurs-loose": {
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": True,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {
@@ -346,11 +442,43 @@ class TestAsyncSchedules:
                             "marketing": False,
                             "transactional": {
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": False,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {
@@ -372,11 +500,43 @@ class TestAsyncSchedules:
                             },
                         },
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": True,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -403,11 +563,43 @@ class TestAsyncSchedules:
                         "workflows": {
                             "dinosaurs-loose": {
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": True,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {

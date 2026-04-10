@@ -165,11 +165,43 @@ class TestTenants:
                         "marketing": False,
                         "transactional": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -191,11 +223,43 @@ class TestTenants:
                         },
                     },
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -222,11 +286,43 @@ class TestTenants:
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -436,11 +532,43 @@ class TestAsyncTenants:
                         "marketing": False,
                         "transactional": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -462,11 +590,43 @@ class TestAsyncTenants:
                         },
                     },
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -493,11 +653,43 @@ class TestAsyncTenants:
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {

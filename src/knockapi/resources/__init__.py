@@ -88,6 +88,14 @@ from .bulk_operations import (
     BulkOperationsResourceWithStreamingResponse,
     AsyncBulkOperationsResourceWithStreamingResponse,
 )
+from .workflow_recipient_runs import (
+    WorkflowRecipientRunsResource,
+    AsyncWorkflowRecipientRunsResource,
+    WorkflowRecipientRunsResourceWithRawResponse,
+    AsyncWorkflowRecipientRunsResourceWithRawResponse,
+    WorkflowRecipientRunsResourceWithStreamingResponse,
+    AsyncWorkflowRecipientRunsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "UsersResource",
@@ -138,6 +146,12 @@ __all__ = [
     "AsyncWorkflowsResourceWithRawResponse",
     "WorkflowsResourceWithStreamingResponse",
     "AsyncWorkflowsResourceWithStreamingResponse",
+    "WorkflowRecipientRunsResource",
+    "AsyncWorkflowRecipientRunsResource",
+    "WorkflowRecipientRunsResourceWithRawResponse",
+    "AsyncWorkflowRecipientRunsResourceWithRawResponse",
+    "WorkflowRecipientRunsResourceWithStreamingResponse",
+    "AsyncWorkflowRecipientRunsResourceWithStreamingResponse",
     "SchedulesResource",
     "AsyncSchedulesResource",
     "SchedulesResourceWithRawResponse",

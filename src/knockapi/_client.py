@@ -43,6 +43,7 @@ if TYPE_CHECKING:
         workflows,
         integrations,
         bulk_operations,
+        workflow_recipient_runs,
     )
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
     from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
@@ -54,6 +55,7 @@ if TYPE_CHECKING:
     from .resources.messages.messages import MessagesResource, AsyncMessagesResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.schedules.schedules import SchedulesResource, AsyncSchedulesResource
+    from .resources.workflow_recipient_runs import WorkflowRecipientRunsResource, AsyncWorkflowRecipientRunsResource
     from .resources.integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Knock", "AsyncKnock", "Client", "AsyncClient"]
@@ -186,6 +188,15 @@ class Knock(SyncAPIClient):
         from .resources.workflows import WorkflowsResource
 
         return WorkflowsResource(self)
+
+    @cached_property
+    def workflow_recipient_runs(self) -> WorkflowRecipientRunsResource:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import WorkflowRecipientRunsResource
+
+        return WorkflowRecipientRunsResource(self)
 
     @cached_property
     def schedules(self) -> SchedulesResource:
@@ -454,6 +465,15 @@ class AsyncKnock(AsyncAPIClient):
         return AsyncWorkflowsResource(self)
 
     @cached_property
+    def workflow_recipient_runs(self) -> AsyncWorkflowRecipientRunsResource:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import AsyncWorkflowRecipientRunsResource
+
+        return AsyncWorkflowRecipientRunsResource(self)
+
+    @cached_property
     def schedules(self) -> AsyncSchedulesResource:
         """
         A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
@@ -661,6 +681,15 @@ class KnockWithRawResponse:
         return WorkflowsResourceWithRawResponse(self._client.workflows)
 
     @cached_property
+    def workflow_recipient_runs(self) -> workflow_recipient_runs.WorkflowRecipientRunsResourceWithRawResponse:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import WorkflowRecipientRunsResourceWithRawResponse
+
+        return WorkflowRecipientRunsResourceWithRawResponse(self._client.workflow_recipient_runs)
+
+    @cached_property
     def schedules(self) -> schedules.SchedulesResourceWithRawResponse:
         """
         A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
@@ -751,6 +780,15 @@ class AsyncKnockWithRawResponse:
         from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
 
         return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_recipient_runs(self) -> workflow_recipient_runs.AsyncWorkflowRecipientRunsResourceWithRawResponse:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import AsyncWorkflowRecipientRunsResourceWithRawResponse
+
+        return AsyncWorkflowRecipientRunsResourceWithRawResponse(self._client.workflow_recipient_runs)
 
     @cached_property
     def schedules(self) -> schedules.AsyncSchedulesResourceWithRawResponse:
@@ -845,6 +883,15 @@ class KnockWithStreamedResponse:
         return WorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
+    def workflow_recipient_runs(self) -> workflow_recipient_runs.WorkflowRecipientRunsResourceWithStreamingResponse:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import WorkflowRecipientRunsResourceWithStreamingResponse
+
+        return WorkflowRecipientRunsResourceWithStreamingResponse(self._client.workflow_recipient_runs)
+
+    @cached_property
     def schedules(self) -> schedules.SchedulesResourceWithStreamingResponse:
         """
         A schedule is a per-recipient, timezone-aware configuration for when to invoke a workflow.
@@ -935,6 +982,17 @@ class AsyncKnockWithStreamedResponse:
         from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
 
         return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_recipient_runs(
+        self,
+    ) -> workflow_recipient_runs.AsyncWorkflowRecipientRunsResourceWithStreamingResponse:
+        """
+        A workflow run represents an individual execution of a workflow for a specific recipient.
+        """
+        from .resources.workflow_recipient_runs import AsyncWorkflowRecipientRunsResourceWithStreamingResponse
+
+        return AsyncWorkflowRecipientRunsResourceWithStreamingResponse(self._client.workflow_recipient_runs)
 
     @cached_property
     def schedules(self) -> schedules.AsyncSchedulesResourceWithStreamingResponse:

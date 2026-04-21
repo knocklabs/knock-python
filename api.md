@@ -340,6 +340,23 @@ Methods:
 - <code title="post /v1/workflows/{key}/cancel">client.workflows.<a href="./src/knockapi/resources/workflows.py">cancel</a>(key, \*\*<a href="src/knockapi/types/workflow_cancel_params.py">params</a>) -> None</code>
 - <code title="post /v1/workflows/{key}/trigger">client.workflows.<a href="./src/knockapi/resources/workflows.py">trigger</a>(key, \*\*<a href="src/knockapi/types/workflow_trigger_params.py">params</a>) -> <a href="./src/knockapi/types/workflow_trigger_response.py">WorkflowTriggerResponse</a></code>
 
+# WorkflowRecipientRuns
+
+Types:
+
+```python
+from knockapi.types import (
+    WorkflowRecipientRun,
+    WorkflowRecipientRunDetail,
+    WorkflowRecipientRunEvent,
+)
+```
+
+Methods:
+
+- <code title="get /v1/workflow_recipient_runs">client.workflow_recipient_runs.<a href="./src/knockapi/resources/workflow_recipient_runs.py">list</a>(\*\*<a href="src/knockapi/types/workflow_recipient_run_list_params.py">params</a>) -> <a href="./src/knockapi/types/workflow_recipient_run.py">SyncItemsCursor[WorkflowRecipientRun]</a></code>
+- <code title="get /v1/workflow_recipient_runs/{id}">client.workflow_recipient_runs.<a href="./src/knockapi/resources/workflow_recipient_runs.py">get</a>(id) -> <a href="./src/knockapi/types/workflow_recipient_run_detail.py">WorkflowRecipientRunDetail</a></code>
+
 # Schedules
 
 Types:

@@ -7,6 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .recipient import Recipient
 from .recipient_reference import RecipientReference
 
 __all__ = ["WorkflowRecipientRun", "TriggerSource"]
@@ -73,11 +74,8 @@ class WorkflowRecipientRun(BaseModel):
     single trigger.
     """
 
-    actor: Optional[RecipientReference] = None
-    """
-    A reference to a recipient, either a user identifier (string) or an object
-    reference (ID, collection).
-    """
+    actor: Optional[Recipient] = None
+    """A recipient of a notification, which is either a user or an object."""
 
     error_count: Optional[int] = None
     """The number of errors encountered during the workflow recipient run."""

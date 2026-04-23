@@ -30,7 +30,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestObjects:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list(self, client: Knock) -> None:
         object_ = client.objects.list(
@@ -38,7 +37,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list(
@@ -50,7 +48,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list(
@@ -62,7 +59,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(SyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list(
@@ -76,7 +72,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -84,7 +79,6 @@ class TestObjects:
                 collection="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         object_ = client.objects.delete(
@@ -93,7 +87,6 @@ class TestObjects:
         )
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.objects.with_raw_response.delete(
@@ -106,7 +99,6 @@ class TestObjects:
         object_ = response.parse()
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.objects.with_streaming_response.delete(
@@ -121,7 +113,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_delete(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -136,7 +127,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_add_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.add_subscriptions(
@@ -146,7 +136,6 @@ class TestObjects:
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_add_subscriptions_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.add_subscriptions(
@@ -157,7 +146,6 @@ class TestObjects:
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_add_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.add_subscriptions(
@@ -171,7 +159,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_add_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.add_subscriptions(
@@ -187,7 +174,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_add_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -204,7 +190,6 @@ class TestObjects:
                 recipients=["user_1", "user_2"],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_delete_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.delete_subscriptions(
@@ -214,7 +199,6 @@ class TestObjects:
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.delete_subscriptions(
@@ -228,7 +212,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.delete_subscriptions(
@@ -244,7 +227,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_delete_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -261,7 +243,6 @@ class TestObjects:
                 recipients=["user_123"],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_get(self, client: Knock) -> None:
         object_ = client.objects.get(
@@ -270,7 +251,6 @@ class TestObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_get(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get(
@@ -283,7 +263,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_get(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get(
@@ -298,7 +277,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_get(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -313,7 +291,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_get_channel_data(self, client: Knock) -> None:
         object_ = client.objects.get_channel_data(
@@ -323,7 +300,6 @@ class TestObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_get_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get_channel_data(
@@ -337,7 +313,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_get_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get_channel_data(
@@ -353,7 +328,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_get_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -377,7 +351,6 @@ class TestObjects:
                 channel_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_get_preferences(self, client: Knock) -> None:
         object_ = client.objects.get_preferences(
@@ -387,7 +360,6 @@ class TestObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_get_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.get_preferences(
@@ -401,7 +373,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_get_preferences(self, client: Knock) -> None:
         with client.objects.with_streaming_response.get_preferences(
@@ -417,7 +388,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_get_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -441,7 +411,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_messages(self, client: Knock) -> None:
         object_ = client.objects.list_messages(
@@ -450,7 +419,6 @@ class TestObjects:
         )
         assert_matches_type(SyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_messages_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_messages(
@@ -478,7 +446,6 @@ class TestObjects:
         )
         assert_matches_type(SyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list_messages(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_messages(
@@ -491,7 +458,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(SyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list_messages(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_messages(
@@ -506,7 +472,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list_messages(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -521,7 +486,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_preferences(self, client: Knock) -> None:
         object_ = client.objects.list_preferences(
@@ -530,7 +494,6 @@ class TestObjects:
         )
         assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_preferences(
@@ -543,7 +506,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list_preferences(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_preferences(
@@ -558,7 +520,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -573,7 +534,6 @@ class TestObjects:
                 object_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_schedules(self, client: Knock) -> None:
         object_ = client.objects.list_schedules(
@@ -582,7 +542,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_schedules_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_schedules(
@@ -596,7 +555,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list_schedules(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_schedules(
@@ -609,7 +567,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(SyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list_schedules(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_schedules(
@@ -624,7 +581,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list_schedules(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -639,7 +595,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_subscriptions(self, client: Knock) -> None:
         object_ = client.objects.list_subscriptions(
@@ -648,7 +603,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_subscriptions_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.list_subscriptions(
@@ -669,7 +623,6 @@ class TestObjects:
         )
         assert_matches_type(SyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list_subscriptions(self, client: Knock) -> None:
         response = client.objects.with_raw_response.list_subscriptions(
@@ -682,7 +635,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(SyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list_subscriptions(self, client: Knock) -> None:
         with client.objects.with_streaming_response.list_subscriptions(
@@ -697,7 +649,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list_subscriptions(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -712,7 +663,6 @@ class TestObjects:
                 object_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set(self, client: Knock) -> None:
         object_ = client.objects.set(
@@ -721,7 +671,6 @@ class TestObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set(
@@ -737,11 +686,43 @@ class TestObjects:
                         "marketing": False,
                         "transactional": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -763,11 +744,43 @@ class TestObjects:
                         },
                     },
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -794,11 +807,43 @@ class TestObjects:
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -825,7 +870,6 @@ class TestObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set(
@@ -838,7 +882,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set(
@@ -853,7 +896,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_set(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -868,7 +910,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_channel_data(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
@@ -879,7 +920,6 @@ class TestObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_channel_data_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set_channel_data(
@@ -890,7 +930,6 @@ class TestObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set_channel_data(
@@ -905,7 +944,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set_channel_data(
@@ -922,7 +960,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_set_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -949,7 +986,6 @@ class TestObjects:
                 data={"tokens": ["push_token_1"]},
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_preferences(self, client: Knock) -> None:
         object_ = client.objects.set_preferences(
@@ -959,7 +995,6 @@ class TestObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_preferences_with_all_params(self, client: Knock) -> None:
         object_ = client.objects.set_preferences(
@@ -971,11 +1006,43 @@ class TestObjects:
                 "marketing": False,
                 "transactional": {
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": False,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -997,11 +1064,43 @@ class TestObjects:
                 },
             },
             channel_types={
-                "chat": True,
+                "chat": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
                 "email": True,
-                "http": True,
-                "in_app_feed": True,
-                "push": True,
+                "http": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
+                "in_app_feed": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
+                "push": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
                 "sms": {
                     "conditions": [
                         {
@@ -1028,11 +1127,43 @@ class TestObjects:
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": False,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -1056,7 +1187,6 @@ class TestObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set_preferences(self, client: Knock) -> None:
         response = client.objects.with_raw_response.set_preferences(
@@ -1070,7 +1200,6 @@ class TestObjects:
         object_ = response.parse()
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set_preferences(self, client: Knock) -> None:
         with client.objects.with_streaming_response.set_preferences(
@@ -1086,7 +1215,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_set_preferences(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1110,7 +1238,6 @@ class TestObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_unset_channel_data(self, client: Knock) -> None:
         object_ = client.objects.unset_channel_data(
@@ -1120,7 +1247,6 @@ class TestObjects:
         )
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_unset_channel_data(self, client: Knock) -> None:
         response = client.objects.with_raw_response.unset_channel_data(
@@ -1134,7 +1260,6 @@ class TestObjects:
         object_ = response.parse()
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_unset_channel_data(self, client: Knock) -> None:
         with client.objects.with_streaming_response.unset_channel_data(
@@ -1150,7 +1275,6 @@ class TestObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_unset_channel_data(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1174,13 +1298,72 @@ class TestObjects:
                 channel_id="",
             )
 
+    @parametrize
+    def test_method_unset_preferences(self, client: Knock) -> None:
+        object_ = client.objects.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+        assert object_ is None
+
+    @parametrize
+    def test_raw_response_unset_preferences(self, client: Knock) -> None:
+        response = client.objects.with_raw_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = response.parse()
+        assert object_ is None
+
+    @parametrize
+    def test_streaming_response_unset_preferences(self, client: Knock) -> None:
+        with client.objects.with_streaming_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = response.parse()
+            assert object_ is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_unset_preferences(self, client: Knock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="",
+                object_id="object_id",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="object_id",
+                id="",
+            )
+
 
 class TestAsyncObjects:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list(
@@ -1188,7 +1371,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list(
@@ -1200,7 +1382,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list(
@@ -1212,7 +1393,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Object], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list(
@@ -1226,7 +1406,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1234,7 +1413,6 @@ class TestAsyncObjects:
                 collection="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.delete(
@@ -1243,7 +1421,6 @@ class TestAsyncObjects:
         )
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.delete(
@@ -1256,7 +1433,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.delete(
@@ -1271,7 +1447,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1286,7 +1461,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_add_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.add_subscriptions(
@@ -1296,7 +1470,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_add_subscriptions_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.add_subscriptions(
@@ -1307,7 +1480,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.add_subscriptions(
@@ -1321,7 +1493,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(ObjectAddSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_add_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.add_subscriptions(
@@ -1337,7 +1508,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_add_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1354,7 +1524,6 @@ class TestAsyncObjects:
                 recipients=["user_1", "user_2"],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.delete_subscriptions(
@@ -1364,7 +1533,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.delete_subscriptions(
@@ -1378,7 +1546,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(ObjectDeleteSubscriptionsResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.delete_subscriptions(
@@ -1394,7 +1561,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_delete_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1411,7 +1577,6 @@ class TestAsyncObjects:
                 recipients=["user_123"],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_get(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get(
@@ -1420,7 +1585,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get(
@@ -1433,7 +1597,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get(
@@ -1448,7 +1611,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1463,7 +1625,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_get_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get_channel_data(
@@ -1473,7 +1634,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get_channel_data(
@@ -1487,7 +1647,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_get_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get_channel_data(
@@ -1503,7 +1662,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_get_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1527,7 +1685,6 @@ class TestAsyncObjects:
                 channel_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_get_preferences(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.get_preferences(
@@ -1537,7 +1694,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_get_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.get_preferences(
@@ -1551,7 +1707,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_get_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.get_preferences(
@@ -1567,7 +1722,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_get_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1591,7 +1745,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_messages(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_messages(
@@ -1600,7 +1753,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_messages_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_messages(
@@ -1628,7 +1780,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list_messages(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_messages(
@@ -1641,7 +1792,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(AsyncItemsCursor[Message], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list_messages(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_messages(
@@ -1656,7 +1806,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list_messages(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1671,7 +1820,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_preferences(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_preferences(
@@ -1680,7 +1828,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_preferences(
@@ -1693,7 +1840,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(ObjectListPreferencesResponse, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_preferences(
@@ -1708,7 +1854,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1723,7 +1868,6 @@ class TestAsyncObjects:
                 object_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_schedules(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_schedules(
@@ -1732,7 +1876,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_schedules_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_schedules(
@@ -1746,7 +1889,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list_schedules(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_schedules(
@@ -1759,7 +1901,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Schedule], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list_schedules(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_schedules(
@@ -1774,7 +1915,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list_schedules(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1789,7 +1929,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_subscriptions(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_subscriptions(
@@ -1798,7 +1937,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_subscriptions_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.list_subscriptions(
@@ -1819,7 +1957,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(AsyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list_subscriptions(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.list_subscriptions(
@@ -1832,7 +1969,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Subscription], object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list_subscriptions(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.list_subscriptions(
@@ -1847,7 +1983,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list_subscriptions(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -1862,7 +1997,6 @@ class TestAsyncObjects:
                 object_id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set(
@@ -1871,7 +2005,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set(
@@ -1887,11 +2020,43 @@ class TestAsyncObjects:
                         "marketing": False,
                         "transactional": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": False,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -1913,11 +2078,43 @@ class TestAsyncObjects:
                         },
                     },
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": True,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -1944,11 +2141,43 @@ class TestAsyncObjects:
                     "workflows": {
                         "dinosaurs-loose": {
                             "channel_types": {
-                                "chat": True,
+                                "chat": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "email": True,
-                                "http": True,
-                                "in_app_feed": True,
-                                "push": True,
+                                "http": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "in_app_feed": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
+                                "push": {
+                                    "conditions": [
+                                        {
+                                            "argument": "US",
+                                            "operator": "equal_to",
+                                            "variable": "recipient.country_code",
+                                        }
+                                    ]
+                                },
                                 "sms": {
                                     "conditions": [
                                         {
@@ -1975,7 +2204,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set(
@@ -1988,7 +2216,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(Object, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set(
@@ -2003,7 +2230,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_set(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -2018,7 +2244,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
@@ -2029,7 +2254,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_channel_data_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_channel_data(
@@ -2040,7 +2264,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set_channel_data(
@@ -2055,7 +2278,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(ChannelData, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set_channel_data(
@@ -2072,7 +2294,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_set_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -2099,7 +2320,6 @@ class TestAsyncObjects:
                 data={"tokens": ["push_token_1"]},
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_preferences(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_preferences(
@@ -2109,7 +2329,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.set_preferences(
@@ -2121,11 +2340,43 @@ class TestAsyncObjects:
                 "marketing": False,
                 "transactional": {
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": False,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -2147,11 +2398,43 @@ class TestAsyncObjects:
                 },
             },
             channel_types={
-                "chat": True,
+                "chat": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
                 "email": True,
-                "http": True,
-                "in_app_feed": True,
-                "push": True,
+                "http": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
+                "in_app_feed": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
+                "push": {
+                    "conditions": [
+                        {
+                            "argument": "US",
+                            "operator": "equal_to",
+                            "variable": "recipient.country_code",
+                        }
+                    ]
+                },
                 "sms": {
                     "conditions": [
                         {
@@ -2178,11 +2461,43 @@ class TestAsyncObjects:
             workflows={
                 "dinosaurs-loose": {
                     "channel_types": {
-                        "chat": True,
+                        "chat": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "email": False,
-                        "http": True,
-                        "in_app_feed": True,
-                        "push": True,
+                        "http": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "in_app_feed": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
+                        "push": {
+                            "conditions": [
+                                {
+                                    "argument": "US",
+                                    "operator": "equal_to",
+                                    "variable": "recipient.country_code",
+                                }
+                            ]
+                        },
                         "sms": {
                             "conditions": [
                                 {
@@ -2206,7 +2521,6 @@ class TestAsyncObjects:
         )
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.set_preferences(
@@ -2220,7 +2534,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert_matches_type(PreferenceSet, object_, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.set_preferences(
@@ -2236,7 +2549,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_set_preferences(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -2260,7 +2572,6 @@ class TestAsyncObjects:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_unset_channel_data(self, async_client: AsyncKnock) -> None:
         object_ = await async_client.objects.unset_channel_data(
@@ -2270,7 +2581,6 @@ class TestAsyncObjects:
         )
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         response = await async_client.objects.with_raw_response.unset_channel_data(
@@ -2284,7 +2594,6 @@ class TestAsyncObjects:
         object_ = await response.parse()
         assert object_ is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_unset_channel_data(self, async_client: AsyncKnock) -> None:
         async with async_client.objects.with_streaming_response.unset_channel_data(
@@ -2300,7 +2609,6 @@ class TestAsyncObjects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_unset_channel_data(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
@@ -2322,4 +2630,64 @@ class TestAsyncObjects:
                 collection="collection",
                 object_id="object_id",
                 channel_id="",
+            )
+
+    @parametrize
+    async def test_method_unset_preferences(self, async_client: AsyncKnock) -> None:
+        object_ = await async_client.objects.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+        assert object_ is None
+
+    @parametrize
+    async def test_raw_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        response = await async_client.objects.with_raw_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        object_ = await response.parse()
+        assert object_ is None
+
+    @parametrize
+    async def test_streaming_response_unset_preferences(self, async_client: AsyncKnock) -> None:
+        async with async_client.objects.with_streaming_response.unset_preferences(
+            collection="collection",
+            object_id="object_id",
+            id="default",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            object_ = await response.parse()
+            assert object_ is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_unset_preferences(self, async_client: AsyncKnock) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="",
+                object_id="object_id",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_id` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="",
+                id="default",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.objects.with_raw_response.unset_preferences(
+                collection="collection",
+                object_id="object_id",
+                id="",
             )

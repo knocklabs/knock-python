@@ -27,7 +27,7 @@ from ...types import (
     object_delete_subscriptions_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -125,7 +125,7 @@ class ObjectsResource(SyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}",
+            path_template("/v1/objects/{collection}", collection=collection),
             page=SyncEntriesCursor[Object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -180,7 +180,7 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -234,7 +234,9 @@ class ObjectsResource(SyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._post(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             body=maybe_transform(
                 {
                     "recipients": recipients,
@@ -290,7 +292,9 @@ class ObjectsResource(SyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._delete(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             body=maybe_transform(
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
@@ -335,7 +339,7 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -374,7 +378,12 @@ class ObjectsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -413,7 +422,12 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -499,7 +513,7 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/messages",
+            path_template("/v1/objects/{collection}/{id}/messages", collection=collection, id=id),
             page=SyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -558,7 +572,9 @@ class ObjectsResource(SyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences", collection=collection, object_id=object_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -609,7 +625,7 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/schedules",
+            path_template("/v1/objects/{collection}/{id}/schedules", collection=collection, id=id),
             page=SyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -685,7 +701,9 @@ class ObjectsResource(SyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             page=SyncEntriesCursor[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -763,7 +781,7 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             body=maybe_transform(
                 {
                     "channel_data": channel_data,
@@ -825,7 +843,12 @@ class ObjectsResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
             body=maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -902,7 +925,12 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "_persistence_strategy": _persistence_strategy,
@@ -960,7 +988,64 @@ class ObjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
+    def unset_preferences(
+        self,
+        collection: str,
+        object_id: str,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Unsets the preference set for the object, removing it entirely.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1041,7 +1126,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not collection:
             raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}",
+            path_template("/v1/objects/{collection}", collection=collection),
             page=AsyncEntriesCursor[Object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1096,7 +1181,7 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1150,7 +1235,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._post(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             body=await async_maybe_transform(
                 {
                     "recipients": recipients,
@@ -1206,7 +1293,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._delete(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             body=await async_maybe_transform(
                 {"recipients": recipients}, object_delete_subscriptions_params.ObjectDeleteSubscriptionsParams
             ),
@@ -1251,7 +1340,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1290,7 +1379,12 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1329,7 +1423,12 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1415,7 +1514,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/messages",
+            path_template("/v1/objects/{collection}/{id}/messages", collection=collection, id=id),
             page=AsyncItemsCursor[Message],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1474,7 +1573,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return await self._get(
-            f"/v1/objects/{collection}/{object_id}/preferences",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences", collection=collection, object_id=object_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1525,7 +1626,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{id}/schedules",
+            path_template("/v1/objects/{collection}/{id}/schedules", collection=collection, id=id),
             page=AsyncEntriesCursor[Schedule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1601,7 +1702,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         return self._get_api_list(
-            f"/v1/objects/{collection}/{object_id}/subscriptions",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/subscriptions", collection=collection, object_id=object_id
+            ),
             page=AsyncEntriesCursor[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1679,7 +1782,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{id}",
+            path_template("/v1/objects/{collection}/{id}", collection=collection, id=id),
             body=await async_maybe_transform(
                 {
                     "channel_data": channel_data,
@@ -1741,7 +1844,12 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
             body=await async_maybe_transform({"data": data}, object_set_channel_data_params.ObjectSetChannelDataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1818,7 +1926,12 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/v1/objects/{collection}/{object_id}/preferences/{id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "_persistence_strategy": _persistence_strategy,
@@ -1876,7 +1989,64 @@ class AsyncObjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+            path_template(
+                "/v1/objects/{collection}/{object_id}/channel_data/{channel_id}",
+                collection=collection,
+                object_id=object_id,
+                channel_id=channel_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
+    async def unset_preferences(
+        self,
+        collection: str,
+        object_id: str,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Unsets the preference set for the object, removing it entirely.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not collection:
+            raise ValueError(f"Expected a non-empty value for `collection` but received {collection!r}")
+        if not object_id:
+            raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template(
+                "/v1/objects/{collection}/{object_id}/preferences/{id}",
+                collection=collection,
+                object_id=object_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1937,6 +2107,9 @@ class ObjectsResourceWithRawResponse:
         self.unset_channel_data = to_raw_response_wrapper(
             objects.unset_channel_data,
         )
+        self.unset_preferences = to_raw_response_wrapper(
+            objects.unset_preferences,
+        )
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
@@ -1994,6 +2167,9 @@ class AsyncObjectsResourceWithRawResponse:
         )
         self.unset_channel_data = async_to_raw_response_wrapper(
             objects.unset_channel_data,
+        )
+        self.unset_preferences = async_to_raw_response_wrapper(
+            objects.unset_preferences,
         )
 
     @cached_property
@@ -2053,6 +2229,9 @@ class ObjectsResourceWithStreamingResponse:
         self.unset_channel_data = to_streamed_response_wrapper(
             objects.unset_channel_data,
         )
+        self.unset_preferences = to_streamed_response_wrapper(
+            objects.unset_preferences,
+        )
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
@@ -2110,6 +2289,9 @@ class AsyncObjectsResourceWithStreamingResponse:
         )
         self.unset_channel_data = async_to_streamed_response_wrapper(
             objects.unset_channel_data,
+        )
+        self.unset_preferences = async_to_streamed_response_wrapper(
+            objects.unset_preferences,
         )
 
     @cached_property

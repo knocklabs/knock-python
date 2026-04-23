@@ -36,6 +36,7 @@ class MessageEvent(BaseModel):
     type: Literal[
         "message.archived",
         "message.bounced",
+        "message.created",
         "message.delivered",
         "message.delivery_attempted",
         "message.interacted",

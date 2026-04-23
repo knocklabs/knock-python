@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -94,7 +94,7 @@ class GuidesResource(SyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return self._get(
-            f"/v1/users/{user_id}/guides/{channel_id}",
+            path_template("/v1/users/{user_id}/guides/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -172,7 +172,9 @@ class GuidesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/archived",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/archived", user_id=user_id, message_id=message_id
+            ),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -257,7 +259,9 @@ class GuidesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/interacted",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/interacted", user_id=user_id, message_id=message_id
+            ),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -342,7 +346,9 @@ class GuidesResource(SyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/seen",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/seen", user_id=user_id, message_id=message_id
+            ),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -431,7 +437,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not channel_id:
             raise ValueError(f"Expected a non-empty value for `channel_id` but received {channel_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/guides/{channel_id}",
+            path_template("/v1/users/{user_id}/guides/{channel_id}", user_id=user_id, channel_id=channel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +515,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/archived",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/archived", user_id=user_id, message_id=message_id
+            ),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -594,7 +602,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/interacted",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/interacted", user_id=user_id, message_id=message_id
+            ),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -679,7 +689,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not message_id:
             raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            f"/v1/users/{user_id}/guides/messages/{message_id}/seen",
+            path_template(
+                "/v1/users/{user_id}/guides/messages/{message_id}/seen", user_id=user_id, message_id=message_id
+            ),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,

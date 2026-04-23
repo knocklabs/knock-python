@@ -1,5 +1,58 @@
 # Changelog
 
+## 1.25.0 (2026-04-23)
+
+Full Changelog: [v1.24.1...v1.25.0](https://github.com/knocklabs/knock-python/compare/v1.24.1...v1.25.0)
+
+### Features
+
+* **api:** added new unset preferences methods ([519404b](https://github.com/knocklabs/knock-python/commit/519404bee37ce267e3e43ef65067c8172f95219f))
+* **api:** api update ([69bb5b7](https://github.com/knocklabs/knock-python/commit/69bb5b7b9aba93811ba0faee5b6a068332faf86e))
+* **api:** api update ([8d2a780](https://github.com/knocklabs/knock-python/commit/8d2a780c8ddbd78858570bb97a5907f34329d5fd))
+* **api:** api update ([f0c9120](https://github.com/knocklabs/knock-python/commit/f0c9120cefcd5905de5b0a208ae1bc5b35452acd))
+* **api:** api update ([5d9ba46](https://github.com/knocklabs/knock-python/commit/5d9ba46e6ab6200bba7d6a7fed0f87582b2ad34e))
+* **api:** skip tests for 2 endpoints in 2 languages ([a36266c](https://github.com/knocklabs/knock-python/commit/a36266c02d2574422a9f2f0d8b3de5b9a2ce8b17))
+* **internal:** implement indices array format for query and form serialization ([e7db532](https://github.com/knocklabs/knock-python/commit/e7db532103b42156c58ea021d78ae97f71b8c0bd))
+* **KNO-12791:** Add workflow recipient run APIs ([10be0e6](https://github.com/knocklabs/knock-python/commit/10be0e64f3623ac7e17c0db4fd1c6b45eb505ed5))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([b94df51](https://github.com/knocklabs/knock-python/commit/b94df5190b4c56bc70d87a8d5c10817a5c6e4ba8))
+* **deps:** bump minimum typing-extensions version ([3faab94](https://github.com/knocklabs/knock-python/commit/3faab948d5ae4297d7c35150545d843e0c34f427))
+* ensure file data are only sent as 1 parameter ([05206e0](https://github.com/knocklabs/knock-python/commit/05206e0e5f9c871bd9dac1b14f457df734da26ed))
+* sanitize endpoint path params ([5615d9e](https://github.com/knocklabs/knock-python/commit/5615d9e295147ff3a2321ca06222d2f04c875e30))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([b742a9f](https://github.com/knocklabs/knock-python/commit/b742a9fab9d76f56b6081fb6bc5a2b356676a67b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([64c3c93](https://github.com/knocklabs/knock-python/commit/64c3c93d337ee63ea4b81c23bbefd9d7c12a7e7b))
+* **internal:** more robust bootstrap script ([6f7de4e](https://github.com/knocklabs/knock-python/commit/6f7de4e88c3f990e94753a8c347cc72a509acca0))
+* **internal:** tweak CI branches ([4c01647](https://github.com/knocklabs/knock-python/commit/4c016474b315185a18ec577ea79e0b3115607dd3))
+* **internal:** update gitignore ([e5e89f5](https://github.com/knocklabs/knock-python/commit/e5e89f5f97e9170e602a836907a68987756b82f8))
+* **tests:** bump steady to v0.19.4 ([1b211c0](https://github.com/knocklabs/knock-python/commit/1b211c0a547eff991969ddfb57418b9797cb5f10))
+* **tests:** bump steady to v0.19.5 ([a0638b5](https://github.com/knocklabs/knock-python/commit/a0638b570e32ab0db5028d1e5ab4f24da80bee7b))
+* **tests:** bump steady to v0.19.6 ([f09d000](https://github.com/knocklabs/knock-python/commit/f09d000d0185189f1134f655cf96f522c59dfd24))
+* **tests:** bump steady to v0.19.7 ([973f8be](https://github.com/knocklabs/knock-python/commit/973f8bec907c1b613f410dd36711d171d43e97ef))
+* **tests:** bump steady to v0.20.1 ([ddb0590](https://github.com/knocklabs/knock-python/commit/ddb05902d4de62871a6574566fcc263d97b5057c))
+* **tests:** bump steady to v0.20.2 ([17eac93](https://github.com/knocklabs/knock-python/commit/17eac9319d41e7978dc3b2e201bb843ad3eb7f23))
+* **tests:** bump steady to v0.22.1 ([726ca11](https://github.com/knocklabs/knock-python/commit/726ca11ad213e6b2c947ebf5931491dfdf440d01))
+
+
+### Documentation
+
+* improve examples ([c47c485](https://github.com/knocklabs/knock-python/commit/c47c4853030bb13ffc641094d76ef223507a884a))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([29d5c77](https://github.com/knocklabs/knock-python/commit/29d5c776dae1ed8712a0d5514f48ee0fe6afda14))
+
 ## 1.24.1 (2026-03-16)
 
 Full Changelog: [v1.24.0...v1.24.1](https://github.com/knocklabs/knock-python/compare/v1.24.0...v1.24.1)

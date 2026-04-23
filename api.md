@@ -84,6 +84,7 @@ Methods:
 - <code title="put /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_channel_data</a>(user_id, channel_id, \*\*<a href="src/knockapi/types/user_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
 - <code title="put /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knockapi/resources/users/users.py">set_preferences</a>(user_id, id, \*\*<a href="src/knockapi/types/user_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/users/{user_id}/channel_data/{channel_id}">client.users.<a href="./src/knockapi/resources/users/users.py">unset_channel_data</a>(user_id, channel_id) -> None</code>
+- <code title="delete /v1/users/{user_id}/preferences/{id}">client.users.<a href="./src/knockapi/resources/users/users.py">unset_preferences</a>(user_id, id) -> None</code>
 
 ## Feeds
 
@@ -157,6 +158,7 @@ Methods:
 - <code title="put /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_channel_data</a>(collection, object_id, channel_id, \*\*<a href="src/knockapi/types/object_set_channel_data_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/channel_data.py">ChannelData</a></code>
 - <code title="put /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">set_preferences</a>(collection, object_id, id, \*\*<a href="src/knockapi/types/object_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/recipients/preference_set.py">PreferenceSet</a></code>
 - <code title="delete /v1/objects/{collection}/{object_id}/channel_data/{channel_id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">unset_channel_data</a>(collection, object_id, channel_id) -> None</code>
+- <code title="delete /v1/objects/{collection}/{object_id}/preferences/{id}">client.objects.<a href="./src/knockapi/resources/objects/objects.py">unset_preferences</a>(collection, object_id, id) -> None</code>
 
 ## Bulk
 
@@ -337,6 +339,23 @@ Methods:
 
 - <code title="post /v1/workflows/{key}/cancel">client.workflows.<a href="./src/knockapi/resources/workflows.py">cancel</a>(key, \*\*<a href="src/knockapi/types/workflow_cancel_params.py">params</a>) -> None</code>
 - <code title="post /v1/workflows/{key}/trigger">client.workflows.<a href="./src/knockapi/resources/workflows.py">trigger</a>(key, \*\*<a href="src/knockapi/types/workflow_trigger_params.py">params</a>) -> <a href="./src/knockapi/types/workflow_trigger_response.py">WorkflowTriggerResponse</a></code>
+
+# WorkflowRecipientRuns
+
+Types:
+
+```python
+from knockapi.types import (
+    WorkflowRecipientRun,
+    WorkflowRecipientRunDetail,
+    WorkflowRecipientRunEvent,
+)
+```
+
+Methods:
+
+- <code title="get /v1/workflow_recipient_runs">client.workflow_recipient_runs.<a href="./src/knockapi/resources/workflow_recipient_runs.py">list</a>(\*\*<a href="src/knockapi/types/workflow_recipient_run_list_params.py">params</a>) -> <a href="./src/knockapi/types/workflow_recipient_run.py">SyncItemsCursor[WorkflowRecipientRun]</a></code>
+- <code title="get /v1/workflow_recipient_runs/{id}">client.workflow_recipient_runs.<a href="./src/knockapi/resources/workflow_recipient_runs.py">get</a>(id) -> <a href="./src/knockapi/types/workflow_recipient_run_detail.py">WorkflowRecipientRunDetail</a></code>
 
 # Schedules
 

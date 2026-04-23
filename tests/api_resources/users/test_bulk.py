@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBulk:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_delete(self, client: Knock) -> None:
         bulk = client.users.bulk.delete(
@@ -25,7 +24,6 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_delete(self, client: Knock) -> None:
         response = client.users.bulk.with_raw_response.delete(
@@ -37,7 +35,6 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_delete(self, client: Knock) -> None:
         with client.users.bulk.with_streaming_response.delete(
@@ -51,7 +48,6 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_identify(self, client: Knock) -> None:
         bulk = client.users.bulk.identify(
@@ -59,7 +55,6 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_identify(self, client: Knock) -> None:
         response = client.users.bulk.with_raw_response.identify(
@@ -71,7 +66,6 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_identify(self, client: Knock) -> None:
         with client.users.bulk.with_streaming_response.identify(
@@ -85,7 +79,6 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_preferences(self, client: Knock) -> None:
         bulk = client.users.bulk.set_preferences(
@@ -94,7 +87,6 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_set_preferences_with_all_params(self, client: Knock) -> None:
         bulk = client.users.bulk.set_preferences(
@@ -104,11 +96,43 @@ class TestBulk:
                     "marketing": False,
                     "transactional": {
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": False,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -130,11 +154,43 @@ class TestBulk:
                     },
                 },
                 "channel_types": {
-                    "chat": True,
+                    "chat": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                     "email": True,
-                    "http": True,
-                    "in_app_feed": True,
-                    "push": True,
+                    "http": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
+                    "in_app_feed": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
+                    "push": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                     "sms": {
                         "conditions": [
                             {
@@ -161,11 +217,43 @@ class TestBulk:
                 "workflows": {
                     "dinosaurs-loose": {
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": False,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -191,7 +279,6 @@ class TestBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_set_preferences(self, client: Knock) -> None:
         response = client.users.bulk.with_raw_response.set_preferences(
@@ -204,7 +291,6 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_set_preferences(self, client: Knock) -> None:
         with client.users.bulk.with_streaming_response.set_preferences(
@@ -225,7 +311,6 @@ class TestAsyncBulk:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_delete(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.users.bulk.delete(
@@ -233,7 +318,6 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.bulk.with_raw_response.delete(
@@ -245,7 +329,6 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncKnock) -> None:
         async with async_client.users.bulk.with_streaming_response.delete(
@@ -259,7 +342,6 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_identify(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.users.bulk.identify(
@@ -267,7 +349,6 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_identify(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.bulk.with_raw_response.identify(
@@ -279,7 +360,6 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_identify(self, async_client: AsyncKnock) -> None:
         async with async_client.users.bulk.with_streaming_response.identify(
@@ -293,7 +373,6 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_preferences(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.users.bulk.set_preferences(
@@ -302,7 +381,6 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_set_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.users.bulk.set_preferences(
@@ -312,11 +390,43 @@ class TestAsyncBulk:
                     "marketing": False,
                     "transactional": {
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": False,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -338,11 +448,43 @@ class TestAsyncBulk:
                     },
                 },
                 "channel_types": {
-                    "chat": True,
+                    "chat": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                     "email": True,
-                    "http": True,
-                    "in_app_feed": True,
-                    "push": True,
+                    "http": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
+                    "in_app_feed": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
+                    "push": {
+                        "conditions": [
+                            {
+                                "argument": "US",
+                                "operator": "equal_to",
+                                "variable": "recipient.country_code",
+                            }
+                        ]
+                    },
                     "sms": {
                         "conditions": [
                             {
@@ -369,11 +511,43 @@ class TestAsyncBulk:
                 "workflows": {
                     "dinosaurs-loose": {
                         "channel_types": {
-                            "chat": True,
+                            "chat": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "email": False,
-                            "http": True,
-                            "in_app_feed": True,
-                            "push": True,
+                            "http": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "in_app_feed": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
+                            "push": {
+                                "conditions": [
+                                    {
+                                        "argument": "US",
+                                        "operator": "equal_to",
+                                        "variable": "recipient.country_code",
+                                    }
+                                ]
+                            },
                             "sms": {
                                 "conditions": [
                                     {
@@ -399,7 +573,6 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_set_preferences(self, async_client: AsyncKnock) -> None:
         response = await async_client.users.bulk.with_raw_response.set_preferences(
@@ -412,7 +585,6 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkOperation, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_set_preferences(self, async_client: AsyncKnock) -> None:
         async with async_client.users.bulk.with_streaming_response.set_preferences(

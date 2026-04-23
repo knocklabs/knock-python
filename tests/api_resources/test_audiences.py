@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAudiences:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_add_members(self, client: Knock) -> None:
         audience = client.audiences.add_members(
@@ -27,7 +26,6 @@ class TestAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_add_members_with_all_params(self, client: Knock) -> None:
         audience = client.audiences.add_members(
@@ -50,11 +48,43 @@ class TestAudiences:
                                     "marketing": False,
                                     "transactional": {
                                         "channel_types": {
-                                            "chat": True,
+                                            "chat": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "email": False,
-                                            "http": True,
-                                            "in_app_feed": True,
-                                            "push": True,
+                                            "http": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "in_app_feed": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "push": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "sms": {
                                                 "conditions": [
                                                     {
@@ -76,11 +106,43 @@ class TestAudiences:
                                     },
                                 },
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": True,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {
@@ -107,11 +169,43 @@ class TestAudiences:
                                 "workflows": {
                                     "dinosaurs-loose": {
                                         "channel_types": {
-                                            "chat": True,
+                                            "chat": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "email": True,
-                                            "http": True,
-                                            "in_app_feed": True,
-                                            "push": True,
+                                            "http": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "in_app_feed": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "push": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "sms": {
                                                 "conditions": [
                                                     {
@@ -143,7 +237,6 @@ class TestAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_add_members(self, client: Knock) -> None:
         response = client.audiences.with_raw_response.add_members(
@@ -156,7 +249,6 @@ class TestAudiences:
         audience = response.parse()
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_add_members(self, client: Knock) -> None:
         with client.audiences.with_streaming_response.add_members(
@@ -171,7 +263,6 @@ class TestAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_add_members(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -180,7 +271,6 @@ class TestAudiences:
                 members=[{"user": {"id": "dr_sattler"}}],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_members(self, client: Knock) -> None:
         audience = client.audiences.list_members(
@@ -188,7 +278,6 @@ class TestAudiences:
         )
         assert_matches_type(AudienceListMembersResponse, audience, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list_members(self, client: Knock) -> None:
         response = client.audiences.with_raw_response.list_members(
@@ -200,7 +289,6 @@ class TestAudiences:
         audience = response.parse()
         assert_matches_type(AudienceListMembersResponse, audience, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list_members(self, client: Knock) -> None:
         with client.audiences.with_streaming_response.list_members(
@@ -214,7 +302,6 @@ class TestAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_list_members(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -222,7 +309,6 @@ class TestAudiences:
                 "",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_remove_members(self, client: Knock) -> None:
         audience = client.audiences.remove_members(
@@ -231,7 +317,6 @@ class TestAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_remove_members(self, client: Knock) -> None:
         response = client.audiences.with_raw_response.remove_members(
@@ -244,7 +329,6 @@ class TestAudiences:
         audience = response.parse()
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_remove_members(self, client: Knock) -> None:
         with client.audiences.with_streaming_response.remove_members(
@@ -259,7 +343,6 @@ class TestAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_remove_members(self, client: Knock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -274,7 +357,6 @@ class TestAsyncAudiences:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_add_members(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.add_members(
@@ -283,7 +365,6 @@ class TestAsyncAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_add_members_with_all_params(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.add_members(
@@ -306,11 +387,43 @@ class TestAsyncAudiences:
                                     "marketing": False,
                                     "transactional": {
                                         "channel_types": {
-                                            "chat": True,
+                                            "chat": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "email": False,
-                                            "http": True,
-                                            "in_app_feed": True,
-                                            "push": True,
+                                            "http": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "in_app_feed": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "push": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "sms": {
                                                 "conditions": [
                                                     {
@@ -332,11 +445,43 @@ class TestAsyncAudiences:
                                     },
                                 },
                                 "channel_types": {
-                                    "chat": True,
+                                    "chat": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "email": True,
-                                    "http": True,
-                                    "in_app_feed": True,
-                                    "push": True,
+                                    "http": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "in_app_feed": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
+                                    "push": {
+                                        "conditions": [
+                                            {
+                                                "argument": "US",
+                                                "operator": "equal_to",
+                                                "variable": "recipient.country_code",
+                                            }
+                                        ]
+                                    },
                                     "sms": {
                                         "conditions": [
                                             {
@@ -363,11 +508,43 @@ class TestAsyncAudiences:
                                 "workflows": {
                                     "dinosaurs-loose": {
                                         "channel_types": {
-                                            "chat": True,
+                                            "chat": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "email": True,
-                                            "http": True,
-                                            "in_app_feed": True,
-                                            "push": True,
+                                            "http": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "in_app_feed": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
+                                            "push": {
+                                                "conditions": [
+                                                    {
+                                                        "argument": "US",
+                                                        "operator": "equal_to",
+                                                        "variable": "recipient.country_code",
+                                                    }
+                                                ]
+                                            },
                                             "sms": {
                                                 "conditions": [
                                                     {
@@ -399,7 +576,6 @@ class TestAsyncAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_add_members(self, async_client: AsyncKnock) -> None:
         response = await async_client.audiences.with_raw_response.add_members(
@@ -412,7 +588,6 @@ class TestAsyncAudiences:
         audience = await response.parse()
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_add_members(self, async_client: AsyncKnock) -> None:
         async with async_client.audiences.with_streaming_response.add_members(
@@ -427,7 +602,6 @@ class TestAsyncAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_add_members(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -436,7 +610,6 @@ class TestAsyncAudiences:
                 members=[{"user": {"id": "dr_sattler"}}],
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_members(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.list_members(
@@ -444,7 +617,6 @@ class TestAsyncAudiences:
         )
         assert_matches_type(AudienceListMembersResponse, audience, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list_members(self, async_client: AsyncKnock) -> None:
         response = await async_client.audiences.with_raw_response.list_members(
@@ -456,7 +628,6 @@ class TestAsyncAudiences:
         audience = await response.parse()
         assert_matches_type(AudienceListMembersResponse, audience, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list_members(self, async_client: AsyncKnock) -> None:
         async with async_client.audiences.with_streaming_response.list_members(
@@ -470,7 +641,6 @@ class TestAsyncAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_list_members(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
@@ -478,7 +648,6 @@ class TestAsyncAudiences:
                 "",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_remove_members(self, async_client: AsyncKnock) -> None:
         audience = await async_client.audiences.remove_members(
@@ -487,7 +656,6 @@ class TestAsyncAudiences:
         )
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_remove_members(self, async_client: AsyncKnock) -> None:
         response = await async_client.audiences.with_raw_response.remove_members(
@@ -500,7 +668,6 @@ class TestAsyncAudiences:
         audience = await response.parse()
         assert audience is None
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_remove_members(self, async_client: AsyncKnock) -> None:
         async with async_client.audiences.with_streaming_response.remove_members(
@@ -515,7 +682,6 @@ class TestAsyncAudiences:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_remove_members(self, async_client: AsyncKnock) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):

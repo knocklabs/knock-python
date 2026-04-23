@@ -57,6 +57,7 @@ class TestBatch:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     def test_method_get_content(self, client: Knock) -> None:
         batch = client.messages.batch.get_content(
@@ -64,6 +65,7 @@ class TestBatch:
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     def test_raw_response_get_content(self, client: Knock) -> None:
         response = client.messages.batch.with_raw_response.get_content(
@@ -75,6 +77,7 @@ class TestBatch:
         batch = response.parse()
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     def test_streaming_response_get_content(self, client: Knock) -> None:
         with client.messages.batch.with_streaming_response.get_content(
@@ -319,6 +322,7 @@ class TestAsyncBatch:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     async def test_method_get_content(self, async_client: AsyncKnock) -> None:
         batch = await async_client.messages.batch.get_content(
@@ -326,6 +330,7 @@ class TestAsyncBatch:
         )
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     async def test_raw_response_get_content(self, async_client: AsyncKnock) -> None:
         response = await async_client.messages.batch.with_raw_response.get_content(
@@ -337,6 +342,7 @@ class TestAsyncBatch:
         batch = await response.parse()
         assert_matches_type(BatchGetContentResponse, batch, path=["response"])
 
+    @pytest.mark.skip(reason="Steady does not support bracket-style array query params")
     @parametrize
     async def test_streaming_response_get_content(self, async_client: AsyncKnock) -> None:
         async with async_client.messages.batch.with_streaming_response.get_content(

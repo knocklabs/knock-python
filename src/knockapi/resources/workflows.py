@@ -70,11 +70,11 @@ class WorkflowsResource(SyncAPIResource):
         pair. Can optionally be provided one or more recipients to scope the request to.
 
         Args:
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
@@ -143,11 +143,11 @@ class WorkflowsResource(SyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           data: An optional map of data to pass into the workflow execution. There is a 10MB
               limit on the size of the full `data` payload. Any individual string value
@@ -235,11 +235,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         pair. Can optionally be provided one or more recipients to scope the request to.
 
         Args:
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
@@ -308,11 +308,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           data: An optional map of data to pass into the workflow execution. There is a 10MB
               limit on the size of the full `data` payload. Any individual string value

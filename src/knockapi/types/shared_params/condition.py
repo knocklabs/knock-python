@@ -29,7 +29,6 @@ class Condition(TypedDict, total=False):
             "exists",
             "not_exists",
             "contains_all",
-            "not_contains_all",
             "is_timestamp",
             "is_not_timestamp",
             "is_timestamp_on_or_after",

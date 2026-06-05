@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .recipient_reference import RecipientReference
 
-__all__ = ["Message", "Source", "Channel", "RecipientSnapshot"]
+__all__ = ["Message", "Source", "Channel"]
 
 
 class Source(BaseModel):
@@ -69,19 +69,6 @@ class Channel(BaseModel):
 
     name: Optional[str] = None
     """The human-readable name of the channel."""
-
-
-class RecipientSnapshot(BaseModel):
-    """Recipient contact information captured at email send time.
-
-    Null for non-email channels.
-    """
-
-    email: Optional[str] = None
-    """The email address the message was delivered to"""
-
-    name: Optional[str] = None
-    """The recipient name at send time"""
 
 
 class Message(BaseModel):
@@ -156,12 +143,6 @@ class Message(BaseModel):
 
     read_at: Optional[datetime] = None
     """Timestamp when the message was read."""
-
-    recipient_snapshot: Optional[RecipientSnapshot] = None
-    """Recipient contact information captured at email send time.
-
-    Null for non-email channels.
-    """
 
     scheduled_at: Optional[datetime] = None
     """Timestamp when the message was scheduled to be sent."""

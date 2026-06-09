@@ -10,7 +10,6 @@ __all__ = [
     "Connection",
     "ConnectionSlackTokenConnection",
     "ConnectionSlackIncomingWebhookConnection",
-    "ConnectionSlackIncomingWebhookConnectionIncomingWebhook",
     "Token",
 ]
 
@@ -28,18 +27,11 @@ class ConnectionSlackTokenConnection(TypedDict, total=False):
     """A Slack user ID from the Slack provider."""
 
 
-class ConnectionSlackIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
+class ConnectionSlackIncomingWebhookConnection(TypedDict, total=False):
     """A Slack connection incoming webhook."""
 
     url: Required[str]
     """The URL of the incoming webhook for a Slack connection."""
-
-
-class ConnectionSlackIncomingWebhookConnection(TypedDict, total=False):
-    """A Slack connection incoming webhook."""
-
-    incoming_webhook: Required[ConnectionSlackIncomingWebhookConnectionIncomingWebhook]
-    """A Slack connection incoming webhook."""
 
 
 Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackIncomingWebhookConnection]

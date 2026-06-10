@@ -119,6 +119,7 @@ class WorkflowsResource(SyncAPIResource):
         actor: Optional[RecipientRequestParam] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Optional[Dict[str, object]] | Omit = omit,
+        settings: Optional[workflow_trigger_params.Settings] | Omit = omit,
         tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -154,6 +155,8 @@ class WorkflowsResource(SyncAPIResource):
               greater than 1024 bytes in length will be
               [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
+          settings: Optional settings that control how this workflow trigger is executed.
+
           tenant: An request to set a tenant inline.
 
           extra_headers: Send extra headers
@@ -176,6 +179,7 @@ class WorkflowsResource(SyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "settings": settings,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,
@@ -284,6 +288,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         actor: Optional[RecipientRequestParam] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Optional[Dict[str, object]] | Omit = omit,
+        settings: Optional[workflow_trigger_params.Settings] | Omit = omit,
         tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -319,6 +324,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               greater than 1024 bytes in length will be
               [truncated](/developer-tools/api-logs#log-truncation) in your logs.
 
+          settings: Optional settings that control how this workflow trigger is executed.
+
           tenant: An request to set a tenant inline.
 
           extra_headers: Send extra headers
@@ -341,6 +348,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "settings": settings,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,

@@ -9,7 +9,7 @@ from .._types import SequenceNotStr
 from .recipient_request_param import RecipientRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
-__all__ = ["WorkflowTriggerParams"]
+__all__ = ["WorkflowTriggerParams", "Settings"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
@@ -45,5 +45,19 @@ class WorkflowTriggerParams(TypedDict, total=False):
     [truncated](/developer-tools/api-logs#log-truncation) in your logs.
     """
 
+    settings: Optional[Settings]
+    """Optional settings that control how this workflow trigger is executed."""
+
     tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
+
+
+class Settings(TypedDict, total=False):
+    """Optional settings that control how this workflow trigger is executed."""
+
+    sandbox_mode: Optional[bool]
+    """
+    When set to true, overrides the sandbox mode for all channels in this workflow
+    run, messages are not delivered to the underlying providers. If false or not
+    set, the workflow delivers messages normally.
+    """

@@ -93,10 +93,7 @@ class TestWorkflows:
                 "severity": "bar",
                 "system_status": "bar",
             },
-            settings={
-                "sandbox_mode": True,
-                "skip_delay": True,
-            },
+            settings={"sandbox_mode": True},
             tenant="ingen_isla_nublar",
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])
@@ -215,10 +212,7 @@ class TestAsyncWorkflows:
                 "severity": "bar",
                 "system_status": "bar",
             },
-            settings={
-                "sandbox_mode": True,
-                "skip_delay": True,
-            },
+            settings={"sandbox_mode": True},
             tenant="ingen_isla_nublar",
         )
         assert_matches_type(WorkflowTriggerResponse, workflow, path=["response"])

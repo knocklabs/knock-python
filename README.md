@@ -193,10 +193,7 @@ client = Knock()
 response = client.workflows.trigger(
     key="key",
     recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
-    settings={
-        "sandbox_mode": True,
-        "skip_delay": True,
-    },
+    settings={"sandbox_mode": True},
 )
 print(response.settings)
 ```

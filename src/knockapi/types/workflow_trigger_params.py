@@ -61,10 +61,3 @@ class Settings(TypedDict, total=False):
     run, messages are not delivered to the underlying providers. If false or not
     set, the workflow delivers messages normally.
     """
-
-    skip_delay: Optional[bool]
-    """When set to true, skips all delay steps in the workflow for this trigger
-    request.
-
-    If false or not set, delay steps execute normally.
-    """

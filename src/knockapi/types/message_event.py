@@ -37,19 +37,19 @@ class MessageEvent(BaseModel):
         "message.read",
         "message.sent",
         "message.seen",
-        "message.archived",
+        "message.created",
         "message.queued",
         "message.delivered",
-        "message.not_sent",
         "message.bounced",
         "message.undelivered",
+        "message.not_sent",
         "message.delivery_attempted",
+        "message.archived",
         "message.link_clicked",
         "message.interacted",
-        "message.unarchived",
         "message.unseen",
         "message.unread",
-        "message.created",
+        "message.unarchived",
     ]
     """The type of event that occurred."""
 

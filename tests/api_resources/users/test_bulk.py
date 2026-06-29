@@ -91,7 +91,7 @@ class TestBulk:
     def test_method_set_preferences_with_all_params(self, client: Knock) -> None:
         bulk = client.users.bulk.set_preferences(
             preferences={
-                "_persistence_strategy": "merge",
+                "id": "default",
                 "categories": {
                     "marketing": False,
                     "transactional": {
@@ -385,7 +385,7 @@ class TestAsyncBulk:
     async def test_method_set_preferences_with_all_params(self, async_client: AsyncKnock) -> None:
         bulk = await async_client.users.bulk.set_preferences(
             preferences={
-                "_persistence_strategy": "merge",
+                "id": "default",
                 "categories": {
                     "marketing": False,
                     "transactional": {

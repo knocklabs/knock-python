@@ -20,7 +20,6 @@ from ...types.users import bulk_delete_params, bulk_identify_params, bulk_set_pr
 from ..._base_client import make_request_options
 from ...types.bulk_operation import BulkOperation
 from ...types.inline_identify_user_request_param import InlineIdentifyUserRequestParam
-from ...types.recipients.preference_set_request_param import PreferenceSetRequestParam
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -137,7 +136,7 @@ class BulkResource(SyncAPIResource):
     def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequestParam,
+        preferences: bulk_set_preferences_params.Preferences,
         user_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,7 +155,8 @@ class BulkResource(SyncAPIResource):
         the preferences sent.
 
         Args:
-          preferences: A request to set a preference set for a recipient.
+          preferences: A preference set to apply in a bulk operation. Always replaces existing
+              preferences for the specified set.
 
           user_ids: A list of user IDs.
 
@@ -302,7 +302,7 @@ class AsyncBulkResource(AsyncAPIResource):
     async def set_preferences(
         self,
         *,
-        preferences: PreferenceSetRequestParam,
+        preferences: bulk_set_preferences_params.Preferences,
         user_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,7 +321,8 @@ class AsyncBulkResource(AsyncAPIResource):
         the preferences sent.
 
         Args:
-          preferences: A request to set a preference set for a recipient.
+          preferences: A preference set to apply in a bulk operation. Always replaces existing
+              preferences for the specified set.
 
           user_ids: A list of user IDs.
 

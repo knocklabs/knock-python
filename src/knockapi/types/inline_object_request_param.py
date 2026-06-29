@@ -13,7 +13,11 @@ from .recipients.inline_preference_set_request_param import InlinePreferenceSetR
 __all__ = ["InlineObjectRequestParam"]
 
 
-class InlineObjectRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class InlineObjectRequestParam(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """A custom [Object](/concepts/objects) entity which belongs to a collection."""
 
     id: Required[str]

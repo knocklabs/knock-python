@@ -44,7 +44,11 @@ class Settings(TypedDict, total=False):
     """A request to set a preference set for a recipient."""
 
 
-class TenantRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class TenantRequestParam(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """A tenant to be set in the system.
 
     You can supply any additional properties on the tenant object.

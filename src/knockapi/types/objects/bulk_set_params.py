@@ -18,7 +18,11 @@ class BulkSetParams(TypedDict, total=False):
     """A list of objects."""
 
 
-class Object(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Object(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """A custom [Object](/concepts/objects) entity which belongs to a collection."""
 
     id: Required[str]

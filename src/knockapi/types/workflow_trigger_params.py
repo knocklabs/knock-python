@@ -9,7 +9,7 @@ from .._types import SequenceNotStr
 from .recipient_request_param import RecipientRequestParam
 from .inline_tenant_request_param import InlineTenantRequestParam
 
-__all__ = ["WorkflowTriggerParams"]
+__all__ = ["WorkflowTriggerParams", "Settings"]
 
 
 class WorkflowTriggerParams(TypedDict, total=False):
@@ -30,11 +30,11 @@ class WorkflowTriggerParams(TypedDict, total=False):
 
     cancellation_key: Optional[str]
     """
-    An optional key that is used to reference a specific workflow trigger request
-    when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-    request. Must be provided while triggering a workflow in order to enable
-    subsequent cancellation. Should be unique across trigger requests to avoid
-    unintentional cancellations.
+    A key that is used to reference a specific workflow trigger request when issuing
+    a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+    be provided while triggering a workflow in order to enable subsequent
+    cancellation. Should be unique across trigger requests to avoid unintentional
+    cancellations.
     """
 
     data: Optional[Dict[str, object]]
@@ -45,5 +45,26 @@ class WorkflowTriggerParams(TypedDict, total=False):
     [truncated](/developer-tools/api-logs#log-truncation) in your logs.
     """
 
+    settings: Optional[Settings]
+    """Optional settings that control how this workflow trigger is executed."""
+
     tenant: Optional[InlineTenantRequestParam]
     """An request to set a tenant inline."""
+
+
+class Settings(TypedDict, total=False):
+    """Optional settings that control how this workflow trigger is executed."""
+
+    sandbox_mode: Optional[bool]
+    """
+    When set to true, overrides the sandbox mode for all channels in this workflow
+    run, messages are not delivered to the underlying providers. If false or not
+    set, the workflow delivers messages normally.
+    """
+
+    skip_delay: Optional[bool]
+    """When set to true, skips all delay steps in the workflow for this trigger
+    request.
+
+    If false or not set, delay steps execute normally.
+    """

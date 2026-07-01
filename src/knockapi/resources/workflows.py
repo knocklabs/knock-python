@@ -70,11 +70,11 @@ class WorkflowsResource(SyncAPIResource):
         pair. Can optionally be provided one or more recipients to scope the request to.
 
         Args:
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
@@ -119,6 +119,7 @@ class WorkflowsResource(SyncAPIResource):
         actor: Optional[RecipientRequestParam] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Optional[Dict[str, object]] | Omit = omit,
+        settings: Optional[workflow_trigger_params.Settings] | Omit = omit,
         tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -143,16 +144,18 @@ class WorkflowsResource(SyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           data: An optional map of data to pass into the workflow execution. There is a 10MB
               limit on the size of the full `data` payload. Any individual string value
               greater than 1024 bytes in length will be
               [truncated](/developer-tools/api-logs#log-truncation) in your logs.
+
+          settings: Optional settings that control how this workflow trigger is executed.
 
           tenant: An request to set a tenant inline.
 
@@ -176,6 +179,7 @@ class WorkflowsResource(SyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "settings": settings,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,
@@ -235,11 +239,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         pair. Can optionally be provided one or more recipients to scope the request to.
 
         Args:
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           recipients: A list of recipients to cancel the notification for. If omitted, cancels for all
               recipients associated with the cancellation key.
@@ -284,6 +288,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         actor: Optional[RecipientRequestParam] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Optional[Dict[str, object]] | Omit = omit,
+        settings: Optional[workflow_trigger_params.Settings] | Omit = omit,
         tenant: Optional[InlineTenantRequestParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -308,16 +313,18 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               (string), an inline user request (object), or an inline object request, which is
               determined by the presence of a `collection` property.
 
-          cancellation_key: An optional key that is used to reference a specific workflow trigger request
-              when issuing a [workflow cancellation](/send-notifications/canceling-workflows)
-              request. Must be provided while triggering a workflow in order to enable
-              subsequent cancellation. Should be unique across trigger requests to avoid
-              unintentional cancellations.
+          cancellation_key: A key that is used to reference a specific workflow trigger request when issuing
+              a [workflow cancellation](/send-notifications/canceling-workflows) request. Must
+              be provided while triggering a workflow in order to enable subsequent
+              cancellation. Should be unique across trigger requests to avoid unintentional
+              cancellations.
 
           data: An optional map of data to pass into the workflow execution. There is a 10MB
               limit on the size of the full `data` payload. Any individual string value
               greater than 1024 bytes in length will be
               [truncated](/developer-tools/api-logs#log-truncation) in your logs.
+
+          settings: Optional settings that control how this workflow trigger is executed.
 
           tenant: An request to set a tenant inline.
 
@@ -341,6 +348,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "settings": settings,
                     "tenant": tenant,
                 },
                 workflow_trigger_params.WorkflowTriggerParams,

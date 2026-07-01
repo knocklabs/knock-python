@@ -1,5 +1,56 @@
 # Changelog
 
+## 1.26.0 (2026-06-29)
+
+Full Changelog: [v1.25.0...v1.26.0](https://github.com/knocklabs/knock-python/compare/v1.25.0...v1.26.0)
+
+### Features
+
+* **api:** api update ([c4fc2df](https://github.com/knocklabs/knock-python/commit/c4fc2df8327f44f10823ba20f361d42e1c98f5fd))
+* **api:** api update ([e81b283](https://github.com/knocklabs/knock-python/commit/e81b283f0a2ece6369dc5b1ba0bd6e6410cb433d))
+* **api:** api update ([63378d1](https://github.com/knocklabs/knock-python/commit/63378d10a51e7f7dceeab05d7dd98015f143852f))
+* **api:** api update ([ca1f597](https://github.com/knocklabs/knock-python/commit/ca1f59724d1643bf5f863d7b030c05ddddc0dd8f))
+* **api:** api update ([ac2b316](https://github.com/knocklabs/knock-python/commit/ac2b316b3b0436305d61e147d438b21189c7603f))
+* **api:** api update ([98cab8e](https://github.com/knocklabs/knock-python/commit/98cab8e55b0c27929c8ed10655aefedb8d56ccca))
+* **api:** api update ([ea6a7b2](https://github.com/knocklabs/knock-python/commit/ea6a7b20b8b6945407270414c377e0d0cacbe549))
+* **api:** api update ([c4e760e](https://github.com/knocklabs/knock-python/commit/c4e760e67d085de8b0e468a2e98775f4ab93bd66))
+* **api:** api update ([43412da](https://github.com/knocklabs/knock-python/commit/43412da962d2521710dd41058bd4c5074d17e3d1))
+* **api:** api update ([edbcb15](https://github.com/knocklabs/knock-python/commit/edbcb1532aa9d87d505c0ebc5980da3d04fbb0dd))
+* **api:** api update ([8f3a9d1](https://github.com/knocklabs/knock-python/commit/8f3a9d18b69e5c5fd84bec640a634c3f7ac4f823))
+* **api:** api update ([75bdef9](https://github.com/knocklabs/knock-python/commit/75bdef9bb327961a6ca2e5f77339b49deaaa0c1d))
+* **api:** api update ([84f04fa](https://github.com/knocklabs/knock-python/commit/84f04fa741708c52e808d0a9d16ecef51e8b9278))
+* **api:** api update ([385770f](https://github.com/knocklabs/knock-python/commit/385770f1fa876f3214c4d81994c13b7b2ba3c757))
+* **api:** api update ([0759719](https://github.com/knocklabs/knock-python/commit/0759719e28f705d6d77d25a1cd34463db0e5e43b))
+* **api:** api update ([f53e71f](https://github.com/knocklabs/knock-python/commit/f53e71fc4c49e6a45666986f809404870325e453))
+* **api:** api update ([da1eebd](https://github.com/knocklabs/knock-python/commit/da1eebdadd17a6e62b69bd0187d8098af18ba02f))
+* **api:** api update ([cc4aff9](https://github.com/knocklabs/knock-python/commit/cc4aff98cc1b0213a1215c7751da5383f17ef533))
+* **api:** api update ([d01a71b](https://github.com/knocklabs/knock-python/commit/d01a71b3d70e2d41c7699ebf46c71c805aa04a36))
+* **api:** api update ([ff11bb4](https://github.com/knocklabs/knock-python/commit/ff11bb4724ba4cbb1d7da0e962c16dfa6202cdc2))
+* **api:** api update ([45246a0](https://github.com/knocklabs/knock-python/commit/45246a08de7846278ecf8c628e983f323135030e))
+* **api:** api update ([f056999](https://github.com/knocklabs/knock-python/commit/f056999c633a20387c7c3ca0d03e6896398bf354))
+* **api:** api update ([d587784](https://github.com/knocklabs/knock-python/commit/d58778468a31d3f085c5b75eeca367d3f69c1694))
+* **api:** api update ([72ae353](https://github.com/knocklabs/knock-python/commit/72ae353d7114cf54164169db4623aeb0964485c1))
+* **api:** api update ([08f1af8](https://github.com/knocklabs/knock-python/commit/08f1af8a783072188da2bf1301fa3fad2b599271))
+* **api:** api update ([6b7bf04](https://github.com/knocklabs/knock-python/commit/6b7bf04ce3367a43fd7190d739ac07ac0e4540db))
+* **api:** api update ([4ade4a7](https://github.com/knocklabs/knock-python/commit/4ade4a73e6121f40677e6e497e7979ef3769ab6d))
+* **api:** api update ([39e6add](https://github.com/knocklabs/knock-python/commit/39e6add4ed39335399c26b1c87968bf68709330f))
+* **api:** api update ([0c514bf](https://github.com/knocklabs/knock-python/commit/0c514bf839ee8134227869b00cf52fb07deeeae6))
+* **api:** api update ([c3f2f4a](https://github.com/knocklabs/knock-python/commit/c3f2f4a2e93139c627d3745ea4eb7f5142f3153b))
+* **internal/types:** support eagerly validating pydantic iterators ([b128ac3](https://github.com/knocklabs/knock-python/commit/b128ac31c39b01c758eabda4003373c513f59138))
+* support setting headers via env ([e22462b](https://github.com/knocklabs/knock-python/commit/e22462bd64af8c7ddaa8e84c76aca28e411d9734))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([04b3154](https://github.com/knocklabs/knock-python/commit/04b3154865a445887eb791b9c94d2c3586eadf3a))
+* **types:** avoid type-checker errors on params with additional properties ([5f69bb9](https://github.com/knocklabs/knock-python/commit/5f69bb911914f0ca3687ce5fe5ebf4a2d0aae2d6))
+* use correct field name format for multipart file arrays ([4d33037](https://github.com/knocklabs/knock-python/commit/4d33037881f97e2b3e99892b31af059ae22c4bb8))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([8e64806](https://github.com/knocklabs/knock-python/commit/8e6480650f67a83f923f45485ff2f0d79e719d0b))
+
 ## 1.25.0 (2026-04-23)
 
 Full Changelog: [v1.24.1...v1.25.0](https://github.com/knocklabs/knock-python/compare/v1.24.1...v1.25.0)

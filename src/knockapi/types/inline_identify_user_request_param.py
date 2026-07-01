@@ -13,7 +13,11 @@ from .recipients.inline_preference_set_request_param import InlinePreferenceSetR
 __all__ = ["InlineIdentifyUserRequestParam"]
 
 
-class InlineIdentifyUserRequestParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class InlineIdentifyUserRequestParam(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """A set of parameters to inline-identify a user with.
 
     Inline identifying the user will ensure that the user is available before the request is executed in Knock. It will perform an upsert for the user you're supplying, replacing any properties specified.

@@ -13,6 +13,9 @@ class Connection(BaseModel):
     ok: bool
     """Whether the Microsoft Teams connection is valid."""
 
+    ms_teams_tenant_id: Optional[str] = None
+    """The Microsoft Teams tenant ID for the connected tenant."""
+
     reason: Optional[str] = None
     """The reason for the Microsoft Teams connection if it is not valid."""
 

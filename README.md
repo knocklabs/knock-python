@@ -190,11 +190,15 @@ from knockapi import Knock
 
 client = Knock()
 
-page = client.users.list_messages(
-    user_id="user-123",
-    inserted_at={},
+response = client.workflows.trigger(
+    key="key",
+    recipients=["dr_grant", "dr_sattler", "dr_malcolm"],
+    settings={
+        "sandbox_mode": True,
+        "skip_delay": True,
+    },
 )
-print(page.items)
+print(response.settings)
 ```
 
 ## Handling errors

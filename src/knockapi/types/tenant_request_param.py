@@ -15,6 +15,24 @@ __all__ = ["TenantRequestParam", "Settings", "SettingsBranding"]
 class SettingsBranding(TypedDict, total=False):
     """The branding for the tenant."""
 
+    dark_icon_url: Optional[str]
+    """The icon URL for the tenant in dark mode. Falls back to `icon_url` if unset."""
+
+    dark_logo_url: Optional[str]
+    """The logo URL for the tenant in dark mode. Falls back to `logo_url` if unset."""
+
+    dark_primary_color: Optional[str]
+    """The primary color for the tenant in dark mode, provided as a hex value.
+
+    Defaults to `#FFFFFF`.
+    """
+
+    dark_primary_color_contrast: Optional[str]
+    """The primary color contrast for the tenant in dark mode, provided as a hex value.
+
+    Defaults to `#000000`.
+    """
+
     icon_url: Optional[str]
     """The icon URL for the tenant.
 

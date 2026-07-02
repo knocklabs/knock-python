@@ -13,6 +13,24 @@ __all__ = ["Tenant", "Settings", "SettingsBranding"]
 class SettingsBranding(BaseModel):
     """The branding for the tenant."""
 
+    dark_icon_url: Optional[str] = None
+    """The icon URL for the tenant in dark mode. Falls back to `icon_url` if unset."""
+
+    dark_logo_url: Optional[str] = None
+    """The logo URL for the tenant in dark mode. Falls back to `logo_url` if unset."""
+
+    dark_primary_color: Optional[str] = None
+    """The primary color for the tenant in dark mode, provided as a hex value.
+
+    Defaults to `#FFFFFF`.
+    """
+
+    dark_primary_color_contrast: Optional[str] = None
+    """The primary color contrast for the tenant in dark mode, provided as a hex value.
+
+    Defaults to `#000000`.
+    """
+
     icon_url: Optional[str] = None
     """The icon URL for the tenant.
 

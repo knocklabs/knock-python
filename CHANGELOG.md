@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.29.0](https://github.com/knocklabs/knock-python/compare/v1.28.0...v1.29.0) (2026-07-14)
+
+
+### Features
+
+* set publish release settings ([4e5e410](https://github.com/knocklabs/knock-python/commit/4e5e410e41aa6e24e7bba94b621889de9b4b6f03))
+* set up stlc automation workflows/actions ([9bc1ee9](https://github.com/knocklabs/knock-python/commit/9bc1ee9075f4abc42e4ad0bdf288f7867f4a3960))
+
+
+### Chores
+
+* trivial test changes ([d3d2e08](https://github.com/knocklabs/knock-python/commit/d3d2e0873553cb2540718037072bf245c3879390))
+
 ## 1.28.0 (2026-07-13)
 
 Full Changelog: [v1.27.0...v1.28.0](https://github.com/knocklabs/knock-python/compare/v1.27.0...v1.28.0)

@@ -34,7 +34,7 @@ class User(BaseModel):
     """The primary email address for the user."""
 
     name: Optional[str] = None
-    """The display name of the user."""
+    """Display name of the user."""
 
     phone_number: Optional[str] = None
     """

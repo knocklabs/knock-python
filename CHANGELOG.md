@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.29.1](https://github.com/knocklabs/knock-python/compare/v1.29.0...v1.29.1) (2026-07-17)
+
+
+### Chores
+
+* forward SDK_WRITE_TOKEN to the back-sync workflow ([b13a198](https://github.com/knocklabs/knock-python/commit/b13a198c47fb29f198782b4676ab1fa6eaa4215a))
+
 ## [1.29.0](https://github.com/knocklabs/knock-python/compare/v1.28.0...v1.29.0) (2026-07-16)
 
 

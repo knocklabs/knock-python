@@ -102,22 +102,9 @@ class TestGuides:
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
-            content={
-                "body": "bar",
-                "title": "bar",
-            },
-            data={
-                "next_time": "bar",
-                "spots_left": "bar",
-                "tour_id": "bar",
-            },
             is_final=False,
-            metadata={
-                "cta": "bar",
-                "theme": "bar",
-                "type": "bar",
-            },
             tenant="ingen_isla_nublar",
+            unthrottled=False,
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -198,16 +185,6 @@ class TestGuides:
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
-            content={
-                "body": "bar",
-                "title": "bar",
-            },
-            data={
-                "next_time": "bar",
-                "spots_left": "bar",
-                "tour_id": "bar",
-            },
-            is_final=False,
             metadata={
                 "cta": "bar",
                 "theme": "bar",
@@ -279,6 +256,10 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -291,23 +272,17 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
-            guide_key="tour_notification",
-            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             data={
                 "next_time": "bar",
                 "spots_left": "bar",
                 "tour_id": "bar",
-            },
-            is_final=False,
-            metadata={
-                "cta": "bar",
-                "theme": "bar",
-                "type": "bar",
             },
             tenant="ingen_isla_nublar",
         )
@@ -319,6 +294,10 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -335,6 +314,10 @@ class TestGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -354,6 +337,10 @@ class TestGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
+                content={
+                    "body": "bar",
+                    "title": "bar",
+                },
                 guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
                 guide_key="tour_notification",
                 guide_step_ref="lab_tours",
@@ -364,6 +351,10 @@ class TestGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
+                content={
+                    "body": "bar",
+                    "title": "bar",
+                },
                 guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
                 guide_key="tour_notification",
                 guide_step_ref="lab_tours",
@@ -455,22 +446,9 @@ class TestAsyncGuides:
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
-            content={
-                "body": "bar",
-                "title": "bar",
-            },
-            data={
-                "next_time": "bar",
-                "spots_left": "bar",
-                "tour_id": "bar",
-            },
             is_final=False,
-            metadata={
-                "cta": "bar",
-                "theme": "bar",
-                "type": "bar",
-            },
             tenant="ingen_isla_nublar",
+            unthrottled=False,
         )
         assert_matches_type(GuideMarkMessageAsArchivedResponse, guide, path=["response"])
 
@@ -551,16 +529,6 @@ class TestAsyncGuides:
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
-            content={
-                "body": "bar",
-                "title": "bar",
-            },
-            data={
-                "next_time": "bar",
-                "spots_left": "bar",
-                "tour_id": "bar",
-            },
-            is_final=False,
             metadata={
                 "cta": "bar",
                 "theme": "bar",
@@ -632,6 +600,10 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -644,23 +616,17 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
-            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
-            guide_key="tour_notification",
-            guide_step_ref="lab_tours",
             content={
                 "body": "bar",
                 "title": "bar",
             },
+            guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
+            guide_key="tour_notification",
+            guide_step_ref="lab_tours",
             data={
                 "next_time": "bar",
                 "spots_left": "bar",
                 "tour_id": "bar",
-            },
-            is_final=False,
-            metadata={
-                "cta": "bar",
-                "theme": "bar",
-                "type": "bar",
             },
             tenant="ingen_isla_nublar",
         )
@@ -672,6 +638,10 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -688,6 +658,10 @@ class TestAsyncGuides:
             user_id="user_id",
             message_id="message_id",
             channel_id="123e4567-e89b-12d3-a456-426614174000",
+            content={
+                "body": "bar",
+                "title": "bar",
+            },
             guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
             guide_key="tour_notification",
             guide_step_ref="lab_tours",
@@ -707,6 +681,10 @@ class TestAsyncGuides:
                 user_id="",
                 message_id="message_id",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
+                content={
+                    "body": "bar",
+                    "title": "bar",
+                },
                 guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
                 guide_key="tour_notification",
                 guide_step_ref="lab_tours",
@@ -717,6 +695,10 @@ class TestAsyncGuides:
                 user_id="user_id",
                 message_id="",
                 channel_id="123e4567-e89b-12d3-a456-426614174000",
+                content={
+                    "body": "bar",
+                    "title": "bar",
+                },
                 guide_id="7e9dc78c-b3b1-4127-a54e-71f1899b831a",
                 guide_key="tour_notification",
                 guide_step_ref="lab_tours",

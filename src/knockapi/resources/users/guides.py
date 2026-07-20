@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 
 import httpx
 
@@ -121,11 +121,9 @@ class GuidesResource(SyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
-        data: Dict[str, object] | Omit = omit,
         is_final: bool | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
+        unthrottled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,15 +145,12 @@ class GuidesResource(SyncAPIResource):
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
-          data: The data of the guide.
-
           is_final: Whether the guide is final.
 
-          metadata: The metadata of the guide.
-
           tenant: The tenant ID of the guide.
+
+          unthrottled: Whether the guide bypasses its guide group's throttle settings. When true,
+              archiving the guide does not open a new throttle window.
 
           extra_headers: Send extra headers
 
@@ -181,11 +176,9 @@ class GuidesResource(SyncAPIResource):
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
-                    "data": data,
                     "is_final": is_final,
-                    "metadata": metadata,
                     "tenant": tenant,
+                    "unthrottled": unthrottled,
                 },
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
@@ -208,11 +201,8 @@ class GuidesResource(SyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
-        data: Dict[str, object] | Omit = omit,
-        is_final: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,13 +224,7 @@ class GuidesResource(SyncAPIResource):
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
-          data: The data of the guide.
-
-          is_final: Whether the guide is final.
-
-          metadata: The metadata of the guide.
+          metadata: Metadata about the interaction.
 
           tenant: The tenant ID of the guide.
 
@@ -268,9 +252,6 @@ class GuidesResource(SyncAPIResource):
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
-                    "data": data,
-                    "is_final": is_final,
                     "metadata": metadata,
                     "tenant": tenant,
                 },
@@ -292,14 +273,12 @@ class GuidesResource(SyncAPIResource):
         message_id: str,
         *,
         channel_id: str,
+        content: Dict[str, object],
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
-        is_final: bool | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,19 +294,15 @@ class GuidesResource(SyncAPIResource):
         Args:
           channel_id: The unique identifier for the channel.
 
+          content: The content of the guide.
+
           guide_id: The unique identifier for the guide.
 
           guide_key: The key of the guide.
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
           data: The data of the guide.
-
-          is_final: Whether the guide is final.
-
-          metadata: The metadata of the guide.
 
           tenant: The tenant ID of the guide.
 
@@ -352,13 +327,11 @@ class GuidesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
+                    "content": content,
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
                     "data": data,
-                    "is_final": is_final,
-                    "metadata": metadata,
                     "tenant": tenant,
                 },
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,
@@ -464,11 +437,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
-        data: Dict[str, object] | Omit = omit,
         is_final: bool | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
+        unthrottled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,15 +461,12 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
-          data: The data of the guide.
-
           is_final: Whether the guide is final.
 
-          metadata: The metadata of the guide.
-
           tenant: The tenant ID of the guide.
+
+          unthrottled: Whether the guide bypasses its guide group's throttle settings. When true,
+              archiving the guide does not open a new throttle window.
 
           extra_headers: Send extra headers
 
@@ -524,11 +492,9 @@ class AsyncGuidesResource(AsyncAPIResource):
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
-                    "data": data,
                     "is_final": is_final,
-                    "metadata": metadata,
                     "tenant": tenant,
+                    "unthrottled": unthrottled,
                 },
                 guide_mark_message_as_archived_params.GuideMarkMessageAsArchivedParams,
             ),
@@ -551,11 +517,8 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
-        data: Dict[str, object] | Omit = omit,
-        is_final: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -577,13 +540,7 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
-          data: The data of the guide.
-
-          is_final: Whether the guide is final.
-
-          metadata: The metadata of the guide.
+          metadata: Metadata about the interaction.
 
           tenant: The tenant ID of the guide.
 
@@ -611,9 +568,6 @@ class AsyncGuidesResource(AsyncAPIResource):
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
-                    "data": data,
-                    "is_final": is_final,
                     "metadata": metadata,
                     "tenant": tenant,
                 },
@@ -635,14 +589,12 @@ class AsyncGuidesResource(AsyncAPIResource):
         message_id: str,
         *,
         channel_id: str,
+        content: Dict[str, object],
         guide_id: str,
         guide_key: str,
         guide_step_ref: str,
-        content: Dict[str, object] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
-        is_final: bool | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
-        tenant: Optional[str] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -658,19 +610,15 @@ class AsyncGuidesResource(AsyncAPIResource):
         Args:
           channel_id: The unique identifier for the channel.
 
+          content: The content of the guide.
+
           guide_id: The unique identifier for the guide.
 
           guide_key: The key of the guide.
 
           guide_step_ref: The step reference of the guide.
 
-          content: The content of the guide.
-
           data: The data of the guide.
-
-          is_final: Whether the guide is final.
-
-          metadata: The metadata of the guide.
 
           tenant: The tenant ID of the guide.
 
@@ -695,13 +643,11 @@ class AsyncGuidesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
+                    "content": content,
                     "guide_id": guide_id,
                     "guide_key": guide_key,
                     "guide_step_ref": guide_step_ref,
-                    "content": content,
                     "data": data,
-                    "is_final": is_final,
-                    "metadata": metadata,
                     "tenant": tenant,
                 },
                 guide_mark_message_as_seen_params.GuideMarkMessageAsSeenParams,

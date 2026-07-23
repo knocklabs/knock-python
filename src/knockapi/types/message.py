@@ -72,25 +72,16 @@ class Channel(BaseModel):
 
 
 class RecipientSnapshot(BaseModel):
-    """The destination the message was delivered to, captured at send time.
+    """Recipient contact information captured at email send time.
 
-    Email channels carry `email`/`name`; chat channels carry the destination `channel_id` or `user_id`, or `via_incoming_webhook`. Null when no snapshot was captured.
+    Null for non-email channels.
     """
 
-    channel_id: Optional[str] = None
-    """The chat channel the message was delivered to (chat channels)"""
-
     email: Optional[str] = None
-    """The email address the message was delivered to (email channels)"""
+    """The email address the message was delivered to"""
 
     name: Optional[str] = None
-    """The recipient name at send time (email channels)"""
-
-    user_id: Optional[str] = None
-    """The chat user the message was direct-messaged to (chat channels)"""
-
-    via_incoming_webhook: Optional[bool] = None
-    """Whether the chat message was delivered via an incoming webhook"""
+    """The recipient name at send time"""
 
 
 class Message(BaseModel):
@@ -167,11 +158,9 @@ class Message(BaseModel):
     """Timestamp when the message was read."""
 
     recipient_snapshot: Optional[RecipientSnapshot] = None
-    """The destination the message was delivered to, captured at send time.
+    """Recipient contact information captured at email send time.
 
-    Email channels carry `email`/`name`; chat channels carry the destination
-    `channel_id` or `user_id`, or `via_incoming_webhook`. Null when no snapshot was
-    captured.
+    Null for non-email channels.
     """
 
     scheduled_at: Optional[datetime] = None

@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.30.0](https://github.com/knocklabs/knock-python/compare/v1.29.0...v1.30.0) (2026-07-24)
+
+
+### Features
+
+* update api spec to v0.1.1599 ([3cb081a](https://github.com/knocklabs/knock-python/commit/3cb081ae1705d1d32d7fde5d03435a172aef7def))
+* update api spec to v0.1.1605 ([770c796](https://github.com/knocklabs/knock-python/commit/770c79682e1bbb22e4d9d42f07e301af5ee428c8))
+* update api spec to v0.1.1607 ([0029a7a](https://github.com/knocklabs/knock-python/commit/0029a7a9c6d6ed7a5f08f35749d89c23c4801f82))
+* update api spec to v0.1.1608 ([7466ad0](https://github.com/knocklabs/knock-python/commit/7466ad013c151d62a600a4e0932957f12547cb55))
+* update api spec to v0.1.1609 ([1b03b98](https://github.com/knocklabs/knock-python/commit/1b03b98ef5d0769f923dda54b8c6a47dc8296092))
+* update api spec to v0.1.1610 ([0151195](https://github.com/knocklabs/knock-python/commit/0151195d173cc3bdc64834b6472b75c33a49c4ab))
+* update api spec to v0.1.1611 ([e972c97](https://github.com/knocklabs/knock-python/commit/e972c97dcc86df51cad8409f6a674f624ec308e1))
+* update api spec to v0.1.1614 ([42280f7](https://github.com/knocklabs/knock-python/commit/42280f731a218f6a5bc79b0c52ce70ae105cd604))
+* update api spec to v0.1.1616 ([6e81220](https://github.com/knocklabs/knock-python/commit/6e81220428584f1ceca1f56d5212e610a3c884fa))
+* update api spec to v0.1.1617 ([e5338e4](https://github.com/knocklabs/knock-python/commit/e5338e4e8cd7ae1c9cb95f3c0da4d9436429225f))
+* update api spec to v0.1.1618 ([a9dd652](https://github.com/knocklabs/knock-python/commit/a9dd652dc86ec7f3b769895f45a0e7306633c0b6))
+
+
+### Chores
+
+* forward SDK_WRITE_TOKEN to the back-sync workflow ([b13a198](https://github.com/knocklabs/knock-python/commit/b13a198c47fb29f198782b4676ab1fa6eaa4215a))
+
 ## [1.29.0](https://github.com/knocklabs/knock-python/compare/v1.28.0...v1.29.0) (2026-07-16)
 
 

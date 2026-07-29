@@ -24,6 +24,9 @@ class ConnectionSlackTokenConnection(BaseModel):
     channel_id: Optional[str] = None
     """A Slack channel ID from the Slack provider."""
 
+    channel_name: Optional[str] = None
+    """Slack channel name."""
+
     user_id: Optional[str] = None
     """A Slack user ID from the Slack provider."""
 

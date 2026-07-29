@@ -24,6 +24,9 @@ class ConnectionSlackTokenConnection(TypedDict, total=False):
     channel_id: Optional[str]
     """A Slack channel ID from the Slack provider."""
 
+    channel_name: Optional[str]
+    """Slack channel name."""
+
     user_id: Optional[str]
     """A Slack user ID from the Slack provider."""
 

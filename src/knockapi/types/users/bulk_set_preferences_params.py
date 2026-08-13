@@ -17,6 +17,8 @@ __all__ = [
     "PreferencesCategoriesPreferenceSetWorkflowCategorySettingObject",
     "PreferencesCategoriesPreferenceSetWorkflowCategorySettingObjectChannels",
     "PreferencesChannels",
+    "PreferencesCommercialSubscribed",
+    "PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting",
     "PreferencesWorkflows",
     "PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObject",
     "PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObjectChannels",
@@ -57,6 +59,21 @@ class PreferencesCategoriesPreferenceSetWorkflowCategorySettingObject(TypedDict,
 PreferencesCategories: TypeAlias = Union[bool, PreferencesCategoriesPreferenceSetWorkflowCategorySettingObject]
 
 PreferencesChannels: TypeAlias = Union[bool, PreferenceSetChannelSettingParam]
+
+
+class PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting(TypedDict, total=False):
+    """A set of settings for the commercial subscribed preference.
+
+    Currently, this can only be a list of conditions to apply.
+    """
+
+    conditions: Required[Iterable[Condition]]
+    """A list of conditions to apply to the commercial subscribed preference."""
+
+
+PreferencesCommercialSubscribed: TypeAlias = Union[
+    bool, PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting
+]
 
 PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
     bool, PreferenceSetChannelSettingParam
@@ -102,10 +119,12 @@ class Preferences(TypedDict, total=False):
     channels: Optional[Dict[str, PreferencesChannels]]
     """Channel preferences."""
 
-    commercial_subscribed: Optional[bool]
+    commercial_subscribed: Optional[PreferencesCommercialSubscribed]
     """Whether the recipient is subscribed to commercial communications.
 
     When false, the recipient will not receive commercial workflow notifications.
+    Can also be set to a settings object with conditions that are evaluated at
+    notification send time.
     """
 
     workflows: Optional[Dict[str, PreferencesWorkflows]]

@@ -14,6 +14,8 @@ __all__ = [
     "CategoriesPreferenceSetWorkflowCategorySettingObject",
     "CategoriesPreferenceSetWorkflowCategorySettingObjectChannels",
     "Channels",
+    "CommercialSubscribed",
+    "CommercialSubscribedPreferenceSetCommercialSubscribedSetting",
     "Workflows",
     "WorkflowsPreferenceSetWorkflowCategorySettingObject",
     "WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels",
@@ -40,6 +42,19 @@ class CategoriesPreferenceSetWorkflowCategorySettingObject(BaseModel):
 Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySettingObject]
 
 Channels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
+
+
+class CommercialSubscribedPreferenceSetCommercialSubscribedSetting(BaseModel):
+    """A set of settings for the commercial subscribed preference.
+
+    Currently, this can only be a list of conditions to apply.
+    """
+
+    conditions: List[Condition]
+    """A list of conditions to apply to the commercial subscribed preference."""
+
+
+CommercialSubscribed: TypeAlias = Union[bool, CommercialSubscribedPreferenceSetCommercialSubscribedSetting, None]
 
 WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 
@@ -82,10 +97,12 @@ class PreferenceSet(BaseModel):
     channels: Optional[Dict[str, Channels]] = None
     """Channel preferences."""
 
-    commercial_subscribed: Optional[bool] = None
+    commercial_subscribed: Optional[CommercialSubscribed] = None
     """Whether the recipient is subscribed to commercial communications.
 
     When false, the recipient will not receive commercial workflow notifications.
+    Can also be set to a settings object with conditions that are evaluated at
+    notification send time.
     """
 
     workflows: Optional[Dict[str, Workflows]] = None

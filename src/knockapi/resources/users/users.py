@@ -58,6 +58,14 @@ from ...types.user import User
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.schedule import Schedule
+from .preference_center import (
+    PreferenceCenterResource,
+    AsyncPreferenceCenterResource,
+    PreferenceCenterResourceWithRawResponse,
+    AsyncPreferenceCenterResourceWithRawResponse,
+    PreferenceCenterResourceWithStreamingResponse,
+    AsyncPreferenceCenterResourceWithStreamingResponse,
+)
 from ...types.recipients.channel_data import ChannelData
 from ...types.recipients.subscription import Subscription
 from ...types.recipient_reference_param import RecipientReferenceParam
@@ -98,6 +106,13 @@ class UsersResource(SyncAPIResource):
         A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
         """
         return BulkResource(self._client)
+
+    @cached_property
+    def preference_center(self) -> PreferenceCenterResource:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return PreferenceCenterResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
@@ -978,6 +993,13 @@ class AsyncUsersResource(AsyncAPIResource):
         A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
         """
         return AsyncBulkResource(self._client)
+
+    @cached_property
+    def preference_center(self) -> AsyncPreferenceCenterResource:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return AsyncPreferenceCenterResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
@@ -1905,6 +1927,13 @@ class UsersResourceWithRawResponse:
         """
         return BulkResourceWithRawResponse(self._users.bulk)
 
+    @cached_property
+    def preference_center(self) -> PreferenceCenterResourceWithRawResponse:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return PreferenceCenterResourceWithRawResponse(self._users.preference_center)
+
 
 class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
@@ -1978,6 +2007,13 @@ class AsyncUsersResourceWithRawResponse:
         A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
         """
         return AsyncBulkResourceWithRawResponse(self._users.bulk)
+
+    @cached_property
+    def preference_center(self) -> AsyncPreferenceCenterResourceWithRawResponse:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return AsyncPreferenceCenterResourceWithRawResponse(self._users.preference_center)
 
 
 class UsersResourceWithStreamingResponse:
@@ -2053,6 +2089,13 @@ class UsersResourceWithStreamingResponse:
         """
         return BulkResourceWithStreamingResponse(self._users.bulk)
 
+    @cached_property
+    def preference_center(self) -> PreferenceCenterResourceWithStreamingResponse:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return PreferenceCenterResourceWithStreamingResponse(self._users.preference_center)
+
 
 class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
@@ -2126,3 +2169,10 @@ class AsyncUsersResourceWithStreamingResponse:
         A bulk operation is a set of changes applied across zero or more records triggered via a call to the Knock API and performed asynchronously.
         """
         return AsyncBulkResourceWithStreamingResponse(self._users.bulk)
+
+    @cached_property
+    def preference_center(self) -> AsyncPreferenceCenterResourceWithStreamingResponse:
+        """
+        The preference center is a hosted page where users can manage their notification preferences.
+        """
+        return AsyncPreferenceCenterResourceWithStreamingResponse(self._users.preference_center)

@@ -7,9 +7,11 @@ from typing_extensions import Literal, TypeAlias
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .message_in_app_feed_content_block import MessageInAppFeedContentBlock
+from .message_in_app_feed_button_set_block import MessageInAppFeedButtonSetBlock
 
 __all__ = [
-    "MessageGetContentResponse",
+    "MessageContents",
     "Data",
     "DataMessageEmailContent",
     "DataMessageSMSContent",
@@ -19,9 +21,6 @@ __all__ = [
     "DataMessageChatContentTemplateBlock",
     "DataMessageInAppFeedContent",
     "DataMessageInAppFeedContentBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock",
-    "DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton",
 ]
 
 
@@ -130,52 +129,7 @@ class DataMessageChatContent(BaseModel):
     """Additional metadata associated with the chat message."""
 
 
-class DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock(BaseModel):
-    """A block in a message in an app feed."""
-
-    content: str
-    """The content of the block in a message in an app feed."""
-
-    name: str
-    """The name of the block in a message in an app feed."""
-
-    rendered: str
-    """The rendered HTML version of the content."""
-
-    type: Literal["markdown", "text"]
-    """The type of block in a message in an app feed."""
-
-
-class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton(BaseModel):
-    """A button in an in app feed message."""
-
-    action: str
-    """The action to take when the button is clicked."""
-
-    label: str
-    """The label of the button."""
-
-    name: str
-    """The name of the button."""
-
-
-class DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock(BaseModel):
-    """A button set block in a message in an app feed."""
-
-    buttons: List[DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlockButton]
-    """A list of buttons in an in app feed message."""
-
-    name: str
-    """The name of the button set in a message in an app feed."""
-
-    type: Literal["button_set"]
-    """The type of block in a message in an app feed."""
-
-
-DataMessageInAppFeedContentBlock: TypeAlias = Union[
-    DataMessageInAppFeedContentBlockMessageInAppFeedContentBlock,
-    DataMessageInAppFeedContentBlockMessageInAppFeedButtonSetBlock,
-]
+DataMessageInAppFeedContentBlock: TypeAlias = Union[MessageInAppFeedContentBlock, MessageInAppFeedButtonSetBlock]
 
 
 class DataMessageInAppFeedContent(BaseModel):
@@ -197,7 +151,7 @@ Data: TypeAlias = Union[
 ]
 
 
-class MessageGetContentResponse(BaseModel):
+class MessageContents(BaseModel):
     """The content of a message."""
 
     api_typename: str = FieldInfo(alias="__typename")

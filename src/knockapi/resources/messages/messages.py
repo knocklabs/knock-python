@@ -37,8 +37,8 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.message import Message
 from ...types.activity import Activity
 from ...types.message_event import MessageEvent
+from ...types.message_contents import MessageContents
 from ...types.message_delivery_log import MessageDeliveryLog
-from ...types.message_get_content_response import MessageGetContentResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -256,7 +256,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageGetContentResponse:
+    ) -> MessageContents:
         """
         Returns the fully rendered contents of a message, where the response depends on
         which channel the message was sent through.
@@ -277,7 +277,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetContentResponse,
+            cast_to=MessageContents,
         )
 
     def list_activities(
@@ -924,7 +924,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageGetContentResponse:
+    ) -> MessageContents:
         """
         Returns the fully rendered contents of a message, where the response depends on
         which channel the message was sent through.
@@ -945,7 +945,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetContentResponse,
+            cast_to=MessageContents,
         )
 
     def list_activities(

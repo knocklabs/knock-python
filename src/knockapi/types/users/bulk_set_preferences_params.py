@@ -9,6 +9,7 @@ from ..._types import SequenceNotStr
 from ..shared_params.condition import Condition
 from ..recipients.preference_set_channel_types_param import PreferenceSetChannelTypesParam
 from ..recipients.preference_set_channel_setting_param import PreferenceSetChannelSettingParam
+from ..preference_set_commercial_subscribed_setting_param import PreferenceSetCommercialSubscribedSettingParam
 
 __all__ = [
     "BulkSetPreferencesParams",
@@ -18,7 +19,6 @@ __all__ = [
     "PreferencesCategoriesPreferenceSetWorkflowCategorySettingObjectChannels",
     "PreferencesChannels",
     "PreferencesCommercialSubscribed",
-    "PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting",
     "PreferencesWorkflows",
     "PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObject",
     "PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObjectChannels",
@@ -60,20 +60,7 @@ PreferencesCategories: TypeAlias = Union[bool, PreferencesCategoriesPreferenceSe
 
 PreferencesChannels: TypeAlias = Union[bool, PreferenceSetChannelSettingParam]
 
-
-class PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting(TypedDict, total=False):
-    """A set of settings for the commercial subscribed preference.
-
-    Currently, this can only be a list of conditions to apply.
-    """
-
-    conditions: Required[Iterable[Condition]]
-    """A list of conditions to apply to the commercial subscribed preference."""
-
-
-PreferencesCommercialSubscribed: TypeAlias = Union[
-    bool, PreferencesCommercialSubscribedPreferenceSetCommercialSubscribedSetting
-]
+PreferencesCommercialSubscribed: TypeAlias = Union[bool, PreferenceSetCommercialSubscribedSettingParam]
 
 PreferencesWorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[
     bool, PreferenceSetChannelSettingParam

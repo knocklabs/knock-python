@@ -18,6 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.audience_member_request_param import AudienceMemberRequestParam
 from ..types.audience_list_members_response import AudienceListMembersResponse
 
 __all__ = ["AudiencesResource", "AsyncAudiencesResource"]
@@ -49,7 +50,7 @@ class AudiencesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        members: Iterable[audience_add_members_params.Member],
+        members: Iterable[AudienceMemberRequestParam],
         create_audience: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,7 +134,7 @@ class AudiencesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        members: Iterable[audience_remove_members_params.Member],
+        members: Iterable[AudienceMemberRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,7 +203,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        members: Iterable[audience_add_members_params.Member],
+        members: Iterable[AudienceMemberRequestParam],
         create_audience: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -288,7 +289,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        members: Iterable[audience_remove_members_params.Member],
+        members: Iterable[AudienceMemberRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

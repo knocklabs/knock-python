@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["GuideMarkMessageAsSeenResponse"]
+__all__ = ["GuideActionResponse"]
 
 
-class GuideMarkMessageAsSeenResponse(BaseModel):
+class GuideActionResponse(BaseModel):
     """A response for a guide action."""
 
     status: str

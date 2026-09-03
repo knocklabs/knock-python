@@ -7,6 +7,7 @@ from ..._models import BaseModel
 from ..shared.condition import Condition
 from .preference_set_channel_types import PreferenceSetChannelTypes
 from .preference_set_channel_setting import PreferenceSetChannelSetting
+from ..preference_set_commercial_subscribed_setting import PreferenceSetCommercialSubscribedSetting
 
 __all__ = [
     "PreferenceSet",
@@ -15,7 +16,6 @@ __all__ = [
     "CategoriesPreferenceSetWorkflowCategorySettingObjectChannels",
     "Channels",
     "CommercialSubscribed",
-    "CommercialSubscribedPreferenceSetCommercialSubscribedSetting",
     "Workflows",
     "WorkflowsPreferenceSetWorkflowCategorySettingObject",
     "WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels",
@@ -43,18 +43,7 @@ Categories: TypeAlias = Union[bool, CategoriesPreferenceSetWorkflowCategorySetti
 
 Channels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 
-
-class CommercialSubscribedPreferenceSetCommercialSubscribedSetting(BaseModel):
-    """A set of settings for the commercial subscribed preference.
-
-    Currently, this can only be a list of conditions to apply.
-    """
-
-    conditions: List[Condition]
-    """A list of conditions to apply to the commercial subscribed preference."""
-
-
-CommercialSubscribed: TypeAlias = Union[bool, CommercialSubscribedPreferenceSetCommercialSubscribedSetting, None]
+CommercialSubscribed: TypeAlias = Union[bool, PreferenceSetCommercialSubscribedSetting, None]
 
 WorkflowsPreferenceSetWorkflowCategorySettingObjectChannels: TypeAlias = Union[bool, PreferenceSetChannelSetting]
 

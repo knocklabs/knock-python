@@ -19,14 +19,14 @@ from ..._response import (
 from ...types.users import (
     guide_get_channel_params,
     guide_mark_message_as_seen_params,
+    guide_reset_guide_engagements_params,
+    guide_unarchive_guide_message_params,
     guide_mark_message_as_archived_params,
     guide_mark_message_as_interacted_params,
 )
 from ..._base_client import make_request_options
+from ...types.users.guide_action_response import GuideActionResponse
 from ...types.users.guide_get_channel_response import GuideGetChannelResponse
-from ...types.users.guide_mark_message_as_seen_response import GuideMarkMessageAsSeenResponse
-from ...types.users.guide_mark_message_as_archived_response import GuideMarkMessageAsArchivedResponse
-from ...types.users.guide_mark_message_as_interacted_response import GuideMarkMessageAsInteractedResponse
 
 __all__ = ["GuidesResource", "AsyncGuidesResource"]
 
@@ -115,7 +115,6 @@ class GuidesResource(SyncAPIResource):
     def mark_message_as_archived(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         guide_id: str,
@@ -131,7 +130,7 @@ class GuidesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsArchivedResponse:
+    ) -> GuideActionResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
         archived events.
@@ -164,12 +163,8 @@ class GuidesResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/archived", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/archived", user_id=user_id),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -189,13 +184,12 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsArchivedResponse,
+            cast_to=GuideActionResponse,
         )
 
     def mark_message_as_interacted(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         guide_id: str,
@@ -210,7 +204,7 @@ class GuidesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsInteractedResponse:
+    ) -> GuideActionResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
         interacted events.
@@ -240,12 +234,8 @@ class GuidesResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/interacted", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/interacted", user_id=user_id),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -264,13 +254,12 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsInteractedResponse,
+            cast_to=GuideActionResponse,
         )
 
     def mark_message_as_seen(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         content: Dict[str, object],
@@ -286,7 +275,7 @@ class GuidesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsSeenResponse:
+    ) -> GuideActionResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
         events.
@@ -318,12 +307,8 @@ class GuidesResource(SyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/seen", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/seen", user_id=user_id),
             body=maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -343,7 +328,115 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsSeenResponse,
+            cast_to=GuideActionResponse,
+        )
+
+    def reset_guide_engagements(
+        self,
+        user_id: str,
+        *,
+        guide_key: str,
+        tenant: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> GuideActionResponse:
+        """
+        Resets the engagement state of a guide for a user, removing the guide's
+        engagement log entry so the next interaction creates a fresh engagement.
+
+        Args:
+          guide_key: The key of the guide.
+
+          tenant: The tenant ID of the guide.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._put(
+            path_template("/v1/users/{user_id}/guides/engagements/reset", user_id=user_id),
+            body=maybe_transform(
+                {
+                    "guide_key": guide_key,
+                    "tenant": tenant,
+                },
+                guide_reset_guide_engagements_params.GuideResetGuideEngagementsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=GuideActionResponse,
+        )
+
+    def unarchive_guide_message(
+        self,
+        user_id: str,
+        *,
+        guide_key: str,
+        tenant: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> GuideActionResponse:
+        """
+        Records that a guide has been unarchived, triggering any associated unarchived
+        events.
+
+        Args:
+          guide_key: The key of the guide.
+
+          tenant: The tenant ID of the guide.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._delete(
+            path_template("/v1/users/{user_id}/guides/messages/archived", user_id=user_id),
+            body=maybe_transform(
+                {
+                    "guide_key": guide_key,
+                    "tenant": tenant,
+                },
+                guide_unarchive_guide_message_params.GuideUnarchiveGuideMessageParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=GuideActionResponse,
         )
 
 
@@ -431,7 +524,6 @@ class AsyncGuidesResource(AsyncAPIResource):
     async def mark_message_as_archived(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         guide_id: str,
@@ -447,7 +539,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsArchivedResponse:
+    ) -> GuideActionResponse:
         """
         Records that a guide has been archived by a user, triggering any associated
         archived events.
@@ -480,12 +572,8 @@ class AsyncGuidesResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/archived", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/archived", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -505,13 +593,12 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsArchivedResponse,
+            cast_to=GuideActionResponse,
         )
 
     async def mark_message_as_interacted(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         guide_id: str,
@@ -526,7 +613,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsInteractedResponse:
+    ) -> GuideActionResponse:
         """
         Records that a user has interacted with a guide, triggering any associated
         interacted events.
@@ -556,12 +643,8 @@ class AsyncGuidesResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/interacted", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/interacted", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -580,13 +663,12 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsInteractedResponse,
+            cast_to=GuideActionResponse,
         )
 
     async def mark_message_as_seen(
         self,
         user_id: str,
-        message_id: str,
         *,
         channel_id: str,
         content: Dict[str, object],
@@ -602,7 +684,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> GuideMarkMessageAsSeenResponse:
+    ) -> GuideActionResponse:
         """
         Records that a guide has been seen by a user, triggering any associated seen
         events.
@@ -634,12 +716,8 @@ class AsyncGuidesResource(AsyncAPIResource):
         """
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
         return await self._put(
-            path_template(
-                "/v1/users/{user_id}/guides/messages/{message_id}/seen", user_id=user_id, message_id=message_id
-            ),
+            path_template("/v1/users/{user_id}/guides/messages/seen", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "channel_id": channel_id,
@@ -659,7 +737,115 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=GuideMarkMessageAsSeenResponse,
+            cast_to=GuideActionResponse,
+        )
+
+    async def reset_guide_engagements(
+        self,
+        user_id: str,
+        *,
+        guide_key: str,
+        tenant: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> GuideActionResponse:
+        """
+        Resets the engagement state of a guide for a user, removing the guide's
+        engagement log entry so the next interaction creates a fresh engagement.
+
+        Args:
+          guide_key: The key of the guide.
+
+          tenant: The tenant ID of the guide.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._put(
+            path_template("/v1/users/{user_id}/guides/engagements/reset", user_id=user_id),
+            body=await async_maybe_transform(
+                {
+                    "guide_key": guide_key,
+                    "tenant": tenant,
+                },
+                guide_reset_guide_engagements_params.GuideResetGuideEngagementsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=GuideActionResponse,
+        )
+
+    async def unarchive_guide_message(
+        self,
+        user_id: str,
+        *,
+        guide_key: str,
+        tenant: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> GuideActionResponse:
+        """
+        Records that a guide has been unarchived, triggering any associated unarchived
+        events.
+
+        Args:
+          guide_key: The key of the guide.
+
+          tenant: The tenant ID of the guide.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._delete(
+            path_template("/v1/users/{user_id}/guides/messages/archived", user_id=user_id),
+            body=await async_maybe_transform(
+                {
+                    "guide_key": guide_key,
+                    "tenant": tenant,
+                },
+                guide_unarchive_guide_message_params.GuideUnarchiveGuideMessageParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=GuideActionResponse,
         )
 
 
@@ -679,6 +865,12 @@ class GuidesResourceWithRawResponse:
         self.mark_message_as_seen = to_raw_response_wrapper(
             guides.mark_message_as_seen,
         )
+        self.reset_guide_engagements = to_raw_response_wrapper(
+            guides.reset_guide_engagements,
+        )
+        self.unarchive_guide_message = to_raw_response_wrapper(
+            guides.unarchive_guide_message,
+        )
 
 
 class AsyncGuidesResourceWithRawResponse:
@@ -696,6 +888,12 @@ class AsyncGuidesResourceWithRawResponse:
         )
         self.mark_message_as_seen = async_to_raw_response_wrapper(
             guides.mark_message_as_seen,
+        )
+        self.reset_guide_engagements = async_to_raw_response_wrapper(
+            guides.reset_guide_engagements,
+        )
+        self.unarchive_guide_message = async_to_raw_response_wrapper(
+            guides.unarchive_guide_message,
         )
 
 
@@ -715,6 +913,12 @@ class GuidesResourceWithStreamingResponse:
         self.mark_message_as_seen = to_streamed_response_wrapper(
             guides.mark_message_as_seen,
         )
+        self.reset_guide_engagements = to_streamed_response_wrapper(
+            guides.reset_guide_engagements,
+        )
+        self.unarchive_guide_message = to_streamed_response_wrapper(
+            guides.unarchive_guide_message,
+        )
 
 
 class AsyncGuidesResourceWithStreamingResponse:
@@ -732,4 +936,10 @@ class AsyncGuidesResourceWithStreamingResponse:
         )
         self.mark_message_as_seen = async_to_streamed_response_wrapper(
             guides.mark_message_as_seen,
+        )
+        self.reset_guide_engagements = async_to_streamed_response_wrapper(
+            guides.reset_guide_engagements,
+        )
+        self.unarchive_guide_message = async_to_streamed_response_wrapper(
+            guides.unarchive_guide_message,
         )

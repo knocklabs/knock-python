@@ -32,6 +32,14 @@ from .guides import (
     GuidesResourceWithStreamingResponse,
     AsyncGuidesResourceWithStreamingResponse,
 )
+from .preference_center import (
+    PreferenceCenterResource,
+    AsyncPreferenceCenterResource,
+    PreferenceCenterResourceWithRawResponse,
+    AsyncPreferenceCenterResourceWithRawResponse,
+    PreferenceCenterResourceWithStreamingResponse,
+    AsyncPreferenceCenterResourceWithStreamingResponse,
+)
 
 __all__ = [
     "FeedsResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncBulkResourceWithRawResponse",
     "BulkResourceWithStreamingResponse",
     "AsyncBulkResourceWithStreamingResponse",
+    "PreferenceCenterResource",
+    "AsyncPreferenceCenterResource",
+    "PreferenceCenterResourceWithRawResponse",
+    "AsyncPreferenceCenterResourceWithRawResponse",
+    "PreferenceCenterResourceWithStreamingResponse",
+    "AsyncPreferenceCenterResourceWithStreamingResponse",
     "UsersResource",
     "AsyncUsersResource",
     "UsersResourceWithRawResponse",

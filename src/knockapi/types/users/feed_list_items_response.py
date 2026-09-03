@@ -1,67 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from ..activity import Activity
 from ..recipient import Recipient
+from ..message_in_app_feed_content_block import MessageInAppFeedContentBlock
+from ..message_in_app_feed_button_set_block import MessageInAppFeedButtonSetBlock
 
-__all__ = [
-    "FeedListItemsResponse",
-    "Block",
-    "BlockMessageInAppFeedContentBlock",
-    "BlockMessageInAppFeedButtonSetBlock",
-    "BlockMessageInAppFeedButtonSetBlockButton",
-    "Source",
-]
+__all__ = ["FeedListItemsResponse", "Block", "Source"]
 
-
-class BlockMessageInAppFeedContentBlock(BaseModel):
-    """A block in a message in an app feed."""
-
-    content: str
-    """The content of the block in a message in an app feed."""
-
-    name: str
-    """The name of the block in a message in an app feed."""
-
-    rendered: str
-    """The rendered HTML version of the content."""
-
-    type: Literal["markdown", "text"]
-    """The type of block in a message in an app feed."""
-
-
-class BlockMessageInAppFeedButtonSetBlockButton(BaseModel):
-    """A button in an in app feed message."""
-
-    action: str
-    """The action to take when the button is clicked."""
-
-    label: str
-    """The label of the button."""
-
-    name: str
-    """The name of the button."""
-
-
-class BlockMessageInAppFeedButtonSetBlock(BaseModel):
-    """A button set block in a message in an app feed."""
-
-    buttons: List[BlockMessageInAppFeedButtonSetBlockButton]
-    """A list of buttons in an in app feed message."""
-
-    name: str
-    """The name of the button set in a message in an app feed."""
-
-    type: Literal["button_set"]
-    """The type of block in a message in an app feed."""
-
-
-Block: TypeAlias = Union[BlockMessageInAppFeedContentBlock, BlockMessageInAppFeedButtonSetBlock]
+Block: TypeAlias = Union[MessageInAppFeedContentBlock, MessageInAppFeedButtonSetBlock]
 
 
 class Source(BaseModel):

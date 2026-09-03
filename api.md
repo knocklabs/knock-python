@@ -63,6 +63,9 @@ Types:
 from knockapi.types import (
     IdentifyUserRequest,
     InlineIdentifyUserRequest,
+    ListSchedulesResponse,
+    ListSubscriptionsResponse,
+    PreferenceSetCommercialSubscribedSetting,
     User,
     UserListPreferencesResponse,
 )
@@ -105,19 +108,22 @@ Types:
 
 ```python
 from knockapi.types.users import (
+    GuideActionResponse,
+    GuideArchivedRequest,
+    GuideInteractedRequest,
+    GuideSeenRequest,
     GuideGetChannelResponse,
-    GuideMarkMessageAsArchivedResponse,
-    GuideMarkMessageAsInteractedResponse,
-    GuideMarkMessageAsSeenResponse,
 )
 ```
 
 Methods:
 
 - <code title="get /v1/users/{user_id}/guides/{channel_id}">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">get_channel</a>(user_id, channel_id, \*\*<a href="src/knockapi/types/users/guide_get_channel_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_get_channel_response.py">GuideGetChannelResponse</a></code>
-- <code title="put /v1/users/{user_id}/guides/messages/{message_id}/archived">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_archived</a>(user_id, message_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_archived_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_mark_message_as_archived_response.py">GuideMarkMessageAsArchivedResponse</a></code>
-- <code title="put /v1/users/{user_id}/guides/messages/{message_id}/interacted">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_interacted</a>(user_id, message_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_interacted_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_mark_message_as_interacted_response.py">GuideMarkMessageAsInteractedResponse</a></code>
-- <code title="put /v1/users/{user_id}/guides/messages/{message_id}/seen">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_seen</a>(user_id, message_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_seen_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_mark_message_as_seen_response.py">GuideMarkMessageAsSeenResponse</a></code>
+- <code title="put /v1/users/{user_id}/guides/messages/archived">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_archived</a>(user_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_archived_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_action_response.py">GuideActionResponse</a></code>
+- <code title="put /v1/users/{user_id}/guides/messages/interacted">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_interacted</a>(user_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_interacted_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_action_response.py">GuideActionResponse</a></code>
+- <code title="put /v1/users/{user_id}/guides/messages/seen">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">mark_message_as_seen</a>(user_id, \*\*<a href="src/knockapi/types/users/guide_mark_message_as_seen_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_action_response.py">GuideActionResponse</a></code>
+- <code title="put /v1/users/{user_id}/guides/engagements/reset">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">reset_guide_engagements</a>(user_id, \*\*<a href="src/knockapi/types/users/guide_reset_guide_engagements_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_action_response.py">GuideActionResponse</a></code>
+- <code title="delete /v1/users/{user_id}/guides/messages/archived">client.users.guides.<a href="./src/knockapi/resources/users/guides.py">unarchive_guide_message</a>(user_id, \*\*<a href="src/knockapi/types/users/guide_unarchive_guide_message_params.py">params</a>) -> <a href="./src/knockapi/types/users/guide_action_response.py">GuideActionResponse</a></code>
 
 ## Bulk
 
@@ -126,6 +132,23 @@ Methods:
 - <code title="post /v1/users/bulk/delete">client.users.bulk.<a href="./src/knockapi/resources/users/bulk.py">delete</a>(\*\*<a href="src/knockapi/types/users/bulk_delete_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/users/bulk/identify">client.users.bulk.<a href="./src/knockapi/resources/users/bulk.py">identify</a>(\*\*<a href="src/knockapi/types/users/bulk_identify_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
 - <code title="post /v1/users/bulk/preferences">client.users.bulk.<a href="./src/knockapi/resources/users/bulk.py">set_preferences</a>(\*\*<a href="src/knockapi/types/users/bulk_set_preferences_params.py">params</a>) -> <a href="./src/knockapi/types/bulk_operation.py">BulkOperation</a></code>
+
+## PreferenceCenter
+
+Types:
+
+```python
+from knockapi.types.users import (
+    PreferenceCenterBrandingConfig,
+    PreferenceCenterGenerateSignedURLResponse,
+    PreferenceCenterGetConfigResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/users/{user_id}/preference_center/signed_url">client.users.preference_center.<a href="./src/knockapi/resources/users/preference_center.py">generate_signed_url</a>(user_id) -> <a href="./src/knockapi/types/users/preference_center_generate_signed_url_response.py">PreferenceCenterGenerateSignedURLResponse</a></code>
+- <code title="get /v1/users/{user_id}/preference_center/config">client.users.preference_center.<a href="./src/knockapi/resources/users/preference_center.py">get_config</a>(user_id) -> <a href="./src/knockapi/types/users/preference_center_get_config_response.py">PreferenceCenterGetConfigResponse</a></code>
 
 # Objects
 
@@ -210,10 +233,13 @@ Types:
 ```python
 from knockapi.types import (
     Activity,
+    ListMessagesResponse,
     Message,
+    MessageContents,
     MessageDeliveryLog,
     MessageEvent,
-    MessageGetContentResponse,
+    MessageInAppFeedButtonSetBlock,
+    MessageInAppFeedContentBlock,
 )
 ```
 
@@ -222,7 +248,7 @@ Methods:
 - <code title="get /v1/messages">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list</a>(\*\*<a href="src/knockapi/types/message_list_params.py">params</a>) -> <a href="./src/knockapi/types/message.py">SyncItemsCursor[Message]</a></code>
 - <code title="put /v1/messages/{message_id}/archived">client.messages.<a href="./src/knockapi/resources/messages/messages.py">archive</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
 - <code title="get /v1/messages/{message_id}">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get</a>(message_id) -> <a href="./src/knockapi/types/message.py">Message</a></code>
-- <code title="get /v1/messages/{message_id}/content">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get_content</a>(message_id) -> <a href="./src/knockapi/types/message_get_content_response.py">MessageGetContentResponse</a></code>
+- <code title="get /v1/messages/{message_id}/content">client.messages.<a href="./src/knockapi/resources/messages/messages.py">get_content</a>(message_id) -> <a href="./src/knockapi/types/message_contents.py">MessageContents</a></code>
 - <code title="get /v1/messages/{message_id}/activities">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_activities</a>(message_id, \*\*<a href="src/knockapi/types/message_list_activities_params.py">params</a>) -> <a href="./src/knockapi/types/activity.py">SyncItemsCursor[Activity]</a></code>
 - <code title="get /v1/messages/{message_id}/delivery_logs">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_delivery_logs</a>(message_id, \*\*<a href="src/knockapi/types/message_list_delivery_logs_params.py">params</a>) -> <a href="./src/knockapi/types/message_delivery_log.py">SyncItemsCursor[MessageDeliveryLog]</a></code>
 - <code title="get /v1/messages/{message_id}/events">client.messages.<a href="./src/knockapi/resources/messages/messages.py">list_events</a>(message_id, \*\*<a href="src/knockapi/types/message_list_events_params.py">params</a>) -> <a href="./src/knockapi/types/message_event.py">SyncItemsCursor[MessageEvent]</a></code>
@@ -239,6 +265,7 @@ Types:
 
 ```python
 from knockapi.types.messages import (
+    BatchMessagesStatusRequest,
     BatchArchiveResponse,
     BatchGetContentResponse,
     BatchMarkAsInteractedResponse,
@@ -397,7 +424,7 @@ Methods:
 Types:
 
 ```python
-from knockapi.types import AudienceMember, AudienceListMembersResponse
+from knockapi.types import AudienceMember, AudienceMemberRequest, AudienceListMembersResponse
 ```
 
 Methods:

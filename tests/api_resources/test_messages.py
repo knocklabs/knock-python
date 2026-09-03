@@ -13,8 +13,8 @@ from knockapi.types import (
     Message,
     Activity,
     MessageEvent,
+    MessageContents,
     MessageDeliveryLog,
-    MessageGetContentResponse,
 )
 from knockapi.pagination import SyncItemsCursor, AsyncItemsCursor
 
@@ -155,7 +155,7 @@ class TestMessages:
         message = client.messages.get_content(
             "message_id",
         )
-        assert_matches_type(MessageGetContentResponse, message, path=["response"])
+        assert_matches_type(MessageContents, message, path=["response"])
 
     @parametrize
     def test_raw_response_get_content(self, client: Knock) -> None:
@@ -166,7 +166,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(MessageGetContentResponse, message, path=["response"])
+        assert_matches_type(MessageContents, message, path=["response"])
 
     @parametrize
     def test_streaming_response_get_content(self, client: Knock) -> None:
@@ -177,7 +177,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(MessageGetContentResponse, message, path=["response"])
+            assert_matches_type(MessageContents, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -706,7 +706,7 @@ class TestAsyncMessages:
         message = await async_client.messages.get_content(
             "message_id",
         )
-        assert_matches_type(MessageGetContentResponse, message, path=["response"])
+        assert_matches_type(MessageContents, message, path=["response"])
 
     @parametrize
     async def test_raw_response_get_content(self, async_client: AsyncKnock) -> None:
@@ -717,7 +717,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(MessageGetContentResponse, message, path=["response"])
+        assert_matches_type(MessageContents, message, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_content(self, async_client: AsyncKnock) -> None:
@@ -728,7 +728,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(MessageGetContentResponse, message, path=["response"])
+            assert_matches_type(MessageContents, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

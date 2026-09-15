@@ -17,6 +17,13 @@ __all__ = [
 class ConnectionMsTeamsTokenConnection(BaseModel):
     """Microsoft Teams token connection."""
 
+    knock_tenant_id: Optional[str] = None
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
+
     ms_teams_channel_id: Optional[str] = None
     """Microsoft Teams channel ID."""
 
@@ -42,6 +49,13 @@ class ConnectionMsTeamsIncomingWebhookConnection(BaseModel):
 
     incoming_webhook: ConnectionMsTeamsIncomingWebhookConnectionIncomingWebhook
     """Microsoft Teams incoming webhook."""
+
+    knock_tenant_id: Optional[str] = None
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
 
 
 Connection: TypeAlias = Union[ConnectionMsTeamsTokenConnection, ConnectionMsTeamsIncomingWebhookConnection]

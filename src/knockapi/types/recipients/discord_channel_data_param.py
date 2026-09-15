@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -20,6 +20,13 @@ class ConnectionDiscordChannelConnection(TypedDict, total=False):
     channel_id: Required[str]
     """Discord channel ID."""
 
+    knock_tenant_id: Optional[str]
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
+
 
 class ConnectionDiscordIncomingWebhookConnectionIncomingWebhook(TypedDict, total=False):
     """Discord incoming webhook object."""
@@ -33,6 +40,13 @@ class ConnectionDiscordIncomingWebhookConnection(TypedDict, total=False):
 
     incoming_webhook: Required[ConnectionDiscordIncomingWebhookConnectionIncomingWebhook]
     """Discord incoming webhook object."""
+
+    knock_tenant_id: Optional[str]
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
 
 
 Connection: TypeAlias = Union[ConnectionDiscordChannelConnection, ConnectionDiscordIncomingWebhookConnection]

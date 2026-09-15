@@ -27,6 +27,13 @@ class ConnectionSlackTokenConnection(TypedDict, total=False):
     channel_name: Optional[str]
     """Slack channel name."""
 
+    knock_tenant_id: Optional[str]
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
+
     user_id: Optional[str]
     """A Slack user ID from the Slack provider."""
 
@@ -43,6 +50,13 @@ class ConnectionSlackIncomingWebhookConnection(TypedDict, total=False):
 
     incoming_webhook: Required[ConnectionSlackIncomingWebhookConnectionIncomingWebhook]
     """A Slack connection incoming webhook."""
+
+    knock_tenant_id: Optional[str]
+    """An optional Knock tenant ID (`knock_tenant_id`) that scopes this connection.
+
+    Distinct from provider-specific tenant IDs. When a workflow is triggered with
+    this tenant, Knock prefers this connection over untagged connections.
+    """
 
 
 Connection: TypeAlias = Union[ConnectionSlackTokenConnection, ConnectionSlackIncomingWebhookConnection]

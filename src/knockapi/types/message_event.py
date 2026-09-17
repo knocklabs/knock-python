@@ -42,6 +42,7 @@ class MessageEvent(BaseModel):
         "message.delivery_attempted",
         "message.undelivered",
         "message.bounced",
+        "message.complaint",
         "message.read",
         "message.unread",
         "message.seen",

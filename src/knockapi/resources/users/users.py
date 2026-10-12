@@ -157,7 +157,7 @@ class UsersResource(SyncAPIResource):
         """Create or update a user with the provided identification data.
 
         When you identify
-        an existing user, the system merges the properties you specific with what is
+        an existing user, the system merges the properties you specify with what is
         currently set on the user, updating only the fields included in your requests.
 
         Args:
@@ -1044,7 +1044,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """Create or update a user with the provided identification data.
 
         When you identify
-        an existing user, the system merges the properties you specific with what is
+        an existing user, the system merges the properties you specify with what is
         currently set on the user, updating only the fields included in your requests.
 
         Args:

@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.32.0](https://github.com/knocklabs/knock-python/compare/v1.31.0...v1.32.0) (2026-10-13)
+
+
+### Features
+
+* update api spec to v0.1.1757 ([567c675](https://github.com/knocklabs/knock-python/commit/567c675ea927f9e62ba67d95fe7b5a3e1228c303))
+* update api spec to v0.1.1759 ([7efb990](https://github.com/knocklabs/knock-python/commit/7efb990ed7a11f79e415680dc1f7c7484240e10d))
+* update api spec to v0.1.1760 ([646f34d](https://github.com/knocklabs/knock-python/commit/646f34d6108f7479713d36560b993927d6d809f6))
+
 ## [1.31.0](https://github.com/knocklabs/knock-python/compare/v1.30.0...v1.31.0) (2026-09-17)
 
 

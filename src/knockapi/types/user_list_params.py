@@ -18,5 +18,12 @@ class UserListParams(TypedDict, total=False):
     include: List[Literal["preferences"]]
     """Associated resources to include in the response."""
 
+    order: Literal["asc", "desc"]
+    """Sort by insertion order.
+
+    Pass `asc` for oldest first, or `desc` for newest first. Defaults to oldest
+    first when omitted.
+    """
+
     page_size: int
     """The number of items per page (defaults to 50)."""

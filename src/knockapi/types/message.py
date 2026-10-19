@@ -9,7 +9,18 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .recipient_reference import RecipientReference
 
-__all__ = ["Message", "Source", "Channel", "RecipientSnapshot"]
+__all__ = ["Message", "Source", "SourceBranchPath", "Channel", "RecipientSnapshot"]
+
+
+class SourceBranchPath(BaseModel):
+    branch_id: str
+    """The ID of the branch taken."""
+
+    step_ref: str
+    """The reference of the branching step."""
+
+    step_type: str
+    """The type of the branching step."""
 
 
 class Source(BaseModel):
@@ -25,6 +36,13 @@ class Source(BaseModel):
 
     version_id: str
     """The ID of the version of the workflow or guide that triggered the message."""
+
+    branch_path: Optional[List[SourceBranchPath]] = None
+    """The branch ancestry of the step that generated the message, outermost first.
+
+    Each segment is the branching step and the branch taken. Omitted when the step
+    is not nested under a branch.
+    """
 
     step_ref: Optional[str] = None
     """The step reference for the step in the workflow that generated the message."""

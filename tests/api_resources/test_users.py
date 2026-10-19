@@ -280,7 +280,6 @@ class TestUsers:
             after="after",
             before="before",
             include=["preferences"],
-            order="asc",
             page_size=0,
         )
         assert_matches_type(SyncEntriesCursor[User], user, path=["response"])
@@ -1384,7 +1383,6 @@ class TestAsyncUsers:
             after="after",
             before="before",
             include=["preferences"],
-            order="asc",
             page_size=0,
         )
         assert_matches_type(AsyncEntriesCursor[User], user, path=["response"])

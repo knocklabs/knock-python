@@ -229,6 +229,7 @@ class UsersResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         include: List[Literal["preferences"]] | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -248,6 +249,9 @@ class UsersResource(SyncAPIResource):
           before: The cursor to fetch entries before.
 
           include: Associated resources to include in the response.
+
+          order: Sort by insertion order. Pass `asc` for oldest first, or `desc` for newest
+              first. Defaults to oldest first when omitted.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -272,6 +276,7 @@ class UsersResource(SyncAPIResource):
                         "after": after,
                         "before": before,
                         "include": include,
+                        "order": order,
                         "page_size": page_size,
                     },
                     user_list_params.UserListParams,
@@ -1116,6 +1121,7 @@ class AsyncUsersResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         include: List[Literal["preferences"]] | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1135,6 +1141,9 @@ class AsyncUsersResource(AsyncAPIResource):
           before: The cursor to fetch entries before.
 
           include: Associated resources to include in the response.
+
+          order: Sort by insertion order. Pass `asc` for oldest first, or `desc` for newest
+              first. Defaults to oldest first when omitted.
 
           page_size: The number of items per page (defaults to 50).
 
@@ -1159,6 +1168,7 @@ class AsyncUsersResource(AsyncAPIResource):
                         "after": after,
                         "before": before,
                         "include": include,
+                        "order": order,
                         "page_size": page_size,
                     },
                     user_list_params.UserListParams,

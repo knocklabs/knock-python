@@ -9,7 +9,6 @@ from typing_extensions import Self, override
 import httpx
 
 from . import _exceptions
-from ._qs import Querystring
 from ._types import (
     Omit,
     Timeout,
@@ -33,6 +32,7 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .lib.querystring import KnockQuerystring as Querystring
 
 if TYPE_CHECKING:
     from .resources import (

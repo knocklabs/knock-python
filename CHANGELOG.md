@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.33.0](https://github.com/knocklabs/knock-python/compare/v1.32.0...v1.33.0) (2026-10-20)
+
+
+### Features
+
+* List users can now be sorted with the optional order parameter (v0.1.1783) ([ab27c05](https://github.com/knocklabs/knock-python/commit/ab27c05bbbf1b96beeb90ad525fd7b82e1f565aa))
+
 ## [1.32.0](https://github.com/knocklabs/knock-python/compare/v1.31.0...v1.32.0) (2026-10-19)
 
 

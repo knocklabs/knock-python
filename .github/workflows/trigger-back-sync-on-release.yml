@@ -17,8 +17,9 @@ jobs:
     if: github.repository == 'knocklabs/knock-python'
     permissions:
       contents: read
-    uses: knocklabs/stainless-workflows/.github/workflows/trigger-back-sync-on-release.yml@main
+    uses: knocklabs/stainless-workflows/.github/workflows/trigger-back-sync-on-release.yml@d74709ae1355138c72ef01ef793ab554a6b35397 # main
     with:
       staging_repo: knocklabs/knock-python-staging
     # Forwards STAGING_DISPATCH_TOKEN — the only secret on the production repo.
-    secrets: inherit
+    secrets:
+      STAGING_DISPATCH_TOKEN: ${{ secrets.STAGING_DISPATCH_TOKEN }}

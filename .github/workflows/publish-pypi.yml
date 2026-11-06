@@ -8,6 +8,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     name: publish
@@ -18,11 +21,16 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          curl -fsSL -o rye.gz "https://github.com/astral-sh/rye/releases/download/${RYE_VERSION}/rye-x86_64-linux.gz"
+          echo "${RYE_SHA256}  rye.gz" | sha256sum -c -
+          gunzip -c rye.gz > "$RUNNER_TEMP/rye"
+          chmod +x "$RUNNER_TEMP/rye"
+          rm rye.gz
+          "$RUNNER_TEMP/rye" self install --yes
+          echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
         env:
           RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+          RYE_SHA256: 'e55e8b844c44820b540c3df46c8d4a3cee43a42ce5302e92bcd99b21d194a9bc'
 
       - name: Publish to PyPI
         run: |

@@ -36,6 +36,6 @@ jobs:
       contents: read
       statuses: write
       pull-requests: read
-    uses: knocklabs/stainless-workflows/.github/workflows/trunk-sync-lock.yml@main
+    uses: knocklabs/stainless-workflows/.github/workflows/trunk-sync-lock.yml@d74709ae1355138c72ef01ef793ab554a6b35397 # main
     with:
       production_repo: knocklabs/knock-python

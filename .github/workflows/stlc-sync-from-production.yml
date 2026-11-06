@@ -33,9 +33,11 @@ jobs:
     # fallback the shared workflow uses when the secret is unset.
     permissions:
       contents: write
-    uses: knocklabs/stainless-workflows/.github/workflows/stlc-sync-from-production.yml@main
+    uses: knocklabs/stainless-workflows/.github/workflows/stlc-sync-from-production.yml@d74709ae1355138c72ef01ef793ab554a6b35397 # main
     with:
       production_repo: knocklabs/knock-python
     # Forwards SDK_WRITE_TOKEN (and PRODUCTION_REPO_TOKEN, if production were
     # private) from repo/org secrets.
-    secrets: inherit
+    secrets:
+      PRODUCTION_REPO_TOKEN: ${{ secrets.PRODUCTION_REPO_TOKEN }}
+      SDK_WRITE_TOKEN: ${{ secrets.SDK_WRITE_TOKEN }}

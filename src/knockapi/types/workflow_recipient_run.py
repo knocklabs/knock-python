@@ -52,7 +52,7 @@ class WorkflowRecipientRun(BaseModel):
     reference (ID, collection).
     """
 
-    status: Literal["queued", "processing", "paused", "completed", "cancelled"]
+    status: Literal["queued", "processing", "paused", "completed", "cancelled", "exited"]
     """The current status of the workflow recipient run.
 
     One of `queued`, `processing`, `paused`, `completed`, or `cancelled`.

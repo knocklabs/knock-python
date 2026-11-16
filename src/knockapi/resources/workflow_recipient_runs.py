@@ -62,7 +62,7 @@ class WorkflowRecipientRunsResource(SyncAPIResource):
         page_size: int | Omit = omit,
         recipient: RecipientReferenceParam | Omit = omit,
         starting_at: Union[str, datetime] | Omit = omit,
-        status: List[Literal["queued", "processing", "paused", "completed", "cancelled"]] | Omit = omit,
+        status: List[Literal["queued", "processing", "paused", "completed", "cancelled", "exited"]] | Omit = omit,
         tenant: str | Omit = omit,
         workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,7 +200,7 @@ class AsyncWorkflowRecipientRunsResource(AsyncAPIResource):
         page_size: int | Omit = omit,
         recipient: RecipientReferenceParam | Omit = omit,
         starting_at: Union[str, datetime] | Omit = omit,
-        status: List[Literal["queued", "processing", "paused", "completed", "cancelled"]] | Omit = omit,
+        status: List[Literal["queued", "processing", "paused", "completed", "cancelled", "exited"]] | Omit = omit,
         tenant: str | Omit = omit,
         workflow: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

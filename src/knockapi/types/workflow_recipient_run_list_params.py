@@ -37,7 +37,7 @@ class WorkflowRecipientRunListParams(TypedDict, total=False):
     starting_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Limits the results to workflow recipient runs started after the given date."""
 
-    status: List[Literal["queued", "processing", "paused", "completed", "cancelled"]]
+    status: List[Literal["queued", "processing", "paused", "completed", "cancelled", "exited"]]
     """Limits the results to workflow recipient runs with the given status."""
 
     tenant: str

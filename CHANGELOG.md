@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/knocklabs/knock-python/compare/v1.33.0...v1.34.0) (2026-11-16)
+
+
+### Features
+
+* Filter and read workflow recipient runs with the new exited status (v0.1.1835) ([d2cc8f3](https://github.com/knocklabs/knock-python/commit/d2cc8f3afdbb572ce532ce6740ddd9aac833aac3))
+
 ## [1.33.0](https://github.com/knocklabs/knock-python/compare/v1.32.0...v1.33.0) (2026-10-20)
 
 
